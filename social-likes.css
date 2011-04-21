@@ -1,0 +1,301 @@
+.social-likes, .social-likes li {
+	display: inline-block;
+	line-height: 20px;
+	margin: 2px 0;
+	word-spacing: 0;
+	}
+.social-likes li {
+	margin-right: 8px;
+	white-space: nowrap;
+	}
+.social-likes li a, .social-likes li b, .social-balloon, .social-balloon textarea {
+	font-family: Calibri, "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
+	font-size: 15px;
+	}
+.social-likes li a, .social-likes li b {
+	display: inline-block;
+	height: 18px;
+	line-height: 18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #DFDFDF;
+	outline: none;
+	margin: 0;
+	}
+.social-likes li a {
+	position: relative;
+	padding: 1px 4px 1px 20px;
+	line-height: 18px;
+	background: #efefef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#efefef));
+	background: -moz-linear-gradient(#fff, #efefef);
+	color: #555;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.6);
+	font-weight: bold;
+	border-bottom-color: #ccc;
+	}
+.social-likes li a:hover, .social-likes li a:active {
+	background: #e0e0e0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#bbb));
+	background: -moz-linear-gradient(#fafafa, #bbb);
+	border-color: #ccc;
+	border-bottom-color: #999;
+	}
+.social-likes li a i {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	background: url(http://sapegin.ru/api/social-likes/social-likes.png) no-repeat;
+	}
+.social-likes li b {
+	position: relative;
+	margin-left: 7px;
+	padding: 1px 4px;
+	font-weight: normal;
+	color: #666;
+	color: rgba(0,0,0,.5);
+	}
+.social-likes li b i {
+	display: block;
+	border: 6px solid transparent;
+	border-left: 0;
+	border-right: 6px solid #DFDFDF;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 4px;
+	left: -6px;
+	}
+.social-likes li b i i {
+	border: 5px solid transparent;
+	border-left: 0;
+	border-right: 5px solid #fff !important;
+	top: -5px;
+	left: 1px;	
+	}
+.social-balloon {
+	position: absolute;
+	bottom: 29px;
+	right: 0;
+	padding: 6px;
+	line-height: 1.2;
+	background: #444;
+	background: rgba(0, 0, 0, 0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
+	}
+.social-balloon textarea {
+	border: 1px solid #fff inset;
+	width: 300px;
+	height: 60px;
+	}
+.social-balloon i {
+	position: absolute;
+	bottom: -6px;
+	right: 8px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-bottom: 0;
+	border-top: 6px solid #444;
+	border-top: 6px solid rgba(0, 0, 0, 0.75);
+	}
+
+/* Twitter */
+.social-likes li.twitter a, .social-likes li.twitter b {
+	border-color: #a4cce5;
+	}
+.social-likes li.twitter a {
+	padding-left: 19px;
+	background: #d5e6ef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d5e6ef));
+	background: -moz-linear-gradient(#fff, #d5e6ef);
+	color: #186487;
+	border-bottom-color: #9dB9cb;
+	}
+.social-likes li.twitter a:hover, .social-likes li.twitter a:active {
+	background: #bfdfed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f8fc), to(#bfdfed));
+	background: -moz-linear-gradient(#f2f8fc, #bfdfed);
+	color: #0b3752;
+	border-color: #9CBBCF;
+	border-bottom-color: #68a0c4;
+	}
+.social-likes li.twitter b i {
+	border-right-color: #a4cce5;
+	}
+.social-likes li.twitter b {
+	background: #f2f8fc;
+	}
+.social-likes li.twitter b i i {
+	border-right-color: #f2f8fc !important;
+	}
+.social-likes li.twitter a i {
+	background-position: 0 0;
+	}
+
+/* Facebook */
+.social-likes li.facebook a, .social-likes li.facebook b {
+	border-color: #CAD4E7;
+	}
+.social-likes li.facebook a {
+	padding-left: 19px;
+	background: #ECEEF5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D8DEF4));
+	background: -moz-linear-gradient(#fff, #D8DEF4);
+	color: #3B5998;
+	border-bottom-color: #BEC3CC;
+	}
+.social-likes li.facebook a:hover, .social-likes li.facebook a:active {
+	background: #C0CDF3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F2F3F7), to(#C0CDF3));
+	background: -moz-linear-gradient(#F2F3F7, #C0CDF3);
+	color: #253860;
+	border-color: #B4BFD4;
+	border-bottom-color: #B3B7BF;
+	}
+.social-likes li.facebook b i {
+	border-right-color: #CAD4E7;
+	}
+.social-likes li.facebook b {
+	background: #F2F3F7;
+	}
+.social-likes li.facebook b i i {
+	border-right-color: #F2F3F7 !important;
+	}
+.social-likes li.facebook a i {
+	background-position: 0 -20px;
+	}
+
+/* Mail.ru */
+.social-likes li.mailru a {
+	border-color: #185083;
+	}
+.social-likes li.mailru a {
+	background: #004584;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5D90BA), to(#004584));
+	background: -moz-linear-gradient(#5D90BA, #004584);
+	color: #fff;
+	border-bottom-color: #0F192A;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	}
+.social-likes li.mailru a:hover, .social-likes li.mailru a:active {
+	background: #001E5D;
+	background: -webkit-gradient(linear, left top, left bottom, from(#618CAE), to(#001E5D));
+	background: -moz-linear-gradient(#618CAE, #001E5D);
+	color: #fff;
+	border-color: #063057;
+	border-bottom-color: #111;
+	}
+.social-likes li.mailru b {
+	border-color: #FFC70D;
+	background: #FFF1C2;
+	}
+.social-likes li.mailru b i {
+	border-right-color: #FFC70D;
+	}
+.social-likes li.mailru b i i {
+	border-right-color: #FFF1C2 !important;
+	}
+.social-likes li.mailru a i {
+	background-position: 0 -40px;
+	}
+
+/* В контакте */
+.social-likes li.vkontakte a {
+	border-color: #4170A4;
+	}
+.social-likes li.vkontakte a {
+	padding-left: 21px;
+	background: #436F96;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8FAECF), to(#436F96));
+	background: -moz-linear-gradient(#8FAECF, #436F96);
+	color: #fff;
+	border-bottom-color: #1E3349;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	}
+.social-likes li.vkontakte a:hover, .social-likes li.vkontakte a:active {
+	background: #4E80AB;
+	background: -webkit-gradient(linear, left top, left bottom, from(#A2C0DF), to(#4E80AB));
+	background: -moz-linear-gradient(#A2C0DF, #4E80AB);
+	color: #fff;
+	border-color: #5788BE;
+	border-bottom-color: #3B6798;
+	}
+.social-likes li.vkontakte b {
+	border-color: #AFC1D4;
+	background: #EAEEF3;
+	}
+.social-likes li.vkontakte b i {
+	border-right-color: #AFC1D4;
+	}
+.social-likes li.vkontakte b i i {
+	border-right-color: #EAEEF3 !important;
+	}
+.social-likes li.vkontakte a i {
+	background-position: 0 -80px;
+	}
+
+/* LiveJournal */
+.social-likes li.livejournal a, .social-likes li.livejournal b {
+	border-color: #B5D8F6;
+	}
+.social-likes li.livejournal a {
+	background: #CADCF3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#CADCF3));
+	background: -moz-linear-gradient(#fff, #CADCF3);
+	color: #5183B4;
+	border-bottom-color: #B3C1CE;
+	}
+.social-likes li.livejournal a:hover, .social-likes li.livejournal a:active {
+	background: #DCE2F5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ECF1F7), to(#BAD2F0));
+	background: -moz-linear-gradient(#ECF1F7, #BAD2F0);
+	color: #253759;
+	border-color: #B7CFE4;
+	border-bottom-color: #9CAEBE;
+	}
+.social-likes li.livejournal a i {
+	background-position: 0 -60px;
+	}
+
+/* Code */
+.social-likes li.code {
+	position: relative;
+	}
+.social-likes li.code a i {
+	background-position: 0 -100px;
+	}
+
+
+/* IE Fixes */
+* html .social-likes { zoom: 1; } /* IE6 */
+*:first-child+html .social-likes { min-height: 1px; } /* IE7 */
+.social-likes li, .social-likes li a, .social-likes li b {
+	*display: block;
+	}
+.social-likes {
+	*display: inline;
+	}
+.social-likes li, .social-likes li a, .social-likes li b {
+	*float: left;
+	}
+.social-likes li {
+	*padding: 2px 0;
+	}
+* html .social-likes li b i, * html .social-balloon i {
+	display: none;
+	}
