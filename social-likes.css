@@ -1,5 +1,6 @@
 .social-likes, .social-likes li {
 	display: inline-block;
+	vertical-align: middle;
 	line-height: 20px;
 	margin: 2px 0;
 	word-spacing: 0;
@@ -8,9 +9,12 @@
 	margin-right: 8px;
 	white-space: nowrap;
 	}
+.social-likes li:before {
+	display: none;
+	}
 .social-likes li a, .social-likes li b, .social-balloon, .social-balloon textarea {
-	font-family: Calibri, "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
-	font-size: 15px;
+	font-family: "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
+	font-size: 14px;
 	}
 .social-likes li a, .social-likes li b {
 	display: inline-block;
@@ -20,7 +24,7 @@
 	-moz-border-radius: 3px;
 	-o-border-radius: 3px;
 	border-radius: 3px;
-	border: 1px solid #DFDFDF;
+	border: 1px solid #dfdfdf;
 	outline: none;
 	margin: 0;
 	}
@@ -29,20 +33,36 @@
 	padding: 1px 4px 1px 20px;
 	line-height: 18px;
 	background: #efefef;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#efefef));
-	background: -moz-linear-gradient(#fff, #efefef);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#efefef)); /* Saf4+, Chrome */
+	background: -moz-linear-gradient(top, #fff, #efefef); /* FF3.6 */
+	background: -ms-linear-gradient(top, #fff, #efefef); /* IE10 */
+	background: -o-linear-gradient(top, #fff, #efefef); /* Opera 11.10+ */
+	background: linear-gradient(top, #fff, #efefef);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #ffffff, EndColorStr = #efefef); /* IE6–IE9 */	
 	color: #555;
 	text-decoration: none;
-	text-shadow: 0 1px 0 rgba(255,255,255, 0.6);
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
 	font-weight: bold;
 	border-bottom-color: #ccc;
+	-webkit-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+	-moz-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+	-o-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+	transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;	
 	}
 .social-likes li a:hover, .social-likes li a:active {
 	background: #e0e0e0;
 	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#bbb));
-	background: -moz-linear-gradient(#fafafa, #bbb);
+	background: -moz-linear-gradient(top, #fafafa, #bbb);
+	background: -ms-linear-gradient(top, #fafafa, #bbb);
+	background: -o-linear-gradient(top, #fafafa, #bbb);
+	background: linear-gradient(top, #fafafa, #bbb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #fafafa, EndColorStr = #bbbbbb);
 	border-color: #ccc;
 	border-bottom-color: #999;
+	}
+.social-likes li a:active {
+	position: relative;
+	top: 1px;
 	}
 .social-likes li a i {
 	display: block;
@@ -51,7 +71,7 @@
 	left: 0;
 	width: 20px;
 	height: 20px;
-	background: url(http://sapegin.ru/api/social-likes/social-likes.png) no-repeat;
+	background: url(social-likes.png) no-repeat;
 	}
 .social-likes li b {
 	position: relative;
@@ -65,7 +85,7 @@
 	display: block;
 	border: 6px solid transparent;
 	border-left: 0;
-	border-right: 6px solid #DFDFDF;
+	border-right: 6px solid #dfdfdf;
 	width: 0;
 	height: 0;
 	position: absolute;
@@ -81,26 +101,28 @@
 	}
 .social-balloon {
 	position: absolute;
+	text-align: left;
 	bottom: 29px;
 	right: 0;
 	padding: 6px;
 	line-height: 1.2;
 	background: #444;
-	background: rgba(0, 0, 0, 0.75);
+	background: rgba(0, 0, 0, .75);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
 	color: #fff;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
-	-o-box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.15);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+	-webkit-box-shadow: 0 -2px 15px rgba(0, 0, 0, .15);
+	-moz-box-shadow: 0 -2px 15px rgba(0, 0, 0, .15);
+	box-shadow: 0 -2px 15px rgba(0, 0, 0, .15);
 	}
 .social-balloon textarea {
 	border: 1px solid #fff inset;
 	width: 300px;
 	height: 60px;
+	resize: none;
 	}
 .social-balloon i {
 	position: absolute;
@@ -111,7 +133,7 @@
 	border: 6px solid transparent;
 	border-bottom: 0;
 	border-top: 6px solid #444;
-	border-top: 6px solid rgba(0, 0, 0, 0.75);
+	border-top: 6px solid rgba(0, 0, 0, .75);
 	}
 
 /* Twitter */
@@ -122,16 +144,24 @@
 	padding-left: 19px;
 	background: #d5e6ef;
 	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d5e6ef));
-	background: -moz-linear-gradient(#fff, #d5e6ef);
+	background: -moz-linear-gradient(top, #fff, #d5e6ef);
+	background: -ms-linear-gradient(top, #fff, #d5e6ef);
+	background: -o-linear-gradient(top, #fff, #d5e6ef);
+	background: linear-gradient(top, #fff, #d5e6ef);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #ffffff, EndColorStr = #d5e6ef);
 	color: #186487;
 	border-bottom-color: #9dB9cb;
 	}
 .social-likes li.twitter a:hover, .social-likes li.twitter a:active {
 	background: #bfdfed;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f2f8fc), to(#bfdfed));
-	background: -moz-linear-gradient(#f2f8fc, #bfdfed);
+	background: -moz-linear-gradient(top, #f2f8fc, #bfdfed);
+	background: -ms-linear-gradient(top, #f2f8fc, #bfdfed);
+	background: -o-linear-gradient(top, #f2f8fc, #bfdfed);
+	background: linear-gradient(top, #f2f8fc, #bfdfed);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #f2f8fc, EndColorStr = #bfdfed);
 	color: #0b3752;
-	border-color: #9CBBCF;
+	border-color: #9cbbcf;
 	border-bottom-color: #68a0c4;
 	}
 .social-likes li.twitter b i {
@@ -153,28 +183,36 @@
 	}
 .social-likes li.facebook a {
 	padding-left: 19px;
-	background: #ECEEF5;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D8DEF4));
-	background: -moz-linear-gradient(#fff, #D8DEF4);
-	color: #3B5998;
-	border-bottom-color: #BEC3CC;
+	background: #eceef5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d8def4));
+	background: -moz-linear-gradient(top, #fff, #d8def4);
+	background: -ms-linear-gradient(top, #fff, #d8def4);
+	background: -o-linear-gradient(top, #fff, #d8def4);
+	background: linear-gradient(top, #fff, #d8def4);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #ffffff, EndColorStr = #d8def4);
+	color: #3b5998;
+	border-bottom-color: #bec3cc;
 	}
 .social-likes li.facebook a:hover, .social-likes li.facebook a:active {
-	background: #C0CDF3;
-	background: -webkit-gradient(linear, left top, left bottom, from(#F2F3F7), to(#C0CDF3));
-	background: -moz-linear-gradient(#F2F3F7, #C0CDF3);
+	background: #c0cdf3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f3f7), to(#c0cdf3));
+	background: -moz-linear-gradient(top, #f2f3f7, #c0cdf3);
+	background: -ms-linear-gradient(top, #f2f3f7, #c0cdf3);
+	background: -o-linear-gradient(top, #f2f3f7, #c0cdf3);
+	background: linear-gradient(top, #f2f3f7, #c0cdf3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #f2f3f7, EndColorStr = #c0cdf3);
 	color: #253860;
-	border-color: #B4BFD4;
-	border-bottom-color: #B3B7BF;
+	border-color: #b4bfd4;
+	border-bottom-color: #b3b7bf;
 	}
 .social-likes li.facebook b i {
-	border-right-color: #CAD4E7;
+	border-right-color: #cad4e7;
 	}
 .social-likes li.facebook b {
-	background: #F2F3F7;
+	background: #f2f3f7;
 	}
 .social-likes li.facebook b i i {
-	border-right-color: #F2F3F7 !important;
+	border-right-color: #f2f3f7 !important;
 	}
 .social-likes li.facebook a i {
 	background-position: 0 -20px;
@@ -186,29 +224,37 @@
 	}
 .social-likes li.mailru a {
 	background: #004584;
-	background: -webkit-gradient(linear, left top, left bottom, from(#5D90BA), to(#004584));
-	background: -moz-linear-gradient(#5D90BA, #004584);
+	background: -webkit-gradient(linear, left top, left bottom, from(#5d90ba), to(#004584));
+	background: -moz-linear-gradient(top, #5d90ba, #004584);
+	background: -ms-linear-gradient(top, #5d90ba, #004584);
+	background: -o-linear-gradient(top, #5d90ba, #004584);
+	background: linear-gradient(top, #5d90ba, #004584);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #5d90ba, EndColorStr = #004584);
 	color: #fff;
-	border-bottom-color: #0F192A;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	border-bottom-color: #0f192a;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 	}
 .social-likes li.mailru a:hover, .social-likes li.mailru a:active {
-	background: #001E5D;
-	background: -webkit-gradient(linear, left top, left bottom, from(#618CAE), to(#001E5D));
-	background: -moz-linear-gradient(#618CAE, #001E5D);
+	background: #001e5d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#618cae), to(#001e5d));
+	background: -moz-linear-gradient(top, #618cae, #001e5d);
+	background: -ms-linear-gradient(top, #618cae, #001e5d);
+	background: -o-linear-gradient(top, #618cae, #001e5d);
+	background: linear-gradient(top, #618cae, #001e5d);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #618cae, EndColorStr = #001e5d);
 	color: #fff;
 	border-color: #063057;
 	border-bottom-color: #111;
 	}
 .social-likes li.mailru b {
-	border-color: #FFC70D;
-	background: #FFF1C2;
+	border-color: #ffc70d;
+	background: #fff1c2;
 	}
 .social-likes li.mailru b i {
-	border-right-color: #FFC70D;
+	border-right-color: #ffc70d;
 	}
 .social-likes li.mailru b i i {
-	border-right-color: #FFF1C2 !important;
+	border-right-color: #fff1c2 !important;
 	}
 .social-likes li.mailru a i {
 	background-position: 0 -40px;
@@ -216,34 +262,42 @@
 
 /* В контакте */
 .social-likes li.vkontakte a {
-	border-color: #4170A4;
+	border-color: #4170a4;
 	}
 .social-likes li.vkontakte a {
 	padding-left: 21px;
-	background: #436F96;
-	background: -webkit-gradient(linear, left top, left bottom, from(#8FAECF), to(#436F96));
-	background: -moz-linear-gradient(#8FAECF, #436F96);
+	background: #436f96;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8faecf), to(#436f96));
+	background: -moz-linear-gradient(top, #8faecf, #436f96);
+	background: -ms-linear-gradient(top, #8faecf, #436f96);
+	background: -o-linear-gradient(top, #8faecf, #436f96);
+	background: linear-gradient(top, #8faecf, #436f96);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #8faecf, EndColorStr = #436f96);
 	color: #fff;
-	border-bottom-color: #1E3349;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	border-bottom-color: #1e3349;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 	}
 .social-likes li.vkontakte a:hover, .social-likes li.vkontakte a:active {
-	background: #4E80AB;
-	background: -webkit-gradient(linear, left top, left bottom, from(#A2C0DF), to(#4E80AB));
-	background: -moz-linear-gradient(#A2C0DF, #4E80AB);
+	background: #4e80ab;
+	background: -webkit-gradient(linear, left top, left bottom, from(#a2c0df), to(#4e80ab));
+	background: -moz-linear-gradient(top, #a2c0df, #4e80ab);
+	background: -ms-linear-gradient(top, #a2c0df, #4e80ab);
+	background: -o-linear-gradient(top, #a2c0df, #4e80ab);
+	background: linear-gradient(top, #a2c0df, #4e80ab);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #a2c0df, EndColorStr = #4e80ab);
 	color: #fff;
-	border-color: #5788BE;
+	border-color: #5788be;
 	border-bottom-color: #3B6798;
 	}
 .social-likes li.vkontakte b {
-	border-color: #AFC1D4;
-	background: #EAEEF3;
+	border-color: #afc1d4;
+	background: #eaeef3;
 	}
 .social-likes li.vkontakte b i {
-	border-right-color: #AFC1D4;
+	border-right-color: #afc1d4;
 	}
 .social-likes li.vkontakte b i i {
-	border-right-color: #EAEEF3 !important;
+	border-right-color: #eaeef3 !important;
 	}
 .social-likes li.vkontakte a i {
 	background-position: 0 -80px;
@@ -251,22 +305,30 @@
 
 /* LiveJournal */
 .social-likes li.livejournal a, .social-likes li.livejournal b {
-	border-color: #B5D8F6;
+	border-color: #b5d8f6;
 	}
 .social-likes li.livejournal a {
-	background: #CADCF3;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#CADCF3));
-	background: -moz-linear-gradient(#fff, #CADCF3);
-	color: #5183B4;
-	border-bottom-color: #B3C1CE;
+	background: #cadcf3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cadcf3));
+	background: -moz-linear-gradient(top, #fff, #cadcf3);
+	background: -ms-linear-gradient(top, #fff, #cadcf3);
+	background: -o-linear-gradient(top, #fff, #cadcf3);
+	background: linear-gradient(top, #fff, #cadcf3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #ffffff, EndColorStr = #cadcf3);
+	color: #5183b4;
+	border-bottom-color: #b3c1ce;
 	}
 .social-likes li.livejournal a:hover, .social-likes li.livejournal a:active {
-	background: #DCE2F5;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ECF1F7), to(#BAD2F0));
-	background: -moz-linear-gradient(#ECF1F7, #BAD2F0);
+	background: #dce2f5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ecf1f7), to(#bad2f0));
+	background: -moz-linear-gradient(top, #ecf1f7, #bad2f0);
+	background: -ms-linear-gradient(top, #ecf1f7, #bad2f0);
+	background: -o-linear-gradient(top, #ecf1f7, #bad2f0);
+	background: linear-gradient(top, #ecf1f7, #bad2f0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #ecf1f7, EndColorStr = #bad2f0);
 	color: #253759;
-	border-color: #B7CFE4;
-	border-bottom-color: #9CAEBE;
+	border-color: #b7cfe4;
+	border-bottom-color: #9caebe;
 	}
 .social-likes li.livejournal a i {
 	background-position: 0 -60px;

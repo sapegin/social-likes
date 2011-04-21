@@ -1,3 +1,15 @@
+/**
+ * Social Likes
+ *
+ * Sharing buttons for Russian and worldwide social networks.
+ *
+ * @version 1.1
+ * @requires jQuery 1.4
+ * @author Artem Sapegin
+ * @copyright 2011 Artem Sapegin (sapegin.ru)
+ * @license http://creativecommons.org/licenses/by/3.0/
+ */
+ 
 (function($){
 
 	var socialLikes = function(){
@@ -115,7 +127,9 @@
 									].join(''));
 									link.after(balloon);
 									var textarea = buttonWrapper.find('textarea');
-									textarea.val(this_.container.find('.livejournal input[name="event"]').val());
+									var messageField = this_.container.find('.livejournal input[name="event"]');
+									if (!messageField.length) messageField = this_.container.find('.code input[name="event"]');
+									textarea.val(messageField.val());
 									this_.selectTextInTextarea(textarea);
 								}
 								
@@ -223,6 +237,11 @@
 		}
 	};
 
-	new socialLikes();
+	if (document.body) {
+		new socialLikes();
+	}
+	else {
+		$(function() { new socialLikes(); });
+	}
 
 })(jQuery);
