@@ -1,77 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
 <head>
-  <meta charset='utf-8'>
+	<meta charset="utf-8">
+	<title>Красивые кнопки «лайков» социальных сетей</title>
+	<link href="http://sapegin.ru/api/github/pages.css" rel="stylesheet" >
 
-  <title>sapegin/social-likes @ GitHub</title>
+	<script src="http://yandex.st/highlightjs/5.16/highlight.min.js"></script>
+	<link href="http://sapegin.ru/api/highlightjs/zenburn.css" rel="stylesheet">
+	<script> 
+	hljs.tabReplace = '<span class="indent">\t</span>';
+	hljs.initHighlightingOnLoad();
+	</script>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #67f4bb;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #980b44; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #980b44; }
-    h3 { text-align: center; color: #980b44; }
-    a { color: #980b44; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+	<link href="https://github.com/sapegin/social-likes/raw/master/social-likes.css" rel="stylesheet">
+	<script src="https://github.com/sapegin/social-likes/raw/master/social-likes.js"></script>
 </head>
-
 <body>
-  <a href="http://github.com/sapegin/social-likes"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/sapegin/social-likes/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/sapegin/social-likes/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/sapegin/social-likes">social-likes</a>
-      <span class="small">by <a href="http://github.com/sapegin">sapegin</a></span></h1>
-
-    <div class="description">
-      Кнопки «лайков» социальных сетей
-    </div>
-
-    <h2>Authors</h2>
-<p>Artem Sapegin (artem@sapegin.ru)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Artem Sapegin (artem@sapegin.ru)<br/>      </p>
 
 
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/sapegin/social-likes/zipball/master">zip</a> or
-      <a href="http://github.com/sapegin/social-likes/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/sapegin/social-likes</pre>
-    </p>
+<a href="http://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/sapegin/social-likes">sapegin/social-likes</a>
-    </div>
+<div id="container">
 
-  </div>
+	<div class="download">
+		<a href="http://github.com/sapegin/social-likes/zipball/master"><img width="90" src="http://github.com/images/modules/download/zip.png"></a>
+		<a href="http://github.com/sapegin/social-likes/tarball/master"><img width="90" src="http://github.com/images/modules/download/tar.png"></a>
+	</div>
 
-  
+    <h1>Social Likes</h1>
+    <div class="subtitle">Красивые кнопки «лайков» социальных сетей</div>
+	
+	<div class="description">
+		<p>Красивые кнопки в едином стиле для популярных социальных сетей: Facebook, Twitter, В контакте, Одноклассники, Мой мир, LiveJournal.</p>
+	</div>
+
+	
+    <h2>Внешний вид</h2>
+	
+	<ul class="social-likes">
+		<li class="facebook"><a href="#" title="Опубликовать ссылку на Фейсбуке">Facebook</a></li>
+		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
+		<li class="mailru"><a href="#" title="Опубликовать ссылку в Моём Мире">Мой мир</a></li>
+		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во В контакте">В контакте</a></li>
+		<li class="odnoklassniki"><a href="#" title="Опубликовать ссылку в Одноклассниках">Одноклассники</a></li>
+		<li class="livejournal"><form action="http://www.livejournal.com/update.bml" method="post" target="_blank">
+			<input type="hidden" name="mode" value="full">
+			<input type="hidden" name="subject" value="Social Likes">
+			<input type="hidden" name="event" value="<a href=https://github.com/sapegin/social-likes>Красивые кнопки «лайков» социальных сетей</a>">
+			<input type="submit" value="LiveJournal" title="Опубликовать ссылку в ЖЖ">
+		</form></li>
+		<li class="code"><a href="#" title="Получить код для публикации ссылки в другом сервисе">Код</a></li>
+	</ul>
+
+	<h2>Использование</h2>
+
+<pre><code>&lt;link href=&quot;social-likes.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;social-likes.js&quot;&gt;&lt;/script&gt;
+
+&lt;ul class=&quot;social-likes&quot;&gt;
+	&lt;li class=&quot;facebook&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку на Фейсбуке&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;twitter&quot;&gt;&lt;a href=&quot;#&quot; data-via=&quot;sapegin&quot; data-related=&quot;DessiTeckel:Моя такса&quot; title=&quot;Опубликовать ссылку в Твиттере&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;mailru&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Моём Мире&quot;&gt;Мой мир&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во В контакте&quot;&gt;В контакте&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;odnoklassniki&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;livejournal&quot;&gt;&lt;form action=&quot;http://www.livejournal.com/update.bml&quot; method=&quot;post&quot; target=&quot;_blank&quot;&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;full&quot;&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;Social Likes&quot;&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;event&quot; value=&quot;&lt;a href=https://github.com/sapegin/social-likes&gt;Красивые кнопки «лайков» социальных сетей&lt;/a&gt;&quot;&gt;
+		&lt;input type=&quot;submit&quot; value=&quot;LiveJournal&quot; title=&quot;Опубликовать ссылку в ЖЖ&quot;&gt;
+	&lt;/form&gt;&lt;/li&gt;
+	&lt;li class=&quot;code&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Получить код для публикации ссылки в другом сервисе&quot;&gt;Код&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+	<p>Вы можете убрать любые ненужные вам кнопки.</p>
+
+
+    <h2>Скачать</h2>
+    <p>Вы можете скачать архив в формате <a href="http://github.com/sapegin/social-likes/zipball/master">zip</a> или <a href="http://github.com/sapegin/social-likes/tarball/master">tar</a>.</p>
+    <p>Вы так же можете клонировать <a href="http://git-scm.com">Git</a>-репозиторий проекта:</p>
+	<pre><code class="bash">$ git clone git://github.com/sapegin/social-likes</code></pre>
+
+
+	<div class="footer">Brought to you by <a href="http://sapegin.ru/">Artem Sapegin</a> and octocat. <a href="http://github.com/sapegin/social-likes">Project on GitHub</a>.</div>
+	<div class="octocat"><a href="http://github.com/">GitHub</a></div>
+    
+
+</div>
+
 </body>
 </html>
