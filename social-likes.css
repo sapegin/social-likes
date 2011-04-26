@@ -1,3 +1,8 @@
+/**
+ * @copyright 2011 Artem Sapegin (sapegin.ru)
+ * @license http://creativecommons.org/licenses/by/3.0/
+ */
+
 .social-likes, .social-likes li {
 	display: inline-block;
 	vertical-align: middle;
@@ -15,6 +20,7 @@
 .social-likes li a, .social-likes li b, .social-balloon, .social-balloon textarea {
 	font-family: "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
 	font-size: 14px;
+	text-rendering: optimizeLegibility;
 	}
 .social-likes li a, .social-likes li b {
 	display: inline-block;
@@ -231,6 +237,7 @@
 	background: linear-gradient(top, #5d90ba, #004584);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #5d90ba, EndColorStr = #004584);
 	color: #fff;
+	color: rgba(255, 255, 255, .95);
 	border-bottom-color: #0f192a;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 	}
@@ -243,6 +250,7 @@
 	background: linear-gradient(top, #618cae, #001e5d);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #618cae, EndColorStr = #001e5d);
 	color: #fff;
+	color: rgba(255, 255, 255, .99);
 	border-color: #063057;
 	border-bottom-color: #111;
 	}
@@ -260,7 +268,7 @@
 	background-position: 0 -40px;
 	}
 
-/* В контакте */
+/* V kontakte */
 .social-likes li.vkontakte a {
 	border-color: #4170a4;
 	}
@@ -274,6 +282,7 @@
 	background: linear-gradient(top, #8faecf, #436f96);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #8faecf, EndColorStr = #436f96);
 	color: #fff;
+	color: rgba(255, 255, 255, .95);
 	border-bottom-color: #1e3349;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 	}
@@ -286,6 +295,7 @@
 	background: linear-gradient(top, #a2c0df, #4e80ab);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #a2c0df, EndColorStr = #4e80ab);
 	color: #fff;
+	color: rgba(255, 255, 255, .99);
 	border-color: #5788be;
 	border-bottom-color: #3B6798;
 	}
@@ -301,6 +311,52 @@
 	}
 .social-likes li.vkontakte a i {
 	background-position: 0 -80px;
+	}
+
+/* Odnoklassniki */
+.social-likes li.odnoklassniki a {
+	border-color: #d99c27;
+	}
+.social-likes li.odnoklassniki a {
+	padding-left: 21px;
+	background: #f6900b;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f6bb6d), to(#f6900b));
+	background: -moz-linear-gradient(top, #f6bb6d, #f6900b);
+	background: -ms-linear-gradient(top, #f6bb6d, #f6900b);
+	background: -o-linear-gradient(top, #f6bb6d, #f6900b);
+	background: linear-gradient(top, #f6bb6d, #f6900b);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #f6bb6d, EndColorStr = #f6900b);
+	color: #fff;
+	color: rgba(255, 255, 255, .95);
+	border-bottom-color: #c58907;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+	}
+.social-likes li.odnoklassniki a:hover, .social-likes li.odnoklassniki a:active {
+	color: #fff;
+	background: #f69a21;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbcc5a), to(#f69a21));
+	background: -moz-linear-gradient(top, #fbcc5a, #f69a21);
+	background: -ms-linear-gradient(top, #fbcc5a, #f69a21);
+	background: -o-linear-gradient(top, #fbcc5a, #f69a21);
+	background: linear-gradient(top, #fbcc5a, #f69a21);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #fbcc5a, EndColorStr = #f69a21);
+	color: #fff;
+	color: rgba(255, 255, 255, .99);
+	border-bottom-color: #c59121;
+	border-color: #f0b22c;
+	}
+.social-likes li.odnoklassniki b {
+	border-color: #d9ab53;
+	background: #ffe9be;
+	}
+.social-likes li.odnoklassniki b i {
+	border-right-color: #d9ab53;
+	}
+.social-likes li.odnoklassniki b i i {
+	border-right-color: #ffe9be !important;
+	}
+.social-likes li.odnoklassniki a i {
+	background-position: 0 -120px;
 	}
 
 /* LiveJournal */

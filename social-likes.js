@@ -98,6 +98,27 @@
 							}, buttonWrapper, cls);
 
 							break;
+							
+						case 'odnoklassniki':
+							if (!this_.counters.odnoklassniki) {
+								window.ODKL = {updateCount: function(junk, count) {
+									this_.updateCount(cls, count);
+								}};
+								$.ajax({
+									url: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=' + escape(this_.pageUrl),
+									dataType: 'jsonp'
+								});
+								this_.counters.odnoklassniki = true;
+							}
+							
+							this_.initButton({
+								urlParam: 'st._surl',
+								popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare',
+								pupupWidth: 550,
+								popupHeight: 360
+							}, buttonWrapper, cls);
+
+							break;							
 
 						case 'livejournal':
 							var button = buttonWrapper.find(':submit');
@@ -173,7 +194,8 @@
 
 			var this_ = this;
 			link.click(function(){
-				this_.openWindow(params.popupUrl + '?' + this_.getQuery(query), {
+				var paramsSeparator = params.popupUrl.indexOf('?') === -1 ? '?' : '&';
+				this_.openWindow(params.popupUrl + paramsSeparator + this_.getQuery(query), {
 					width: params.pupupWidth,
 					height: params.popupHeight,
 					name: 'share_' + buttonName
@@ -183,6 +205,7 @@
 		},
 
 		updateCount: function(buttonName, count) {
+			count = parseInt(count, 10);
 			var buttonWrapper = $('.' + buttonName, this.container);
 			var counter = buttonWrapper.find('b i i');
 			if (counter.length) {
