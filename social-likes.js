@@ -1,9 +1,10 @@
 /**
  * Social Likes
+ * http://sapegin.github.com/social-likes
  *
  * Sharing buttons for Russian and worldwide social networks.
  *
- * @version 1.1
+ * @version 1.2
  * @requires jQuery 1.4
  * @author Artem Sapegin
  * @copyright 2011 Artem Sapegin (sapegin.ru)

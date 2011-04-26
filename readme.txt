@@ -1,6 +1,6 @@
 Кнопки «лайков» социальных сетей
 © Артём Сапегин
-https://github.com/sapegin/social-likes
+http://sapegin.github.com/social-likes
 
 Красивые кнопки в едином стиле для популярных социальных сетей:
 Facebook, Twitter, В контакте, Одноклассники, Мой мир, LiveJournal.
