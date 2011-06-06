@@ -4,7 +4,7 @@
  *
  * Sharing buttons for Russian and worldwide social networks.
  *
- * @version 1.2
+ * @version 1.2.1
  * @requires jQuery 1.4
  * @author Artem Sapegin
  * @copyright 2011 Artem Sapegin (sapegin.ru)
@@ -19,7 +19,7 @@
 
 	socialLikes.prototype = {
 		init: function() {
-			this.pageUrl = window.location.href;
+			this.pageUrl = window.location.href.replace(window.location.hash, '');
 			this.container = $('.social-likes');
 			var this_ = this;
 			this.counters = {};

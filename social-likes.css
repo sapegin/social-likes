@@ -11,8 +11,11 @@
 	word-spacing: 0;
 	}
 .social-likes li {
-	margin-right: 8px;
+	margin-left: 8px;
 	white-space: nowrap;
+	}
+.social-likes li:first-child {
+	margin-left: 0;
 	}
 .social-likes li:before {
 	display: none;
@@ -28,7 +31,6 @@
 	line-height: 18px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	-o-border-radius: 3px;
 	border-radius: 3px;
 	border: 1px solid #dfdfdf;
 	outline: none;
@@ -50,10 +52,11 @@
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
 	font-weight: bold;
 	border-bottom-color: #ccc;
+	/* Gradient transition don’t work yet in any browser. This is for future :) */
 	-webkit-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
 	-moz-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
 	-o-transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
-	transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;	
+	transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
 	}
 .social-likes li a:hover, .social-likes li a:active {
 	background: #e0e0e0;
@@ -89,7 +92,7 @@
 	}
 .social-likes li b i {
 	display: block;
-	border: 6px solid transparent;
+	border: 6px inset transparent; /* inset fixes strange artefacts in Firefox */
 	border-left: 0;
 	border-right: 6px solid #dfdfdf;
 	width: 0;
@@ -99,7 +102,7 @@
 	left: -6px;
 	}
 .social-likes li b i i {
-	border: 5px solid transparent;
+	border: 5px inset transparent; /* inset fixes strange artefacts in Firefox */
 	border-left: 0;
 	border-right: 5px solid #fff !important;
 	top: -5px;
@@ -116,7 +119,6 @@
 	background: rgba(0, 0, 0, .75);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
 	border-radius: 5px;
 	color: #fff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
