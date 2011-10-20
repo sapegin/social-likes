@@ -13,16 +13,21 @@
  
 (function($){
 
-	var socialLikes = function(){
+	var socialLikes = function() {
 		this.init();
 	};
 
 	socialLikes.prototype = {
 		init: function() {
 			this.pageUrl = window.location.href.replace(window.location.hash, '');
+			var escapedPageUrl = escape(this.pageUrl);
 			this.container = $('.social-likes');
 			var this_ = this;
 			this.counters = {};
+
+			if ($.browser.msie && $.browser.version <= 9) {
+				this.container.addClass('social-likes-msie-lte9');
+			}
 
 			this.container.find('li').each(function(){
 				var buttonWrapper = $(this);
@@ -32,7 +37,7 @@
 					switch(cls) {
 						case 'twitter':
 							if (!this_.counters.twiter) {
-								$.getJSON('http://urls.api.twitter.com/1/urls/count.json?url=' + escape(this_.pageUrl) + '&callback=?', function(data){ this_.updateCount(cls, data.count); });
+								$.getJSON('http://urls.api.twitter.com/1/urls/count.json?url=' + escapedPageUrl + '&callback=?', function(data){ this_.updateCount(cls, data.count); });
 								this_.counters.twiter = true;
 							}
 
@@ -49,7 +54,7 @@
 
 						case 'facebook':
 							if (!this_.counters.facebook) {
-								$.getJSON('https://api.facebook.com/method/fql.query?query=select total_count from link_stat where url="' + escape(this_.pageUrl) + '"&format=json&callback=?', function(data){ this_.updateCount(cls, data[0].total_count); });
+								$.getJSON('https://api.facebook.com/method/fql.query?query=select total_count from link_stat where url="' + escapedPageUrl + '"&format=json&callback=?', function(data){ this_.updateCount(cls, data[0] && data[0].total_count); });
 								this_.counters.facebook = true;
 							}
 
@@ -62,10 +67,39 @@
 							}, buttonWrapper, cls);
 
 							break;
+							
+						case 'plusone':
+							/* buttonWrapper.replaceWith('<g:plusone></g:plusone>');
+
+							// Load standard Google +1 button
+							window.___gcfg = {
+								lang: 'ru',
+								parsetags: 'explicit'
+							};
+							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+							po.src = 'https://apis.google.com/js/plusone.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);*/
+
+							if (!this_.counters.plusone) {
+								var counterUrl = buttonWrapper.attr('data-counter-url');
+								if (counterUrl) {
+									$.getJSON(counterUrl + '?url=' + escapedPageUrl + '&callback=?', function(data){ this_.updateCount(cls, data); });
+									this_.counters.plusone = true;
+								}
+							}
+
+							this_.initButton({
+								urlParam: 'url',
+								popupUrl: 'https://plusone.google.com/_/+1/confirm?hl=ru_RU',
+								pupupWidth: 500,
+								popupHeight: 300
+							}, buttonWrapper, cls);
+
+							break;							
 
 						case 'mailru':
 							if (!this_.counters.mailru) {
-								$.getJSON('http://connect.mail.ru/share_count?url_list=' + escape(this_.pageUrl) + '&callback=1&func=?', function(data){ this_.updateCount(cls, data[this_.pageUrl] && data[this_.pageUrl].shares); });
+								$.getJSON('http://connect.mail.ru/share_count?url_list=' + escapedPageUrl + '&callback=1&func=?', function(data){ this_.updateCount(cls, data[this_.pageUrl] && data[this_.pageUrl].shares); });
 								this_.counters.mailru = true;
 							}
 
@@ -84,7 +118,7 @@
 									this_.updateCount(cls, count);
 								}}};
 								$.ajax({
-									url: 'http://vkontakte.ru/share.php?act=count&index=1&url=' + escape(this_.pageUrl),
+									url: 'http://vkontakte.ru/share.php?act=count&index=1&url=' + escapedPageUrl,
 									dataType: 'jsonp'
 								});
 								this_.counters.vkontakte = true;
@@ -106,7 +140,7 @@
 									this_.updateCount(cls, count);
 								}};
 								$.ajax({
-									url: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=' + escape(this_.pageUrl),
+									url: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=' + escapedPageUrl,
 									dataType: 'jsonp'
 								});
 								this_.counters.odnoklassniki = true;

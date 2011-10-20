@@ -18,7 +18,7 @@
 	margin-left: 0;
 	}
 .social-likes li:before {
-	display: none;
+	/*display: none;*/
 	}
 .social-likes li a, .social-likes li b, .social-balloon, .social-balloon textarea {
 	font-family: "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
@@ -225,6 +225,100 @@
 .social-likes li.facebook a i {
 	background-position: 0 -20px;
 	}
+	
+/* Google +1 */
+.social-likes li.plusone a, .social-likes li.plusone b {
+	border-color: #CAD4E7;
+	}
+.social-likes li.plusone a {
+	width: 32px;
+	padding: 1px 4px;
+	background: #dbdbdb;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#dbdbdb));
+	background: -moz-linear-gradient(top, #f9f9f9, #dbdbdb);
+	background: -ms-linear-gradient(top, #f9f9f9, #dbdbdb);
+	background: -o-linear-gradient(top, #f9f9f9, #dbdbdb);
+	background: linear-gradient(top, #f9f9f9, #dbdbdb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #f9f9f9, EndColorStr = #dbdbdb);
+	color: #166aee;
+	border-color: #b3b3b3;
+	text-align: center;
+	font-style: italic;
+	}
+.social-likes li.plusone a:hover, .social-likes li.plusone a:active {
+	background: #e0e0e0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#bbb));
+	background: -moz-linear-gradient(top, #fafafa, #bbb);
+	background: -ms-linear-gradient(top, #fafafa, #bbb);
+	background: -o-linear-gradient(top, #fafafa, #bbb);
+	background: linear-gradient(top, #fafafa, #bbb);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = #fafafa, EndColorStr = #bbbbbb);
+	color: #1e52a4;
+	border-color: #a3a3a3;
+	}
+.social-likes li.plusone b i {
+	border-right-color: #ccc;
+	}
+.social-likes li.plusone b {
+	/*background: #f2f3f7;*/
+	}
+.social-likes li.plusone b i i {
+	border-right-color: #fff !important;
+	}
+.social-likes li.plusone a i {
+	display: none;  /* Hide from old browsers */
+	}
+
+@media only screen and (min-width: 1px) {
+.social-likes li.plusone a, .social-likes li.plusone a:hover, .social-likes li.plusone a:active {
+	line-height: 20px;
+	vertical-align: bottom;
+	border-top-color: transparent;
+	} 
+.social-likes li.plusone a i {
+	display: block;
+	top: -1px;
+	left: -1px;
+	width: 42px;
+	height: 5px;
+	background: -webkit-gradient(linear, 0 0, 42 0, color-stop(0.25, #e32c3b), color-stop(0.25, #148EE3), color-stop(0.5, #148EE3), color-stop(0.5, #36C520), color-stop(0.75, #36C520), color-stop(0.75, #FFCA27), color-stop(1, #FFCA27));	
+	background: -webkit-linear-gradient(360deg, #E32C3B 25%, #148EE3 25%, #148EE3 50%, #36C520 50%, #36C520 75%, #FFCA27 75%, #FFCA27 100%);
+	background: -moz-linear-gradient(360deg, #E32C3B 25%, #148EE3 25%, #148EE3 50%, #36C520 50%, #36C520 75%, #FFCA27 75%, #FFCA27 100%);
+	background: -o-linear-gradient(360deg, #E32C3B 25%, #148EE3 25%, #148EE3 50%, #36C520 50%, #36C520 75%, #FFCA27 75%, #FFCA27 100%);
+	background: linear-gradient(360deg, #E32C3B 25%, #148EE3 25%, #148EE3 50%, #36C520 50%, #36C520 75%, #FFCA27 75%, #FFCA27 100%);
+	border-bottom: 1px solid #d7d7d7;
+	-webkit-border-radius: 3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
+	border-radius: 3px 3px 0px 0px;
+	}
+.social-likes li.plusone a i:before, .social-likes li.plusone a i:after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	width: 1px;
+	height: 1px;
+	background: #b3b3b3;
+	}
+.social-likes li.plusone a i:before {
+	left: 0;
+	}
+.social-likes li.plusone a i:after {
+	right: 0;
+	}
+.social-likes li.plusone a:hover i:before, .social-likes li.plusone a:hover i:after,
+.social-likes li.plusone a:active i:before, .social-likes li.plusone a:active i:after {
+	background: #a3a3a3;
+	}
+}
+
+/* Hacks for IE9 which supports media queries but not support CSS gradients */
+.social-likes-msie-lte9 li.plusone a i {
+	display: none;
+	}
+.social-likes-msie-lte9 li.plusone a, .social-likes-msie-lte9 li.plusone a:hover, .social-likes-msie-lte9 li.plusone a:active {
+	border-color: #CAD4E7;
+	} 
+
 
 /* Mail.ru */
 .social-likes li.mailru a {
@@ -270,7 +364,7 @@
 	background-position: 0 -40px;
 	}
 
-/* V kontakte */
+/* Vkontakte */
 .social-likes li.vkontakte a {
 	border-color: #4170a4;
 	}
