@@ -18,7 +18,7 @@
 	margin-left: 0;
 	}
 .social-likes li:before {
-	/*display: none;*/
+	display: none;  /* Remove nice bullets */
 	}
 .social-likes li a, .social-likes li b, .social-balloon, .social-balloon textarea {
 	font-family: "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
@@ -80,7 +80,7 @@
 	left: 0;
 	width: 20px;
 	height: 20px;
-	background: url(social-likes.png) no-repeat;
+	background: url(social-likes.png?2) no-repeat;
 	}
 .social-likes li b {
 	position: relative;
