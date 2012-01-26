@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="ru">
 <head>
 	<meta charset="utf-8">
 	<title>Красивые кнопки «лайков» социальных сетей</title>
@@ -12,10 +12,15 @@ hljs.tabReplace = '<span class="indent">\t</span>';
 hljs.initHighlightingOnLoad();
 </script>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-	<script src="social-likes.js"></script>
-	<link href="social-likes.css" rel="stylesheet">
+	<script src="src/social-likes.js"></script>
+	<link href="src/social-likes.css" rel="stylesheet">
+<style>
+ul {
+	padding:0;
+	}
+</style>	
 </head>
 <body>
 
@@ -33,7 +38,7 @@ hljs.initHighlightingOnLoad();
     <div class="subtitle">Красивые кнопки «лайков» социальных сетей</div>
 	
 	<div class="description">
-		<p>Красивые кнопки в едином стиле для популярных социальных сетей с количеством «лайков»: Facebook, Twitter, В контакте, Одноклассники, Мой мир, LiveJournal.</p>
+		<p>Красивые кнопки в едином стиле для популярных социальных сетей с количеством «лайков»: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, LiveJournal.</p>
 	</div>
 
 	
@@ -43,7 +48,7 @@ hljs.initHighlightingOnLoad();
 		<li class="facebook"><a href="#" title="Опубликовать ссылку на Фейсбуке">Facebook</a></li>
 		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
 		<li class="mailru"><a href="#" title="Опубликовать ссылку в Моём Мире">Мой мир</a></li>
-		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во В контакте">В контакте</a></li>
+		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во Вконтакте">Вконтакте</a></li>
 		<li class="odnoklassniki"><a href="#" title="Опубликовать ссылку в Одноклассниках">Одноклассники</a></li>
 		<li class="livejournal"><form action="http://www.livejournal.com/update.bml" method="post" target="_blank">
 			<input type="hidden" name="mode" value="full">
@@ -63,7 +68,7 @@ hljs.initHighlightingOnLoad();
 	&lt;li class=&quot;facebook&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку на Фейсбуке&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;twitter&quot;&gt;&lt;a href=&quot;#&quot; data-via=&quot;sapegin&quot; data-related=&quot;DessiTeckel:Моя такса&quot; title=&quot;Опубликовать ссылку в Твиттере&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;mailru&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Моём Мире&quot;&gt;Мой мир&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во В контакте&quot;&gt;В контакте&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во Вконтакте&quot;&gt;Вконтакте&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;odnoklassniki&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;livejournal&quot;&gt;&lt;form action=&quot;http://www.livejournal.com/update.bml&quot; method=&quot;post&quot; target=&quot;_blank&quot;&gt;
 		&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;full&quot;&gt;
