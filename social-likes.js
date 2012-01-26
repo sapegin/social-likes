@@ -4,8 +4,8 @@
  *
  * Sharing buttons for Russian and worldwide social networks.
  *
- * @version 1.2.1
- * @requires jQuery 1.4
+ * @version 1.2.2
+ * @requires jQuery 1.6
  * @author Artem Sapegin
  * @copyright 2011 Artem Sapegin (sapegin.ru)
  * @license http://creativecommons.org/licenses/by/3.0/
@@ -19,196 +19,200 @@
 
 	socialLikes.prototype = {
 		init: function() {
-			this.pageUrl = window.location.href.replace(window.location.hash, '');
-			var escapedPageUrl = escape(this.pageUrl);
-			this.container = $('.social-likes');
-			var this_ = this;
 			this.counters = {};
 
+			var containers = $('.social-likes');
+
+			// Dirty hack for G+ button but I cannot find a better solution yet
 			if ($.browser.msie && $.browser.version <= 9) {
-				this.container.addClass('social-likes-msie-lte9');
+				containers.addClass('social-likes-msie-lte9');
 			}
 
-			this.container.find('li').each(function(){
-				var buttonWrapper = $(this);
-				var classes = buttonWrapper[0].className.split(' ');
-				for (var classIdx = 0; classIdx < classes.length; classIdx++) {
-					var cls = classes[classIdx];
-					switch(cls) {
-						case 'twitter':
-							if (!this_.counters.twiter) {
-								$.getJSON('http://urls.api.twitter.com/1/urls/count.json?url=' + escapedPageUrl + '&callback=?', function(data){ this_.updateCount(cls, data.count); });
-								this_.counters.twiter = true;
-							}
+			containers.each($.proxy(this.initWidget, this));
+		},
 
-							this_.initButton({
-								urlParam: 'url',
-								textParam: 'text',
-								additionalParams: ['via', 'related'],
-								popupUrl: 'http://twitter.com/share',
-								pupupWidth: 550,
-								popupHeight: 450
-							}, buttonWrapper, cls);
+		initWidget: function(idx, container) {
+			$(container).find('li').each($.proxy(this.findButtons, this));
+		},
 
-							break;
+		findButtons: function(idx, li) {
+			var buttonWrapper = $(li),
+				container = buttonWrapper.closest('.social-likes'),
+				pageUrl = this.getPageUrl(container),
+				escapedPageUrl = escape(pageUrl);
+			
+			if (!this.counters[pageUrl]) this.counters[pageUrl] = {};
+			var counters = this.counters[pageUrl];
 
-						case 'facebook':
-							if (!this_.counters.facebook) {
-								$.getJSON('https://api.facebook.com/method/fql.query?query=select total_count from link_stat where url="' + escapedPageUrl + '"&format=json&callback=?', function(data){ this_.updateCount(cls, data[0] && data[0].total_count); });
-								this_.counters.facebook = true;
-							}
+			var classes = buttonWrapper[0].className.split(' ');
+			for (var classIdx = 0; classIdx < classes.length; classIdx++) {
+				var cls = classes[classIdx];
+				switch(cls) {
+					case 'twitter':
+						this.loadCount(cls, 'http://urls.api.twitter.com/1/urls/count.json?callback=?',
+							{url: pageUrl}, pageUrl, buttonWrapper, function(data) { return data.count; });
 
-							this_.initButton({
-								urlParam: 'u',
-								textParam: 't',
-								popupUrl: 'http://www.facebook.com/sharer.php',
-								pupupWidth: 550,
-								popupHeight: 450
-							}, buttonWrapper, cls);
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'url',
+							textParam: 'text',
+							additionalParams: ['via', 'related'],
+							popupUrl: 'http://twitter.com/share',
+							pupupWidth: 550,
+							popupHeight: 450
+						}, buttonWrapper, cls);
 
-							break;
-							
-						case 'plusone':
-							/* buttonWrapper.replaceWith('<g:plusone></g:plusone>');
+						break;
 
-							// Load standard Google +1 button
-							window.___gcfg = {
-								lang: 'ru',
-								parsetags: 'explicit'
-							};
-							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-							po.src = 'https://apis.google.com/js/plusone.js';
-							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);*/
+					case 'facebook':
+						this.loadCount(cls, 'https://api.facebook.com/method/fql.query?query=select total_count from link_stat where url="' +
+							escapedPageUrl + '"&format=json&callback=?',
+							{}, pageUrl, buttonWrapper, function(data) { return data[0] && data[0].total_count; });
 
-							if (!this_.counters.plusone) {
-								var counterUrl = buttonWrapper.attr('data-counter-url');
-								if (counterUrl) {
-									$.getJSON(counterUrl + '?url=' + escapedPageUrl + '&callback=?', function(data){ this_.updateCount(cls, data); });
-									this_.counters.plusone = true;
-								}
-							}
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'u',
+							textParam: 't',
+							popupUrl: 'http://www.facebook.com/sharer.php',
+							pupupWidth: 550,
+							popupHeight: 450
+						}, buttonWrapper, cls);
 
-							this_.initButton({
-								urlParam: 'url',
-								popupUrl: 'https://plusone.google.com/_/+1/confirm?hl=ru_RU',
-								pupupWidth: 500,
-								popupHeight: 300
-							}, buttonWrapper, cls);
+						break;
+						
+					case 'plusone':
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'url',
+							popupUrl: 'https://plusone.google.com/_/+1/confirm?hl=ru_RU',
+							pupupWidth: 500,
+							popupHeight: 300
+						}, buttonWrapper, cls);
 
-							break;							
+						break;
 
-						case 'mailru':
-							if (!this_.counters.mailru) {
-								$.getJSON('http://connect.mail.ru/share_count?url_list=' + escapedPageUrl + '&callback=1&func=?', function(data){ this_.updateCount(cls, data[this_.pageUrl] && data[this_.pageUrl].shares); });
-								this_.counters.mailru = true;
-							}
+					case 'mailru':
+						this.loadCount(cls, 'http://connect.mail.ru/share_count?func=?', {
+								url_list: pageUrl,
+								callback: 1,
+							}, pageUrl, buttonWrapper, function(data) { return data[pageUrl] && data[pageUrl].shares; });						
 
-							this_.initButton({
-								urlParam: 'share_url',
-								popupUrl: 'http://connect.mail.ru/share',
-								pupupWidth: 550,
-								popupHeight: 360
-							}, buttonWrapper, cls);
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'share_url',
+							popupUrl: 'http://connect.mail.ru/share',
+							pupupWidth: 550,
+							popupHeight: 360
+						}, buttonWrapper, cls);
 
-							break;
-
-						case 'vkontakte':
-							if (!this_.counters.vkontakte) {
-								window.VK = {Share: {count: function(junk, count) {
-									this_.updateCount(cls, count);
-								}}};
+						break;
+ 
+					case 'vkontakte':
+						if (!this._vkontakte) {
+							this._vkontakte = [];
+							window.VK = {Share: {count: $.proxy(function(idx, count) {
+								this.updateCount(this._vkontakte[idx], count);
+							}, this)}};
+						}
+						var index = this._vkontakte.length;
+						this._vkontakte[index] = buttonWrapper;
+						this.loadCount(cls, null, null, pageUrl, buttonWrapper, null, function() {
 								$.ajax({
-									url: 'http://vkontakte.ru/share.php?act=count&index=1&url=' + escapedPageUrl,
+									url: 'http://vkontakte.ru/share.php?act=count&index=' + index + '&url=' + escapedPageUrl,
 									dataType: 'jsonp'
 								});
-								this_.counters.vkontakte = true;
-							}
+							});	
 
-							this_.initButton({
-								urlParam: 'url',
-								textParam: 'title',
-								popupUrl: 'http://vkontakte.ru/share.php',
-								pupupWidth: 550,
-								popupHeight: 330
-							}, buttonWrapper, cls);
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'url',
+							textParam: 'title',
+							popupUrl: 'http://vkontakte.ru/share.php',
+							pupupWidth: 550,
+							popupHeight: 330
+						}, buttonWrapper, cls);
 
-							break;
-							
-						case 'odnoklassniki':
-							if (!this_.counters.odnoklassniki) {
-								window.ODKL = {updateCount: function(junk, count) {
-									this_.updateCount(cls, count);
-								}};
+						break;
+						
+					case 'odnoklassniki':
+						if (!this._odnoklassniki) {
+							this._odnoklassniki = [];
+							window.ODKL = {updateCount: $.proxy(function(idx, count) {
+								this.updateCount(this._odnoklassniki[idx], count);
+							}, this)};
+						}
+						var index = this._odnoklassniki.length;
+						this._odnoklassniki[index] = buttonWrapper;
+						this.loadCount(cls, null, null, pageUrl, buttonWrapper, null, function() {
 								$.ajax({
-									url: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=' + escapedPageUrl,
+									url: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&uid=' + index + '&ref=' + escapedPageUrl,
 									dataType: 'jsonp'
 								});
-								this_.counters.odnoklassniki = true;
+							});
+						
+						this.initButton({
+							url: pageUrl,
+							urlParam: 'st._surl',
+							popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare',
+							pupupWidth: 550,
+							popupHeight: 360
+						}, buttonWrapper, cls);
+
+						break;
+
+					case 'livejournal':
+						var button = buttonWrapper.find(':submit');
+						var newLink = $('<a href="#">' + button.val() + '</a>');
+						newLink.click(function(){ $(this).closest('form').submit(); });
+						if (button.attr('title')) {
+							newLink.attr('title', button.attr('title'));
+						}
+						button.hide();
+						button.after(newLink);
+						break;
+
+					case 'code':
+						var link = buttonWrapper.find('a');
+						link.click($.proxy(function(){
+							var balloon = buttonWrapper.find('.social-balloon');
+							if (balloon.length) {
+								balloon.toggle();
+							}
+							else {
+								balloon = $([
+									'<div class="social-balloon">',
+										'<i></i>',
+										'Скопируйте код в&nbsp;буфер обмена:<br>',
+										'<textarea class="social-code-area"></textarea>',
+									'</div>'
+								].join(''));
+								link.after(balloon);
+								var textarea = buttonWrapper.find('textarea');
+								var messageField = container.find('.livejournal input[name="event"]');
+								if (!messageField.length) messageField = container.find('.code input[name="event"]');
+								textarea.val(messageField.val());
+								this.selectTextInTextarea(textarea);
 							}
 							
-							this_.initButton({
-								urlParam: 'st._surl',
-								popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare',
-								pupupWidth: 550,
-								popupHeight: 360
-							}, buttonWrapper, cls);
-
-							break;							
-
-						case 'livejournal':
-							var button = buttonWrapper.find(':submit');
-							var newLink = $('<a href="#">' + button.val() + '</a>');
-							newLink.click(function(){ $(this).closest('form').submit(); });
-							if (button.attr('title')) {
-								newLink.attr('title', button.attr('title'));
+							if (balloon.is(":visible")) {
+								$(document).bind('click.social-hide-code', function(e){
+									if (!$(e.target).hasClass('social-code-area')) {
+										balloon.hide();
+										$(document).unbind('click.social-hide-code');
+									}
+									return true;
+								});
 							}
-							button.hide();
-							button.after(newLink);
-							break;
 
-						case 'code':
-							var link = buttonWrapper.find('a');
-							link.click(function(){
-								var balloon = buttonWrapper.find('.social-balloon');
-								if (balloon.length) {
-									balloon.toggle();
-								}
-								else {
-									balloon = $([
-										'<div class="social-balloon">',
-											'<i></i>',
-											'Скопируйте код в&nbsp;буфер обмена:<br>',
-											'<textarea class="social-code-area"></textarea>',
-										'</div>'
-									].join(''));
-									link.after(balloon);
-									var textarea = buttonWrapper.find('textarea');
-									var messageField = this_.container.find('.livejournal input[name="event"]');
-									if (!messageField.length) messageField = this_.container.find('.code input[name="event"]');
-									textarea.val(messageField.val());
-									this_.selectTextInTextarea(textarea);
-								}
-								
-								if (balloon.is(":visible")) {
-									$(document).bind('click.social-hide-code', function(e){
-										if (!$(e.target).hasClass('social-code-area')) {
-											balloon.hide();
-											$(document).unbind('click.social-hide-code');
-										}
-										return true;
-									});
-								}
+							return false;
+						}, this));
 
-								return false;
-							});							
-
-							break;
-					}
-
-					// Icon container
-					buttonWrapper.find('a').prepend('<i></i>');
+						break;
 				}
-			});
+
+				// Icon container
+				buttonWrapper.find('a').prepend('<i></i>');
+			}
 		},
 
 		initButton: function(params, buttonWrapper, buttonName) {
@@ -216,14 +220,14 @@
 
 			var query = {};
 			if (params.urlParam)
-				query[params.urlParam] = this.pageUrl;
+				query[params.urlParam] = params.url;
 			if (params.textParam)
 				query[params.textParam] = document.title;
 			if (params.additionalParams) {
 				for (var paramIdx = 0; paramIdx < params.additionalParams.length; paramIdx++) {
 					var key = params.additionalParams[paramIdx];
-					if (link.attr('data-' + key))
-						query[key] = link.attr('data-' + key);
+					if (link.data(key))
+						query[key] = link.data(key);
 				}
 			}
 
@@ -236,12 +240,33 @@
 					name: 'share_' + buttonName
 				});
 				return false;
-			});			
+			});
 		},
 
-		updateCount: function(buttonName, count) {
+		loadCount: function(id, url, params, pageUrl, buttonWrapper, getNumber, request) {
+			if (!this.counters[pageUrl]) this.counters[pageUrl] = {};
+			var counters = this.counters[pageUrl];
+			
+			if (counters[id] === undefined) {
+				if (request) {
+					request();
+				}
+				else {
+					$.getJSON(url, params, $.proxy(function(data){
+							var number = getNumber(data);
+							this.updateCount(buttonWrapper, number);
+							counters[id] = number;
+						}, this));
+				}
+				counters[id] = true;
+			}
+			else if (counters[id] !== true) {
+				this.updateCount(buttonWrapper, counters[id]);
+			}
+		},
+
+		updateCount: function(buttonWrapper, count) {
 			count = parseInt(count, 10);
-			var buttonWrapper = $('.' + buttonName, this.container);
 			var counter = buttonWrapper.find('b i i');
 			if (counter.length) {
 				counter.html(count);
@@ -254,17 +279,21 @@
 		},
 
 		openWindow: function(url, params) {
-	        var left = Math.round((screen.width / 2) - (params.width / 2));
-	        var top = 0;
-	        if (screen.height > params.height) {
-	            top = Math.round((screen.height / 3) - (params.height / 2));
-	        }
-	        var win = window.open(url, params.name, "left=" + left + ",top=" + top + ",width=" + params.width + ",height=" + params.height + ",personalbar=0,toolbar=0,scrollbars=1,resizable=1");
-	        if (win) {
-	            win.focus();
-	        } else {
-	            window.location.href = url;
-	        }
+			var left = Math.round((screen.width / 2) - (params.width / 2));
+			var top = 0;
+			if (screen.height > params.height) {
+				top = Math.round((screen.height / 3) - (params.height / 2));
+			}
+			var win = window.open(url, params.name, "left=" + left + ",top=" + top + ",width=" + params.width + ",height=" + params.height + ",personalbar=0,toolbar=0,scrollbars=1,resizable=1");
+			if (win) {
+				win.focus();
+			} else {
+				window.location.href = url;
+			}
+		},
+
+		getPageUrl: function(buttonWrapper) {
+			return buttonWrapper.data('url') || window.location.href.replace(window.location.hash, '');
 		},
 
 		getQuery: function(params) {
