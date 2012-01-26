@@ -8,7 +8,7 @@
  * @requires jQuery 1.6
  * @author Artem Sapegin
  * @copyright 2011 Artem Sapegin (sapegin.ru)
- * @license http://creativecommons.org/licenses/by/3.0/
+ * @license MIT
  */
  
 (function($){
