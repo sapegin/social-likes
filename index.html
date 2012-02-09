@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
 	<meta charset="utf-8">
-	<title>Красивые кнопки «лайков» социальных сетей</title>
-	<link href="http://sapegin.github.com/css/pages.css" rel="stylesheet" >
+	<title>Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery</title>
+	<link href="http://sapegin.github.com/css/pages.css" rel="stylesheet">
 
 	<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
 	<link href="http://yandex.st/highlightjs/6.1/styles/zenburn.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@ hljs.tabReplace = '<span class="indent">\t</span>';
 hljs.initHighlightingOnLoad();
 </script>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://yandex.st/jquery/1.7.1/jquery.min.js"></script>
 
 	<script src="src/social-likes.js"></script>
 	<link href="src/social-likes.css" rel="stylesheet">
@@ -31,14 +31,13 @@ ul {
 
 	<div class="download">
 		<a href="http://github.com/sapegin/social-likes/zipball/master"><img width="90" src="http://github.com/images/modules/download/zip.png"></a>
-		<a href="http://github.com/sapegin/social-likes/tarball/master"><img width="90" src="http://github.com/images/modules/download/tar.png"></a>
 	</div>
 
 	<h1>Social Likes</h1>
-	<div class="subtitle">Красивые кнопки «лайков» социальных сетей</div>
+	<div class="subtitle">Красивые кнопки «лайков» социальных сетей с использованием jQuery</div>
 	
 	<div class="description">
-		<p>Красивые кнопки «лайков» в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, LiveJournal. Количество «лайков» отображается везде, где это возможно.</p>
+		<p>Красивые кнопки «лайков» в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и LiveJournal. Рядом с кнопками отображается количество «лайков» (кроме Google+ и LiveJournal).</p>
 	</div>
 
 	
@@ -50,6 +49,7 @@ ul {
 		<li class="mailru"><a href="#" title="Опубликовать ссылку в Моём Мире">Мой мир</a></li>
 		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во Вконтакте">Вконтакте</a></li>
 		<li class="odnoklassniki"><a href="#" title="Опубликовать ссылку в Одноклассниках">Одноклассники</a></li>
+		<li class="plusone"><a href="#" title="Плюсануть в Гугле">+1</a></li>
 		<li class="livejournal"><form action="http://www.livejournal.com/update.bml" method="post" target="_blank">
 			<input type="hidden" name="mode" value="full">
 			<input type="hidden" name="subject" value="Social Likes">
@@ -62,6 +62,7 @@ ul {
 	<h2>Использование</h2>
 
 <pre><code>&lt;link href=&quot;social-likes.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;//yandex.st/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;social-likes.js&quot;&gt;&lt;/script&gt;
 
 &lt;ul class=&quot;social-likes&quot;&gt;
@@ -70,6 +71,7 @@ ul {
 	&lt;li class=&quot;mailru&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Моём Мире&quot;&gt;Мой мир&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во Вконтакте&quot;&gt;Вконтакте&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;odnoklassniki&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;plusone&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Плюсануть в Гугле&quot;&gt;+1&lt;/a&gt;&lt;/li&gt;
 	&lt;li class=&quot;livejournal&quot;&gt;&lt;form action=&quot;http://www.livejournal.com/update.bml&quot; method=&quot;post&quot; target=&quot;_blank&quot;&gt;
 		&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;full&quot;&gt;
 		&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;Social Likes&quot;&gt;
@@ -81,6 +83,10 @@ ul {
 
 	<p>Вы можете убрать любые ненужные вам кнопки или поменять текст кнопок.</p>
 
+	<p>По умолчанию «лайкается» текущая страница. Можно указать свой адрес (а так же разместить на одной странице несколько групп кнопок).</p>
+
+<pre><code>&lt;ul class=&quot;social-likes&quot; data-url=&quot;http://sapegin.github.com/&quot;&gt;
+…</code></pre>
 
 	<h2>Скачать</h2>
 	<p>Вы можете скачать архив в формате <a href="http://github.com/sapegin/social-likes/zipball/master">zip</a> или <a href="http://github.com/sapegin/social-likes/tarball/master">tar</a>.</p>
@@ -88,7 +94,7 @@ ul {
 	<pre><code class="bash">$ git clone git://github.com/sapegin/social-likes</code></pre>
 
 
-	<div class="footer">Brought to you by <a href="http://sapegin.ru/">Artem Sapegin</a> and octocat. <a href="http://github.com/sapegin/social-likes">Project on GitHub</a>.</div>
+	<div class="footer">Brought to you by <a href="http://sapegin.github.com/">Artem Sapegin</a> and octocat. <a href="http://github.com/sapegin/social-likes">Project on GitHub</a>.</div>
 	<div class="octocat"><a href="http://github.com/">GitHub</a></div>
 	
 
