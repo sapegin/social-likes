@@ -84,9 +84,9 @@
 						this.initButton({
 							url: pageUrl,
 							urlParam: 'url',
-							popupUrl: 'https://plusone.google.com/_/+1/confirm?hl=ru_RU',
-							pupupWidth: 500,
-							popupHeight: 300
+							popupUrl: 'https://plus.google.com/share',
+							pupupWidth: 700,
+							popupHeight: 500
 						}, buttonWrapper, cls);
 
 						break;
