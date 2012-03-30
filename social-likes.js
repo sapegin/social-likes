@@ -57,7 +57,7 @@
 							urlParam: 'url',
 							textParam: 'text',
 							additionalParams: ['via', 'related'],
-							popupUrl: 'http://twitter.com/share',
+							popupUrl: 'http://twitter.com/intent/tweet',
 							pupupWidth: 550,
 							popupHeight: 450
 						}, buttonWrapper, cls);
@@ -65,15 +65,14 @@
 						break;
 
 					case 'facebook':
-						this.loadCount(cls, 'https://api.facebook.com/method/fql.query?query=select total_count from link_stat where url="' +
-							escapedPageUrl + '"&format=json&callback=?',
-							{}, pageUrl, buttonWrapper, function(data) { return data[0] && data[0].total_count; });
+						this.loadCount(cls, 'http://graph.facebook.com/?callback=?',
+							{ids: pageUrl}, pageUrl, buttonWrapper, function(data) { return data[pageUrl] && data[pageUrl].shares; });
 
 						this.initButton({
 							url: pageUrl,
 							urlParam: 'u',
 							textParam: 't',
-							popupUrl: 'http://www.facebook.com/sharer.php',
+							popupUrl: 'http://www.facebook.com/sharer/sharer.php',
 							pupupWidth: 550,
 							popupHeight: 450
 						}, buttonWrapper, cls);
@@ -127,7 +126,7 @@
 							url: pageUrl,
 							urlParam: 'url',
 							textParam: 'title',
-							popupUrl: 'http://vkontakte.ru/share.php',
+							popupUrl: 'http://vk.com/share.php',
 							pupupWidth: 550,
 							popupHeight: 330
 						}, buttonWrapper, cls);
