@@ -1,0 +1,14 @@
+{
+	"stylesheets": {
+		"main": {
+			"in": "styles/index.styl",
+			"out": "../social-likes.css"
+		}
+	},
+	"javascripts": {
+		"main": {
+			"in": "social-likes.js",
+			"out": "../social-likes.min.js"
+		}
+	}
+}

@@ -115,11 +115,11 @@ var services = {
 						'<textarea class="social-likes__balloon__code">{html}</textarea>' +
 					'</div>',
 					{
-						prompt: (this.button.data('prompt') || 'Copy code to clipboard:'),
+						prompt: (this.widget.data('prompt') || 'Copy code to clipboard:'),
 						html: this.options.pageHtml
 					}
 				));
-				this.button.after(balloon);
+				this.widget.append(balloon);
 				this._codeBalloon = balloon;
 			}
 
@@ -155,7 +155,7 @@ var services = {
 						html: html
 					}
 				));
-				this.button.append(form);
+				this.widget.append(form);
 				this._livejournalForm = form;
 			}
 			form.submit();
@@ -242,8 +242,8 @@ SocialLikes.prototype = {
 };
 
 
-function Button(button, options) {
-	this.button = button;
+function Button(widget, options) {
+	this.widget = widget;
 	this.options = $.extend({}, options);
 	this.detectService();
 	if (this.service) {
@@ -263,7 +263,7 @@ Button.prototype = {
 	},
 
 	detectService: function() {
-		var classes = this.button[0].classList || this.button[0].className.split(' ');
+		var classes = this.widget[0].classList || this.widget[0].className.split(' ');
 		for (var classIdx = 0; classIdx < classes.length; classIdx++) {
 			var cls = classes[classIdx];
 			if (services[cls]) {
@@ -276,20 +276,27 @@ Button.prototype = {
 
 	detectParams: function() {
 		// Custom page counter URL
-		var counterUrl = this.button.data('counter-url');
+		var counterUrl = this.widget.data('counter-url');
 		if (counterUrl) {
 			this.options.counterUrl = counterUrl;
 		}
 	},
 
 	initHtml: function() {
-		var button = this.button;
+		var widget = this.widget;
 
-		button.removeClass(this.service);
-		button.addClass(this.getElementClassNames('button'));
+		widget.removeClass(this.service);
+		widget.addClass(this.getElementClassNames('widget'));
 
-		// Icon
+		// Button
+		var button = $('<span>', {
+			'class': this.getElementClassNames('button'),
+			'text': widget.text()
+		})
 		button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
+
+		widget.empty().append(button);
+		this.button = button;
 	},
 
 	getElementClassNames: function(elem) {
@@ -309,7 +316,7 @@ Button.prototype = {
 			'class': this.getElementClassNames('counter'),
 			'html': number
 		});
-		this.button.append(counterElem);
+		this.widget.append(counterElem);
 	},
 
 	click: function(e) {
@@ -338,7 +345,7 @@ Button.prototype = {
 		var query = {};
 		for (var paramIdx = 0; paramIdx < params.length; paramIdx++) {
 			var key = params[paramIdx],
-				value = this.button.data(key);
+				value = this.widget.data(key);
 			if (value) {
 				query[key] = value;
 			}

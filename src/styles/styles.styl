@@ -1,0 +1,368 @@
+/* © 2012 Artem Sapegin http://sapegin.me */
+
+.social-likes,
+.social-likes__widget {
+	display:inline-block;
+	vertical-align:middle;
+	line-height:20px;
+	margin:2px 0;
+	padding:0;
+	word-spacing:0;
+	font-size:14px;
+}
+
+.social-likes {
+	margin-right:-8px;
+	line-height:26px;
+
+	&__widget {
+		position:relative;
+		margin-right:8px;
+		white-space:nowrap;
+	}
+	&__widget:before {
+		display:none;  // Remove nice bullets
+	}
+
+	&__button,
+	&__counter,
+	&__balloon,
+	&__balloon__code {
+		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
+		font-size:14px;
+		text-rendering:optimizeLegibility;
+	}
+
+	&__button,
+	&__counter {
+		display:inline-block;
+		margin:0;
+		line-height:18px;
+		border-width:1px;
+		border-style:solid;
+		border-radius:3px;
+		outline:0;
+	}
+
+	&__button {
+		position:relative;
+		padding:1px 4px 1px 20px;
+		font-weight:bold;
+		text-shadow:0 1px 0 hsla(0,0%,100%,.6);
+		box-shadow:0 1px 1px hsla(0,0%,0%,.05);
+		// Gradient transition don’t work yet in any browser. This is for future :)
+		transition:border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+		cursor:pointer;
+	}
+
+	&__icon {
+		position:absolute;
+		top:0;
+		left:0;
+		width:20px;
+		height:20px;
+		background-repeat:no-repeat;
+	}
+
+	&__counter {
+		position:relative;
+		margin-left:7px;
+		padding:1px 4px;
+		font-weight:normal;
+		color:#666;
+		color:hsla(0,0%,0%,.5);
+		cursor:default;
+	}
+
+	&__counter:before,
+	&__counter:after {
+		content:"";
+		position:absolute;
+		width:0;
+		height:0;
+	}
+	&__counter:before {
+		top:4px;
+		left:-6px;
+		border:6px inset transparent;  // inset fixes strange artefacts in Firefox
+		border-left:0;
+		border-right:6px solid;
+		border-right-color:inherit;
+		opacity:.7;
+		}
+	&__counter:after {
+		top:5px;
+		left:-4px;
+		border:5px inset transparent;  // inset fixes strange artefacts in Firefox
+		border-left:0;
+		border-right:5px solid;
+		}
+}
+
+
+// Facebook
+.social-likes__button_facebook {
+	padding-left:19px;
+	background:#eceef5;
+	background:linear-gradient(top, #fff, #d8def4);
+	color:#3b5998;
+	border-color:#cad4e7;
+	border-color:hsla(219,38%,85%,.8);
+	border-bottom-color:hsla(219,12%,77%,.8);
+}
+.social-likes__button_facebook:hover {
+	background:#c0cdf3;
+	background:linear-gradient(top, #f2f3f7, #c0cdf3);
+	color:#253860;
+	border-color:#b4bfd4;
+	border-bottom-color:#b3b7bf;
+}
+.social-likes__icon_facebook {
+	background-image:embedurl('../icons/facebook.png');
+	background-position:3px 3px;
+}
+.social-likes__counter_facebook {
+	background:#f2f3f7;
+	border-color:#cad4e7;
+}
+.social-likes__counter_facebook:after {
+	border-right-color:#f2f3f7;
+}
+
+
+// Twitter
+.social-likes__button_twitter {
+	padding-left:19px;
+	background:#d5e6ef;
+	background:linear-gradient(top, #fff, #d5e6ef);
+	color:#186487;
+	border-color:#a4cce5;
+	border-color:hsla(203,56%,77%,.8);
+	border-bottom-color:hsla(203,31%,71%,.8);
+}
+.social-likes__button_twitter:hover {
+	background:#bfdfed;
+	background:linear-gradient(top, #f2f8fc, #bfdfed);
+	color:#0b3752;
+	border-color:#9cbbcf;
+	border-bottom-color:#68a0c4;
+}
+.social-likes__icon_twitter {
+	background-image:embedurl('../icons/twitter.png');
+	background-position:2px 4px;
+}
+.social-likes__counter_twitter {
+	background:#f2f8fc;
+	border-color:#a4cce5;
+}
+.social-likes__counter_twitter:after {
+	border-right-color:#f2f8fc;
+}
+
+
+// Google+
+.social-likes__button_plusone {
+	padding-left:12px;
+	background:#e4e4e4;
+	background:linear-gradient(top, #f5f5f5, #e4e4e4);
+	color:#da573b;
+	border-color:#bbb;
+	border-color:hsla(0,0%,80%,.8);
+	border-bottom-color:hsla(0,0%,70%,.8);
+}
+.social-likes__button_plusone:hover {
+	background:#f4f4f4;
+	background:linear-gradient(top, #f9f9f9, #f0f0f0);
+	color:#cd4427;
+	border-color:#ddd;
+	border-bottom-color:#ccc;
+}
+.social-likes__icon_plusone {
+	background-image:embedurl('../icons/plusone.png');
+	background-position:0 6px;
+}
+.social-likes__counter_plusone {
+	background:#f9f9f9;
+	border-color:#d2d2d2;
+}
+.social-likes__counter_plusone:after {
+	border-right-color:#f9f9f9;
+}
+
+
+// Mail.ru
+.social-likes__button_mailru {
+	background:#004584;
+	background:linear-gradient(top, #5d90ba, #004584);
+	color:#fff;
+	color:hsla(0,0%,100%,.95);
+	border-color:#1e65a5;
+	border-color:hsla(209,87%,32%,.8);
+	border-bottom-color:hsla(208,88%,10%,.8);
+	text-shadow: 0 -1px 0 hsla(0,0%,0%,.3);
+}
+.social-likes__button_mailru:hover {
+	background:#001e5d;
+	background:linear-gradient(top, #618cae, #001e5d);
+	color:#fff;
+	color:hsla(0,0%,100%,.99);
+	border-color:#094984;
+	border-bottom-color:#031b30;
+}
+.social-likes__icon_mailru {
+	background-image:embedurl('../icons/mailru.png');
+	background-position:2px 2px;
+}
+.social-likes__counter_mailru {
+	background:#fff1c2;
+	border-color:#ffc70d;
+}
+.social-likes__counter_mailru:after {
+	border-right-color:#fff1c2;
+}
+
+// Vkontakte
+.social-likes__button_vkontakte {
+	background:#436f96;
+	background:linear-gradient(top, #8faecf, #436f96);
+	color:#fff;
+	color:hsla(0,0%,100%,.95);
+	border-color:#4d84c1;
+	border-color:hsla(212,48%,53%,.8);
+	border-bottom-color:hsla(211,42%,35%,.8);
+	text-shadow: 0 -1px 0 hsla(0,0%,0%,.3);
+}
+.social-likes__button_vkontakte:hover {
+	background:#4e80ab;
+	background:linear-gradient(top, #a2c0df, #4e80ab);
+	color:#fff;
+	color:hsla(0,0%,100%,.99);
+	border-color:#5788be;
+	border-bottom-color:#3b6798;
+}
+.social-likes__icon_vkontakte {
+	background-image:embedurl('../icons/vkontakte.png');
+	background-position:1px 2px;
+}
+.social-likes__counter_vkontakte {
+	background:#eaeef3;
+	border-color:#afc1d4;
+}
+.social-likes__counter_vkontakte:after {
+	border-right-color:#eaeef3;
+}
+
+
+// Odnoklassniki
+.social-likes__button_odnoklassniki {
+	padding-left:17px;
+	background:#f6900b;
+	background:linear-gradient(top, #f6bb6d, #f6900b);
+	color:#fff;
+	color:hsla(0,0%,100%,.95);
+	border-color:#d99c27;
+	border-color:hsla(39,70%,50%,.8);
+	border-bottom-color:hsla(41,93%,40%,.8);
+	text-shadow: 0 -1px 0 hsla(0,0%,0%,.12);
+}
+.social-likes__button_odnoklassniki:hover {
+	background:#f69a21;
+	background:linear-gradient(top, #fbcc5a, #f69a21);
+	color:#fff;
+	color:hsla(0,0%,100%,.99);
+	border-color:#f0b22c;
+	border-bottom-color:#c59121;
+}
+.social-likes__icon_odnoklassniki {
+	background-image:embedurl('../icons/odnoklassniki.png');
+	background-position:4px 3px;
+}
+.social-likes__counter_odnoklassniki {
+	background:#ffe9be;
+	border-color:#d9ab53;
+}
+.social-likes__counter_odnoklassniki:after {
+	border-right-color:#ffe9be;
+}
+
+
+// Livejournal
+.social-likes__button_livejournal {
+	background:#cadcf3;
+	background:linear-gradient(top, #fff, #cadcf3);
+	color:#5183b4;
+	border-color:hsla(208,78%,84%,.8);
+	border-bottom-color:hsla(209,22%,60%,.8);
+}
+.social-likes__button_livejournal:hover {
+	background:#dce2f5;
+	background:linear-gradient(top, #ecf1f7, #bad2f0);
+	color:#253759;
+	border-color:#b7cfe4;
+	border-bottom-color:#9caebe;
+}
+.social-likes__icon_livejournal {
+	background-image:embedurl('../icons/livejournal.png');
+	background-position:2px 2px;
+}
+
+
+// Code
+.social-likes__button_code {
+	background:#efefef;
+	background:linear-gradient(top, #fff, #efefef);
+	color:#555;
+	border-color:#dfdfdf;
+	border-color:hsla(0,0%,90%,.8);
+	border-bottom-color:hsla(0,0%,80%,.8);
+	border-bottom-color:#b3c1ce;
+}
+.social-likes__button_code:hover {
+	background:#e0e0e0;
+	background:linear-gradient(top, #fafafa, #e0e0e0);
+	color:#333;
+	border-color:hsla(0,0%,75%,.8);
+	border-bottom-color:hsla(0,0%,65%,.8);
+}
+.social-likes__icon_code {
+	background-image:embedurl('../icons/code.png');
+	background-position:2px 3px;
+}
+
+// Code balloon
+.social-likes__balloon {
+	position:absolute;
+	bottom:29px;
+	right:0;
+	padding:6px;
+	color:#fff;
+	text-align:left;
+	text-shadow:0 -1px 0 hsla(0,0%,0%,.4);
+	line-height:1.2;
+	background:#666;
+	background:hsla(0,0%,0%,.6);
+	border-radius:5px;
+	box-shadow:0 2px 18px -7px hsla(0,0%,0%,.8);
+
+	&__code {
+		width:300px;
+		height:60px;
+		margin-top:3px;
+		border:1px #aaa inset;
+		background:#fff;
+		box-shadow:1px 1px 3px hsla(0,0%,0%,.25) inset;
+		resize:none;
+		outline:0;
+		}
+
+	&__arrow {
+		position:absolute;
+		bottom:-6px;
+		right:8px;
+		width:0;
+		height:0;
+		border:6px solid transparent;
+		border-bottom:none;
+		border-top:6px solid #666;
+		}
+}
