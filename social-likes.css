@@ -1,9 +1,9 @@
 .social-likes,.social-likes__widget{display:inline-block;vertical-align:middle;line-height:20px;margin:2px 0;padding:0;word-spacing:0;font-size:14px}
-.social-likes{margin-right:-8px;line-height:26px;}
-.social-likes__widget{position:relative;margin-right:8px;white-space:nowrap}
+.social-likes{margin-right:-8px;line-height:26px;*zoom:1;}
+.social-likes__widget{position:relative;*zoom:1;*display:inline;margin-right:8px;white-space:nowrap}
 .social-likes__widget:before{display:none}
 .social-likes__button,.social-likes__counter,.social-likes__balloon,.social-likes__balloon__code{font-family:"Trebuchet MS","Helvetica Neue",Tahoma,sans-serif;font-size:14px;text-rendering:optimizeLegibility}
-.social-likes__button,.social-likes__counter{display:inline-block;margin:0;line-height:18px;border-width:1px;border-style:solid;border-radius:3px;outline:0}
+.social-likes__button,.social-likes__counter{display:inline-block;*display:inline;*float:left;margin:0;line-height:18px;border-width:1px;border-style:solid;border-radius:3px;outline:0}
 .social-likes__button{position:relative;padding:1px 4px 1px 20px;font-weight:bold;text-shadow:0 1px 0 hsla(0, 0%, 100%, 0.6);-webkit-box-shadow:0 1px 1px hsla(0, 0%, 0%, 0.05);box-shadow:0 1px 1px hsla(0, 0%, 0%, 0.05);-webkit-transition:border .1s ease-in-out,color .2s ease-in-out,background .2s ease-in-out;-moz-transition:border .1s ease-in-out,color .2s ease-in-out,background .2s ease-in-out;-ms-transition:border .1s ease-in-out,color .2s ease-in-out,background .2s ease-in-out;-o-transition:border .1s ease-in-out,color .2s ease-in-out,background .2s ease-in-out;transition:border .1s ease-in-out,color .2s ease-in-out,background .2s ease-in-out;cursor:pointer}
 .social-likes__icon{position:absolute;top:0;left:0;width:20px;height:20px;background-repeat:no-repeat}
 .social-likes__counter{position:relative;margin-left:7px;padding:1px 4px;font-weight:normal;color:#666;color:hsla(0, 0%, 0%, 0.5);cursor:default}
