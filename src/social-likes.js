@@ -288,6 +288,12 @@ Button.prototype = {
 		widget.removeClass(this.service);
 		widget.addClass(this.getElementClassNames('widget'));
 
+		// Old initialization HTML
+		var a = widget.find('a');
+		if (a.length) {
+			this.cloneDataAttrs(a, widget);
+		}
+
 		// Button
 		var button = $('<span>', {
 			'class': this.getElementClassNames('button'),
@@ -297,6 +303,13 @@ Button.prototype = {
 
 		widget.empty().append(button);
 		this.button = button;
+	},
+
+	cloneDataAttrs: function(source, destination) {
+		var data = source.data();
+		for (var key in data) {
+			destination.data(key, data[key]);
+		}
 	},
 
 	getElementClassNames: function(elem) {
