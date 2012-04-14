@@ -1,3 +1,4 @@
+/* Social Likes by Artem Sapegin. http://sapegin.github.com/social-likes */
 .social-likes,.social-likes__widget{display:inline-block;vertical-align:middle;line-height:20px;margin:2px 0;padding:0;word-spacing:0;font-size:14px}
 .social-likes{margin-right:-8px;line-height:26px;*zoom:1;}
 .social-likes__widget{position:relative;*zoom:1;*display:inline;margin-right:8px;white-space:nowrap}
