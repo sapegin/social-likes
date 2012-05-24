@@ -28,10 +28,6 @@ overflow-scrolling()
 	-webkit-overflow-scrolling arguments
 	overflow-scrolling arguments
 
-// Preserve '%'s in hsla() -- strange hack
-hsla()
-	'hsla(%s)' % unquote(join(', ', arguments))
-
 
 // Gradients
 // https://github.com/LearnBoost/stylus/issues/245

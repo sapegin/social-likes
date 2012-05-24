@@ -11,13 +11,10 @@
 	font-size:14px;
 }
 
-// foo
-/* bar */
-/*! baz */
-
 .social-likes {
 	margin-right:-8px;
 	line-height:26px;
+	list-style:none;
 	*zoom:1;
 
 	&__widget {
@@ -62,6 +59,7 @@
 		// Gradient transition don’t work yet in any browser. This is for future :)
 		transition:border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
 		cursor:pointer;
+		user-select:none;
 	}
 
 	&__icon {
@@ -106,6 +104,78 @@
 		border-left:0;
 		border-right:5px solid;
 		}
+
+	&__close {
+		position:absolute;
+		right:0;
+		top:0;
+		padding:2px 4px;
+		font:16px Verdana, Geneva, Tahoma, sans-serif;
+		color:#999;
+		cursor:pointer;
+	}
+	&__close:hover {
+		color:#111;
+	}
+	&__close:before {
+		display:none;  // Remove nice bullets
+	}
+
+	// Vertical mode
+	&_vertical {
+		margin-right:0;
+
+		.social-likes__widget {
+			display:block;
+			margin-bottom:8px;
+			margin-right:0;
+		}
+	}
+
+	// Single button nmode
+	&_single-w {
+		position:relative;
+	}
+	&_single {
+		position:absolute;
+		top:-19px;
+		left:-15px;
+		padding:15px 15px 9px 15px;
+		background:#fff;
+		box-shadow:0 0 15px hsla(0,0%,0%,.3);
+		z-index:99999;
+	}
+}
+
+
+// Single button
+.social-likes__button_single {
+	position:relative;
+	padding-left:19px;
+	background:#e2e2e2;
+	background:linear-gradient(top, #f7f7f7, #e2e2e2);
+	color:#444;
+	border-color:#ccc;
+	border-color:hsla(0,0%,70%,.8);
+	border-bottom-color:hsla(0,0%,60%,.8);
+}
+.social-likes__button_single:hover {
+	background:#f4f4f4;
+	background:linear-gradient(top, #f0f0f0, #cfcfcf);
+	color:#222;
+	border-color:#bbb;
+	border-bottom-color:#9f9f9f;
+}
+.social-likes__icon_single {
+	background-image:embedurl('../icons/single.png');
+	background-position:2px 3px;
+}
+.social-likes__counter_single {
+	background:#f6f6f6;
+	border-color:#ddd;
+}
+.social-likes__counter_single:after {
+	border-right-color:#f6f6f6;
 }
 
 
@@ -201,6 +271,7 @@
 
 // Mail.ru
 .social-likes__button_mailru {
+	padding-left:18px;
 	background:#004584;
 	background:linear-gradient(top, #5d90ba, #004584);
 	color:#fff;
@@ -220,7 +291,7 @@
 }
 .social-likes__icon_mailru {
 	background-image:embedurl('../icons/mailru.png');
-	background-position:2px 2px;
+	background-position:1px 2px;
 }
 .social-likes__counter_mailru {
 	background:#fff1c2;
@@ -335,12 +406,13 @@
 }
 .social-likes__icon_code {
 	background-image:embedurl('../icons/code.png');
-	background-position:2px 3px;
+	background-position:2px 2px;
 }
 
 // Code balloon
 .social-likes__balloon {
 	position:absolute;
+	display:none;
 	bottom:29px;
 	right:0;
 	padding:6px;
@@ -374,4 +446,14 @@
 		border-bottom:none;
 		border-top:6px solid #666;
 		}
+
+	&_right {
+		left:0;
+		right:auto;
+
+		.social-likes__balloon__arrow {
+			left:8px;
+			right:auto;
+		}
+	}
 }

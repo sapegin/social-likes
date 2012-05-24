@@ -11,19 +11,28 @@
  * @license MIT
  */
 
+/*global define:false, socialLikesButtons:false */
+
 (function (factory) {  // Try to register as an anonymous AMD module
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
 	} else {
 		factory(jQuery);
 	}
-}(function ($) {
+}(function ($) { 'use strict';
 
+var prefix = 'social-likes__',
+	fadeSpeed = 'fast';
+
+
+/**
+ * Buttons
+ */
 var services = {
 	facebook: {
 		counterUrl: 'http://graph.facebook.com/?ids={url}&callback=?',
 		convertNumber: function(data) {
-			for (var url in data) {
+			for (var url in data) if (data.hasOwnProperty(url)) {
 				return data[url].shares;
 			}
 		},
@@ -44,7 +53,7 @@ var services = {
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
-			for (var url in data) {
+			for (var url in data) if (data.hasOwnProperty(url)) {
 				return data[url].shares;
 			}
 		},
@@ -105,14 +114,17 @@ var services = {
 		click: function(e) {
 			var balloon = this._codeBalloon;
 			if (balloon) {
-				balloon.toggle();
+				if (balloon.is(':visible')) {
+					balloon.fadeOut(fadeSpeed);
+					return;
+				}
 			}
 			else {
 				balloon = $(template(
-					'<div class="social-likes__balloon">' +
-						'<div class="social-likes__balloon__arrow"></div>' +
+					'<div class="' + prefix + 'balloon">' +
+						'<div class="' + prefix + 'balloon__arrow"></div>' +
 						'{prompt}<br>' +
-						'<textarea class="social-likes__balloon__code">{html}</textarea>' +
+						'<textarea class="' + prefix + 'balloon__code">{html}</textarea>' +
 					'</div>',
 					{
 						prompt: (this.widget.data('prompt') || 'Copy code to clipboard:'),
@@ -122,18 +134,16 @@ var services = {
 				this.widget.append(balloon);
 				this._codeBalloon = balloon;
 			}
-
+			balloon.fadeIn(fadeSpeed);
 			balloon.find('textarea').select();
 
 			if (balloon.is(':visible')) {
-				var doc = $(document),
-					clickEvent = 'click.social-likes__hide-code';
-				doc.on(clickEvent, function(e) {
-					if (e.target.tagName !== 'TEXTAREA') {
-						balloon.hide();
-						doc.off(clickEvent);
-					}
-				});
+				balloon.removeClass(prefix + 'balloon_right');
+				if (balloon.offset().left < 0) {
+					balloon.addClass(prefix + 'balloon_right');
+				}
+
+				closeOnClick(balloon);
 			}
 		}
 	},
@@ -164,6 +174,9 @@ var services = {
 };
 
 
+/**
+ * Counters manager
+ */
 var counters = {
 	promises: {},
 	fetch: function(service, url) {
@@ -178,7 +191,7 @@ var counters = {
 				deferred = $.Deferred(),
 				jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
 
-			if (typeof options.counter === 'function') {
+			if ($.isFunction(options.counter)) {
 				options.counter(jsonUrl, deferred);
 			}
 			else if (options.counterUrl) {
@@ -186,13 +199,12 @@ var counters = {
 					.done(function(data) {
 						try {
 							var number = data;
-							if (typeof options.convertNumber === 'function') {
+							if ($.isFunction(options.convertNumber)) {
 								number = options.convertNumber(data);
 							}
 							deferred.resolve(number);
 						}
 						catch (e) {
-							throw e;
 							deferred.reject(e);
 						}
 					});
@@ -205,6 +217,9 @@ var counters = {
 };
 
 
+/**
+ * jQuery plugin
+ */
 $.fn.socialLikes = function() {
 	return this.each(function() {
 		new SocialLikes($(this));
@@ -218,26 +233,112 @@ function SocialLikes(container) {
 }
 
 SocialLikes.prototype = {
+	optionsMap: {
+		pageUrl: {
+			attr: 'url',
+			default: function() { return window.location.href.replace(window.location.hash, ''); }
+		},
+		pageTitle: {
+			attr: 'title',
+			default: function() { return document.title; }
+		},
+		pageHtml: {
+			attr: 'html',
+			default: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
+		},
+		pageCounters: {
+			attr: 'counters',
+			default: 'yes',
+			convert: function(value) { return value === 'yes'; }
+		}
+	},
 	init: function() {
-		var options = {
-			pageUrl: this.pageUrl(),
-			pageTitle: this.pageTitle(),
-			pageHtml: this.pageHtml()
-		};
+		this.readOptions();
+		this.single = this.container.hasClass('social-likes_single');
+
+		this.initUserButtons();
+
+		if (this.single)
+			this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
+
+		var options = this.options;
 		this.container.find('li').each(function() {
 			new Button($(this), options);
 		});
+
+		if (this.single)
+			this.makeSingleButton();
 	},
-	pageUrl: function() {
-		return 'http://mail.ru';
-		//return this.container.data('url') || window.location.href.replace(window.location.hash, '');
+	readOptions: function() {
+		this.options = {};
+		for (var key in this.optionsMap) {
+			var option = this.optionsMap[key];
+			this.options[key] = this.container.data(option.attr) ||
+				($.isFunction(option.default) ? $.proxy(option.default, this)() : option.default);
+			if ($.isFunction(option.convert))
+				this.options[key] = option.convert(this.options[key]);
+		}
 	},
-	pageTitle: function() {
-		return this.container.data('title') || document.title;
+	initUserButtons: function() {
+		if (!this.userButtonInited && window.socialLikesButtons) {
+			$.extend(services, socialLikesButtons);
+		}
+		this.userButtonInited = true;
 	},
-	pageHtml: function() {
-		return (this.container.data('html') ||
-			'<a href="' + this.pageUrl() + '">' + this.pageTitle() + '</a>');
+	makeSingleButton: function() {
+		var container = this.container;
+		container.addClass('social-likes_vertical');
+		container.wrap($('<div>', {'class': 'social-likes_single-w'}));
+		var wrapper = container.parent();
+
+		var defaultLeft = parseInt(container.css('left'), 10),
+			defaultTop = parseInt(container.css('top'), 10);
+
+		container.hide();
+
+		var button = $('<div>', {
+			'class': getElementClassNames('button', 'single'),
+			'text': container.data('single-title') || 'Share'
+		});
+		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
+		wrapper.append(button);
+
+		var close = $('<li>', {
+			'class': prefix + 'close',
+			'html': '&times;'
+		});
+		container.append(close);
+
+		this.number = 0;
+
+		button.click(function() {
+			container.css({ left: defaultLeft,  top: defaultTop });
+			showInViewport(container, 20);
+			closeOnClick(container);
+
+			return false;
+		});
+		close.click(function() {
+			container.fadeOut(fadeSpeed);
+		});
+
+		this.wrapper = wrapper;
+	},
+	updateCounter: function(e, number) {
+		if (!number) return;
+
+		this.number += number;
+		this.getCounterElem().text(this.number);
+	},
+	getCounterElem: function() {
+		var counterElem = this.wrapper.find('.' + prefix + 'counter_single');
+		if (!counterElem.length) {
+			counterElem = $('<span>', {
+				'class': getElementClassNames('counter', 'single')
+			});
+			this.wrapper.append(counterElem);
+		}
+		return counterElem;
 	}
 };
 
@@ -252,14 +353,19 @@ function Button(widget, options) {
 }
 
 Button.prototype = {
-	prefix: 'social-likes__',
-
 	init: function() {
 		this.detectParams();
 		this.initHtml();
-		this.setEventHandlers();
-		counters.fetch(this.service, this.options.pageUrl)
-			.done($.proxy(this.updateCounter, this));
+
+		if (this.options.pageCounters) {
+			if (this.options.counterNumber) {
+				this.updateCounter(this.options.counterNumber);
+			}
+			else {
+				counters.fetch(this.service, this.options.pageUrl)
+					.done($.proxy(this.updateCounter, this));
+			}
+		}
 	},
 
 	detectService: function() {
@@ -275,15 +381,21 @@ Button.prototype = {
 	},
 
 	detectParams: function() {
-		// Custom page counter URL
-		var counterUrl = this.widget.data('counter-url');
-		if (counterUrl) {
-			this.options.counterUrl = counterUrl;
+		// Custom page counter URL or number
+		var counter = this.widget.data('counter');
+		if (counter) {
+			var number = parseInt(counter);
+			if (isNaN(number))
+				this.options.counterUrl = counter;
+			else
+				this.options.counterNumber = number;
 		}
 	},
 
 	initHtml: function() {
-		var widget = this.widget;
+		var options = this.options,
+			widget = this.widget;
+		var isLink = !!options.clickUrl;
 
 		widget.removeClass(this.service);
 		widget.addClass(this.getElementClassNames('widget'));
@@ -295,10 +407,22 @@ Button.prototype = {
 		}
 
 		// Button
-		var button = $('<span>', {
+		var button = $(isLink ? '<a>' : '<span>', {
 			'class': this.getElementClassNames('button'),
 			'text': widget.text()
-		})
+		});
+		if (isLink) {
+			var url = makeUrl(options.clickUrl, {
+				url: options.pageUrl,
+				title: options.pageTitle
+			});
+			button.attr('href', url);
+		}
+		else {
+			button.click($.proxy(this.click, this));
+		}
+
+		// Icon
 		button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
 
 		widget.empty().append(button);
@@ -307,18 +431,13 @@ Button.prototype = {
 
 	cloneDataAttrs: function(source, destination) {
 		var data = source.data();
-		for (var key in data) {
+		for (var key in data) if (data.hasOwnProperty(key)) {
 			destination.data(key, data[key]);
 		}
 	},
 
 	getElementClassNames: function(elem) {
-		var cls = this.prefix + elem;
-		return cls + ' ' + cls + '_' + this.service;
-	},
-
-	setEventHandlers: function() {
-		this.button.click($.proxy(this.click, this));
+		return getElementClassNames(elem, this.service);
 	},
 
 	updateCounter: function(number) {
@@ -327,14 +446,16 @@ Button.prototype = {
 
 		var counterElem = $('<span>', {
 			'class': this.getElementClassNames('counter'),
-			'html': number
+			'text': number
 		});
 		this.widget.append(counterElem);
+
+		this.widget.trigger('counter.social-likes', number);
 	},
 
 	click: function(e) {
 		var options = this.options;
-		if (typeof options.click === 'function') {
+		if ($.isFunction(options.click)) {
 			options.click.call(this, e);
 		}
 		else {
@@ -369,13 +490,13 @@ Button.prototype = {
 	},
 
 	openPopup: function(url, params) {
-		var left = Math.round(screen.width/2 - params.width/2);
+		var left = Math.round(screen.width/2 - params.width/2),
 			top = 0;
 		if (screen.height > params.height) {
 			top = Math.round(screen.height/3 - params.height/2);
 		}
 
-		var win = window.open(url, this.prefix + this.service, 'left=' + left + ',top=' + top + ',' +
+		var win = window.open(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 		if (win) {
 			win.focus();
@@ -386,24 +507,66 @@ Button.prototype = {
 };
 
 
-// Helpers
+/**
+ * Helpers
+ */
 
 function makeUrl(url, context) {
-	for (var key in context) {
-		url = url.replace('{' + key + '}', encodeURIComponent(context[key]).replace(/\+/g, '%2B'));
+	for (var key in context) if (context.hasOwnProperty(key)) {
+		url = url.replace('{' + key + '}', encodeURIComponent(context[key]));
 	}
 	return url;
-};
+}
 
 function template(tmpl, context) {
-	for (var key in context) {
+	for (var key in context) if (context.hasOwnProperty(key)) {
 		tmpl = tmpl.replace('{' + key + '}', context[key]);
 	}
 	return tmpl;
-};
+}
+
+function getElementClassNames(elem, mod) {
+	var cls = prefix + elem;
+	return cls + ' ' + cls + '_' + mod;
+}
+
+function closeOnClick(elem) {
+	var doc = $(document),
+		clickEvent = 'click.social-likes' + Math.random();
+	doc.on(clickEvent, function(e) {
+		if (!$(e.target).closest(elem).length) {
+			elem.fadeOut(fadeSpeed);
+			doc.off(clickEvent);
+		}
+	});
+}
+
+function showInViewport(elem, offset) {
+	if (document.documentElement.getBoundingClientRect) {
+		var left = parseInt(elem.css('left'), 10),
+			top = parseInt(elem.css('top'), 10);
+		elem.css('visibility', 'hidden').show();
+
+		var rect = elem[0].getBoundingClientRect();
+		if (rect.left < offset)
+			elem.css('left', offset - rect.left + left);
+		else if (rect.right > window.innerWidth - offset)
+			elem.css('left', window.innerWidth - rect.right - offset + left);
+
+		if (rect.top < offset)
+			elem.css('top', offset - rect.top + top);
+		else if (rect.bottom > window.innerHeight - offset)
+			elem.css('top', window.innerHeight - rect.bottom - offset + top);
+
+		elem.hide().css('visibility', 'visible');
+	}
+	elem.fadeIn(fadeSpeed);
+}
 
 
-// Auto initialization
+/**
+ * Auto initialization
+ */
 $(function() {
 	$('.social-likes').socialLikes();
 });
