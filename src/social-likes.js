@@ -236,19 +236,19 @@ SocialLikes.prototype = {
 	optionsMap: {
 		pageUrl: {
 			attr: 'url',
-			default: function() { return window.location.href.replace(window.location.hash, ''); }
+			defaultValue: function() { return window.location.href.replace(window.location.hash, ''); }
 		},
 		pageTitle: {
 			attr: 'title',
-			default: function() { return document.title; }
+			defaultValue: function() { return document.title; }
 		},
 		pageHtml: {
 			attr: 'html',
-			default: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
+			defaultValue: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
 		},
 		pageCounters: {
 			attr: 'counters',
-			default: 'yes',
+			defaultValue: 'yes',
 			convert: function(value) { return value === 'yes'; }
 		}
 	},
@@ -274,7 +274,7 @@ SocialLikes.prototype = {
 		for (var key in this.optionsMap) {
 			var option = this.optionsMap[key];
 			this.options[key] = this.container.data(option.attr) ||
-				($.isFunction(option.default) ? $.proxy(option.default, this)() : option.default);
+				($.isFunction(option.defaultValue) ? $.proxy(option.defaultValue, this)() : option.defaultValue);
 			if ($.isFunction(option.convert))
 				this.options[key] = option.convert(this.options[key]);
 		}
