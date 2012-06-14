@@ -57,7 +57,7 @@ var services = {
 				return data[url].shares;
 			}
 		},
-		popupUrl: 'http://connect.mail.ru/share?share_url={url}',
+		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
 		pupupWidth: 550,
 		popupHeight: 360
 	},
