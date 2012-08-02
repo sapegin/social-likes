@@ -388,7 +388,7 @@ Button.prototype = {
 		// Custom page counter URL or number
 		var counter = this.widget.data('counter');
 		if (counter) {
-			var number = parseInt(counter);
+			var number = parseInt(counter, 10);
 			if (isNaN(number))
 				this.options.counterUrl = counter;
 			else
