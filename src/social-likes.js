@@ -4,8 +4,7 @@
  *
  * Sharing buttons for Russian and worldwide social networks.
  *
- * @version 2.0.0 alpha
- * @requires jQuery 1.7
+ * @requires jQuery
  * @author Artem Sapegin
  * @copyright 2012 Artem Sapegin (sapegin.me)
  * @license MIT
