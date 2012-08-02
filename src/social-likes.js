@@ -67,9 +67,12 @@ var services = {
 			var options = services.vkontakte;
 			if (!options._) {
 				options._ = [];
-				window.VK = {Share: {count: function(idx, number) {
-					options._[idx].resolve(number);
-				}}};
+				if (!window.VK) window.VK = {};
+				window.VK.Share = {
+					count: function(idx, number) {
+						options._[idx].resolve(number);
+					}
+				};
 			}
 
 			var index = options._.length;
@@ -89,9 +92,10 @@ var services = {
 			var options = services.odnoklassniki;
 			if (!options._) {
 				options._ = [];
-				window.ODKL = {updateCount: function(idx, number) {
+				if (!window.ODKL) window.ODKL = {};
+				window.ODKL.updateCount = function(idx, number) {
 					options._[idx].resolve(number);
-				}};
+				};
 			}
 
 			var index = options._.length;
