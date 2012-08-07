@@ -4,7 +4,7 @@ How to build this project?
 1. Install Grunt:
   npm install grunt -g
   mkdir node_modules
-  npm install grunt-stylus
+  npm install grunt-stylus grunt-imgo
 
 2. Build:
   grunt
@@ -42,6 +42,7 @@ module.exports = function(grunt) {
 				options: {
 					'compress': true,
 					'include css': true,
+					'urlfunc': 'embedurl',
 					'paths': ['styles']
 				}
 			}
@@ -66,12 +67,18 @@ module.exports = function(grunt) {
 			globals: {
 				jQuery: true}
 		},
+		imgo: {
+			imgo: {
+				files: 'icons/*.png'
+			}
+		},
 		uglify: {}
 	});
-	
+
 	grunt.loadNpmTasks('grunt-stylus');
+	grunt.loadNpmTasks('grunt-imgo');
 
 	// Default task
-	grunt.registerTask('default', 'stylus lint min');
+	grunt.registerTask('default', 'lint min imgo stylus');
 
 };
