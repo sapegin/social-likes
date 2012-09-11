@@ -12,7 +12,7 @@ hljs.tabReplace = '<span class="indent">\t</span>';
 hljs.initHighlightingOnLoad();
 </script>
 
-	<script src="http://yandex.st/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://yandex.st/jquery/1.8.1/jquery.min.js"></script>
 
 	<script src="src/social-likes.js"></script>
 	<link href="src/social-likes.css" rel="stylesheet">
@@ -44,41 +44,31 @@ ul {
 	<h2>Внешний вид</h2>
 	
 	<ul class="social-likes">
-		<li class="facebook"><a href="#" title="Опубликовать ссылку на Фейсбуке">Facebook</a></li>
-		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
-		<li class="mailru"><a href="#" title="Опубликовать ссылку в Моём Мире">Мой мир</a></li>
-		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во Вконтакте">Вконтакте</a></li>
-		<li class="odnoklassniki"><a href="#" title="Опубликовать ссылку в Одноклассниках">Одноклассники</a></li>
-		<li class="plusone"><a href="#" title="Плюсануть в Гугле">+1</a></li>
-		<li class="livejournal"><form action="http://www.livejournal.com/update.bml" method="post" target="_blank">
-			<input type="hidden" name="mode" value="full">
-			<input type="hidden" name="subject" value="Social Likes">
-			<input type="hidden" name="event" value="<a href=https://github.com/sapegin/social-likes>Красивые кнопки «лайков» социальных сетей</a>">
-			<input type="submit" value="LiveJournal" title="Опубликовать ссылку в ЖЖ">
-		</form></li>
-		<li class="code"><a href="#" title="Получить код для публикации ссылки в другом сервисе">Код</a></li>
+		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+		<li class="twitter" data-via="sapegin" data-related="Landscapists:Пейзажисты России" title="Опубликовать ссылку в Твиттере">Twitter</li>
+		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+		<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+		<li class="livejournal" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+		<li class="code" title="Получить код для публикации ссылки в другом сервисе">Код</li>
 	</ul>
 
 	<h2>Использование</h2>
 
 <pre><code>&lt;link href=&quot;social-likes.css&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;script src=&quot;//yandex.st/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;social-likes.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//yandex.st/jquery/1.8.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;social-likes.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;ul class=&quot;social-likes&quot;&gt;
-	&lt;li class=&quot;facebook&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку на Фейсбуке&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;twitter&quot;&gt;&lt;a href=&quot;#&quot; data-via=&quot;sapegin&quot; data-related=&quot;DessiTeckel:Моя такса&quot; title=&quot;Опубликовать ссылку в Твиттере&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;mailru&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Моём Мире&quot;&gt;Мой мир&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во Вконтакте&quot;&gt;Вконтакте&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;odnoklassniki&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;plusone&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Плюсануть в Гугле&quot;&gt;+1&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;livejournal&quot;&gt;&lt;form action=&quot;http://www.livejournal.com/update.bml&quot; method=&quot;post&quot; target=&quot;_blank&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;full&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;Social Likes&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;event&quot; value=&quot;&lt;a href=https://github.com/sapegin/social-likes&gt;Красивые кнопки «лайков» социальных сетей&lt;/a&gt;&quot;&gt;
-		&lt;input type=&quot;submit&quot; value=&quot;LiveJournal&quot; title=&quot;Опубликовать ссылку в ЖЖ&quot;&gt;
-	&lt;/form&gt;&lt;/li&gt;
-	&lt;li class=&quot;code&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Получить код для публикации ссылки в другом сервисе&quot;&gt;Код&lt;/a&gt;&lt;/li&gt;
+	&lt;li class=&quot;facebook&quot; title=&quot;Опубликовать ссылку на Фейсбуке&quot;&gt;Facebook&lt;/li&gt;
+	&lt;li class=&quot;twitter&quot; data-via=&quot;please_change_via&quot; data-related=&quot;Landscapists:Пейзажисты России&quot; title=&quot;Опубликовать ссылку в Твиттере&quot;&gt;Twitter&lt;/li&gt;
+	&lt;li class=&quot;mailru&quot; title=&quot;Опубликовать ссылку в Моём мире&quot;&gt;Мой мир&lt;/li&gt;
+	&lt;li class=&quot;vkontakte&quot; title=&quot;Опубликовать ссылку во Вконтакте&quot;&gt;Вконтакте&lt;/li&gt;
+	&lt;li class=&quot;odnoklassniki&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/li&gt;
+	&lt;li class=&quot;plusone&quot; title=&quot;Опубликовать ссылку в Гугл-плюсе&quot;&gt;Google+&lt;/li&gt;
+	&lt;li class=&quot;livejournal&quot; title=&quot;Опубликовать ссылку в ЖЖ&quot;&gt;LiveJournal&lt;/li&gt;
+	&lt;li class=&quot;code&quot; title=&quot;Получить код для публикации ссылки в другом сервисе&quot;&gt;Код&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 
 	<p>Вы можете убрать любые ненужные вам кнопки или поменять текст кнопок.</p>
