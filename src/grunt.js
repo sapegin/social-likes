@@ -11,13 +11,14 @@ How to build this project?
 */
 
 /*global module:false*/
+/*jshint node:true*/
 module.exports = function(grunt) {
 	'use strict';
 
 	// Project configuration
 	grunt.initConfig({
 		meta: {
-			version: '2.0.0 alpha',
+			version: '2.0.1',
 			banner: "/*! Social Likes v<%= meta.version %> by Artem Sapegin - " +
 					"http://sapegin.github.com/social-likes - " +
 					"Licensed MIT */"
@@ -42,8 +43,7 @@ module.exports = function(grunt) {
 				options: {
 					'compress': true,
 					'include css': true,
-					'urlfunc': 'embedurl',
-					'paths': ['styles']
+					'urlfunc': 'embedurl'
 				}
 			}
 		},
@@ -69,7 +69,8 @@ module.exports = function(grunt) {
 		},
 		imgo: {
 			imgo: {
-				files: 'icons/*.png'
+				files: 'icons/*.png',
+				skip: require('os').platform() === 'win32'
 			}
 		},
 		uglify: {}
