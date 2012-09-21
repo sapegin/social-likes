@@ -5,23 +5,30 @@
 	display:inline-block;
 	vertical-align:middle;
 	line-height:20px;
-	margin:2px 0;
 	padding:0;
 	word-spacing:0;
 	font-size:14px;
+	*zoom:1;
+	*display:inline;
 }
 
 .social-likes {
-	margin-right:-8px;
+	margin:-3px;
 	line-height:26px;
 	list-style:none;
-	*zoom:1;
 
-	&__widget {
-		position:relative;
+	li {
+		display:inline-block;
 		*zoom:1;
 		*display:inline;
-		margin-right:8px;
+	}
+	&_vertical li {
+		display:block;
+	}
+	&__widget {
+		display:inline-block;
+		position:relative;
+		margin:3px;
 		white-space:nowrap;
 	}
 	&__widget:before {
@@ -56,8 +63,7 @@
 		font-weight:bold;
 		text-shadow:0 1px 0 hsla(0,0%,100%,.6);
 		box-shadow:0 1px 1px hsla(0,0%,0%,.05);
-		// Gradient transition don’t work yet in any browser. This is for future :)
-		transition:border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+		transition:border .1s ease-in-out, color .2s ease-in-out;
 		cursor:pointer;
 		user-select:none;
 	}
@@ -123,12 +129,11 @@
 
 	// Vertical mode
 	&_vertical {
-		margin-right:0;
+		margin:-6px -4px;
 
 		.social-likes__widget {
 			display:block;
-			margin-bottom:8px;
-			margin-right:0;
+			margin:6px 4px;
 		}
 	}
 
@@ -142,7 +147,7 @@
 		display:none;
 		top:-19px;
 		left:-15px;
-		padding:15px 15px 9px 15px;
+		padding:6px 6px 4px;
 		background:#fff;
 		text-align:left;
 		box-shadow:0 0 15px hsla(0,0%,0%,.3);
@@ -231,7 +236,7 @@
 }
 .social-likes__icon_twitter {
 	background-image:embedurl('../icons/twitter.png');
-	background-position:2px 3px;
+	background-position:3px 5px;
 }
 .social-likes__counter_twitter {
 	background:#f2f8fc;
@@ -415,7 +420,6 @@
 // Code balloon
 .social-likes__balloon {
 	position:absolute;
-	display:none;
 	bottom:29px;
 	right:0;
 	padding:6px;
