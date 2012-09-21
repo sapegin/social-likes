@@ -136,6 +136,7 @@ var services = {
 				));
 				this.widget.append(balloon);
 				this._codeBalloon = balloon;
+				balloon.hide();
 			}
 			balloon.fadeIn(fadeSpeed);
 			balloon.find('textarea').select();
