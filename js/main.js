@@ -11,8 +11,9 @@
 		varname: '$'
 	});
 
-	var downloadData = {
-			lang: $('html').attr('lang'),
+	var lang = $('html').attr('lang'),
+		downloadData = {
+			lang: lang,
 			jquery_ver: jQuery.fn.jquery,
 			footer: $('#index_footer_tmpl').text(),
 			html: ''
@@ -162,7 +163,7 @@
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
-				store.set('options', {
+				store.set(lang, {
 					type: data.type,
 					counters: data.counters,
 					title: data.title,
@@ -181,7 +182,7 @@
 			});
 
 			var loadOptions = function() {
-				var data = store.get('options');
+				var data = store.get(lang);
 				if (data) fillForm(form, data);
 			};
 

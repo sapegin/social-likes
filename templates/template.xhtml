@@ -14,7 +14,7 @@
 			<meta name="description" content="{$.descriptionHead||$.description}"/>
 
 			<link rel="stylesheet" href="{$.files.css}"/>
-			<link rel="stylesheet" href="/social-likes/src/social-likes.css"/>
+			<link rel="stylesheet" href="{$.files.slcss}"/>
 
 			<!--script src="/social-likes/js/libs/modernizr.js"></script-->
 		</head>
@@ -151,7 +151,7 @@
 				<div id="preview" class="preview"></div>
 
 				<div class="code">
-					<pre><code id="code" class="language-markup"></code></pre>
+					<pre class="code-i"><code id="code" class="language-markup"></code></pre>
 				</div>
 
 				<div class="download-row">
@@ -184,16 +184,17 @@
 			<f:choose>
 				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 				<script>!window.jQuery && document.write(unescape('%3Cscript src="/social-likes/js/libs/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script>
-				<script src="/social-likes/src/social-likes.min.js"></script>
 				<f:when test="$.debug">
+					<script src="/social-likes/src/social-likes.js"></script>
 					<script src="/social-likes/build/scripts.js"></script>
 				</f:when>
 				<f:otherwise>
+					<script src="{$.files.sljs}"></script>
 					<script src="{$.files.js}"></script>
 				</f:otherwise>
-			</f:choose>
+			</f:choose>	
 
-			<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6395488 = new Ya.Metrika({id:6395488, clickmap:true, trackLinks:true, webvisor:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/6395488" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+			<!-- Yandex.Metrika counter --><script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6395488 = new Ya.Metrika({id:6395488, clickmap:true, trackLinks:true, webvisor:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/6395488" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
 
 		</body>
 	</html>

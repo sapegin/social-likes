@@ -79,6 +79,14 @@ module.exports = function(grunt) {
 				js: {
 					path: '<config:min.dist.dest>',
 					href: '/social-likes/build/scripts.min.js?{version}'
+				},
+				slcss: {
+					path: 'src/social-likes.css',
+					href: '/social-likes/src/social-likes.css?{version}'
+				},
+				sljs: {
+					path: 'src/social-likes.js',
+					href: '/social-likes/src/social-likes.min.js?{version}'
 				}
 			}
 		},

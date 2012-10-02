@@ -2591,8 +2591,9 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 		varname: '$'
 	});
 
-	var downloadData = {
-			lang: $('html').attr('lang'),
+	var lang = $('html').attr('lang'),
+		downloadData = {
+			lang: lang,
 			jquery_ver: jQuery.fn.jquery,
 			footer: $('#index_footer_tmpl').text(),
 			html: ''
@@ -2742,7 +2743,7 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
-				store.set('options', {
+				store.set(lang, {
 					type: data.type,
 					counters: data.counters,
 					title: data.title,
@@ -2761,7 +2762,7 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 			});
 
 			var loadOptions = function() {
-				var data = store.get('options');
+				var data = store.get(lang);
 				if (data) fillForm(form, data);
 			};
 

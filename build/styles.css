@@ -115,9 +115,9 @@ pre code::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.6);border-radius
 .checkbox{margin-right:10px;}
 .checkbox input{position:relative;top:2px}
 .checkbox_block{display:block}
-.preview{margin:20px -20px;padding:10px 20px;-webkit-box-shadow:inset 0 3px 3px -1px rgba(0,0,0,0.3),inset 0 -2px 3px -1px rgba(0,0,0,0.3);box-shadow:inset 0 3px 3px -1px rgba(0,0,0,0.3),inset 0 -2px 3px -1px rgba(0,0,0,0.3)}
-pre{margin:20px -20px;padding:10px 20px;background:#f5f2f0;white-space:pre;-moz-tab-size:4;-o-tab-size:4;tab-size:4}
-.code{margin-bottom:20px;font-size:12px}
+.preview{margin:20px -20px;padding:15px 20px;-webkit-box-shadow:inset 0 3px 3px -1px rgba(0,0,0,0.3),inset 0 -2px 3px -1px rgba(0,0,0,0.3);box-shadow:inset 0 3px 3px -1px rgba(0,0,0,0.3),inset 0 -2px 3px -1px rgba(0,0,0,0.3)}
+.code{margin:20px -20px;padding:10px 20px;background:#f5f2f0;}
+.code-i{font-size:12px;white-space:pre;-moz-tab-size:4;-o-tab-size:4;tab-size:4}
 .hl-gray{color:#999}
 .hl-tag{color:#905}
 .hl-attr{color:#690}

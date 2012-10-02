@@ -7,7 +7,7 @@ translationLink: /social-likes/ru/
 translationTitle: По-русски
 builderType: Look
 builderTypeHorizontal: Horizontal
-builderTypeVertical: Virtical
+builderTypeVertical: Vertical
 builderTypeSingle: Single button
 builderCounters: Show counters
 builderSites: Websites
@@ -23,7 +23,7 @@ titleFacebook: Share link on Facebook
 titleTwitter: Share link on Twitter
 titlePlusone: Share link on Google+
 titleLivejournal: Share link on LiveJournal
-titleCode: Get codde to share link on other website
+titleCode: Get code to share link on other website
 singleTitle: Share
 code: Code
 codePrompt: Copy code to clipboard:
