@@ -105,8 +105,10 @@
 	}
 	&__descr {
 		font-size:13px;
+		.is-simple & {
+			display:none;
+		}
 	}
-
 }
 
 
@@ -115,6 +117,7 @@
 .button:link,
 .button:visited {
 	padding:5px 15px;
+	background:#ff6d00;
 	background:noise, linear-gradient(top, #ffcc00, #ff6d00);
 	border-radius:35px;
 	color:#fff;
@@ -131,6 +134,7 @@
 }
 .button:hover,
 .button:focus {
+	background:#ff7c1a;
 	background:noise, linear-gradient(top, #ffd739, #ff7c1a);
 	color:#fff;
 	box-shadow:inset 0 1px 0 white(.6),
@@ -143,6 +147,7 @@
 }
 .button:active {
 	padding:6px 15px 4px;
+	background:#faa643;
 	background:noise, linear-gradient(top, #ff7c1a, #faa643);
 	color:white(.93);
 	text-shadow:0 -1px 0 black(.4);

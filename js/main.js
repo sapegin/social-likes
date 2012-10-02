@@ -24,7 +24,8 @@
 		},
 		files = null,
 		templateIndex = doT.template($('#index_tmpl').text().replace(/\\\//g, '/')),
-		experimental = location.hash === '#ponies';
+		experimental = location.hash === '#ponies',
+		simple = $.browser.msie;
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
@@ -132,7 +133,7 @@
 		}
 
 		var content = zip.generate();
-		
+
 		$(e.target).attr('href', 'data:application/zip;base64,' + content);
 	}
 
@@ -144,7 +145,7 @@
 	}
 
 	function getFile(fileName) {
-		$.ajax(filesUrls[fileName], {async: false}).then(function(data) {
+		$.ajax(filesUrls[fileName], { async: false, dataType: 'html' }).then(function(data) {
 			files[fileName] = data;
 		});
 	}
@@ -212,7 +213,12 @@
 				return false;
 			});
 
-			$('.js-download').click(download);
+			if (simple) {
+				$('body').addClass('is-simple');
+			}
+			else {
+				$('.js-download').click(download);
+			}
 		}
 	});
 
