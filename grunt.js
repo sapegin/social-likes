@@ -64,21 +64,21 @@ module.exports = function(grunt) {
 			langs: ['ru', 'en'],
 			root_lang: 'en',
 			url_prefixes: {
-				ru: '/ru/',
-				en: '/'
+				ru: '/social-likes/ru/',
+				en: '/social-likes/'
 			},
 			uri_prefixes: {
-				ru: '/ru/',
-				en: '/'
+				ru: '/social-likes/ru/',
+				en: '/social-likes/'
 			},
 			files: {
 				css: {
 					path: 'build/styles.css',
-					href: '/build/styles.css?{version}'
+					href: '/social-likes/build/styles.css?{version}'
 				},
 				js: {
 					path: '<config:min.dist.dest>',
-					href: '/build/scripts.min.js?{version}'
+					href: '/social-likes/build/scripts.min.js?{version}'
 				}
 			}
 		},

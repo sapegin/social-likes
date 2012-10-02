@@ -11,16 +11,16 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<meta name="format-detection" content="telephone=no"/>
-			<meta name="description" content="{$.description}"/>
+			<meta name="description" content="{$.descriptionHead||$.description}"/>
 
 			<link rel="stylesheet" href="{$.files.css}"/>
-			<link rel="stylesheet" href="/src/social-likes.css"/>
+			<link rel="stylesheet" href="/social-likes/src/social-likes.css"/>
 
-			<!--script src="/js/libs/modernizr.js"></script-->
+			<!--script src="/social-likes/js/libs/modernizr.js"></script-->
 		</head>
 		<body>
 
-			<img src="/img/social-likes.png" alt="{$.pageTitle}" style="position:absolute;left:-999px"/>
+			<img src="/social-likes/img/social-likes.png" alt="{$.pageTitle}" style="position:absolute;left:-999px"/>
 
 			<a href="https://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/></a>
 
@@ -183,10 +183,10 @@
 
 			<f:choose>
 				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-				<script>!window.jQuery && document.write(unescape('%3Cscript src="/js/libs/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script>
-				<script src="/src/social-likes.min.js"></script>
+				<script>!window.jQuery && document.write(unescape('%3Cscript src="/social-likes/js/libs/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script>
+				<script src="/social-likes/src/social-likes.min.js"></script>
 				<f:when test="$.debug">
-					<script src="/build/scripts.js"></script>
+					<script src="/social-likes/build/scripts.js"></script>
 				</f:when>
 				<f:otherwise>
 					<script src="{$.files.js}"></script>

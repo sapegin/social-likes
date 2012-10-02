@@ -2,6 +2,7 @@
 title: Social Likes: beautiful social like buttons with jQuery
 subtitle: Beautiful social like buttons with jQuery
 description: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular <a href="/ru/">Russian social networks</a>.
+descriptionHead: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular Russian social networks.
 translationLink: /ru/
 translationTitle: По-русски
 builderType: Look
