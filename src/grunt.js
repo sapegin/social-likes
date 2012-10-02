@@ -17,9 +17,9 @@ module.exports = function(grunt) {
 
 	// Project configuration
 	grunt.initConfig({
+		cmpnt: '<json:../component.json>',
 		meta: {
-			version: '2.0.1',
-			banner: "/*! Social Likes v<%= meta.version %> by Artem Sapegin - " +
+			banner: "/*! Social Likes v<%= cmpnt.version %> by Artem Sapegin - " +
 					"http://sapegin.github.com/social-likes - " +
 					"Licensed MIT */"
 		},

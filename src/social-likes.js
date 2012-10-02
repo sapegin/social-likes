@@ -262,16 +262,15 @@ SocialLikes.prototype = {
 
 		this.initUserButtons();
 
-		if (this.single)
+		if (this.single) {
+			this.makeSingleButton();
 			this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
+		}
 
 		var options = this.options;
 		this.container.find('li').each(function() {
 			new Button($(this), options);
 		});
-
-		if (this.single)
-			this.makeSingleButton();
 	},
 	readOptions: function() {
 		this.options = {};

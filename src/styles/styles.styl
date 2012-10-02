@@ -145,13 +145,16 @@
 	&_single {
 		position:absolute;
 		display:none;
-		top:-19px;
-		left:-15px;
+		top:-6px;
+		left:-6px;
 		padding:6px 6px 4px;
 		background:#fff;
 		text-align:left;
 		box-shadow:0 0 15px hsla(0,0%,0%,.3);
 		z-index:99999;
+	}
+	&_single &__widget:first-of-type {
+		margin-right:14px;  // Prevent collapse of widget and close button
 	}
 }
 
