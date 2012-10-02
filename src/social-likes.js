@@ -183,7 +183,7 @@ var services = {
  */
 var counters = {
 	promises: {},
-	fetch: function(service, url) {
+	fetch: function(service, url, extraOptions) {
 		if (!counters.promises[service]) counters.promises[service] = {};
 		var servicePromises = counters.promises[service];
 
@@ -191,7 +191,7 @@ var counters = {
 			return servicePromises[url];
 		}
 		else {
-			var options = services[service],
+			var options = $.extend({}, services[service], extraOptions),
 				deferred = $.Deferred(),
 				jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
 
@@ -365,7 +365,8 @@ Button.prototype = {
 				this.updateCounter(this.options.counterNumber);
 			}
 			else {
-				counters.fetch(this.service, this.options.pageUrl)
+				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
+				counters.fetch(this.service, this.options.pageUrl, extraOptions)
 					.done($.proxy(this.updateCounter, this));
 			}
 		}

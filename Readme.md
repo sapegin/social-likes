@@ -63,6 +63,15 @@ TODO:
 Twitter via etc.
 
 
+### Experimental Google+ counter
+
+Place `googleplusonecount.php` somewhere on your server. And change buttons HTML like this:
+
+```html
+<li class="plusone" data-counter="http://example.com/path/to/googleplusonecount.php?url={url}&amp;callback=?">Google+</li>
+```
+
+
 ### Adding your own button
 
 Define `socialLikesButtons` hash:
