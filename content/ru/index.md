@@ -2,7 +2,7 @@
 title: Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery
 subtitle: Красивые кнопки «лайков» социальных сетей с использованием jQuery
 description: Красивые кнопки «лайков» в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и LiveJournal. Рядом с кнопками отображается количество «лайков» (кроме Google+ и LiveJournal).
-translationLink: /
+translationLink: /social-likes/
 translationTitle: In English
 builderType: Вид
 builderTypeHorizontal: Горизонтальный
