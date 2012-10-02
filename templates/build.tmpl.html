@@ -10,7 +10,7 @@
 
 	{{? $.site_odnoklassniki }}<li class="odnoklassniki" title="Поделиться ссылкой в Одноклассниках">Одноклассники</li>{{?}}
 
-	{{? $.site_plusone }}<li class="plusone" title="{{=$.titlePlusone}}"{{? $.experimental }} data-counter="http://sapegin.ru/api/social-likes/googleplusonecount.php?url={PAGE_URL}&amp;callback=?"{{?}}>Google+</li>{{?}}
+	{{? $.site_plusone }}<li class="plusone" title="{{=$.titlePlusone}}"{{? $.experimental }} data-counter="http://sapegin.ru/api/social-likes/googleplusonecount.php?url={url}&amp;callback=?"{{?}}>Google+</li>{{?}}
 
 	{{? $.site_livejournal }}<li class="livejournal" title="{{=$.titleLivejournal}}">LiveJournal</li>{{?}}
 
