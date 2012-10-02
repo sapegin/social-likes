@@ -1,0 +1,139 @@
+// Squirrelstrap. © 2012 Artem Sapegin http://sapegin.me
+
+// Global reset
+* {
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+}
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display:block; }
+sup, sub { line-height:0; }
+a img { display:block; }
+a img, a.img { border:none !important; background-image:none !important; }
+abbr { border-bottom:none; }
+ul { list-style:none; }
+table { border-collapse:collapse; border-spacing:0; }
+
+// Clearfix
+.group {
+	clearfix()
+}
+
+html {
+	// Force scrollbar in non IE
+	overflow-y:scroll;
+	// Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
+	-webkit-text-size-adjust:100%;
+		-ms-text-size-adjust:100%;
+}
+
+
+
+// www.aestheticallyloyal.com/public/optimize-legibility/
+h1, h2, h3 { text-rendering:optimizeLegibility; }
+
+// maxvoltar.com/archive/-webkit-font-smoothing
+html { -webkit-font-smoothing:subpixel-antialiased; }  // antialiased|subpixel-antialiased
+
+// Hand cursor on clickable input elements
+input[type="button"], input[type="submit"], input[type="image"], button { cursor:pointer; }
+button[disabled], input[disabled] { cursor:default; }
+
+// Forms: github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+button,
+input,
+select,
+textarea {
+	font-size:100%;
+	vertical-align:baseline;
+	*vertical-align:middle;
+}
+button,
+input {
+	line-height:normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing:border-box;
+	padding:0;
+	*width:13px;
+	*height:13px;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance:button;
+	*overflow:visible;
+}
+input[type="search"] {
+	-webkit-appearance:textfield;
+	box-sizing:content-box;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+	-webkit-appearance:none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border:0;
+}
+textarea {
+	overflow:auto;
+	vertical-align:top;
+	resize:vertical;
+}
+
+// Pre with wrapping: pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/
+pre { white-space:pre; white-space:pre-wrap; white-space:pre-line; word-wrap:break-word; }
+
+// Accessible focus: people.opera.com/patrickl/experiments/keyboard/test
+a:hover, a:active { outline:0; }
+
+// Hide phone links from desktop browsers
+.no-touch a[href^=tel]:link, .no-touch a[href^=tel]:visited,
+.no-touch a[href^=tel]:hover, .no-touch a[href^=tel]:active, .no-touch a[href^=tel]:focus {
+	position:inherit;
+	text-decoration:inherit;
+	border:inherit;
+	color:inherit;
+	background-image:none;
+	cursor:default;
+}
+
+// Simple 12 column grid
+.g-row {
+	clearfix()
+	margin-left:(-(spacer));
+	margin-right:(-(spacer));
+	&_close {
+		margin-left:(-(spacer/2));
+		margin-right:(-(spacer/2));
+	}
+}
+.g-span-1, .g-span-2, .g-span-3, .g-span-4, .g-span-5, .g-span-6, .g-span-7, .g-span-8, .g-span-9, .g-span-10, .g-span-11,
+.g-quarter, .g-third, .g-half {
+	float:left;
+	box-sizing:border-box;
+	padding-left:spacer;
+	padding-right:spacer;
+	.g-row_close & {
+		padding-left:(spacer/2);
+		padding-right:(spacer/2);
+	}
+}
+.g-last {
+	float:right;
+}
+column_width = (100%/12);
+.g-span-1 { width:column_width*1; }
+.g-span-2 { width:column_width*2; }
+.g-span-3, .g-quarter { width:column_width*3; }
+.g-span-4, .g-third { width:column_width*4; }
+.g-span-5 { width:column_width*5; }
+.g-span-6, .g-half { width:column_width*6; }
+.g-span-7 { width:column_width*7; }
+.g-span-8 { width:column_width*8; }
+.g-span-9 { width:column_width*9; }
+.g-span-10 { width:column_width*10; }
+.g-span-11 { width:column_width*11; }

@@ -1,0 +1,154 @@
+/* Author: Artem Sapegin, http://sapegin.me, 2012 */
+
+.language-switcher {
+	position:absolute;
+	top:15px;
+	right:2*spacer;
+}
+
+// Forms
+.builder {
+	&__row {
+		clearfix()
+		margin-top:.5em;
+	}
+
+	&__label {
+		float:left;
+		width:15%;
+		line-height:28px;
+	}
+
+	&__widget {
+		float:right;
+		width:85%;
+	}
+
+	&__site {
+		float:left;
+		width:20%;
+	}
+
+	.g-half &__label {
+		width:30.67%;
+	}
+	.g-half &__widget {
+		width:69.33%;
+	}	
+}
+
+.field {
+	width:100%;
+	border-radius:.2em;
+	padding:.2em .4em;
+	border:1px solid #bbb;
+	box-shadow:inset 0 2px 2px black(.05);
+	&:focus {
+		outline:0;
+		box-shadow:inset 0 2px 2px black(.05), 0 0 5px #ffa500;
+	}
+}
+
+.checkbox {
+	margin-right:spacer;
+
+	input {
+		position:relative;
+		top:2px;
+	}
+
+	&_block {
+		display:block;
+	}
+}
+
+.preview {
+	margin:2*spacer (-(2*spacer));
+	padding:spacer 2*spacer;
+	box-shadow:inset 0 3px 3px -1px black(.3), inset 0 -2px 3px -1px black(.3);
+}
+
+pre {
+	margin:2*spacer (-(2*spacer));
+	padding:spacer 2*spacer;	
+	background:#f5f2f0;
+	white-space:pre;
+	tab-size:4;
+}
+.code {
+	margin-bottom:2*spacer;
+	font-size:12px;
+}
+
+// Syntax highlighting
+.hl-gray {
+	color:#999;
+}
+.hl-tag {
+	color:#905;
+}
+.hl-attr {
+	color:#690;
+}
+.hl-str {
+	color:#07a;
+}
+
+
+// Download row
+.download-row {
+	&__links {
+		margin-bottom:spacer;
+		.button {
+			margin-right:.2em;
+		}
+	}
+	&__descr {
+		font-size:13px;
+	}
+
+}
+
+
+// Button
+.button,
+.button:link,
+.button:visited {
+	padding:5px 15px;
+	background:noise, linear-gradient(top, #ffcc00, #ff6d00);
+	border-radius:35px;
+	color:#fff;
+	color:white(.97);
+	font-size:28px;
+	text-decoration:none;
+	text-shadow:0 -1px 1px black(.4);
+	box-shadow:inset 0 1px 0 white(.6),
+		inset 0 2px 8px white(.7),
+		inset 0 -2px 4px black(.1),
+		0 -1px 0 hsla(41,90%,45%,.95),
+		0 1px 0 hsla(20,100%,30%,.95),
+		0 2px 4px black(.1);
+}
+.button:hover,
+.button:focus {
+	background:noise, linear-gradient(top, #ffd739, #ff7c1a);
+	color:#fff;
+	box-shadow:inset 0 1px 0 white(.6),
+		inset 0 2px 8px white(.7),
+		inset 0 -2px 4px black(.1),
+		0 -1px 0 hsla(41,90%,45%,.8),
+		0 1px 0 hsla(20,100%,30%,.8),
+		0 2px 4px black(.1);
+	outline:0;
+}
+.button:active {
+	padding:6px 15px 4px;
+	background:noise, linear-gradient(top, #ff7c1a, #faa643);
+	color:white(.93);
+	text-shadow:0 -1px 0 black(.4);
+	box-shadow:0 -1px 0 hsla(20,100%,30%,.8),
+		inset 0 -2px 1px white(.1),
+		inset 0 -1px 0 hsla(41,90%,25%,.2),
+		inset 0 2px 7px black(.3),
+		0 1px 1px black(.1);
+}

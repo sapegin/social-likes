@@ -1,0 +1,74 @@
+/* Author: Artem Sapegin, http://sapegin.me, 2012 */
+
+/* Bones */
+
+.switcher {
+	font-size:0;
+
+	label,
+	input {
+		// For prehistoric browsers
+		vertical-align:text-bottom;
+		padding-right:5px;
+		font-size:16px;
+	}
+	input:checked,
+	input:not(:checked) {
+		position:absolute;
+		opacity:0;
+	}
+
+	input:checked + label,
+	input:not(:checked) + label {
+		position:relative;
+		box-sizing:border-box;
+		vertical-align:top;
+		cursor:pointer;
+		z-index:1;
+		margin-left:-1px;
+		user-select:none;
+	}
+	label:nth-of-type(1) {
+		margin-left:0px;
+	}
+	input:checked + label {
+		cursor:default;
+		z-index:2;
+	}
+}
+
+
+/* Default skin */
+
+blocks_default_skin ?= true
+switcher_default_skin ?= false
+
+if blocks_default_skin || switcher_default_skin
+	.switcher {
+		input:checked + label,
+		input:not(:checked) + label {
+			padding:.3em .7em;
+			background:#f4f4f4;
+			background:linear-gradient(top, #fefefe, #f4f4f4);
+			border:1px solid #bbb;
+			line-height:1.8;
+			color:#000;
+		}
+		label:nth-of-type(1) {
+			border-radius:.35em 0 0 .35em;
+		}
+		label:nth-last-of-type(1) {
+			border-radius:0 .35em .35em 0;
+		}
+		input:checked + label {
+			background:#888;
+			background:linear-gradient(top, #606060, #a4a4a4);
+			border-color:#666;
+			box-shadow:inset 0 1px 2px black(.3);
+			color:#fff;
+			text-shadow:0 1px 1px black(.2);
+		}
+		input:focus + label {
+			box-shadow:0 0 3px 2px #ffa500;
+		}	
+	}

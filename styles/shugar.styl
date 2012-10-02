@@ -1,0 +1,210 @@
+// Squirrelstrap. © 2012 Artem Sapegin http://sapegin.me
+// Functions and mixins
+
+//
+// Properties shortcuts
+//
+
+// Simple CSS3 properties with vendor prefixes
+
+box-sizing()
+	-moz-box-sizing arguments
+	box-sizing arguments
+
+box-shadow()
+	-webkit-box-shadow arguments
+	box-shadow arguments
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	-ms-transition arguments
+	-o-transition arguments
+	transition arguments
+
+transform()
+	-webkit-transform arguments
+	-moz-transform arguments
+	-ms-transform arguments
+	-o-transform arguments
+	transform arguments
+
+perspective()
+	-webkit-perspective arguments
+	-moz-perspective arguments
+	-ms-perspective arguments
+	-o-perspective arguments
+	perspective arguments
+
+animation()
+	-webkit-animation arguments
+	-moz-animation arguments
+	-ms-animation arguments
+	-o-animation arguments
+	animation arguments
+
+overflow-scrolling()
+	-webkit-overflow-scrolling arguments
+	overflow-scrolling arguments
+
+user-select()
+	-webkit-user-select arguments
+	-moz-user-select arguments
+	-ms-user-select arguments
+	user-select arguments
+
+text-overflow()
+	-o-text-overflow arguments
+	text-overflow arguments
+
+tab-size()
+	-moz-tab-size arguments
+	-o-tab-size arguments
+	tab-size arguments
+
+column-count()
+	-webkit-column-count arguments
+	-moz-column-count arguments
+	column-count arguments
+
+column-gap()
+	-webkit-column-gap arguments
+	-moz-column-gap arguments
+	column-gap arguments
+
+column-span()
+	-webkit-column-span arguments
+	column-span arguments
+
+column-break-inside()
+	-webkit-column-break-inside arguments
+	column-break-inside arguments
+
+
+// Gradients
+// https://github.com/LearnBoost/stylus/issues/245
+
+replace(str, a, b)
+	str = clone(str)
+	for e, i in str
+		if length(e) > 1
+			str[i] = replace(e, a, b)
+		else
+			if a == e
+				str[i] = b
+	str
+
+linear-gradient()
+	prop = current-property[0]
+	val = current-property[1]
+	args = unquote(join(', ', arguments))
+	add-property(prop, replace(val, '__CALL__', '-webkit-linear-gradient(%s)' % args))
+	add-property(prop, replace(val, '__CALL__', '-moz-linear-gradient(%s)' % args))
+	add-property(prop, replace(val, '__CALL__', '-ms-linear-gradient(%s)' % args))
+	add-property(prop, replace(val, '__CALL__', '-o-linear-gradient(%s)' % args))
+	g = 'linear-gradient(%s)' % args
+	g
+
+
+// Opacity
+// https://github.com/visionmedia/nib/blob/master/lib/nib/vendor.styl
+opacity(n, args...)
+	opacity: n args
+	val = round(n * 100)
+	if val == 100
+		-ms-filter: none
+		filter: none
+	else
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=%s)' % val args
+		filter: 'alpha(opacity=%s)' % val args
+
+
+// Colors
+
+// Changes color opacity
+hslaa(color, opacity)
+	rgba(red(color), green(color), blue(color), opacity)
+
+// White color with transparency
+white(opacity)
+	hsla(0, 0%, 100%, opacity)
+
+// Black color with transparency
+black(opacity)
+	hsla(0, 0%, 0%, opacity)
+
+
+//
+// Helper functions
+//
+
+// Text selection
+text-selection(color, background)
+	::-moz-selection
+		color color
+		background background
+		text-shadow none
+	::selection
+		color color
+		background background
+		text-shadow none
+
+
+//
+// Mixins
+//
+
+// Clearfix
+// https://github.com/visionmedia/nib/blob/master/lib/nib/clearfix.styl
+clearfix()
+	&:before
+	&:after
+		content ""
+		display table
+	&:after
+		clear both
+		zoom 1
+
+// Ellipsis
+ellipsis()
+	overflow hidden
+	text-overflow ellipsis
+	white-space nowrap
+
+/* Font icons:
+.ficon
+	font-icon(IcoMoon)
+
+	&_icon:before {
+		content:"\c0ffee";
+	}
+*/
+font-icon(font)
+	display inline-block
+	font-family font
+	font-style normal
+	speak none
+	-webkit-font-smoothing antialiased
+	&:link, &:visited, &:hover, &:active, &:focus
+		text-decoration none
+		border none
+		background-image none
+	span
+		display none
+		.no-generatedcontent &
+			display block
+
+// Equal columns layout
+equal-columns(columns, customSpacer = spacer)
+	width = 100% / columns
+	clearfix()
+	if customSpacer
+		margin 0 (-1*customSpacer)
+	&__column
+		width width
+		box-sizing border-box
+		float left
+		if customSpacer
+			padding 0 customSpacer
+		&:last-child
+			float right

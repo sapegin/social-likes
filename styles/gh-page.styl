@@ -1,0 +1,174 @@
+/* Author: Artem Sapegin, http://sapegin.me, 2012 */
+
+link-color = #cf6c0a;
+visited-color = #7c579e;
+hover-color = #ff6900;
+noise = url('/img/noise.png');
+
+body {
+	background:noise, #f9970d url(http://a2.twimg.com/profile_background_images/59670795/twitter-sapegin-background.png) repeat-x top center;
+	color:#111;
+	line-height:1.4;
+	padding:0 spacer;
+}
+
+.wrapper {
+	position:relative;
+	margin:2*spacer auto 2*spacer;
+	max-width:960px;
+	background:#fff;
+	padding:15px 2*spacer 2*spacer;
+	box-shadow:0 5px 10px black(.4);
+}
+
+// Fonts
+
+* { font-family:Calibri, "Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif; }
+h1, h2 { font-family: Corbel, Verdana, Geneva, sans-serif; }
+pre, code, pre span { font-family: Consolas, "Lucida Console", Monaco, "Courier New", Courier, monospace; }
+
+
+// Links
+
+a {
+	text-decoration:underline;
+	transition:border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+}
+a.fake {
+	text-decoration:none;
+	border-bottom:1px dotted;
+}
+a:link, nav a:visited, a.fake:visited {
+	color:link-color;
+}
+a:visited {
+	color:visited-color;
+}
+a:hover, a:active, a:focus, nav a:hover, nav a:active, nav a:focus, a.fake:hover, a.fake:active, a.fake:focus {
+	color:hover-color;
+}
+a:active {
+	position:relative;
+	top:1px;
+}
+
+
+// Text selection
+text-selection(#000, #faedb1);
+
+// iOS tap highlighting: j.mp/webkit-tap-highlight-color
+a:link {
+	-webkit-tap-highlight-color:#ff5e99;
+}
+
+
+// Layout helpers
+.halves {
+	equal-columns(2)
+}
+.thirds {
+	equal-columns(3)
+}
+.quarters {
+	equal-columns(4)
+}
+
+
+// Page elements
+
+h1 {
+	font-size:48px;
+	margin:0;
+	line-height:1;
+	font-weight:normal;
+	letter-spacing:-.2px;
+	text-shadow:0 1px 4px black(.2);
+}
+h2, h3 {
+	line-height:40px;
+	margin:16px 0 0;
+	font-weight:normal;
+	letter-spacing:-.2px;
+}
+h2 {
+	font-size:24px;
+}
+h3 {
+	font-size:22px;
+	font-style:italic;
+	text-align:center;
+}
+
+
+// Code
+
+p, pre {
+	margin:0 0 .5em;
+}
+pre code {
+	font-size:14px;
+	overflow:auto;
+	border-radius:1px;
+}
+.indent {
+	display:inline-block;
+	width:2em;
+}
+
+pre code::-webkit-scrollbar {
+	width:9px;
+	height:9px;
+}
+pre code::-webkit-scrollbar-track-piece {
+	background:white(.2);
+}
+pre code::-webkit-scrollbar-thumb {
+	background:white(.6);
+	border-radius:8px;
+}
+
+// GitHub page elements
+
+.forkme img {
+	position:absolute;
+	top:0;
+	right:0;
+	z-index:999;
+}
+.download {
+	float:right;
+}
+.subtitle {
+	font-size:19px;
+	margin:5px 0 1em 0;
+	font-style:italic;
+}
+.footer {
+	text-align:center;
+	padding-top:40px;
+	font-style:italic;
+}
+.octocat, .octocat a {
+	display:block;
+	width:69px;
+	height:49px;
+	transition: all .2s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.octocat {
+	background:url(http://sapegin.github.com/img/octocat-mask.png) no-repeat;
+	position:absolute;
+	bottom:0;
+	right:0;
+	opacity:.5;
+}
+.octocat:hover {
+	opacity:1;
+}
+.octocat a {
+	background:url(http://sapegin.github.com/img/octocat.png) no-repeat;
+	text-indent:-9999px;
+	opacity:0;
+}
+.octocat a:hover {
+	opacity:1;
+}

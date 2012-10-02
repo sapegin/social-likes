@@ -1,0 +1,198 @@
+<f:template xmlns:f="http://fest.mail.ru" context_name="$">
+	<f:doctype>html</f:doctype>
+	<f:script src="./functions.js"/>
+	<html lang="{$.lang}">
+		<head>
+			<meta charset="utf-8"/>
+			<title>
+				<f:value>$.pageTitle</f:value>
+			</title>
+
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<meta name="format-detection" content="telephone=no"/>
+			<meta name="description" content="{$.description}"/>
+
+			<link rel="stylesheet" href="{$.files.css}"/>
+			<link rel="stylesheet" href="/src/social-likes.css"/>
+
+			<!--script src="/js/libs/modernizr.js"></script-->
+		</head>
+		<body>
+
+			<img src="/img/social-likes.png" alt="{$.pageTitle}" style="position:absolute;left:-999px"/>
+
+			<a href="https://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/></a>
+
+
+			<div class="wrapper">
+
+				<div class="language-switcher">
+					<a href="{$.translationLink}">
+						<f:value>$.translationTitle</f:value>
+					</a>
+				</div>
+
+				<h1>
+					<f:value>$.name</f:value>
+				</h1>
+				<div class="subtitle">
+					<f:value>$.subtitle</f:value>
+				</div>
+
+				<div class="description">
+					<p>
+						<f:value output="text">$.description</f:value>
+					</p>
+				</div>
+
+				<form class="builder" data-component="builder">
+					<input type="hidden" name="lang" value="{$.lang}"/>
+					<input type="hidden" name="titleFacebook" value="{$.titleFacebook}"/>
+					<input type="hidden" name="titleTwitter" value="{$.titleTwitter}"/>
+					<input type="hidden" name="titlePlusone" value="{$.titlePlusone}"/>
+					<input type="hidden" name="titleLivejournal" value="{$.titleLivejournal}"/>
+					<input type="hidden" name="titleCode" value="{$.titleCode}"/>
+					<input type="hidden" name="codePrompt" value="{$.codePrompt}"/>
+					<input type="hidden" name="singleTitle" value="{$.singleTitle}"/>
+					<input type="hidden" name="code" value="{$.code}"/>
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderType</f:value>
+						</div>
+						<div class="builder__widget">
+							<div class="switcher">
+								<input id="type_horizontal" type="radio" name="type" value="horizontal" checked="checked"/>
+								<label for="type_horizontal"><f:value>$.builderTypeHorizontal</f:value></label>
+								<input id="type_vertical" type="radio" name="type" value="vertical"/>
+								<label for="type_vertical"><f:value>$.builderTypeVertical</f:value></label>
+								<input id="type_single" type="radio" name="type" value="single"/>
+								<label for="type_single"><f:value>$.builderTypeSingle</f:value></label>
+							</div>
+						</div>
+					</div>
+					<div class="builder__row">
+						<div class="builder__widget">
+							<label class="checkbox">
+								<input type="checkbox" name="counters" value="1" checked="checked"/>
+								<f:space/>
+								<f:value>$.builderCounters</f:value>
+							</label>
+						</div>
+					</div>
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderSites</f:value>
+						</div>
+						<div class="builder__widget builder__sites group">
+							<f:for iterate="$.common.sites" index="i" value="site">
+								<f:if test="!site.langs || site.langs.indexOf($.lang) !== -1">
+									<div class="builder__site checkbox checkbox_block">
+										<label>
+											<input type="checkbox" name="site_{site.id}" value="1">
+												<f:attributes>
+													<f:if test="site.checked">
+														<f:attribute name="checked" value="checked"/>
+													</f:if>
+												</f:attributes>
+											</input>
+											<f:space/>
+											<f:choose>
+												<f:when test="typeof site.name === 'string'">
+													<f:value>site.name</f:value>
+												</f:when>
+												<f:otherwise>
+													<f:value>site.name[$.lang]</f:value>
+												</f:otherwise>
+											</f:choose>
+										</label>
+									</div>
+								</f:if>
+							</f:for>
+						</div>
+					</div>
+					<div class="builder__row">
+						<label for="url" class="builder__label">
+							<f:value>$.builderUrl</f:value>
+						</label>
+						<div class="builder__widget">
+							<input type="text" name="url" value="" placeholder="{$.builderUrlHelp}" class="field"/>
+						</div>
+					</div>
+					<div class="builder__row">
+						<label for="title" class="builder__label">
+							<f:value>$.builderTitle</f:value>
+						</label>
+						<div class="builder__widget">
+							<input type="text" name="title" value="" placeholder="{$.builderTitleHelp}" class="field"/>
+						</div>
+					</div>
+					<div class="builder__row g-row js-twitter-extra">
+						<div class="g-half">
+							<label for="twitter_via" class="builder__label">
+								<f:value>$.builderTwitterVia</f:value>
+							</label>
+							<div class="builder__widget">
+								<input type="text" name="twitter_via" value="" placeholder="{$.builderTwitterViaHelp}" class="field"/>
+							</div>
+						</div>
+						<div class="g-half">
+							<label for="twitter_related" class="builder__label">
+								<f:value>$.builderTwitterRelated</f:value>
+							</label>
+							<div class="builder__widget">
+								<input type="text" name="twitter_related" value="" placeholder="{$.builderTwitterRelatedHelp}" class="field"/>
+							</div>
+						</div>
+					</div>
+
+				</form>
+
+				<div id="preview" class="preview"></div>
+
+				<div class="code">
+					<pre><code id="code" class="language-markup"></code></pre>
+				</div>
+
+				<div class="download-row">
+					<div class="download-row__links">
+						<a href="#" class="button js-download" download="social-likes.zip"><f:value>$.downloadArchive</f:value></a>
+						<f:space/>
+						<nobr>
+							<f:value>$.or</f:value>
+							<f:space/>
+							<a href="https://github.com/sapegin/social-likes"><f:value>$.browseCode</f:value></a>
+							<f:space/>
+							<f:value>$.onGitHub</f:value>
+						</nobr>
+					</div>
+					<div class="download-row__descr"><f:value>$.archiveContains</f:value></div>
+				</div>
+
+				<div class="footer">
+					<f:value output="text">$.common.footer</f:value>
+				</div>
+				<div class="octocat"><a href="http://github.com/">GitHub</a></div>
+
+			</div>
+
+			<script type="text/plain" id="build_tmpl"><f:insert src="build.tmpl.html"/></script>
+			<script type="text/plain" id="prepend_tmpl"><f:insert src="prepend.tmpl.html"/></script>
+			<script type="text/plain" id="index_tmpl"><f:insert src="index.tmpl.html"/></script>
+			<script type="text/plain" id="index_footer_tmpl"><f:value output="text">$.archiveFooter</f:value></script>
+
+			<f:choose>
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+				<script>!window.jQuery && document.write(unescape('%3Cscript src="/js/libs/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script>
+				<script src="/src/social-likes.min.js"></script>
+				<f:when test="$.debug">
+					<script src="/build/scripts.js"></script>
+				</f:when>
+				<f:otherwise>
+					<script src="{$.files.js}"></script>
+				</f:otherwise>
+			</f:choose>
+
+		</body>
+	</html>
+</f:template>

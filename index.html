@@ -1,119 +1,42 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Social Likes: beautiful social like buttons with jQuery</title><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="format-detection" content="telephone=no"/><meta name="description" content="Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular &lt;a href=&quot;/ru/&quot;&gt;Russian social networks&lt;/a&gt;."/><link rel="stylesheet" href="/build/styles.css?1349164822000"/><link rel="stylesheet" href="/src/social-likes.css"/></head><body><img src="/img/social-likes.png" alt="Social Likes: beautiful social like buttons with jQuery" style="position:absolute;left:-999px"/><a href="https://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/></a><div class="wrapper"><div class="language-switcher"><a href="/ru/">По-русски</a></div><h1>Social Likes</h1><div class="subtitle">Beautiful social like buttons with jQuery</div><div class="description"><p>Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular <a href="/ru/">Russian social networks</a>.</p></div><form class="builder" data-component="builder"><input type="hidden" name="lang" value="en"/><input type="hidden" name="titleFacebook" value="Share link on Facebook"/><input type="hidden" name="titleTwitter" value="Share link on Twitter"/><input type="hidden" name="titlePlusone" value="Share link on Google+"/><input type="hidden" name="titleLivejournal" value="Share link on LiveJournal"/><input type="hidden" name="titleCode" value="Get codde to share link on other website"/><input type="hidden" name="codePrompt" value="Copy code to clipboard:"/><input type="hidden" name="singleTitle" value="Share"/><input type="hidden" name="code" value="Code"/><div class="builder__row"><div class="builder__label">Look</div><div class="builder__widget"><div class="switcher"><input id="type_horizontal" type="radio" name="type" value="horizontal" checked="checked"/><label for="type_horizontal">Horizontal</label><input id="type_vertical" type="radio" name="type" value="vertical"/><label for="type_vertical">Virtical</label><input id="type_single" type="radio" name="type" value="single"/><label for="type_single">Single button</label></div></div></div><div class="builder__row"><div class="builder__widget"><label class="checkbox"><input type="checkbox" name="counters" value="1" checked="checked"/> Show counters</label></div></div><div class="builder__row"><div class="builder__label">Websites</div><div class="builder__widget builder__sites group"><div class="builder__site checkbox checkbox_block"><label><input type="checkbox" name="site_facebook" value="1" checked=""/> Facebook</label></div><div class="builder__site checkbox checkbox_block"><label><input type="checkbox" name="site_twitter" value="1" checked=""/> Twitter</label></div><div class="builder__site checkbox checkbox_block"><label><input type="checkbox" name="site_plusone" value="1" checked=""/> Google+</label></div><div class="builder__site checkbox checkbox_block"><label><input type="checkbox" name="site_livejournal" value="1"/> LiveJournal</label></div><div class="builder__site checkbox checkbox_block"><label><input type="checkbox" name="site_code" value="1"/> Code</label></div></div></div><div class="builder__row"><label for="url" class="builder__label">URL</label><div class="builder__widget"><input type="text" name="url" value="" placeholder="When buttons used on different page" class="field"/></div></div><div class="builder__row"><label for="title" class="builder__label">Title</label><div class="builder__widget"><input type="text" name="title" value="" placeholder="When differs from current page’s title" class="field"/></div></div><div class="builder__row g-row js-twitter-extra"><div class="g-half"><label for="twitter_via" class="builder__label">Twitter Via</label><div class="builder__widget"><input type="text" name="twitter_via" value="" placeholder="Username" class="field"/></div></div><div class="g-half"><label for="twitter_related" class="builder__label">Twitter Related</label><div class="builder__widget"><input type="text" name="twitter_related" value="" placeholder="Username:Description" class="field"/></div></div></div></form><div id="preview" class="preview"></div><div class="code"><pre><code id="code" class="language-markup"></code></pre></div><div class="download-row"><div class="download-row__links"><a href="#" class="button js-download" download="social-likes.zip">Download Buttons</a> <nobr>or <a href="https://github.com/sapegin/social-likes">view source</a> on GitHub</nobr></div><div class="download-row__descr">Archive contains all you need to use like buttons with chosen options.</div></div><div class="footer">Brought to you by <a href='http://sapegin.github.com/'>Artem Sapegin</a> and octocat. <a href='http://github.com/sapegin/social-likes'>Project on GitHub</a>.</div><div class="octocat"><a href="http://github.com/">GitHub</a></div></div><script type="text/plain" id="build_tmpl"><ul class="social-likes{{? $.type === 'vertical' }} social-likes_vertical{{?}}{{? $.type === 'single' }} social-likes_single{{?}}"{{? !$.counters }} data-counters="no"{{?}}{{? $.url }} data-url="{{=$.url}}"{{?}}{{? $.title }} data-title="{{=$.title}}"{{?}}{{? $.type === 'single' }} data-single-title="{{=$.singleTitle}}"{{?}}>
+
+	{{? $.site_facebook }}<li class="facebook" title="{{=$.titleFacebook}}">Facebook</li>{{?}}
+
+	{{? $.site_twitter }}<li class="twitter" {{? $.twitter_via }} data-via="{{=$.twitter_via}}"{{?}} {{? $.twitter_related }} data-related="{{=$.twitter_related}}"{{?}} title="{{=$.titleTwitter}}">Twitter</li>{{?}}
+
+	{{? $.site_mailru }}<li class="mailru" title="Поделиться ссылкой в Моём мире">Мой мир</li>{{?}}
+
+	{{? $.site_vkontakte }}<li class="vkontakte" title="Поделиться ссылкой во Вконтакте">Вконтакте</li>{{?}}
+
+	{{? $.site_odnoklassniki }}<li class="odnoklassniki" title="Поделиться ссылкой в Одноклассниках">Одноклассники</li>{{?}}
+
+	{{? $.site_plusone }}<li class="plusone" title="{{=$.titlePlusone}}"{{? $.experimental }} data-counter="http://sapegin.ru/api/social-likes/googleplusonecount.php?url={PAGE_URL}&amp;callback=?"{{?}}>Google+</li>{{?}}
+
+	{{? $.site_livejournal }}<li class="livejournal" title="{{=$.titleLivejournal}}">LiveJournal</li>{{?}}
+
+	{{? $.site_code }}<li class="code" title="{{=$.titleCode}}" data-prompt="{{=$.codePrompt}}">{{=$.code}}</li>{{?}}
+
+</ul></script><script type="text/plain" id="prepend_tmpl"><link rel="stylesheet" href="social-likes.css">
+...
+<script src="jquery.min.js"><\/script>
+<script src="social-likes.min.js"><\/script>
+...
+</script><script type="text/plain" id="index_tmpl"><!DOCTYPE html>
+<html lang="{{=$.lang}}">
 <head>
 	<meta charset="utf-8">
-	<title>Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery</title>
-	<link href="http://sapegin.github.com/css/pages.css" rel="stylesheet">
-
-	<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
-	<link href="http://yandex.st/highlightjs/6.1/styles/zenburn.min.css" rel="stylesheet">
-<script> 
-hljs.tabReplace = '<span class="indent">\t</span>';
-hljs.initHighlightingOnLoad();
-</script>
-
-	<script src="http://yandex.st/jquery/1.7.1/jquery.min.js"></script>
-
-	<script src="src/social-likes.js"></script>
-	<link href="src/social-likes.css" rel="stylesheet">
-<style>
-ul {
-	padding:0;
-	}
-</style>	
+	<title>Social Likes</title>
+	<meta name="generator" content="Social Likes: http://sapegin.github.com/social-likes/">
+	<link rel="stylesheet" href="social-likes.css">
 </head>
 <body>
-<img src="social-likes.png" alt="Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery" style="position:absolute;left:-999px">
 
-<a href="http://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/{{=$.jquery_ver}}/jquery.min.js"><\/script>
+<script src="social-likes.min.js"><\/script>
 
-<div id="container">
+{{=$.html}}
 
-	<div class="download">
-		<a href="http://github.com/sapegin/social-likes/zipball/master"><img width="90" src="http://github.com/images/modules/download/zip.png"></a>
-	</div>
-
-	<h1>Social Likes</h1>
-	<div class="subtitle">Красивые кнопки «лайков» социальных сетей с использованием jQuery</div>
-	
-	<div class="description">
-		<p>Красивые кнопки «лайков» в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и LiveJournal. Рядом с кнопками отображается количество «лайков» (кроме Google+ и LiveJournal).</p>
-	</div>
-
-	
-	<h2>Внешний вид</h2>
-	
-	<ul class="social-likes">
-		<li class="facebook"><a href="#" title="Опубликовать ссылку на Фейсбуке">Facebook</a></li>
-		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
-		<li class="mailru"><a href="#" title="Опубликовать ссылку в Моём Мире">Мой мир</a></li>
-		<li class="vkontakte"><a href="#" title="Опубликовать ссылку во Вконтакте">Вконтакте</a></li>
-		<li class="odnoklassniki"><a href="#" title="Опубликовать ссылку в Одноклассниках">Одноклассники</a></li>
-		<li class="plusone"><a href="#" title="Плюсануть в Гугле">+1</a></li>
-		<li class="livejournal"><form action="http://www.livejournal.com/update.bml" method="post" target="_blank">
-			<input type="hidden" name="mode" value="full">
-			<input type="hidden" name="subject" value="Social Likes">
-			<input type="hidden" name="event" value="<a href=https://github.com/sapegin/social-likes>Красивые кнопки «лайков» социальных сетей</a>">
-			<input type="submit" value="LiveJournal" title="Опубликовать ссылку в ЖЖ">
-		</form></li>
-		<li class="code"><a href="#" title="Получить код для публикации ссылки в другом сервисе">Код</a></li>
-	</ul>
-
-	<h2>Использование</h2>
-
-<pre><code>&lt;link href=&quot;social-likes.css&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;script src=&quot;//yandex.st/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;social-likes.js&quot;&gt;&lt;/script&gt;
-
-&lt;ul class=&quot;social-likes&quot;&gt;
-	&lt;li class=&quot;facebook&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку на Фейсбуке&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;twitter&quot;&gt;&lt;a href=&quot;#&quot; data-via=&quot;sapegin&quot; data-related=&quot;DessiTeckel:Моя такса&quot; title=&quot;Опубликовать ссылку в Твиттере&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;mailru&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Моём Мире&quot;&gt;Мой мир&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;vkontakte&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку во Вконтакте&quot;&gt;Вконтакте&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;odnoklassniki&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Опубликовать ссылку в Одноклассниках&quot;&gt;Одноклассники&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;plusone&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Плюсануть в Гугле&quot;&gt;+1&lt;/a&gt;&lt;/li&gt;
-	&lt;li class=&quot;livejournal&quot;&gt;&lt;form action=&quot;http://www.livejournal.com/update.bml&quot; method=&quot;post&quot; target=&quot;_blank&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;full&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;subject&quot; value=&quot;Social Likes&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;event&quot; value=&quot;&lt;a href=https://github.com/sapegin/social-likes&gt;Красивые кнопки «лайков» социальных сетей&lt;/a&gt;&quot;&gt;
-		&lt;input type=&quot;submit&quot; value=&quot;LiveJournal&quot; title=&quot;Опубликовать ссылку в ЖЖ&quot;&gt;
-	&lt;/form&gt;&lt;/li&gt;
-	&lt;li class=&quot;code&quot;&gt;&lt;a href=&quot;#&quot; title=&quot;Получить код для публикации ссылки в другом сервисе&quot;&gt;Код&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-
-	<p>Вы можете убрать любые ненужные вам кнопки или поменять текст кнопок.</p>
-
-	<p>По умолчанию «лайкается» текущая страница. Можно указать свой адрес (а также разместить на одной странице несколько групп кнопок).</p>
-
-<pre><code>&lt;ul class=&quot;social-likes&quot; data-url=&quot;http://sapegin.github.com/&quot;&gt;
-…</code></pre>
-
-	<h2>Скачать</h2>
-	<p>Вы можете скачать архив в формате <a href="http://github.com/sapegin/social-likes/zipball/master">zip</a> или <a href="http://github.com/sapegin/social-likes/tarball/master">tar</a>.</p>
-	<p>Вы также можете клонировать <a href="http://git-scm.com">Git</a>-репозиторий проекта:</p>
-	<pre><code class="bash">$ git clone git://github.com/sapegin/social-likes</code></pre>
-
-
-	<div class="footer">Brought to you by <a href="http://sapegin.github.com/">Artem Sapegin</a> and octocat. <a href="http://github.com/sapegin/social-likes">Project on GitHub</a>.</div>
-	<div class="octocat"><a href="http://github.com/">GitHub</a></div>
-	
-
-</div>
-
-<!-- Yandex.Metrika counter -->
-<div style="display:none"><script>
-(function(w, c) {
-	(w[c] = w[c] || []).push(function() {
-		try {
-			w.yaCounter6395488 = new Ya.Metrika({id:6395488, clickmap:true, trackLinks:true});
-		}
-		catch(e) { }
-	});
-})(window, 'yandex_metrika_callbacks');
-</script></div>
-<script src="//mc.yandex.ru/metrika/watch.js" defer="defer"></script>
-<noscript><div><img src="//mc.yandex.ru/watch/6395488" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+<p><small>{{=$.footer}}</small></p>
 
 </body>
-</html>
+</html></script><script type="text/plain" id="index_footer_tmpl"><a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes">documentation</a></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script><script>!window.jQuery && document.write(unescape('%3Cscript src="/js/libs/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script><script src="/src/social-likes.min.js"></script><script src="/build/scripts.min.js?1349164823000"></script></body></html>
