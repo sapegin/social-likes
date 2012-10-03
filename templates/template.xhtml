@@ -148,10 +148,10 @@
 
 				</form>
 
-				<div id="preview" class="preview"></div>
+				<div class="preview js-preview"></div>
 
 				<div class="code">
-					<pre class="code-i"><code id="code" class="language-markup"></code></pre>
+					<pre class="code-i"><code class="language-markup js-code"></code></pre>
 				</div>
 
 				<div class="download-row">
@@ -168,6 +168,9 @@
 					</div>
 					<div class="download-row__descr"><f:value>$.archiveContains</f:value></div>
 				</div>
+				<form id="download-proxy" action="http://sapegin.ru/api/social-likes-proxy/proxy.php" method="post">
+					<input type="hidden" name="content" value=""/>
+				</form>
 
 				<div class="footer">
 					<f:value output="text">$.common.footer</f:value>

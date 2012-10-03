@@ -2595,7 +2595,7 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 		downloadData = {
 			lang: lang,
 			jquery_ver: jQuery.fn.jquery,
-			footer: $('#index_footer_tmpl').text(),
+			footer: $('#index_footer_tmpl').html(),
 			html: ''
 		},
 		filesUrls = {
@@ -2603,9 +2603,9 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 			'social-likes.css': '/social-likes/src/social-likes.css'
 		},
 		files = null,
-		templateIndex = doT.template($('#index_tmpl').text().replace(/\\\//g, '/')),
+		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
 		experimental = location.hash === '#ponies',
-		simple = $.browser.msie;
+		simple = !('download' in document.createElement('a'));
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
@@ -2714,7 +2714,16 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 
 		var content = zip.generate();
 
-		$(e.target).attr('href', 'data:application/zip;base64,' + content);
+		if (simple) {
+			var form = $('#download-proxy'),
+				field = form.find('[name="content"]');
+			field.val(content);
+			form.submit();
+			return false;
+		}
+		else {
+			$(e.target).attr('href', 'data:application/zip;base64,' + content);
+		}
 	}
 
 	function getFiles() {
@@ -2733,13 +2742,12 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 	utils.initComponents({
 		builder: function(elem) {
 			var form = $(elem),
-				preview = $('#preview'),
-				code = $('#code'),
+				preview = $('.js-preview'),
+				code = $('.js-code'),
 				twitterExtra = form.find('.js-twitter-extra'),
-				prepend = $('#prepend_tmpl').text(),
-				template = doT.template($('#build_tmpl').text()),
+				prepend = $('#prepend_tmpl').html(),
+				template = doT.template($('#build_tmpl').html()),
 				previous;
-
 			var delayedUpdate = debounce(function(html, data) {
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
@@ -2793,12 +2801,7 @@ this.JSON||(this.JSON={}),function(){function f(a){return a<10?"0"+a:a}function 
 				return false;
 			});
 
-			if (simple) {
-				$('body').addClass('is-simple');
-			}
-			else {
-				$('.js-download').click(download);
-			}
+			$('.js-download').click(download);
 		}
 	});
 
