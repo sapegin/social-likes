@@ -1,7 +1,7 @@
-﻿name: Social Likes
+name: Social Likes
 title: Social Likes: beautiful social like buttons with jQuery
 subtitle: Beautiful social like buttons with jQuery
-description: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular <a href="/ru/">Russian social networks</a>.
+description: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular <a href="/social-likes/ru/">Russian social networks</a>.
 descriptionHead: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular Russian social networks.
 translationLink: /social-likes/ru/
 translationTitle: По-русски
