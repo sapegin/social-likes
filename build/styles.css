@@ -92,7 +92,7 @@ pre code{font-size:14px;overflow:auto;border-radius:1px}
 pre code::-webkit-scrollbar{width:9px;height:9px}
 pre code::-webkit-scrollbar-track-piece{background:rgba(255,255,255,0.2)}
 pre code::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.6);border-radius:8px}
-.forkme img{position:absolute;top:0;right:0;z-index:999}
+.forkme{position:absolute;top:0;right:0;width:149px;height:149px;z-index:999;overflow:hidden;text-indent:100%;font:0/0 a;background:url("http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png")}
 .download{float:right}
 .subtitle{font-size:19px;margin:5px 0 1em 0;font-style:italic}
 .footer{text-align:center;padding-top:40px;font-style:italic}
