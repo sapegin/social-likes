@@ -93,15 +93,17 @@ pre code::-webkit-scrollbar{width:9px;height:9px}
 pre code::-webkit-scrollbar-track-piece{background:rgba(255,255,255,0.2)}
 pre code::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.6);border-radius:8px}
 .forkme{position:absolute;top:0;right:0;width:149px;height:149px;z-index:999;overflow:hidden;text-indent:100%;font:0/0 a;background:url("http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png")}
-.download{float:right}
+@media (max-width:1150px){.forkme{display:none}
+}.download{float:right}
 .subtitle{font-size:19px;margin:5px 0 1em 0;font-style:italic}
 .footer{text-align:center;padding-top:40px;font-style:italic}
 .octocat,.octocat a{display:block;width:69px;height:49px;-webkit-transition:all .2s cubic-bezier(.23,1,.32,1);-moz-transition:all .2s cubic-bezier(.23,1,.32,1);-ms-transition:all .2s cubic-bezier(.23,1,.32,1);-o-transition:all .2s cubic-bezier(.23,1,.32,1);transition:all .2s cubic-bezier(.23,1,.32,1)}
-.octocat{background:url("http://sapegin.github.com/img/octocat-mask.png") no-repeat;position:absolute;bottom:0;right:0;opacity:.5;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50);filter:alpha(opacity=50)}
+.octocat{background:url("http://sapegin.github.com/img/octocat-mask.png") no-repeat;position:absolute;bottom:5px;right:0;opacity:.5;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50);filter:alpha(opacity=50)}
 .octocat:hover{opacity:1;-ms-filter:none;filter:none}
 .octocat a{background:url("http://sapegin.github.com/img/octocat.png") no-repeat;text-indent:-9999px;opacity:0;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);filter:alpha(opacity=0)}
 .octocat a:hover{opacity:1;-ms-filter:none;filter:none}
-.language-switcher{position:absolute;top:15px;right:20px}
+@media (max-width:1150px){.octocat{display:none}
+}.language-switcher{position:absolute;top:15px;right:20px}
 .builder__row{margin-top:.5em}
 .builder__row:before,.builder__row:after{content:"";display:table}
 .builder__row:after{clear:both;zoom:1}

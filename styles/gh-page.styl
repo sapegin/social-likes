@@ -142,6 +142,11 @@ pre code::-webkit-scrollbar-thumb {
 	font:0/0 a;
 	background:url(http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png);
 }
+@media (max-width:1150px) {
+	.forkme {
+		display:none;
+	}
+}
 .download {
 	float:right;
 }
@@ -164,7 +169,7 @@ pre code::-webkit-scrollbar-thumb {
 .octocat {
 	background:url(http://sapegin.github.com/img/octocat-mask.png) no-repeat;
 	position:absolute;
-	bottom:0;
+	bottom:5px;
 	right:0;
 	opacity:.5;
 }
@@ -178,4 +183,9 @@ pre code::-webkit-scrollbar-thumb {
 }
 .octocat a:hover {
 	opacity:1;
+}
+@media (max-width:1150px) {
+	.octocat {
+		display:none;
+	}
 }
