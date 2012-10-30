@@ -16,14 +16,10 @@
 			<link rel="stylesheet" href="{$.files.css}"/>
 			<link rel="stylesheet" href="{$.files.slcss}"/>
 
-			<!--script src="/social-likes/js/libs/modernizr.js"></script-->
+			<link rel="image_src" href="http://sapegin.github.com/social-likes/img/social-likes.png"/>
 		</head>
 		<body>
-
-			<img src="/social-likes/img/social-likes.png" alt="{$.pageTitle}" style="position:absolute;left:-999px"/>
-
 			<a href="https://github.com/sapegin/social-likes" class="forkme"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/></a>
-
 
 			<div class="wrapper">
 
@@ -173,6 +169,8 @@
 				</form>
 
 				<div class="footer">
+					<f:value output="text">$.contacts</f:value>
+					<f:space/>
 					<f:value output="text">$.common.footer</f:value>
 				</div>
 				<div class="octocat"><a href="http://github.com/">GitHub</a></div>
