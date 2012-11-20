@@ -46,7 +46,12 @@ var services = {
 		},
 		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
 		pupupWidth: 600,
-		popupHeight: 450
+		popupHeight: 450,
+		click: function() {
+			// Add colon to improve readability
+			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
+			return true;
+		}
 	},
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
@@ -459,11 +464,12 @@ Button.prototype = {
 	},
 
 	click: function(e) {
-		var options = this.options;
+		var options = this.options,
+			process = true;
 		if ($.isFunction(options.click)) {
-			options.click.call(this, e);
+			process = options.click.call(this, e);
 		}
-		else {
+		if (process) {
 			var url = makeUrl(options.popupUrl, {
 				url: options.pageUrl,
 				title: options.pageTitle
