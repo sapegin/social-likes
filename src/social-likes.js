@@ -523,14 +523,14 @@ function getElementClassNames(elem, mod) {
 }
 
 function closeOnClick(elem) {
+	function handler(e) {
+		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
+		elem.fadeOut(fadeSpeed);
+		doc.off(events, handler);
+	}
 	var doc = $(document),
-		clickEvent = 'click.social-likes' + Math.random();
-	doc.on(clickEvent, function(e) {
-		if (!$(e.target).closest(elem).length) {
-			elem.fadeOut(fadeSpeed);
-			doc.off(clickEvent);
-		}
-	});
+		events = 'click touchstart keydown';
+	doc.on(events, handler);
 }
 
 function showInViewport(elem, offset) {
