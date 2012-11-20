@@ -46,8 +46,7 @@ var services = {
 		},
 		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
 		pupupWidth: 600,
-		popupHeight: 450,
-		additionalParams: ['via', 'related']
+		popupHeight: 450
 	},
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
@@ -477,20 +476,10 @@ Button.prototype = {
 	},
 
 	addAdditionalParamsToUrl: function(url) {
-		var params = this.options.additionalParams;
+		var params = $.param(this.widget.data());
 		if (!params) return url;
-
-		var query = {};
-		for (var paramIdx = 0; paramIdx < params.length; paramIdx++) {
-			var key = params[paramIdx],
-				value = this.widget.data(key);
-			if (value) {
-				query[key] = value;
-			}
-		}
-
-		var glue = (url.indexOf('?') === -1 ? '?' : '&');
-		return url + glue + $.param(query);
+		var glue = url.indexOf('?') === -1 ? '?' : '&';
+		return url + glue + params;
 	},
 
 	openPopup: function(url, params) {
