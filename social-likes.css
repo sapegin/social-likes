@@ -1,5 +1,5 @@
 /* Social Likes Artem Sapegin - http://sapegin.github.com/social-likes - Licensed MIT */
-.social-likes,.social-likes__widget{display:inline-block;vertical-align:middle;line-height:20px;padding:0;word-spacing:0;font-size:14px;*zoom:1;*display:inline}
+.social-likes,.social-likes__widget{display:inline-block;vertical-align:middle;line-height:20px;text-indent:0;padding:0;word-spacing:0;font-size:14px;*zoom:1;*display:inline}
 .social-likes{margin:-3px;line-height:26px;list-style:none;}
 .social-likes li{display:inline-block;*zoom:1;*display:inline}
 .social-likes_vertical li{display:block}
