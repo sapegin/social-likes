@@ -123,12 +123,13 @@ var services = {
 			}
 			else {
 				balloon = $(template(
-					'<div class="' + prefix + 'balloon">' +
-						'<div class="' + prefix + 'balloon__arrow"></div>' +
+					'<div class="{block}">' +
+						'<div class="{block}__arrow"></div>' +
 						'{prompt}<br>' +
-						'<textarea class="' + prefix + 'balloon__code">{html}</textarea>' +
+						'<textarea class="{block}__code">{html}</textarea>' +
 					'</div>',
 					{
+						block: prefix + 'balloon',
 						prompt: (this.widget.data('prompt') || 'Copy code to clipboard:'),
 						html: this.options.pageHtml
 					}
@@ -141,9 +142,10 @@ var services = {
 			balloon.find('textarea').select();
 
 			if (balloon.is(':visible')) {
-				balloon.removeClass(prefix + 'balloon_right');
+				var cls = prefix + 'balloon_right';
+				balloon.removeClass(cls);
 				if (balloon.offset().left < 0) {
-					balloon.addClass(prefix + 'balloon_right');
+					balloon.addClass(cls);
 				}
 
 				closeOnClick(balloon);
@@ -505,15 +507,12 @@ Button.prototype = {
  */
 
 function makeUrl(url, context) {
-	for (var key in context) if (context.hasOwnProperty(key)) {
-		url = url.replace('{' + key + '}', encodeURIComponent(context[key]));
-	}
-	return url;
+	return template(url, context, encodeURIComponent);
 }
 
-function template(tmpl, context) {
+function template(tmpl, context, filter) {
 	for (var key in context) if (context.hasOwnProperty(key)) {
-		tmpl = tmpl.replace('{' + key + '}', context[key]);
+		tmpl = tmpl.replace(new RegExp('{' + key + '}', 'g'), filter ? filter(context[key]) : context[key]);
 	}
 	return tmpl;
 }
