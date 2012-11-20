@@ -511,10 +511,10 @@ function makeUrl(url, context) {
 }
 
 function template(tmpl, context, filter) {
-	for (var key in context) if (context.hasOwnProperty(key)) {
-		tmpl = tmpl.replace(new RegExp('{' + key + '}', 'g'), filter ? filter(context[key]) : context[key]);
-	}
-	return tmpl;
+	return tmpl.replace(/\{([^\}]+)\}/g, function(m, key) {
+		// If key don't exists in the context we should keep template tag as is
+		return key in context ? (filter ? filter(context[key]) : context[key]) : m;
+	});
 }
 
 function getElementClassNames(elem, mod) {
