@@ -47,7 +47,11 @@ var services = {
 		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
 		pupupWidth: 600,
 		popupHeight: 450,
-		additionalParams: ['via', 'related']
+		click: function() {
+			// Add colon to improve readability
+			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
+			return true;
+		}
 	},
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
@@ -124,12 +128,13 @@ var services = {
 			}
 			else {
 				balloon = $(template(
-					'<div class="' + prefix + 'balloon">' +
-						'<div class="' + prefix + 'balloon__arrow"></div>' +
+					'<div class="{block}">' +
+						'<div class="{block}__arrow"></div>' +
 						'{prompt}<br>' +
-						'<textarea class="' + prefix + 'balloon__code">{html}</textarea>' +
+						'<textarea class="{block}__code">{html}</textarea>' +
 					'</div>',
 					{
+						block: prefix + 'balloon',
 						prompt: (this.widget.data('prompt') || 'Copy code to clipboard:'),
 						html: this.options.pageHtml
 					}
@@ -142,9 +147,10 @@ var services = {
 			balloon.find('textarea').select();
 
 			if (balloon.is(':visible')) {
-				balloon.removeClass(prefix + 'balloon_right');
+				var cls = prefix + 'balloon_right';
+				balloon.removeClass(cls);
 				if (balloon.offset().left < 0) {
-					balloon.addClass(prefix + 'balloon_right');
+					balloon.addClass(cls);
 				}
 
 				closeOnClick(balloon);
@@ -458,11 +464,12 @@ Button.prototype = {
 	},
 
 	click: function(e) {
-		var options = this.options;
+		var options = this.options,
+			process = true;
 		if ($.isFunction(options.click)) {
-			options.click.call(this, e);
+			process = options.click.call(this, e);
 		}
-		else {
+		if (process) {
 			var url = makeUrl(options.popupUrl, {
 				url: options.pageUrl,
 				title: options.pageTitle
@@ -477,20 +484,10 @@ Button.prototype = {
 	},
 
 	addAdditionalParamsToUrl: function(url) {
-		var params = this.options.additionalParams;
+		var params = $.param(this.widget.data());
 		if (!params) return url;
-
-		var query = {};
-		for (var paramIdx = 0; paramIdx < params.length; paramIdx++) {
-			var key = params[paramIdx],
-				value = this.widget.data(key);
-			if (value) {
-				query[key] = value;
-			}
-		}
-
-		var glue = (url.indexOf('?') === -1 ? '?' : '&');
-		return url + glue + $.param(query);
+		var glue = url.indexOf('?') === -1 ? '?' : '&';
+		return url + glue + params;
 	},
 
 	openPopup: function(url, params) {
@@ -516,17 +513,14 @@ Button.prototype = {
  */
 
 function makeUrl(url, context) {
-	for (var key in context) if (context.hasOwnProperty(key)) {
-		url = url.replace('{' + key + '}', encodeURIComponent(context[key]));
-	}
-	return url;
+	return template(url, context, encodeURIComponent);
 }
 
-function template(tmpl, context) {
-	for (var key in context) if (context.hasOwnProperty(key)) {
-		tmpl = tmpl.replace('{' + key + '}', context[key]);
-	}
-	return tmpl;
+function template(tmpl, context, filter) {
+	return tmpl.replace(/\{([^\}]+)\}/g, function(m, key) {
+		// If key don't exists in the context we should keep template tag as is
+		return key in context ? (filter ? filter(context[key]) : context[key]) : m;
+	});
 }
 
 function getElementClassNames(elem, mod) {
@@ -535,14 +529,14 @@ function getElementClassNames(elem, mod) {
 }
 
 function closeOnClick(elem) {
+	function handler(e) {
+		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
+		elem.fadeOut(fadeSpeed);
+		doc.off(events, handler);
+	}
 	var doc = $(document),
-		clickEvent = 'click.social-likes' + Math.random();
-	doc.on(clickEvent, function(e) {
-		if (!$(e.target).closest(elem).length) {
-			elem.fadeOut(fadeSpeed);
-			doc.off(clickEvent);
-		}
-	});
+		events = 'click touchstart keydown';
+	doc.on(events, handler);
 }
 
 function showInViewport(elem, offset) {
