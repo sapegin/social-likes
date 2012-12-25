@@ -29,11 +29,9 @@ var prefix = 'social-likes__',
  */
 var services = {
 	facebook: {
-		counterUrl: 'http://graph.facebook.com/?ids={url}&callback=?',
+		counterUrl: 'http://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
 		convertNumber: function(data) {
-			for (var url in data) if (data.hasOwnProperty(url)) {
-				return data[url].shares;
-			}
+			return data.data[0].total_count;
 		},
 		popupUrl: 'http://www.facebook.com/sharer/sharer.php?u={url}',
 		pupupWidth: 600,
