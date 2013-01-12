@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Social Likes</title>
+	<link href="../../social-likes.css" rel="stylesheet">
+	<script src="http://yandex.st/jquery/1.8.2/jquery.min.js"></script>
+	<script src="../../src/social-likes.js"></script>
+
+</head>
+<body>
+	<div class="first">
+		<h3>Standard</h3>
+		<ul class="social-likes" data-url="http://mail.ru/">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" data-counter="http://sapegin.ru/api/social-likes/googleplusonecount.php?url={url}&amp;callback=?" title="Опубликовать ссылку в Гугл-плюсе">Google+</li>
+			<li class="livejournal" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+			<li class="code" title="Получить код для публикации ссылки в другом сервисе" data-prompt="Скопируйте код в буфер обмена:">Код</li>
+		</ul>
+	</div>
+
+	<div class="second">
+		<h3>Vertical (no counters)</h3>
+		<ul class="social-likes social-likes_vertical" data-url="http://mail.ru/" data-title="Свой текст" data-counters="no">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+			<li class="livejournal" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+			<li class="code" title="Получить код для публикации ссылки в другом сервисе" data-prompt="Скопируйте код в буфер обмена:">Код</li>
+		</ul>
+	</div>
+
+	<div class="third">
+		<h3>Single button</h3>
+		<ul class="social-likes social-likes_single" data-url="http://mail.ru/">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+			<li class="livejournal" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+			<li class="code" title="Получить код для публикации ссылки в другом сервисе" data-prompt="Скопируйте код в буфер обмена:">Код</li>
+		</ul>
+	</div>
+
+</body>
+</html>
