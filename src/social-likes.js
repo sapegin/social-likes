@@ -163,7 +163,7 @@ var services = {
 					.replace(/&/g, '&amp;')
 					.replace(/"/g, '&quot;');
 				form = $(template(
-					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank">' +
+					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
 						'<input type="hidden" name="mode" value="full">' +
 						'<input type="hidden" name="subject" value="{title}">' +
 						'<input type="hidden" name="event" value="{html}">' +
