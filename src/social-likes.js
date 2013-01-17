@@ -398,6 +398,9 @@ Button.prototype = {
 			else
 				this.options.counterNumber = number;
 		}
+		var customTitle = this.widget.data('title');
+		if(customTitle)
+			this.options.pageTitle = customTitle;
 	},
 
 	initHtml: function() {
