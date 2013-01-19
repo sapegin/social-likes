@@ -33,7 +33,7 @@ var services = {
 		convertNumber: function(data) {
 			return data.data[0].total_count;
 		},
-		popupUrl: 'http://www.facebook.com/sharer/sharer.php?u={url}',
+		popupUrl: 'http://www.facebook.com/sharer/sharer.php?s=100&p[url]={url}&p[title]={title}',
 		pupupWidth: 600,
 		popupHeight: 500
 	},
