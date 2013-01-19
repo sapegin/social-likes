@@ -59,8 +59,15 @@ Examples:
 </ul>
 ```
 
-TODO:
-Twitter via etc.
+### Services specific options
+
+#### Twitter
+
+You can specify `via` (site’s Twitter) and `related` (any other Twitter you want to advertise) values for `<li class="twitter">`:
+
+```html
+<li class="twitter" data-via="sapegin" data-related="Landscapists">Twitter</li>
+```
 
 
 ### Experimental Google+ counter
@@ -107,6 +114,21 @@ And use in like any other button:
 
 See sources (`src` folder) for available options and class names.
 
+
+### Title, description and image for Facebok and Twitter
+
+You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-meta-tags) and [Twitter Card](https://dev.twitter.com/docs/cards):
+
+```html
+<meta property="og:type" content="article">
+<meta property="og:url" content="{page_url}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:image" content="{image_url}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@SiteTwitter">
+<meta name="twitter:creator" content="@sapegin">
+```
 
 
 ---
