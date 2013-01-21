@@ -31,5 +31,5 @@ or: или
 browseCode: посмотреть код
 onGitHub: на Гитхабе
 archiveContains: В архиве есть всё необходимое для подключения кнопок с выбранными параметрами.
-archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes">документация</a>
-footer: По всем вопросам <a href="http://sapegin.ru/contacts">пишите мне</a> или в <a href="https://github.com/sapegin/social-likes/issues">issues на Гитхабе</a>. Кнопки сделал <a href='http://sapegin.ru/'>Артём Сапегин</a>. <a href='http://github.com/sapegin/social-likes'>Проект на Гитхабе</a>.
+archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">документация</a>
+footer: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Документация</a> с примерами настройки и расширения. По всем вопросам <a href="http://sapegin.ru/contacts">пишите мне</a> или в <a href="https://github.com/sapegin/social-likes/issues">issues на Гитхабе</a>. Кнопки сделал <a href="http://sapegin.ru/">Артём Сапегин</a>.
