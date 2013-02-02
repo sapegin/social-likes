@@ -78,6 +78,13 @@ Place `googleplusonecount.php` somewhere on your server. And change buttons HTML
 <li class="plusone" data-counter="http://example.com/path/to/googleplusonecount.php?url={url}&amp;callback=?">Google+</li>
 ```
 
+### Pinterest
+
+For success posting pin to pinterest you have to specify url of image. Add data-media attribute to `<li class="pinterest"`:
+
+```html
+<li class="pinterest" data-media="http://path.com/image/url.png">Pinterest</li>
+```
 
 ### Adding your own button
 
