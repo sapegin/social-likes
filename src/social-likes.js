@@ -34,7 +34,7 @@ var services = {
 			return data.data[0].total_count;
 		},
 		popupUrl: 'http://www.facebook.com/sharer/sharer.php?u={url}',
-		pupupWidth: 600,
+		popupWidth: 600,
 		popupHeight: 500
 	},
 	twitter: {
@@ -43,7 +43,7 @@ var services = {
 			return data.count;
 		},
 		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
-		pupupWidth: 600,
+		popupWidth: 600,
 		popupHeight: 450,
 		click: function() {
 			// Add colon to improve readability
@@ -59,7 +59,7 @@ var services = {
 			}
 		},
 		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
-		pupupWidth: 550,
+		popupWidth: 550,
 		popupHeight: 360
 	},
 	vkontakte: {
@@ -84,7 +84,7 @@ var services = {
 			});
 		},
 		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
-		pupupWidth: 550,
+		popupWidth: 550,
 		popupHeight: 330
 	},
 	odnoklassniki: {
@@ -107,12 +107,12 @@ var services = {
 			});
 		},
 		popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
-		pupupWidth: 550,
+		popupWidth: 550,
 		popupHeight: 360
 	},
 	plusone: {
 		popupUrl: 'https://plus.google.com/share?url={url}',
-		pupupWidth: 700,
+		popupWidth: 700,
 		popupHeight: 500
 	},
 	code: {
@@ -178,6 +178,15 @@ var services = {
 			}
 			form.submit();
 		}
+	},
+	pinterest: {
+		counterUrl: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?",
+		convertNumber: function(data) {
+			return data.count;
+		},
+		popupUrl: "http://pinterest.com/pin/create/button/?url={url}&description={title}",
+		popupHeight: 320,
+		popupWidth: 800
 	}
 };
 
@@ -479,7 +488,7 @@ Button.prototype = {
 			});
 			url = this.addAdditionalParamsToUrl(url);
 			this.openPopup(url, {
-				width: options.pupupWidth,
+				width: options.popupWidth,
 				height: options.popupHeight
 			});
 		}
