@@ -34,15 +34,12 @@
 			"langs": ["ru"]
 		},
 		{
-			"id": "livejournal",
-			"name": "LiveJournal"
+			"id": "pinterest",
+			"name": "Pinterest"
 		},
 		{
-			"id": "code",
-			"name": {
-				"en": "Code",
-				"ru": "Код"
-			}
+			"id": "livejournal",
+			"name": "LiveJournal"
 		}
 	]
 }

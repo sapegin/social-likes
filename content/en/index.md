@@ -19,14 +19,13 @@ builderTwitterVia: Twitter Via
 builderTwitterViaHelp: Username
 builderTwitterRelated: Twitter Related
 builderTwitterRelatedHelp: Username:Description
+builderPinterestMedia: Image URL
+builderPinterestMediaHelp: Image URL for Pinterest (required)
 titleFacebook: Share link on Facebook
 titleTwitter: Share link on Twitter
 titlePlusone: Share link on Google+
 titleLivejournal: Share link on LiveJournal
-titleCode: Get code to share link on other website
 singleTitle: Share
-code: Code
-codePrompt: Copy code to clipboard:
 downloadArchive: Download Buttons
 or: or
 browseCode: view source

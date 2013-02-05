@@ -18,14 +18,13 @@ builderTwitterVia: Twitter Via
 builderTwitterViaHelp: Имя в Твиттере
 builderTwitterRelated: Twitter Related
 builderTwitterRelatedHelp: Имя:Описание
+builderPinterestMedia: URL картинки
+builderPinterestMediaHelp: URL картинки для Пинтереста (обязательно)
 titleFacebook: Поделиться ссылкой на Фейсбуке
 titleTwitter: Поделиться ссылкой в Твиттере
 titlePlusone: Поделиться ссылкой в Гугл-плюсе
 titleLivejournal: Поделиться ссылкой в ЖЖ
-titleCode: Получить код для публикации ссылки на другом сайте
 singleTitle: Поделиться
-code: Код
-codePrompt: Скопируйте код в буфер обмена:
 downloadArchive: Скачать кнопки
 or: или
 browseCode: посмотреть код

@@ -83,7 +83,7 @@
 	}
 
 	function escapeFormData(data) {
-		var fields = ['url', 'title', 'twitter_via', 'twitter_related'];
+		var fields = ['url', 'title', 'twitter_via', 'twitter_related', 'pinterest_media'];
 		for (var fieldIdx = 0; fieldIdx < fields.length; fieldIdx++) {
 			var field = fields[fieldIdx];
 			data[field] = escapeValue(data[field]);
@@ -165,6 +165,7 @@
 				preview = $('.js-preview'),
 				code = $('.js-code'),
 				twitterExtra = form.find('.js-twitter-extra'),
+				pinterestExtra = form.find('.js-pinterest-extra'),
 				prepend = $('#prepend_tmpl').html(),
 				template = doT.template($('#build_tmpl').html()),
 				previous;
@@ -182,11 +183,12 @@
 					site_odnoklassniki: !!data.site_odnoklassniki,
 					site_plusone: !!data.site_plusone,
 					site_twitter: !!data.site_twitter,
+					site_pinterest: !!data.site_pinterest,
 					site_vkontakte: !!data.site_vkontakte,
 					site_livejournal: !!data.site_livejournal,
-					site_code: !!data.site_code,
 					twitter_related: data.twitter_related,
-					twitter_via: data.twitter_via
+					twitter_via: data.twitter_via,
+					pinterest_media: data.pinterest_media
 				});
 			});
 
@@ -202,6 +204,7 @@
 					data.experimental = experimental;
 
 					twitterExtra.toggle(data.site_twitter === '1', 200);
+					pinterestExtra.toggle(data.site_pinterest === '1', 200);
 
 					var html = cleanHtml(template(data));
 					code.html(highlight(prepend + html));
