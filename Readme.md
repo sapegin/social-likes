@@ -69,6 +69,14 @@ You can specify `via` (site’s Twitter) and `related` (any other Twitter you wa
 <li class="twitter" data-via="sapegin" data-related="Landscapists">Twitter</li>
 ```
 
+### Pinterest
+
+You should specify an image URL via data-media attribute on `<li class="pinterest">`:
+
+```html
+<li class="pinterest" data-media="http://example.com/image/url.jpg">Pinterest</li>
+```
+
 
 ### Experimental Google+ counter
 
@@ -76,14 +84,6 @@ Place `googleplusonecount.php` somewhere on your server. And change buttons HTML
 
 ```html
 <li class="plusone" data-counter="http://example.com/path/to/googleplusonecount.php?url={url}&amp;callback=?">Google+</li>
-```
-
-### Pinterest
-
-For success posting pin to pinterest you have to specify url of image. Add data-media attribute to `<li class="pinterest"`:
-
-```html
-<li class="pinterest" data-media="http://path.com/image/url.png">Pinterest</li>
 ```
 
 ### Adding your own button
