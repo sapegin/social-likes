@@ -115,46 +115,6 @@ var services = {
 		popupWidth: 700,
 		popupHeight: 500
 	},
-	code: {
-		click: function(e) {
-			var balloon = this._codeBalloon;
-			if (balloon) {
-				if (balloon.is(':visible')) {
-					balloon.fadeOut(fadeSpeed);
-					return;
-				}
-			}
-			else {
-				balloon = $(template(
-					'<div class="{block}">' +
-						'<div class="{block}__arrow"></div>' +
-						'{prompt}<br>' +
-						'<textarea class="{block}__code">{html}</textarea>' +
-					'</div>',
-					{
-						block: prefix + 'balloon',
-						prompt: (this.widget.data('prompt') || 'Copy code to clipboard:'),
-						html: this.options.pageHtml
-					}
-				));
-				this.widget.append(balloon);
-				this._codeBalloon = balloon;
-				balloon.hide();
-			}
-			balloon.fadeIn(fadeSpeed);
-			balloon.find('textarea').select();
-
-			if (balloon.is(':visible')) {
-				var cls = prefix + 'balloon_right';
-				balloon.removeClass(cls);
-				if (balloon.offset().left < 0) {
-					balloon.addClass(cls);
-				}
-
-				closeOnClick(balloon);
-			}
-		}
-	},
 	livejournal: {
 		click: function(e) {
 			var form = this._livejournalForm;

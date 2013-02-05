@@ -31,15 +31,11 @@ Title for Twitter, Vkontakte and LiveJournal. Current page’s title by default.
 
 `html`
 
-HTML code for LiveJournal and “Code” buttons. By default <A> tag with link to current page.
+HTML code for LiveJournal button. By default <A> tag with link to current page.
 
 `counters`
 
 Disables “likes” counters when “no”. Default: “yes”.
-
-`prompt`
-
-Text for code bubble. Default: “Copy code to clipboard:”.
 
 `single-title`
 
