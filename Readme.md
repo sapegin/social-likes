@@ -133,6 +133,14 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 <meta name="twitter:creator" content="@sapegin">
 ```
 
+## Release History
+
+### 2013-02-05 v2.0.7
+
+* `data-title` and `data-url` attributes (by @jalkoby).
+* Pinterest button (mostly by @jalkoby).
+* Code button removed.
+
 
 ---
 
