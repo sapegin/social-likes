@@ -25,6 +25,7 @@ titleFacebook: Share link on Facebook
 titleTwitter: Share link on Twitter
 titlePlusone: Share link on Google+
 titleLivejournal: Share link on LiveJournal
+titlePinterest: Share image on Pinterest
 singleTitle: Share
 downloadArchive: Download Buttons
 or: or

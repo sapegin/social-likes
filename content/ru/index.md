@@ -24,6 +24,7 @@ titleFacebook: Поделиться ссылкой на Фейсбуке
 titleTwitter: Поделиться ссылкой в Твиттере
 titlePlusone: Поделиться ссылкой в Гугл-плюсе
 titleLivejournal: Поделиться ссылкой в ЖЖ
+titlePinterest: Поделиться картинкой на Пинтересте
 singleTitle: Поделиться
 downloadArchive: Скачать кнопки
 or: или
