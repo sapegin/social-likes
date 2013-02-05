@@ -400,25 +400,32 @@
 
 
 // Pinterest
-.social-likes__icon_pinterest {
-	height: 22px;
-	width: 63px;
-	background-repeat: no-repeat;
-	background-image:embedurl('../icons/pinterest.png');
-}
-.social-likes__widget_pinterest {
-	color: #fff;
-	border-color:#fff;
-}
 .social-likes__button_pinterest {
-	width: 38px;
+	padding-left:20px;
+	background:#eee;
+	background:linear-gradient(top, #fefefe, #d3d3d3);
+	color:hsl(355,77%,44%);
+	border-color:#bbb;
+	border-color:hsla(0,0%,73%,.8);
+	border-bottom-color:hsla(0,0%,60%,.8);
+}
+.social-likes__button_pinterest:hover {
+	background:#efefef;
+	background:linear-gradient(top, #fff, #d9d9d9);
+	color:hsl(355,80%,42%);
+	border-color:hsla(0,0%,73%,.6);
+	border-bottom-color:hsla(0,0%,60%,.6);
+}
+.social-likes__icon_pinterest {
+	background-image:embedurl('../icons/pinterest.png');
+	background-position:2px 1px;
 }
 .social-likes__counter_pinterest {
-	background: #ffeaea;
-	border-color: #f78080;
+	background:hsl(355,100%,98%);
+	border-color:hsl(355,70%,80%);
 }
 .social-likes__counter_pinterest:after {
-	border-right-color: #ffeaea;
+	border-right-color:hsl(355,100%,98%);
 }
 
 

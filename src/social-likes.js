@@ -180,13 +180,13 @@ var services = {
 		}
 	},
 	pinterest: {
-		counterUrl: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?",
+		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: "http://pinterest.com/pin/create/button/?url={url}&description={title}",
-		popupHeight: 320,
-		popupWidth: 800
+		popupUrl: 'http://pinterest.com/pin/create/button/?url={url}&description={title}',
+		popupWidth: 630,
+		popupHeight: 270
 	}
 };
 
