@@ -407,10 +407,13 @@ Button.prototype = {
 			else
 				this.options.counterNumber = number;
 		}
-		var customTitle = this.widget.data('title'), customUrl = this.widget.data('url');
-		if(customTitle)
+		
+		var customTitle = this.widget.data('title');
+		if (customTitle)
 			this.options.pageTitle = customTitle;
-		if(customUrl)
+
+		var customUrl = this.widget.data('url');
+		if (customUrl)
 			this.options.pageUrl = customUrl;
 	},
 
