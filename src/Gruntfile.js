@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		cmpnt: grunt.file.readJSON('../component.json'),
 		banner: '/*! Social Likes v<%= cmpnt.version %> by Artem Sapegin - ' +
-				'http://sapegin.github.com/social-likes - Licensed MIT */',
+				'http://sapegin.github.com/social-likes - Licensed MIT */\n',
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc'
@@ -39,6 +39,15 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		csso: {
+			options: {
+				banner: '<%= banner %>'
+			},
+			dist: {
+				src: '../social-likes.css',
+				dest: '../social-likes.css'
+			}
+		},		
 		watch: {
 			stylus: {
 				files: 'styles/**',
@@ -53,6 +62,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'stylus']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'stylus', 'csso']);
 
 };
