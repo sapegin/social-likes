@@ -230,6 +230,9 @@ SocialLikes.prototype = {
 		}
 	},
 	init: function() {
+		// Add class in case of manual initialization
+		this.container.addClass('social-likes');
+
 		this.readOptions();
 		this.single = this.container.hasClass('social-likes_single');
 
