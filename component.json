@@ -1,6 +1,6 @@
 {
   "name": "social-likes",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "main": ["./social-likes.min.js", "./social-likes.css"],
   "dependencies": {
     "jquery": ">=1.7"
