@@ -12,7 +12,7 @@ Beautiful “like” buttons with counters for popular social networks: Facebook
 
 ## Installation and configuration
 
-Use [interactive builder](http://sapegin.github.com/social-likes) to generate code.
+Use [interactive builder](http://sapegin.github.io/social-likes/) to generate code.
 
 
 ## Advanced configuration
@@ -65,7 +65,7 @@ You can specify `via` (site’s Twitter) and `related` (any other Twitter you wa
 <li class="twitter" data-via="sapegin" data-related="Landscapists">Twitter</li>
 ```
 
-### Pinterest
+#### Pinterest
 
 You should specify an image URL via data-media attribute on `<li class="pinterest">`:
 
@@ -133,7 +133,17 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 <meta name="twitter:creator" content="@sapegin">
 ```
 
+### How to use Social Likes with Wordpress, etc.
+
+See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
+
 ## Release History
+
+### 2013-04-23 v2.0.8
+
+* New Odnoklassniki API.
+* Improved manual initialization.
+* Compress CSS with CSSO.
 
 ### 2013-02-05 v2.0.7
 
