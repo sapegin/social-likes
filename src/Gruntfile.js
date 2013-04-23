@@ -63,5 +63,6 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'stylus', 'csso']);
+	grunt.registerTask('build', ['uglify', 'imgo', 'stylus', 'csso']);
 
 };
