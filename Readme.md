@@ -12,7 +12,9 @@ Beautiful “like” buttons with counters for popular social networks: Facebook
 
 ## Installation and configuration
 
-Use [interactive builder](http://sapegin.github.io/social-likes/) to generate code.
+Use [interactive builder](http://sapegin.github.io/social-likes/) to generate the code.
+
+Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 
 
 ## Advanced configuration
