@@ -56,3 +56,26 @@ function foo(bar, fum) {
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
 - If code you change uses different style (probably it’s an old code) use file’s style instead of style described on this page.
 - Feel free to [ask me](http://sapegin.me/contacts) anything you need.
+
+
+## How to build / test
+
+`cd` to `src` folder first.
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Hack on:
+
+```bash
+grunt watch
+```
+
+3. Build:
+
+```bash
+grunt
+```
