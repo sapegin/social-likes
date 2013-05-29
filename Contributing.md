@@ -62,19 +62,19 @@ function foo(bar, fum) {
 
 `cd` to `src` folder first.
 
-1. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Hack on:
+Hack on:
 
 ```bash
 grunt watch
 ```
 
-3. Build:
+Build:
 
 ```bash
 grunt
