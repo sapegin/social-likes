@@ -68,6 +68,12 @@
 		transition:border .1s ease-in-out, color .2s ease-in-out;
 		cursor:pointer;
 		user-select:none;
+		
+		// Prevent layout breaking without labels
+		&:before {
+			content:"";
+			display:inline-block;
+		}
 	}
 
 	&__icon {
