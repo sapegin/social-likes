@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
-		cmpnt: grunt.file.readJSON('../component.json'),
+		cmpnt: grunt.file.readJSON('../bower.json'),
 		banner: '/*! Social Likes v<%= cmpnt.version %> by Artem Sapegin - ' +
 				'http://sapegin.github.com/social-likes - Licensed MIT */\n',
 		jshint: {
