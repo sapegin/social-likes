@@ -143,6 +143,10 @@ See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-
 
 ## Release History
 
+### 2013-06-20 v2.0.9
+
+* Prevent layout breaking without labels (#31).
+
 ### 2013-04-23 v2.0.8
 
 * New Odnoklassniki API.
