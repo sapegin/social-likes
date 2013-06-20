@@ -37,6 +37,15 @@ module.exports = function(grunt) {
 					'include css': true,
 					'urlfunc': 'embedurl'
 				}
+			},
+			contrib: {
+				files: {
+					'../contrib/css/github.css': '../contrib/styles/github.styl'
+				},
+				options: {
+					'urlfunc': 'embedurl',
+					'compress': false
+				}
 			}
 		},
 		csso: {
@@ -51,7 +60,7 @@ module.exports = function(grunt) {
 		watch: {
 			stylus: {
 				files: 'styles/**',
-				tasks: 'stylus'
+				tasks: 'stylus:compile'
 			}
 		},
 		imgo: {

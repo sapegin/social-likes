@@ -1,0 +1,40 @@
+/** Author: Artem Sapegin, http://sapegin.me, 2012 */
+.social-likes__button_github,
+.social-likes__button_github:link,
+.social-likes__button_github:visited {
+  padding-left: 19px;
+  background: #e6e6e6;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #eaeaea));
+  background: -webkit-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  background: -moz-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  background: -o-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  background: -ms-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  background: linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  color: #555;
+  border-color: #d4d4d4;
+  border-bottom-color: #bcbcbc;
+  text-decoration: none;
+}
+.social-likes__button_github:hover {
+  background: #efefef;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #f0f0f0));
+  background: -webkit-linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  background: -moz-linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  background: linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  color: #444;
+  border-color: #d4d4d4;
+  border-bottom-color: #bcbcbc;
+}
+.social-likes__icon_github {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAABelBMVEX///9UVFRUVFRXV1dVVVVOTk5YWFhNTU2hoaHJycm2trZTU1NVVVVYWFj8/Pz///////9kZGT///////9UVFRVVVW0tLRVVVVWVlZUVFRVVVVVVVVUVFRUVFSpqalVVVWsrKxPT09cXFxVVVX///+GhoZVVVV6enr///97e3tfX19hYWGtra2EhIS4uLhGRkavr69fX194eHi3t7dWVlZsbGyJiYlVVVWDg4NjY2NUVFR5eXlZWVlra2t0dHSOjo6tra1WVlaGhoaamppxcXFnZ2eSkpJoaGikpKSBgYHk5OShoaF9fX3Pz8/9/f3///9paWmOjo7a2tpYWFhmZmaJiYlbW1tkZGRaWlpjY2NwcHD///////9TU1NXV1fS0tL///+zs7ONjY26urp/f39ra2tzc3N7e3tWVla1tbX///9fX19XV1deXl5tbW1jY2NtbW1nZ2dUVFRWVla/v7/k5OSOjo5mZmaNjY1nZ2ePj4/k5ORVVVVWVlaXk6uTAAAAfHRSTlMAgs73Whf9FMTK0Vb5+5hQMN5EQ/X40vL1fYr2ienT89MdjVRFluWuQOqX5LKa0Aut6etc/S2V/kz4mEr99H0ty/7oRIf00soqmsTe7M58HszWdPlnnrbc/PfgKwFQ+30T0Jaj2fLp1/fRGOH5ztvy5eTL+FS/y+tD7c/AHyR2AgAAAK9JREFUeF4kxzEOQUEUBdB7X7y5MT8Tr1CMqNDZBmzBIi1ErIENaBQSjWTC//7pDnqiLedGATBgE5Ge7xS1G9o91NRrzBOYl1xrztsyK4vviut48YTBmaRNP/cj/g6S7CZcx0baJ4O7Y7S7+G+MtoyMjIzWIN4xRkZGRjdGEDD6f4ERDIIYUUAC4+owRhCYyZLCyMjIIPTjZxYjGEzneMfE8I6ziJNz3lwODg7OdwwAC+kdv4tFptkAAAAASUVORK5CYII=");
+  background-position: 3px 3px;
+}
+.social-likes__counter_github {
+  background: #fafafa;
+  border-color: #d4d4d4;
+}
+.social-likes__counter_github:after {
+  border-right-color: #fafafa;
+}

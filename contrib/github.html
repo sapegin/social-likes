@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<title>Social Likes GitHub button</title>
+	<link href="../social-likes.css" rel="stylesheet">
+	<script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../social-likes.min.js"></script>
+	
+	<!-- GitHub button CSS -->
+	<link href="css/github.css" rel="stylesheet">
+
+</head>
+<body>
+	
+	<h3>GitHub button</h3>
+
+<script>
+// Don't forget to change your name and repo name: sapegin/social-likes
+var socialLikesButtons = {
+	github: {
+		counterUrl: 'https://api.github.com/repos/sapegin/social-likes?callback=?',
+		convertNumber: function(data) {
+			return data.data.watchers_count;
+		},
+		clickUrl: 'https://github.com/sapegin/social-likes/'
+	}
+};
+</script>
+
+	<ul class="social-likes">
+		<li class="github" title="Star on GitHub">GitHub</li>
+	</ul>
+
+</body>
+</html>

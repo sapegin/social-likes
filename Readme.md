@@ -86,6 +86,8 @@ Place `googleplusonecount.php` somewhere on your server. And change buttons HTML
 
 ### Adding your own button
 
+You can find some custom buttons in `contrib` folder.
+
 Define `socialLikesButtons` hash:
 
 ```javascript
