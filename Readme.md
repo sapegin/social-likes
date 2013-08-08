@@ -130,7 +130,7 @@ And use in like any other button:
 <li class="surfingbird">Surf</li>
 ```
 
-See sources (`src` folder) for available options and class names.
+See sources (`src` folder) for available options and class names and `contrib` folder for custom buttons examples.
 
 
 ### Title, description and image for Facebok and Twitter
@@ -153,6 +153,10 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 ## Release History
+
+### 2013-08-08 v2.0.11
+
+* `counter.social-likes` event (#32).
 
 ### 2013-06-20 v2.0.10
 
