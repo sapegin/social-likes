@@ -71,13 +71,17 @@
 	</ul>
 
 	<h3>Manual initialization</h3>
-	<ul id="social-likes-manual">
+	<ul id="social-likes-manual" data-url="http://mail.ru/">
 		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
 	</ul>
 
 <script>
-$('#social-likes-manual').socialLikes();
+var sl = $('#social-likes-manual');
+sl.on('counter.social-likes', function(event, service, number) {
+	console.log('Counter', service, number);
+});
+sl.socialLikes();
 </script>
 
 	<h3>User button &amp; custom count</h3>

@@ -75,6 +75,17 @@ You should specify an image URL via data-media attribute on `<li class="pinteres
 <li class="pinterest" data-media="http://example.com/image/url.jpg">Pinterest</li>
 ```
 
+### Events
+
+#### `counter.social-likes`
+
+Triggers for every non-zero counter.
+
+```javascript
+$('.social-likes').on('counter.social-likes', function(event, service, number) {
+	// service: facebook, twitter, etc.
+});
+```
 
 ### Experimental Google+ counter
 
