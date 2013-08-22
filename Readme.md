@@ -19,6 +19,19 @@ Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 
 ## Advanced configuration
 
+### Layout
+
+`notext`
+
+Use class ```social-likes_notext``` and remove buttons text for icons only mode.
+
+```
+<ul class="social-likes social-likes_notext">
+	<li class="facebook" title="Share link on Facebook"></li>
+	...
+</ul>
+```
+
 ### Options
 
 Options define via HTML data attributes.

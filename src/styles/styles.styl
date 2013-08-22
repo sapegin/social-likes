@@ -145,6 +145,17 @@
 		}
 	}
 
+	// Icons only mode
+	&_notext {
+		.social-likes__widget {
+			margin:3px 2px;
+		}
+		.social-likes__button {
+			padding-left:0;
+			width:16px;
+		}
+	}
+
 	// Single button mode
 	&_single-w {
 		position:relative;
@@ -319,6 +330,12 @@
 .social-likes__counter_mailru:after {
 	border-right-color:#fff1c2;
 }
+.social-likes_notext {
+	.social-likes__icon_mailru {
+		background-position:2px 2px;
+	}
+}
+
 
 // Vkontakte
 .social-likes__button_vkontakte {
@@ -382,6 +399,11 @@
 }
 .social-likes__counter_odnoklassniki:after {
 	border-right-color:#ffe9be;
+}
+.social-likes_notext {
+	.social-likes__icon_odnoklassniki {
+		background-position:5px 3px;
+	}
 }
 
 
