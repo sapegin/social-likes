@@ -21,9 +21,42 @@ Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 
 ### Layout
 
-`notext`
+#### Default
 
-Use class ```social-likes_notext``` and remove buttons text for icons only mode.
+All buttons in a row.
+
+```
+<ul class="social-likes">
+	<li class="facebook" title="Share link on Facebook">Facebook</li>
+	...
+</ul>
+```
+
+#### Vertical
+
+All buttons in a column.
+
+```
+<ul class="social-likes social-likes_vertical">
+	<li class="facebook" title="Share link on Facebook">Facebook</li>
+	...
+</ul>
+```
+
+#### Single button
+
+One button with a counter (summ of all the networks). Opens popup with like buttons in vertical layout. Use `data-single-title` attribute to change button title.
+
+```
+<ul class="social-likes social-likes_single" data-single-title="Share me!">
+	<li class="facebook" title="Share link on Facebook">Facebook</li>
+	...
+</ul>
+```
+
+#### Icons only
+
+If you want to remove button titles add `social-likes_notext` class to make it looks better.
 
 ```
 <ul class="social-likes social-likes_notext">
@@ -31,6 +64,7 @@ Use class ```social-likes_notext``` and remove buttons text for icons only mode.
 	...
 </ul>
 ```
+
 
 ### Options
 
@@ -167,6 +201,10 @@ See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-
 
 ## Release History
 
+### 2013-08-26 v2.0.12
+
+* Icons only mode (by [@albburtsev](https://github.com/albburtsev)).
+
 ### 2013-08-08 v2.0.11
 
 * `counter.social-likes` event (#32).
@@ -183,8 +221,8 @@ See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-
 
 ### 2013-02-05 v2.0.7
 
-* `data-title` and `data-url` attributes (by @jalkoby).
-* Pinterest button (mostly by @jalkoby).
+* `data-title` and `data-url` attributes (by [@jalkoby](https://github.com/jalkoby]).
+* Pinterest button (mostly by [@jalkoby](https://github.com/jalkoby]).
 * Code button removed.
 
 
