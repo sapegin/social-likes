@@ -226,7 +226,6 @@ SocialLikes.prototype = {
 
 		if (this.single) {
 			this.makeSingleButton();
-			this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
 		}
 
 		var options = this.options;
@@ -288,8 +287,10 @@ SocialLikes.prototype = {
 		});
 
 		this.wrapper = wrapper;
+
+		this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
 	},
-	updateCounter: function(e, number) {
+	updateCounter: function(e, service, number) {
 		if (!number) return;
 
 		this.number += number;
@@ -424,7 +425,7 @@ Button.prototype = {
 		});
 		this.widget.append(counterElem);
 
-		this.widget.trigger('counter.social-likes', number);
+		this.widget.trigger('counter.social-likes', [this.service, number]);
 	},
 
 	click: function(e) {
