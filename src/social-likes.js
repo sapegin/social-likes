@@ -288,7 +288,7 @@ SocialLikes.prototype = {
 
 		this.wrapper = wrapper;
 
-		this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
+		this.container.bind('counter.social-likes', $.proxy(this.updateCounter, this));
 	},
 	updateCounter: function(e, service, number) {
 		if (!number) return;
@@ -501,7 +501,7 @@ function closeOnClick(elem) {
 	}
 	var doc = $(document),
 		events = 'click touchstart keydown';
-	doc.on(events, handler);
+	doc.bind(events, handler);
 }
 
 function showInViewport(elem, offset) {
