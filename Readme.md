@@ -195,7 +195,7 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 <meta name="twitter:creator" content="@sapegin">
 ```
 
-`og:url`, `og:title`, `og:description`, `og:image` [should](http://vk.com/dev/widget_like) also works for Vkontakte.
+`og:url`, `og:title`, `og:description`, `og:image` [should](http://vk.com/dev/widget_like) also work for Vkontakte.
 
 ### How to use Social Likes with Wordpress, etc.
 
