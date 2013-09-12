@@ -122,6 +122,22 @@ You should specify an image URL via data-media attribute on `<li class="pinteres
 <li class="pinterest" data-media="http://example.com/image/url.jpg">Pinterest</li>
 ```
 
+### Manual initialization
+
+Could be useful on dynamic (Ajax) websites.
+
+```html
+<ul id="share">
+	<li class="facebook">Facebook</li>
+	...
+</ul>
+```
+
+```javascript
+$('#share').socialLikes();
+```
+
+
 ### Events
 
 #### `counter.social-likes`
