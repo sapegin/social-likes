@@ -1,98 +1,55 @@
-/* Social Likes by Artem Sapegin. http://sapegin.github.com/social-likes */
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+
+@import '../base'
 
 .social-likes,
 .social-likes__widget {
-	display:inline-block;
-	vertical-align:middle;
 	line-height:20px;
-	text-indent:0;
-	padding:0;
-	border:0;
-	word-spacing:0;
 	font-size:14px;
-	*zoom:1;
-	*display:inline;
 }
 
 .social-likes {
 	margin:-3px;
 	line-height:26px;
-	list-style:none;
 
-	li {
-		display:inline-block;
-		*zoom:1;
-		*display:inline;
-	}
-	&_vertical li {
-		display:block;
-	}
 	&__widget {
-		display:inline-block;
-		position:relative;
 		margin:3px;
-		white-space:nowrap;
-	}
-	&__widget:before {
-		display:none;  // Remove nice bullets
-	}
-
-	&__button,
-	&__counter,
-	&__balloon,
-	&__balloon__code {
-		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
-		font-size:14px;
-		text-rendering:optimizeLegibility;
 	}
 
 	&__button,
 	&__counter {
-		display:inline-block;
-		*display:inline;
-		*float:left;
-		margin:0;
+		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
+		font-size:14px;
+	}
+
+	&__button,
+	&__counter {
 		line-height:18px;
 		border-width:1px;
 		border-style:solid;
 		border-radius:3px;
-		outline:0;
 	}
 
 	&__button {
-		position:relative;
 		padding:1px 4px 1px 20px;
 		font-weight:bold;
 		text-shadow:0 1px 0 hsla(0,0%,100%,.6);
 		box-shadow:0 1px 1px hsla(0,0%,0%,.05);
 		transition:border .1s ease-in-out, color .2s ease-in-out;
-		cursor:pointer;
-		user-select:none;
-		
-		// Prevent layout breaking without labels
-		&:before {
-			content:"";
-			display:inline-block;
-		}
 	}
 
 	&__icon {
-		position:absolute;
-		top:0;
-		left:0;
 		width:20px;
 		height:20px;
 		background-repeat:no-repeat;
 	}
 
 	&__counter {
-		position:relative;
 		margin-left:7px;
 		padding:1px 4px;
 		font-weight:normal;
 		color:#666;
 		color:hsla(0,0%,0%,.5);
-		cursor:default;
 	}
 
 	&__counter:before,
@@ -120,19 +77,12 @@
 		}
 
 	&__close {
-		position:absolute;
-		right:0;
-		top:0;
 		padding:2px 4px;
 		font:16px Verdana, Geneva, Tahoma, sans-serif;
 		color:#999;
-		cursor:pointer;
 	}
 	&__close:hover {
 		color:#111;
-	}
-	&__close:before {
-		display:none;  // Remove nice bullets
 	}
 
 	// Vertical mode
@@ -140,7 +90,6 @@
 		margin:-6px -4px;
 
 		.social-likes__widget {
-			display:block;
 			margin:6px 4px;
 		}
 	}
@@ -151,26 +100,17 @@
 			margin:3px 2px;
 		}
 		.social-likes__button {
-			padding-left:0;
 			width:16px;
 		}
 	}
 
 	// Single button mode
-	&_single-w {
-		position:relative;
-		display:inline-block;
-	}
 	&_single {
-		position:absolute;
-		display:none;
 		top:-6px;
 		left:-6px;
 		padding:6px 6px 4px;
 		background:#fff;
-		text-align:left;
 		box-shadow:0 0 15px hsla(0,0%,0%,.3);
-		z-index:99999;
 	}
 	&_single &__widget:first-of-type {
 		margin-right:14px;  // Prevent collapse of widget and close button
@@ -180,7 +120,6 @@
 
 // Single button
 .social-likes__button_single {
-	position:relative;
 	padding-left:19px;
 	background:#e2e2e2;
 	background:linear-gradient(top, #f7f7f7, #e2e2e2);
@@ -197,7 +136,7 @@
 	border-bottom-color:#9f9f9f;
 }
 .social-likes__icon_single {
-	background-image:embedurl('../icons/single.png');
+	background-image:embedurl('icons/single.png');
 	background-position:2px 3px;
 }
 .social-likes__counter_single {
@@ -227,7 +166,7 @@
 	border-bottom-color:#b3b7bf;
 }
 .social-likes__icon_facebook {
-	background-image:embedurl('../icons/facebook.png');
+	background-image:embedurl('icons/facebook.png');
 	background-position:3px 3px;
 }
 .social-likes__counter_facebook {
@@ -257,7 +196,7 @@
 	border-bottom-color:#68a0c4;
 }
 .social-likes__icon_twitter {
-	background-image:embedurl('../icons/twitter.png');
+	background-image:embedurl('icons/twitter.png');
 	background-position:3px 5px;
 }
 .social-likes__counter_twitter {
@@ -287,7 +226,7 @@
 	border-bottom-color:#ccc;
 }
 .social-likes__icon_plusone {
-	background-image:embedurl('../icons/plusone.png');
+	background-image:embedurl('icons/plusone.png');
 	background-position:0 6px;
 }
 .social-likes__counter_plusone {
@@ -320,7 +259,7 @@
 	border-bottom-color:#031b30;
 }
 .social-likes__icon_mailru {
-	background-image:embedurl('../icons/mailru.png');
+	background-image:embedurl('icons/mailru.png');
 	background-position:1px 2px;
 }
 .social-likes__counter_mailru {
@@ -357,7 +296,7 @@
 	border-bottom-color:#3b6798;
 }
 .social-likes__icon_vkontakte {
-	background-image:embedurl('../icons/vkontakte.png');
+	background-image:embedurl('icons/vkontakte.png');
 	background-position:1px 2px;
 }
 .social-likes__counter_vkontakte {
@@ -390,7 +329,7 @@
 	border-bottom-color:#c59121;
 }
 .social-likes__icon_odnoklassniki {
-	background-image:embedurl('../icons/odnoklassniki.png');
+	background-image:embedurl('icons/odnoklassniki.png');
 	background-position:4px 3px;
 }
 .social-likes__counter_odnoklassniki {
@@ -423,7 +362,7 @@
 	border-bottom-color:#9caebe;
 }
 .social-likes__icon_livejournal {
-	background-image:embedurl('../icons/livejournal.png');
+	background-image:embedurl('icons/livejournal.png');
 	background-position:2px 2px;
 }
 
@@ -446,7 +385,7 @@
 	border-bottom-color:hsla(0,0%,60%,.6);
 }
 .social-likes__icon_pinterest {
-	background-image:embedurl('../icons/pinterest.png');
+	background-image:embedurl('icons/pinterest.png');
 	background-position:2px 1px;
 }
 .social-likes__counter_pinterest {

@@ -31,10 +31,9 @@ module.exports = function(grunt) {
 		stylus: {
 			compile: {
 				files: {
-					'../social-likes.css': 'styles/index.styl'
+					'../social-likes_classic.css': 'styles/skins/classic.styl'
 				},
 				options: {
-					'include css': true,
 					'urlfunc': 'embedurl'
 				}
 			},
@@ -48,30 +47,40 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		autoprefixer: {
+			options: {
+				browsers: ['last 2 version', 'ie 8']
+			},
+			dist: {
+				expand: true,
+				flatten: true,
+				src: '../*.css',
+				dest: '../'
+			}
+		},
 		csso: {
 			options: {
 				banner: '<%= banner %>'
 			},
 			dist: {
-				src: '../social-likes.css',
-				dest: '../social-likes.css'
+				src: '../social-likes_classic.css',
+				dest: '../social-likes_classic.css'
 			}
 		},		
 		watch: {
 			stylus: {
 				files: 'styles/**',
-				tasks: 'stylus:compile'
+				tasks: ['stylus:compile', 'autoprefixer']
 			}
 		},
 		imgo: {
 			imgo: {
-				src: 'icons/*.png',
-				skip: require('os').platform() === 'win32'
+				src: 'icons/*.png'
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'stylus', 'csso']);
-	grunt.registerTask('build', ['uglify', 'imgo', 'stylus', 'csso']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'stylus', 'autoprefixer', 'csso']);
+	grunt.registerTask('build', ['uglify', 'imgo', 'stylus', 'autoprefixer', 'csso']);
 
 };

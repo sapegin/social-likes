@@ -1,0 +1,115 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+
+.social-likes,
+.social-likes__widget {
+	display:inline-block;
+	vertical-align:middle;
+	text-indent:0;
+	padding:0;
+	border:0;
+	word-spacing:0;
+	*zoom:1;
+	*display:inline;
+}
+
+.social-likes {
+	list-style:none;
+
+	li {
+		display:inline-block;
+		*zoom:1;
+		*display:inline;
+	}
+	&_vertical li {
+		display:block;
+	}
+	&__widget {
+		display:inline-block;
+		position:relative;
+		white-space:nowrap;
+	}
+	&__widget:before {
+		display:none;  // Remove nice bullets
+	}
+
+	&__button,
+	&__counter {
+		text-rendering:optimizeLegibility;
+	}
+
+	&__button,
+	&__counter {
+		display:inline-block;
+		*display:inline;
+		*float:left;
+		margin:0;
+		outline:0;
+	}
+
+	&__button {
+		position:relative;
+		cursor:pointer;
+		user-select:none;
+		
+		// Prevent layout breaking without labels
+		&:before {
+			content:"";
+			display:inline-block;
+		}
+	}
+
+	&__icon {
+		position:absolute;
+		top:0;
+		left:0;
+	}
+
+	&__counter {
+		position:relative;
+		font-weight:normal;
+		cursor:default;
+	}
+
+	&__close {
+		position:absolute;
+		right:0;
+		top:0;
+		cursor:pointer;
+	}
+	&__close:before {
+		display:none;  // Remove nice bullets
+	}
+
+	// Vertical mode
+	&_vertical {
+		.social-likes__widget {
+			display:block;
+		}
+	}
+
+	// Icons only mode
+	&_notext {
+		.social-likes__widget {
+		}
+		.social-likes__button {
+			padding-left:0;
+		}
+	}
+
+	// Single button mode
+	&_single-w {
+		position:relative;
+		display:inline-block;
+	}
+	&_single {
+		position:absolute;
+		display:none;
+		text-align:left;
+		z-index:99999;
+	}
+}
+
+// Single button
+.social-likes__button_single {
+	position:relative;
+}
