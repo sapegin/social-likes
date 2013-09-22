@@ -40,7 +40,8 @@ module.exports = function(grunt) {
 			},
 			contrib: {
 				files: {
-					'../contrib/css/github.css': '../contrib/styles/github.styl'
+					'../contrib/css/github.css': '../contrib/styles/github.styl',
+					'../contrib/css/livejournal.css': '../contrib/styles/livejournal.styl'
 				},
 				options: {
 					'urlfunc': 'embedurl',

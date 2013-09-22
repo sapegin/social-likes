@@ -101,30 +101,6 @@ var services = {
 		popupWidth: 700,
 		popupHeight: 500
 	},
-	livejournal: {
-		click: function(e) {
-			var form = this._livejournalForm;
-			if (!form) {
-				var html = this.options.pageHtml
-					.replace(/&/g, '&amp;')
-					.replace(/"/g, '&quot;');
-				form = $(template(
-					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
-						'<input type="hidden" name="mode" value="full">' +
-						'<input type="hidden" name="subject" value="{title}">' +
-						'<input type="hidden" name="event" value="{html}">' +
-					'</form>',
-					{
-						title: this.options.pageTitle,
-						html: html
-					}
-				));
-				this.widget.append(form);
-				this._livejournalForm = form;
-			}
-			form.submit();
-		}
-	},
 	pinterest: {
 		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {

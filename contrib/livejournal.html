@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<title>Social Likes LiveJournal button</title>
+	<link href="../social-likes_classic.css" rel="stylesheet">
+	<script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../social-likes.min.js"></script>
+	
+	<!-- GitHub button CSS -->
+	<link href="css/livejournal.css" rel="stylesheet">
+
+</head>
+<body>
+	
+	<h3>LiveJournal button</h3>
+
+<script>
+// Don't forget to change your name and repo name: sapegin/social-likes
+var socialLikesButtons = {
+	livejournal: {
+		click: function(e) {
+			var form = this._livejournalForm;
+			if (!form) {
+				var html = this.options.pageHtml
+					.replace(/&/g, '&amp;')
+					.replace(/"/g, '&quot;');
+				form = $(
+					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
+						'<input type="hidden" name="mode" value="full">' +
+						'<input type="hidden" name="subject" value="' + this.options.pageTitle + '">' +
+						'<input type="hidden" name="event" value="' + html + '">' +
+					'</form>'
+				);
+				this.widget.append(form);
+				this._livejournalForm = form;
+			}
+			form.submit();
+		}
+	}
+};
+</script>
+
+	<ul class="social-likes">
+		<li class="livejournal" title="Share on LiveJournal">LiveJournal</li>
+	</ul>
+
+</body>
+</html>
