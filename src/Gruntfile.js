@@ -58,6 +58,12 @@ module.exports = function(grunt) {
 				flatten: true,
 				src: '../*.css',
 				dest: '../'
+			},
+			contrib: {
+				expand: true,
+				flatten: true,
+				src: '../contrib/css/*.css',
+				dest: '../contrib/css/'
 			}
 		},
 		csso: {
