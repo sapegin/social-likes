@@ -3,16 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<title>Social Likes</title>
-	<link href="../social-likes_classic.css" rel="stylesheet">
+	<!-- <link href="../social-likes_classic.css" rel="stylesheet"> -->
+	<link href="../social-likes_flat.css" rel="stylesheet">
 	<!--script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script-->
 	<script src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
 	<script src="social-likes.js"></script>
 
+<style>
+body {
+	font-family:Arial;
+	}
+.dark-bg {
+	margin:0 -20px;
+	padding:20px;
+	background:#333;
+	}
+</style>
+
 </head>
 <body>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
 	<h3>Standard</h3>
 	<ul class="social-likes" data-url="http://mail.ru/">
 		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
@@ -25,16 +34,57 @@
 		<li class="pinterest" data-media="http://i.telegraph.co.uk/multimedia/archive/01882/mail-ru_1882101c.jpg" title="Опубликовать ссылку в Пинтересте">Pinterest</li>
 	</ul>
 
+	<h3>Standard (dark background)</h3>
+	<div class="dark-bg">
+		<ul class="social-likes" data-url="http://mail.ru/">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" data-counter="http://sapegin.ru/api/social-likes/googleplusonecount.php?url={url}&amp;callback=?" title="Опубликовать ссылку в Гугл-плюсе">Google+</li>
+			<li class="livejournal" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+			<li class="pinterest" data-media="http://i.telegraph.co.uk/multimedia/archive/01882/mail-ru_1882101c.jpg" title="Опубликовать ссылку в Пинтересте">Pinterest</li>
+		</ul>
+	</div>
+
+<table>
+	<tr>
+		<td style="vertical-align:top">
+			<h3>Vertical</h3>
+			<ul class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
+				<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+				<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
+				<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+				<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+				<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+				<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+				<li class="livejournal" data-title="Cвой текст для ЖЖ" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+				<li class="pinterest" data-media="http://i.telegraph.co.uk/multimedia/archive/01882/mail-ru_1882101c.jpg" title="Опубликовать ссылку в Pinterest">Pinterest</li>
+			</ul>
+		</td>
+		<td style="padding-left:40px">
+			<h3 style="margin-bottom:3px">Vertical (dark background)</h3>
+			<div class="dark-bg">
+				<ul class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
+					<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+					<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
+					<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+					<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+					<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+					<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+					<li class="livejournal" data-title="Cвой текст для ЖЖ" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
+					<li class="pinterest" data-media="http://i.telegraph.co.uk/multimedia/archive/01882/mail-ru_1882101c.jpg" title="Опубликовать ссылку в Pinterest">Pinterest</li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+
 	<h3>Vertical (no counters)</h3>
-	<ul class="social-likes social-likes_vertical" data-url="http://mail.ru/" data-title="Свой текст" data-counters="no">
+	<ul class="social-likes social-likes_vertical" data-counters="no">
 		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-		<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-		<li class="livejournal" data-title="Cвой текст для ЖЖ" title="Опубликовать ссылку в ЖЖ">LiveJournal</li>
-		<li class="pinterest" data-media="http://i.telegraph.co.uk/multimedia/archive/01882/mail-ru_1882101c.jpg" title="Опубликовать ссылку в Pinterest">Pinterest</li>
 	</ul>
 
 	<h3>Single button</h3>

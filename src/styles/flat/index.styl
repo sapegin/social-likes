@@ -1,0 +1,212 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+// Flat skin
+// Design: Genn Osipenko, http://genn.org/
+
+@import '../base'
+
+.social-likes,
+.social-likes__widget {
+	line-height:20px;
+	font-size:14px;
+}
+
+.social-likes {
+	margin:-6px;
+	line-height:26px;
+
+	&__widget {
+		margin:6px;
+	}
+
+	&__button,
+	&__counter {
+		box-sizing:border-box;
+		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
+		line-height:24px;
+		vertical-align:middle;
+	}
+
+	&__button {
+		padding:1px 10px 1px 28px;
+		font-size:18px;
+		font-weight:bold;
+		color:#fff;
+		// transition:border .1s ease-in-out, color .2s ease-in-out;
+	}
+
+	&__icon {
+		top:2px;
+		width:25px;
+		height:22px;
+		background-repeat:no-repeat;
+	}
+
+	&__counter {
+		padding:1px 4px;
+		font-size:15px;
+		font-weight:normal;
+		color:#000;
+		background:#fff;
+	}
+
+	&__close {
+		padding:2px 4px;
+		font:16px Verdana, Geneva, Tahoma, sans-serif;
+		color:#999;
+	}
+	&__close:hover {
+		color:#111;
+	}
+
+	// Vertical mode
+	&_vertical {
+		margin:-12px -6px;
+
+		.social-likes__widget {
+			margin:12px 6px;
+		}
+
+		.social-likes__button {
+			min-width:170px;
+		}
+
+		.social-likes__counter {
+			min-width:40px;
+			text-align:right;
+		}
+	}
+
+	// Icons only mode
+	&_notext {
+		.social-likes__button {
+			width:26px;
+		}
+	}
+
+	// Single button mode
+	&_single {
+		top:-6px;
+		left:-6px;
+		padding:6px 6px 4px;
+		background:#fff;
+		box-shadow:0 0 15px hsla(0,0%,0%,.3);
+	}
+	&_single &__widget:first-of-type {
+		margin-right:14px;  // Prevent collapse of widget and close button
+	}
+}
+
+
+// Single button
+.social-likes__button_single {
+	// padding-left:19px;
+	background:#87c44d;
+}
+// .social-likes__button_single:hover {
+// 	background:#f4f4f4;
+// }
+.social-likes__icon_single {
+	background-image:embedurl('icons/single.svg');
+	left:2px;
+}
+
+
+
+// Facebook
+.social-likes__button_facebook {
+	background:#3d5b95;
+}
+// .social-likes__button_facebook:hover {
+// 	background:#c0cdf3;
+// }
+.social-likes__icon_facebook {
+	background-image:embedurl('icons/facebook.svg');
+	top:4px;
+}
+
+
+// Twitter
+.social-likes__button_twitter {
+	background:#24aadd;
+}
+// .social-likes__button_twitter:hover {
+// 	background:#bfdfed;
+// }
+.social-likes__icon_twitter {
+	background-image:embedurl('icons/twitter.svg');
+}
+
+
+// Google+
+.social-likes__button_plusone {
+	// padding-left:12px;
+	background:#d23e30;
+}
+// .social-likes__button_plusone:hover {
+// 	background:#f4f4f4;
+// }
+.social-likes__icon_plusone {
+	background-image:embedurl('icons/plusone.svg');
+	top:4px;
+}
+
+
+// Mail.ru
+// .social-likes__button_mailru {
+// background:#004584;
+// }
+// .social-likes__button_mailru:hover {
+// 	background:#001e5d;
+// }
+// .social-likes__icon_mailru {
+// 	background-image:embedurl('icons/mailru.svg');
+// }
+// .social-likes_notext {
+// 	.social-likes__icon_mailru {
+// 		background-position:2px 2px;
+// 	}
+// }
+
+
+// Vkontakte
+.social-likes__button_vkontakte {
+	background:#587e9f;
+}
+// .social-likes__button_vkontakte:hover {
+// 	background:#4e80ab;
+// }
+.social-likes__icon_vkontakte {
+	background-image:embedurl('icons/vkontakte.svg');
+	left:1px;
+	.social-likes_notext & {
+		left:0;
+	}
+}
+
+// Odnoklassniki
+// .social-likes__button_odnoklassniki {
+// 	background:#f6900b;
+// }
+// .social-likes__button_odnoklassniki:hover {
+// 	background:#f69a21;
+// }
+// .social-likes__icon_odnoklassniki {
+// 	background-image:embedurl('icons/odnoklassniki.svg');
+// }
+// .social-likes_notext {
+// 	.social-likes__icon_odnoklassniki {
+// 		background-position:5px 3px;
+// 	}
+// }
+
+
+// Pinterest
+.social-likes__button_pinterest {
+	background:#cb132d;
+}
+// .social-likes__button_pinterest:hover {
+// 	background:#efefef;
+// }
+.social-likes__icon_pinterest {
+	background-image:embedurl('icons/pinterest.svg');
+}
