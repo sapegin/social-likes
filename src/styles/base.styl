@@ -95,9 +95,16 @@
 	}
 	&_single {
 		position:absolute;
-		display:none;
 		text-align:left;
 		z-index:99999;
+		visibility:hidden;
+		opacity:0;
+		transition:visibility 0s .3s, opacity .3s ease-out;
+		&.social-likes-is-visible {
+			visibility:visible;
+			opacity:1;
+			transition:opacity .3s ease-out;
+		}
 	}
 }
 

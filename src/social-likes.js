@@ -21,7 +21,7 @@
 }(function ($) { 'use strict';
 
 var prefix = 'social-likes__',
-	fadeSpeed = 'fast';
+	visibleClass = 'social-likes-is-visible';
 
 
 /**
@@ -234,8 +234,6 @@ SocialLikes.prototype = {
 		var defaultLeft = parseInt(container.css('left'), 10),
 			defaultTop = parseInt(container.css('top'), 10);
 
-		container.hide();
-
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
 			'text': container.data('single-title') || 'Share'
@@ -259,7 +257,7 @@ SocialLikes.prototype = {
 			return false;
 		});
 		close.click(function() {
-			container.fadeOut(fadeSpeed);
+			container.removeClass(visibleClass);
 		});
 
 		this.wrapper = wrapper;
@@ -472,7 +470,7 @@ function getElementClassNames(elem, mod) {
 function closeOnClick(elem) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
-		elem.fadeOut(fadeSpeed);
+		elem.removeClass(visibleClass);
 		doc.off(events, handler);
 	}
 	var doc = $(document),
@@ -484,7 +482,6 @@ function showInViewport(elem, offset) {
 	if (document.documentElement.getBoundingClientRect) {
 		var left = parseInt(elem.css('left'), 10),
 			top = parseInt(elem.css('top'), 10);
-		elem.css('visibility', 'hidden').show();
 
 		var rect = elem[0].getBoundingClientRect();
 		if (rect.left < offset)
@@ -496,10 +493,8 @@ function showInViewport(elem, offset) {
 			elem.css('top', offset - rect.top + top);
 		else if (rect.bottom > window.innerHeight - offset)
 			elem.css('top', window.innerHeight - rect.bottom - offset + top);
-
-		elem.hide().css('visibility', 'visible');
 	}
-	elem.fadeIn(fadeSpeed);
+	elem.addClass(visibleClass);
 }
 
 
