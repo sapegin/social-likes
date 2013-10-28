@@ -174,6 +174,18 @@ var socialLikesButtons = {
 };
 ```
 
+If you know the social network search page's url, you can make a link to results of searching in this network. There are search urls for Twitter and VKontakte by default.
+
+```javascript
+var socialLikesButtons = {
+	twitter: {
+		...
+		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
+	}
+};
+``` 
+
+
 Add some CSS:
 
 ```css
