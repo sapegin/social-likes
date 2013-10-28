@@ -186,9 +186,14 @@ SocialLikes.prototype = {
 			attr: 'html',
 			defaultValue: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
 		},
-		pageCounters: {
+		showCounters: {
 			attr: 'counters',
 			defaultValue: 'yes',
+			convert: function(value) { return value === 'yes'; }
+		},
+		showZeroes: {
+			attr: 'zeroes',
+			defaultValue: 'no',
 			convert: function(value) { return value === 'yes'; }
 		}
 	},
@@ -298,7 +303,7 @@ Button.prototype = {
 		this.detectParams();
 		this.initHtml();
 
-		if (this.options.pageCounters) {
+		if (this.options.showCounters) {
 			if (this.options.counterNumber) {
 				this.updateCounter(this.options.counterNumber);
 			}
@@ -392,7 +397,7 @@ Button.prototype = {
 
 	updateCounter: function(number) {
 		number = parseInt(number, 10);
-		if (!number) return;
+		if (!number && !this.options.showZeroes) return;
 
 		var counterElem = $('<span>', {
 			'class': this.getElementClassNames('counter'),
