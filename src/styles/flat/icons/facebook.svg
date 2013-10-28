@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="22"><path fill="#fff" d="M15.842 22.041v-7.905h2.653l.397-3.081h-3.051v-1.968c0-.892.248-1.5 1.526-1.5h1.633v-2.756c-.282-.037-1.251-.121-2.377-.121-2.353 0-3.963 1.436-3.963 4.072v2.272h-2.66v3.081h2.66v7.905h3.182z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="260px" height="501px" viewBox="0 0 260 501" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M168.768889,500.71 L168.768889,272.650454 L245.411111,272.650454 L256.88,183.763488 L168.74,183.763488 L168.74,126.986614 C168.74,101.252381 175.904444,83.7115579 212.824444,83.7115579 L260,83.7115579 L260,4.20085454 C251.853333,3.13340315 223.86,0.71 191.331111,0.71 C123.355556,0.71 76.8444444,42.1386539 76.8444444,118.187353 L76.8444444,183.734638 L0,183.734638 L0,272.621603 L76.8444444,272.621603 L76.8444444,500.68115 L168.768889,500.68115 L168.768889,500.68115 L168.768889,500.71 L168.768889,500.71 Z M168.768889,500.71" id="Shape" fill="#000000" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

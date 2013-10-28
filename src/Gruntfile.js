@@ -77,12 +77,20 @@ module.exports = function(grunt) {
 				dest: '../'
 			}
 		},
-		svgmin: {
-			dist: {
-				expand: true,
-				flatten: true,
-				src: 'styles/flat/icons_src/*.svg',
-				dest: 'styles/flat/icons/'
+		webfont: {
+			flat: {
+				src: 'styles/flat/icons/*.svg',
+				dest: 'styles/flat/font/',
+				options: {
+					font: 'social-likes',
+					types: 'woff,ttf',
+					embed: true,
+					template: 'styles/flat/webfont.styl',
+					stylesheet: 'styl',
+					relativeFontPath: '',
+					hashes: false,
+					htmlDemo: false
+				}
 			}
 		},
 		watch: {
@@ -101,7 +109,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'svgmin', 'stylus', 'autoprefixer', 'csso']);
-	grunt.registerTask('build', ['uglify', 'imgo', 'svgmin', 'stylus', 'autoprefixer', 'csso']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'webfont', 'stylus', 'autoprefixer', 'csso']);
+	grunt.registerTask('build', ['uglify', 'imgo', 'webfont', 'stylus', 'autoprefixer', 'csso']);
 
 };

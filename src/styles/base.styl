@@ -7,29 +7,31 @@
 	text-indent:0;
 	padding:0;
 	border:0;
-	word-spacing:0;
+	word-spacing:0 !important;
+	text-indent:0 !important;
 }
 
 .social-likes {
-	list-style:none;
+	list-style:none !important;
 
-	li {
-		display:inline-block;
-	}
-	&_vertical li {
-		display:block;
-	}
 	&__widget {
 		display:inline-block;
 		position:relative;
 		white-space:nowrap;
+		overflow:hidden;
+		&:before,
+		&:after {
+			display:none !important;  // Remove nice bullets
+		}
 	}
-	&__widget:before {
-		display:none;  // Remove nice bullets
+	&_vertical &__widget {
+		display:block;
 	}
 
 	&__button,
+	&__icon,
 	&__counter {
+		text-decoration:none;
 		text-rendering:optimizeLegibility;
 	}
 
@@ -100,7 +102,8 @@
 		visibility:hidden;
 		opacity:0;
 		transition:visibility 0s .3s, opacity .3s ease-out;
-		&.social-likes-is-visible {
+		backface-visibility:hidden;
+		&.social-likes_visible {
 			visibility:visible;
 			opacity:1;
 			transition:opacity .3s ease-out;

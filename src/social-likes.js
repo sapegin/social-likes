@@ -20,8 +20,9 @@
 	}
 }(function ($) { 'use strict';
 
-var prefix = 'social-likes__',
-	visibleClass = 'social-likes-is-visible';
+var prefix = 'social-likes';
+var classPrefix = prefix + '__';
+var visibleClass = prefix + '_visible';
 
 
 /**
@@ -193,10 +194,10 @@ SocialLikes.prototype = {
 	},
 	init: function() {
 		// Add class in case of manual initialization
-		this.container.addClass('social-likes');
+		this.container.addClass(prefix);
 
 		this.readOptions();
-		this.single = this.container.hasClass('social-likes_single');
+		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
 
@@ -205,7 +206,7 @@ SocialLikes.prototype = {
 		}
 
 		var options = this.options;
-		this.container.find('li').each(function() {
+		this.container.children().each(function() {
 			new Button($(this), options);
 		});
 	},
@@ -227,8 +228,8 @@ SocialLikes.prototype = {
 	},
 	makeSingleButton: function() {
 		var container = this.container;
-		container.addClass('social-likes_vertical');
-		container.wrap($('<div>', {'class': 'social-likes_single-w'}));
+		container.addClass(prefix + '_vertical');
+		container.wrap($('<div>', {'class': prefix + '_single-w'}));
 		var wrapper = container.parent();
 
 		var defaultLeft = parseInt(container.css('left'), 10),
@@ -242,7 +243,7 @@ SocialLikes.prototype = {
 		wrapper.append(button);
 
 		var close = $('<li>', {
-			'class': prefix + 'close',
+			'class': classPrefix + 'close',
 			'html': '&times;'
 		});
 		container.append(close);
@@ -262,7 +263,7 @@ SocialLikes.prototype = {
 
 		this.wrapper = wrapper;
 
-		this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
+		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 	},
 	updateCounter: function(e, service, number) {
 		if (!number) return;
@@ -271,7 +272,7 @@ SocialLikes.prototype = {
 		this.getCounterElem().text(this.number);
 	},
 	getCounterElem: function() {
-		var counterElem = this.wrapper.find('.' + prefix + 'counter_single');
+		var counterElem = this.wrapper.find('.' + classPrefix + 'counter_single');
 		if (!counterElem.length) {
 			counterElem = $('<span>', {
 				'class': getElementClassNames('counter', 'single')
@@ -399,7 +400,7 @@ Button.prototype = {
 		});
 		this.widget.append(counterElem);
 
-		this.widget.trigger('counter.social-likes', [this.service, number]);
+		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},
 
 	click: function(e) {
@@ -463,7 +464,7 @@ function template(tmpl, context, filter) {
 }
 
 function getElementClassNames(elem, mod) {
-	var cls = prefix + elem;
+	var cls = classPrefix + elem;
 	return cls + ' ' + cls + '_' + mod;
 }
 
@@ -502,7 +503,7 @@ function showInViewport(elem, offset) {
  * Auto initialization
  */
 $(function() {
-	$('.social-likes').socialLikes();
+	$('.' + prefix).socialLikes();
 });
 
 }));

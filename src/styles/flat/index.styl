@@ -3,32 +3,31 @@
 // Design: Genn Osipenko, http://genn.org/
 
 @import '../base'
+@import 'font/social-likes'
 
-.social-likes,
-.social-likes__widget {
-	line-height:20px;
-	font-size:14px;
-}
+light_gray = #999;
 
 .social-likes {
-	margin:-6px;
-	line-height:26px;
+	margin:-.5em;
+	font-size:14px;
+	line-height:1.5;
 
 	&__widget {
-		margin:6px;
+		margin:.5em;
+		line-height:1.5;
+		background:#fff;
 	}
 
 	&__button,
 	&__counter {
 		box-sizing:border-box;
-		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
-		line-height:24px;
+		font-family:"Helvetica Neue", Arial, sans-serif;
 		vertical-align:middle;
 	}
 
 	&__button {
-		padding:1px 10px 1px 28px;
-		font-size:18px;
+		padding:.1em .7em .2em 1.65em;
+		font-size:1.2em;
 		font-weight:bold;
 		color:#fff;
 		-webkit-font-smoothing:antialiased;
@@ -36,24 +35,27 @@
 	}
 
 	&__icon {
-		top:2px;
-		width:25px;
-		height:22px;
-		background-repeat:no-repeat;
+		top:0;
+		left:.21em;
+		font-family:"social-likes";
+		font-weight:normal;
+		font-style:normal;
+		speak:none;
+		text-transform:none;
+		font-size:1.25em;
+		vertical-align:baseline;
 	}
 
 	&__counter {
-		padding:1px 4px;
-		font-size:15px;
+		padding:.4em .5em .25em;
 		font-weight:normal;
 		color:#000;
-		background:#fff;
 	}
 
 	&__close {
-		padding:2px 4px;
-		font:16px Verdana, Geneva, Tahoma, sans-serif;
-		color:#999;
+		padding:.2em .4em;
+		font:1.2em Verdana, Geneva, Tahoma, sans-serif;
+		color:light_gray;
 	}
 	&__close:hover {
 		color:#111;
@@ -61,153 +63,175 @@
 
 	// Vertical mode
 	&_vertical {
-		margin:-12px -6px;
-
+		margin:-1em -.5em;
 		.social-likes__widget {
-			margin:12px 6px;
+			margin:1em .5em;
 		}
-
 		.social-likes__button {
-			min-width:170px;
+			min-width:11em;
 		}
-
 		.social-likes__counter {
-			min-width:40px;
+			min-width:3em;
 			text-align:right;
 		}
+	}
+
+	// Light mode
+	&_light .social-likes__button,
+	&_single-light + .social-likes__button {
+		min-width:0;
+		background:none;
+		font-weight:normal;
+		text-decoration:underline;
+		-webkit-font-smoothing:subpixel-antialiased;
+		-moz-osx-font-smoothing:auto;
+	}
+	&_light .social-likes__counter,
+	&_single-light + .social-likes__button + .social-likes__counter {
+		min-width:0;
+		padding-left:0;
+		text-align:left;
+		color:light_gray;
 	}
 
 	// Icons only mode
 	&_notext {
 		.social-likes__button {
-			width:26px;
+			width:2em;
+		}
+		.social-likes__icon {
+			margin-left:.1em;
+		}
+	}
+
+	// Icons only light
+	&_notext&_light {
+		&,
+		.social-likes__widget {
+			margin:0;
 		}
 	}
 
 	// Single button mode
 	&_single {
-		top:-6px;
-		left:-6px;
-		padding:6px 6px 4px;
+		top:-.5em;
+		left:-.5em;
+		padding:.35em .5em .25em;
 		background:#fff;
-		box-shadow:0 0 15px hsla(0,0%,0%,.3);
+		border:1px solid #ddd;
 	}
 	&_single &__widget:first-of-type {
-		margin-right:14px;  // Prevent collapse of widget and close button
+		margin-right:1em;  // Prevent collapse of widget and close button
 	}
 }
-
 
 // Single button
 .social-likes__button_single {
-	// padding-left:19px;
 	background:#87c44d;
+	font-size:.9em;
+	.social-likes_single-light + & {
+		color:@background;
+	}
 }
-// .social-likes__button_single:hover {
-// 	background:#f4f4f4;
-// }
+.social-likes__counter_single {
+	font-size:.75em;
+}
 .social-likes__icon_single {
-	background-image:embedurl('icons/single.svg');
-	left:2px;
+	top:.25em;
 }
-
-
 
 // Facebook
 .social-likes__button_facebook {
 	background:#3d5b95;
+	.social-likes_light & {
+		color:@background;
+	}
 }
-// .social-likes__button_facebook:hover {
-// 	background:#c0cdf3;
-// }
 .social-likes__icon_facebook {
-	background-image:embedurl('icons/facebook.svg');
-	top:4px;
+	left:.38em;
+	.social-likes_notext & {
+		margin-left:.15em;
+	}
 }
-
 
 // Twitter
 .social-likes__button_twitter {
 	background:#24aadd;
+	.social-likes_light & {
+		color:@background;
+	}
 }
-// .social-likes__button_twitter:hover {
-// 	background:#bfdfed;
-// }
 .social-likes__icon_twitter {
-	background-image:embedurl('icons/twitter.svg');
+	top:.1em;
+	.social-likes_light & {
+		left:.1em;
+	}
 }
-
 
 // Google+
 .social-likes__button_plusone {
-	// padding-left:12px;
 	background:#d23e30;
+	.social-likes_light & {
+		color:@background;
+	}
 }
-// .social-likes__button_plusone:hover {
-// 	background:#f4f4f4;
-// }
 .social-likes__icon_plusone {
-	background-image:embedurl('icons/plusone.svg');
-	top:4px;
+	.social-likes_notext & {
+		margin-left:0;
+	}
 }
-
 
 // Mail.ru
-// .social-likes__button_mailru {
-// background:#004584;
-// }
-// .social-likes__button_mailru:hover {
-// 	background:#001e5d;
-// }
-// .social-likes__icon_mailru {
-// 	background-image:embedurl('icons/mailru.svg');
-// }
-// .social-likes_notext {
-// 	.social-likes__icon_mailru {
-// 		background-position:2px 2px;
-// 	}
-// }
-
+.social-likes__button_mailru {
+	background:#00468c;
+	.social-likes_light & {
+		color:@background;
+	}
+}
+.social-likes__icon_mailru {
+	.social-likes_light & {
+		left:.1em;
+	}
+	.social-likes_notext & {
+		margin-left:.075em;
+	}
+}
 
 // Vkontakte
 .social-likes__button_vkontakte {
 	background:#587e9f;
-}
-// .social-likes__button_vkontakte:hover {
-// 	background:#4e80ab;
-// }
-.social-likes__icon_vkontakte {
-	background-image:embedurl('icons/vkontakte.svg');
-	left:1px;
-	.social-likes_notext & {
-		left:0;
+	.social-likes_light & {
+		color:@background;
 	}
+}
+.social-likes__icon_vkontakte {
+	top:.2em;
+	left:.1em;
 }
 
 // Odnoklassniki
-// .social-likes__button_odnoklassniki {
-// 	background:#f6900b;
-// }
-// .social-likes__button_odnoklassniki:hover {
-// 	background:#f69a21;
-// }
-// .social-likes__icon_odnoklassniki {
-// 	background-image:embedurl('icons/odnoklassniki.svg');
-// }
-// .social-likes_notext {
-// 	.social-likes__icon_odnoklassniki {
-// 		background-position:5px 3px;
-// 	}
-// }
-
+.social-likes__button_odnoklassniki {
+	background:#f59310;
+	.social-likes_light & {
+		color:@background;
+	}
+}
+.social-likes__icon_odnoklassniki {
+	left:.4em;
+	.social-likes_light & {
+		left:.25em;
+	}
+}
 
 // Pinterest
 .social-likes__button_pinterest {
 	background:#cb132d;
+	.social-likes_light & {
+		color:@background;
+	}
 }
-// .social-likes__button_pinterest:hover {
-// 	background:#efefef;
-// }
 .social-likes__icon_pinterest {
-	background-image:embedurl('icons/pinterest.svg');
+	.social-likes_light & {
+		left:.1em;
+	}
 }
