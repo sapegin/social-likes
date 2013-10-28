@@ -29,41 +29,26 @@ module.exports = function(grunt) {
 			}
 		},
 		stylus: {
+			options: {
+				urlfunc: 'embedurl',
+				use: [
+					function() { return require('autoprefixer-stylus')('last 2 versions', 'ie 8'); }
+				]
+			},
 			compile: {
 				files: {
-					'../social-likes_flat.css': 'styles/flat/index.styl',
+					'../social-likes.css': 'styles/flat/index.styl',
 					'../social-likes_classic.css': 'styles/classic/index.styl'
-				},
-				options: {
-					'urlfunc': 'embedurl'
 				}
 			},
 			contrib: {
+				options: {
+					compress: false
+				},
 				files: {
 					'../contrib/css/github.css': '../contrib/styles/github.styl',
 					'../contrib/css/livejournal.css': '../contrib/styles/livejournal.styl'
-				},
-				options: {
-					'urlfunc': 'embedurl',
-					'compress': false
 				}
-			}
-		},
-		autoprefixer: {
-			options: {
-				browsers: ['last 2 version', 'ie 8']
-			},
-			dist: {
-				expand: true,
-				flatten: true,
-				src: '../*.css',
-				dest: '../'
-			},
-			contrib: {
-				expand: true,
-				flatten: true,
-				src: '../contrib/css/*.css',
-				dest: '../contrib/css/'
 			}
 		},
 		csso: {
@@ -99,7 +84,7 @@ module.exports = function(grunt) {
 			},
 			stylus: {
 				files: 'styles/**',
-				tasks: ['stylus:compile', 'autoprefixer']
+				tasks: ['stylus:compile']
 			}
 		},
 		imgo: {
@@ -109,7 +94,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'webfont', 'stylus', 'autoprefixer', 'csso']);
-	grunt.registerTask('build', ['uglify', 'imgo', 'webfont', 'stylus', 'autoprefixer', 'csso']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'webfont', 'stylus', 'csso']);
+	grunt.registerTask('build', ['uglify', 'imgo', 'webfont', 'stylus', 'csso']);
 
 };
