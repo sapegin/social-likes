@@ -14,10 +14,10 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: '.jshintrc'
 			},
-			files: [
-				'grunt.js',
-				'social-likes.js'
-			]
+			files: ['social-likes.js']
+		},
+		jscs: {
+			files: ['<%= jshint.files %>']
 		},
 		uglify: {
 			options: {
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'uglify', 'imgo', 'webfont', 'stylus', 'csso']);
+	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'imgo', 'webfont', 'stylus', 'csso']);
 	grunt.registerTask('build', ['uglify', 'imgo', 'webfont', 'stylus', 'csso']);
 
 };

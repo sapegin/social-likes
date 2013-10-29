@@ -12,13 +12,14 @@
 
 /*global define:false, socialLikesButtons:false */
 
-(function (factory) {  // Try to register as an anonymous AMD module
+(function(factory) {  // Try to register as an anonymous AMD module
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
-	} else {
+	}
+	else {
 		factory(jQuery);
 	}
-}(function ($) { 'use strict';
+}(function($) { 'use strict';	
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
@@ -56,8 +57,10 @@ var services = {
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
-			for (var url in data) if (data.hasOwnProperty(url)) {
-				return data[url].shares;
+			for (var url in data) {
+				if (data.hasOwnProperty(url)) {
+					return data[url].shares;
+				}
 			}
 		},
 		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
@@ -129,9 +132,9 @@ var counters = {
 			return servicePromises[url];
 		}
 		else {
-			var options = $.extend({}, services[service], extraOptions),
-				deferred = $.Deferred(),
-				jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
+			var options = $.extend({}, services[service], extraOptions);
+			var deferred = $.Deferred();
+			var jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
 
 			if ($.isFunction(options.counter)) {
 				options.counter(jsonUrl, deferred);
@@ -221,10 +224,19 @@ SocialLikes.prototype = {
 		this.options = {};
 		for (var key in this.optionsMap) {
 			var option = this.optionsMap[key];
-			this.options[key] = this.container.data(option.attr) ||
-				($.isFunction(option.defaultValue) ? $.proxy(option.defaultValue, this)() : option.defaultValue);
-			if ($.isFunction(option.convert))
-				this.options[key] = option.convert(this.options[key]);
+			var value = this.container.data(option.attr);
+			if (!value) {
+				if ($.isFunction(option.defaultValue)) {
+					value = $.proxy(option.defaultValue, this)();
+				}
+				else {
+					value = option.defaultValue;
+				}
+			}
+			if ($.isFunction(option.convert)) {
+				value = option.convert(value);
+			}
+			this.options[key] = value;
 		}
 	},
 	initUserButtons: function() {
@@ -239,8 +251,8 @@ SocialLikes.prototype = {
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
 		var wrapper = container.parent();
 
-		var defaultLeft = parseInt(container.css('left'), 10),
-			defaultTop = parseInt(container.css('top'), 10);
+		var defaultLeft = parseInt(container.css('left'), 10);
+		var defaultTop = parseInt(container.css('top'), 10);
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
@@ -350,8 +362,8 @@ Button.prototype = {
 	},
 
 	initHtml: function() {
-		var options = this.options,
-			widget = this.widget;
+		var options = this.options;
+		var widget = this.widget;
 		var isLink = !!options.clickUrl;
 
 		widget.removeClass(this.service);
@@ -388,8 +400,10 @@ Button.prototype = {
 
 	cloneDataAttrs: function(source, destination) {
 		var data = source.data();
-		for (var key in data) if (data.hasOwnProperty(key)) {
-			destination.data(key, data[key]);
+		for (var key in data) {
+			if (data.hasOwnProperty(key)) {
+				destination.data(key, data[key]);
+			}
 		}
 	},
 
@@ -414,8 +428,8 @@ Button.prototype = {
 	},
 
 	click: function(e) {
-		var options = this.options,
-			process = true;
+		var options = this.options;
+		var process = true;
 		if ($.isFunction(options.click)) {
 			process = options.click.call(this, e);
 		}
@@ -441,8 +455,8 @@ Button.prototype = {
 	},
 
 	openPopup: function(url, params) {
-		var left = Math.round(screen.width/2 - params.width/2),
-			top = 0;
+		var left = Math.round(screen.width/2 - params.width/2);
+		var top = 0;
 		if (screen.height > params.height) {
 			top = Math.round(screen.height/3 - params.height/2);
 		}
@@ -451,7 +465,8 @@ Button.prototype = {
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 		if (win) {
 			win.focus();
-		} else {
+		}
+		else {
 			location.href = url;
 		}
 	}
@@ -484,15 +499,15 @@ function closeOnClick(elem) {
 		elem.removeClass(visibleClass);
 		doc.off(events, handler);
 	}
-	var doc = $(document),
-		events = 'click touchstart keydown';
+	var doc = $(document);
+	var events = 'click touchstart keydown';
 	doc.on(events, handler);
 }
 
 function showInViewport(elem, offset) {
 	if (document.documentElement.getBoundingClientRect) {
-		var left = parseInt(elem.css('left'), 10),
-			top = parseInt(elem.css('top'), 10);
+		var left = parseInt(elem.css('left'), 10);
+		var top = parseInt(elem.css('top'), 10);
 
 		var rect = elem[0].getBoundingClientRect();
 		if (rect.left < offset)

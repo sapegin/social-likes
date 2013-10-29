@@ -12,6 +12,7 @@
     "grunt-csso": "~0.5.0",
     "matchdep": "~0.3.0",
     "grunt-webfont": "~0.1.12",
-    "autoprefixer-stylus": "0.0.2"
+    "autoprefixer-stylus": "0.0.2",
+    "grunt-jscs-checker": "~0.2.2"
   }
 }
