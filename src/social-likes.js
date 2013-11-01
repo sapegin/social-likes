@@ -165,16 +165,16 @@ var counters = {
 /**
  * jQuery plugin
  */
-$.fn.socialLikes = function() {
+$.fn.socialLikes = function(options) {
 	return this.each(function() {
-		new SocialLikes($(this));
+		new SocialLikes($(this), options);
 	});
 };
 
 
-function SocialLikes(container) {
+function SocialLikes(container, options) {
 	this.container = container;
-	this.init();
+	this.init(options || {});
 }
 
 SocialLikes.prototype = {
@@ -202,17 +202,17 @@ SocialLikes.prototype = {
 			convert: function(value) { return value === 'yes'; }
 		}
 	},
-	init: function() {
+	init: function(options) {
 		// Add class in case of manual initialization
 		this.container.addClass(prefix);
 
-		this.readOptions();
+		this.readOptions(options);
 		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
 
 		if (this.single) {
-			this.makeSingleButton();
+			this.makeSingleButton(options);
 		}
 
 		var options = this.options;
@@ -220,11 +220,13 @@ SocialLikes.prototype = {
 			new Button($(this), options);
 		});
 	},
-	readOptions: function() {
+	readOptions: function(options) {
 		this.options = {};
-		for (var key in this.optionsMap) {
+		for (var key in this.optionsMap) {			
 			var option = this.optionsMap[key];
-			var value = this.container.data(option.attr);
+			var paramOption = options[option.attr];
+			var value = paramOption || this.container.data(option.attr);
+
 			if (!value) {
 				if ($.isFunction(option.defaultValue)) {
 					value = $.proxy(option.defaultValue, this)();
@@ -245,7 +247,7 @@ SocialLikes.prototype = {
 		}
 		this.userButtonInited = true;
 	},
-	makeSingleButton: function() {
+	makeSingleButton: function(options) {
 		var container = this.container;
 		container.addClass(prefix + '_vertical');
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
@@ -256,7 +258,7 @@ SocialLikes.prototype = {
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
-			'text': container.data('single-title') || 'Share'
+			'text': options['single-title'] || container.data('single-title') || 'Share'
 		});
 		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
 		wrapper.append(button);
