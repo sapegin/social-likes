@@ -6,7 +6,7 @@
  *
  * @requires jQuery
  * @author Artem Sapegin
- * @copyright 2012 Artem Sapegin (sapegin.me)
+ * @copyright 2013 Artem Sapegin (sapegin.me)
  * @license MIT
  */
 
@@ -359,7 +359,7 @@ Button.prototype = {
 			else
 				this.options.counterNumber = number;
 		}
-		
+
 		var customTitle = this.widget.data('title');
 		if (customTitle)
 			this.options.pageTitle = customTitle;
@@ -461,14 +461,20 @@ Button.prototype = {
 	},
 
 	openPopup: function(url, params) {
-		var left = Math.round(screen.width/2 - params.width/2),
-			top = 0;
+		var popupLeft = 0;
+		var popupTop = 0;
+    var dualLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+    var dualTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+
+    popupLeft = Math.round(screen.width / 2 - params.width / 2 + dualLeft);
+
 		if (screen.height > params.height) {
-			top = Math.round(screen.height/3 - params.height/2);
+			popupTop = Math.round(screen.height / 3 - params.height / 2 + dualTop);
 		}
 
-		var win = window.open(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
+		var win = window.open(url, 'sl_' + this.service, 'left=' + popupLeft + ',top=' + popupTop + ',' +
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
+
 		if (win) {
 			win.focus();
 		} else {
