@@ -463,14 +463,12 @@ Button.prototype = {
 	openPopup: function(url, params) {
 		var popupLeft = 0;
 		var popupTop = 0;
-    var dualLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-    var dualTop = window.screenTop != undefined ? window.screenTop : screen.top;
+    var dualLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+    var dualTop = window.screenTop !== undefined ? window.screenTop : screen.top;
 
-		// popupLeft = Math.round(screen.width/2 - params.width/2),
     popupLeft = Math.round(screen.width / 2 - params.width / 2 + dualLeft);
 
 		if (screen.height > params.height) {
-			// popupTop = Math.round(screen.height/3 - params.height/2);
 			popupTop = Math.round(screen.height / 2 - params.height / 2 + dualTop);
 		}
 
