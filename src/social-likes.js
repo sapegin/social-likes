@@ -6,7 +6,7 @@
  *
  * @requires jQuery
  * @author Artem Sapegin
- * @copyright 2012 Artem Sapegin (sapegin.me)
+ * @copyright 2013 Artem Sapegin (sapegin.me)
  * @license MIT
  */
 
@@ -359,7 +359,7 @@ Button.prototype = {
 			else
 				this.options.counterNumber = number;
 		}
-		
+
 		var customTitle = this.widget.data('title');
 		if (customTitle)
 			this.options.pageTitle = customTitle;

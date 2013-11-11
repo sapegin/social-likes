@@ -183,7 +183,7 @@ var socialLikesButtons = {
 		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
 	}
 };
-``` 
+```
 
 
 Add some CSS:
@@ -230,6 +230,10 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 ## Release History
+
+### 2013-11-11 v2.0.13
+
+* Center popup on multi-monitor setup (by [@fronteed](https://github.com/fronteed)).
 
 ### 2013-08-26 v2.0.12
 
