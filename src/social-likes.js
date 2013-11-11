@@ -469,7 +469,7 @@ Button.prototype = {
     popupLeft = Math.round(screen.width / 2 - params.width / 2 + dualLeft);
 
 		if (screen.height > params.height) {
-			popupTop = Math.round(screen.height / 2 - params.height / 2 + dualTop);
+			popupTop = Math.round(screen.height / 3 - params.height / 2 + dualTop);
 		}
 
 		var win = window.open(url, 'sl_' + this.service, 'left=' + popupLeft + ',top=' + popupTop + ',' +
