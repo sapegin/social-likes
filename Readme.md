@@ -108,8 +108,7 @@ Examples:
 $('.social-likes').socialLikes({
 	url: 'https://github.com/sapegin/social-likes/',
 	title: 'Beautiful “like” buttons with counters for popular social networks',
-	html: '<a href="https://github.com/sapegin/social-likes/">Share with us!</a>',
-	counters: 'yes'
+	counters: true
 });
 ```
 

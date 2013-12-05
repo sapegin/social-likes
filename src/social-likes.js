@@ -19,7 +19,7 @@
 	else {
 		factory(jQuery);
 	}
-}(function($) { 'use strict';	
+}(function($, undefined) { 'use strict';	
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
@@ -194,12 +194,16 @@ SocialLikes.prototype = {
 		showCounters: {
 			attr: 'counters',
 			defaultValue: 'yes',
-			convert: function(value) { return value === 'yes'; }
+			convert: function(value) { return value === true || value === 'yes'; }
 		},
 		showZeroes: {
 			attr: 'zeroes',
 			defaultValue: 'no',
-			convert: function(value) { return value === 'yes'; }
+			convert: function(value) { return value === true || value === 'yes'; }
+		},
+		singleTitle: {
+			attr: 'single-title',
+			defaultValue: 'Share'
 		}
 	},
 	init: function(opts) {
@@ -224,11 +228,11 @@ SocialLikes.prototype = {
 		opts = opts || {};
 		this.options = {};
 
-		for (var key in this.optionsMap) {			
+		for (var key in this.optionsMap) {
 			var option = this.optionsMap[key];
-			var value = opts[option.attr] || this.container.data(option.attr);
+			var value = opts[option.attr] !== undefined ? opts[option.attr] : this.container.data(option.attr);
 
-			if (!value) {
+			if (value === undefined) {
 				if ($.isFunction(option.defaultValue)) {
 					value = $.proxy(option.defaultValue, this)();
 				}
@@ -259,7 +263,7 @@ SocialLikes.prototype = {
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
-			'text': this.options['single-title'] || container.data('single-title') || 'Share'
+			'text': this.options['singleTitle']
 		});
 		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
 		wrapper.append(button);
