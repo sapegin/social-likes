@@ -19,7 +19,7 @@
 	else {
 		factory(jQuery);
 	}
-}(function($) { 'use strict';	
+}(function($, undefined) { 'use strict';	
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
@@ -165,16 +165,16 @@ var counters = {
 /**
  * jQuery plugin
  */
-$.fn.socialLikes = function() {
+$.fn.socialLikes = function(opts) {
 	return this.each(function() {
-		new SocialLikes($(this));
+		new SocialLikes($(this), opts);
 	});
 };
 
 
-function SocialLikes(container) {
+function SocialLikes(container, opts) {
 	this.container = container;
-	this.init();
+	this.init(opts);
 }
 
 SocialLikes.prototype = {
@@ -194,19 +194,23 @@ SocialLikes.prototype = {
 		showCounters: {
 			attr: 'counters',
 			defaultValue: 'yes',
-			convert: function(value) { return value === 'yes'; }
+			convert: function(value) { return value === true || value === 'yes'; }
 		},
 		showZeroes: {
 			attr: 'zeroes',
 			defaultValue: 'no',
-			convert: function(value) { return value === 'yes'; }
+			convert: function(value) { return value === true || value === 'yes'; }
+		},
+		singleTitle: {
+			attr: 'single-title',
+			defaultValue: 'Share'
 		}
 	},
-	init: function() {
+	init: function(opts) {
 		// Add class in case of manual initialization
 		this.container.addClass(prefix);
 
-		this.readOptions();
+		this.readOptions(opts);
 		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
@@ -220,12 +224,15 @@ SocialLikes.prototype = {
 			new Button($(this), options);
 		});
 	},
-	readOptions: function() {
+	readOptions: function(opts) {
+		opts = opts || {};
 		this.options = {};
+
 		for (var key in this.optionsMap) {
 			var option = this.optionsMap[key];
-			var value = this.container.data(option.attr);
-			if (!value) {
+			var value = opts[option.attr] !== undefined ? opts[option.attr] : this.container.data(option.attr);
+
+			if (value === undefined) {
 				if ($.isFunction(option.defaultValue)) {
 					value = $.proxy(option.defaultValue, this)();
 				}
@@ -256,7 +263,7 @@ SocialLikes.prototype = {
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
-			'text': container.data('single-title') || 'Share'
+			'text': this.options.singleTitle
 		});
 		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
 		wrapper.append(button);

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Social Likes</title>
 	<!-- <link href="../social-likes_classic.css" rel="stylesheet"> -->
-	<link href="../social-likes_flat.css" rel="stylesheet">
+	<link href="../social-likes.css" rel="stylesheet">
 	<!--script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script-->
 	<script src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
 	<script src="social-likes.js"></script>
@@ -132,7 +132,7 @@ body {
 		<li class="plusone" title="Плюсануть в Гугле">Google+</li>
 		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
 	</ul>
-	<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/">
+	<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/" data-single-title="Share me">
 		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
 		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
@@ -211,6 +211,20 @@ sl.on('counter.social-likes', function(event, service, number) {
 	console.log('Counter', service, number);
 });
 sl.socialLikes();
+</script>
+
+	<h3>Manual initialization with JavaScript options</h3>
+	<ul id="social-likes-manual-options">
+		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+	</ul>
+	
+<script>
+$('#social-likes-manual-options').socialLikes({
+	url: 'https://github.com/sapegin/social-likes/',
+	title: 'Beautiful “like” buttons with counters for popular social networks',
+	counters: true,
+	zeroes: false
+});
 </script>
 
 	<h3>User button &amp; custom count</h3>
