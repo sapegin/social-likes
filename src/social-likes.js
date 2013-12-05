@@ -263,7 +263,7 @@ SocialLikes.prototype = {
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
-			'text': this.options['singleTitle']
+			'text': this.options.singleTitle
 		});
 		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
 		wrapper.append(button);
