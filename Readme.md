@@ -1,4 +1,7 @@
-# Social Likes [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Social Likes
+
+[![Bower version](https://badge.fury.io/bo/social-likes.png)](http://badge.fury.io/bo/social-likes)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 Beautiful “like” buttons with counters for popular social networks: Facebook, Twitter, LiveJournal, etc. Uses jQuery.
 
