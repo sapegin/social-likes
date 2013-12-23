@@ -423,13 +423,19 @@ Button.prototype = {
 		number = parseInt(number, 10);
 		if (!number && !this.options.showZeroes) return;
 
-		var searchUrl = this.options.searchUrl ? makeUrl(this.options.searchUrl, {url: this.options.pageUrl}) : null;
-		var counterElem = $((this.options.searchUrl ? '<a>' : '<span>'), {
+		var counterParams = {
 			'class': this.getElementClassNames('counter'),
 			'text': number,
-			'href': searchUrl
-		});
-
+		};
+		var counterElem;
+		if (this.options.searchUrl) {
+			counterParams.class += ' ' + classPrefix + 'counter_link';
+			counterParams.href = makeUrl(this.options.searchUrl, {url: this.options.pageUrl});
+			counterElem = $('<a>', counterParams);
+		}
+		else {
+			counterElem = $('<span>', counterParams);
+		}
 		this.widget.append(counterElem);
 
 		this.widget.trigger('counter.' + prefix, [this.service, number]);
