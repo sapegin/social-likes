@@ -4,12 +4,11 @@
 .social-likes__button_github:visited {
   padding-left: 19px;
   background: #e6e6e6;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #eaeaea));
-  background: -webkit-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
-  background: -moz-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
-  background: -o-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
-  background: -ms-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
-  background: linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+  background: -webkit-linear-gradient(top, #fafafa, #eaeaea);
+  background: -moz-linear-gradient(top, #fafafa, #eaeaea);
+  background: -o-linear-gradient(top, #fafafa, #eaeaea);
+  background: -ms-linear-gradient(top, #fafafa, #eaeaea);
+  background: linear-gradient(to bottom, #fafafa, #eaeaea);
   color: #555;
   border-color: #d4d4d4;
   border-bottom-color: #bcbcbc;
@@ -17,12 +16,11 @@
 }
 .social-likes__button_github:hover {
   background: #efefef;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #f0f0f0));
-  background: -webkit-linear-gradient(top, #fff 0%, #f0f0f0 100%);
-  background: -moz-linear-gradient(top, #fff 0%, #f0f0f0 100%);
-  background: -o-linear-gradient(top, #fff 0%, #f0f0f0 100%);
-  background: -ms-linear-gradient(top, #fff 0%, #f0f0f0 100%);
-  background: linear-gradient(top, #fff 0%, #f0f0f0 100%);
+  background: -webkit-linear-gradient(top, #fff, #f0f0f0);
+  background: -moz-linear-gradient(top, #fff, #f0f0f0);
+  background: -o-linear-gradient(top, #fff, #f0f0f0);
+  background: -ms-linear-gradient(top, #fff, #f0f0f0);
+  background: linear-gradient(to bottom, #fff, #f0f0f0);
   color: #444;
   border-color: #d4d4d4;
   border-bottom-color: #bcbcbc;
