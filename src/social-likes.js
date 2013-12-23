@@ -241,7 +241,7 @@ SocialLikes.prototype = {
 	},
 	initUserButtons: function() {
 		if (!this.userButtonInited && window.socialLikesButtons) {
-			$.extend(services, socialLikesButtons);
+			$.extend(true, services, socialLikesButtons);
 		}
 		this.userButtonInited = true;
 	},

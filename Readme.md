@@ -1,5 +1,8 @@
 # Social Likes
 
+[![Bower version](https://badge.fury.io/bo/social-likes.png)](http://badge.fury.io/bo/social-likes)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 Beautiful “like” buttons with counters for popular social networks: Facebook, Twitter, LiveJournal, etc. Uses jQuery.
 
 
@@ -208,9 +211,11 @@ And use in like any other button:
 See sources (`src` folder) for available options and class names and `contrib` folder for custom buttons examples.
 
 
-### Title, description and image for Facebok and Twitter
+### How to change title, description and image
 
-You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-meta-tags) and [Twitter Card](https://dev.twitter.com/docs/cards):
+You can use [Open Graph](http://ogp.me/). It works for [Facebook](http://davidwalsh.name/facebook-meta-tags), Twitter, [Google+](https://developers.google.com/+/web/snippet/), [Pinterest](http://developers.pinterest.com/rich_pins/) and [Vkontakte](http://vk.com/dev/widget_like)). 
+
+You can add additional Twitter data using [Twitter Card](https://dev.twitter.com/docs/cards).
 
 ```html
 <meta property="og:type" content="article">
@@ -223,13 +228,17 @@ You can add they using [Facebook Open Graph](http://davidwalsh.name/facebook-met
 <meta name="twitter:creator" content="@sapegin">
 ```
 
-`og:url`, `og:title`, `og:description`, `og:image` [should](http://vk.com/dev/widget_like) also work for Vkontakte.
 
 ### How to use Social Likes with Wordpress, etc.
 
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 ## Release History
+
+### 2013-12-23 v2.0.13
+
+* `searchUrl` option (by [@pivchanskiy](https://github.com/pivchanskiy)).
+* Imporove `socialLikesButtons` object handling (by [@ironlion](https://github.com/ironlion)).
 
 ### 2013-08-26 v2.0.12
 
