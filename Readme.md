@@ -235,6 +235,11 @@ See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-
 
 ## Release History
 
+### 2013-12-23 v2.0.13
+
+* `searchUrl` option (by [@pivchanskiy](https://github.com/pivchanskiy)).
+* Imporove `socialLikesButtons` object handling (by [@ironlion](https://github.com/ironlion)).
+
 ### 2013-08-26 v2.0.12
 
 * Icons only mode (by [@albburtsev](https://github.com/albburtsev)).
