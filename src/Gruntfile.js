@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 		webfont: {
 			flat: {
 				src: 'styles/flat/icons/*.svg',
-				dest: 'styles/flat/font/',
+				dest: 'styles/flat/font',
 				options: {
 					font: 'social-likes',
 					types: 'woff,ttf',

@@ -19,7 +19,8 @@
 	else {
 		factory(jQuery);
 	}
-}(function($) { 'use strict';	
+}(function($) {
+'use strict';	
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
