@@ -71,7 +71,7 @@ If you want to remove button titles add `social-likes_notext` class to make it l
 
 ### Options
 
-Options define via HTML data attributes.
+Options define via HTML data attributes or JavaScript parameters object.
 
 `url`
 
@@ -105,6 +105,14 @@ Examples:
 <ul class="social-likes social-likes_single" data-single-title="This is Sharing!">
 	…
 </ul>
+```
+
+```js
+$('.social-likes').socialLikes({
+	url: 'https://github.com/sapegin/social-likes/',
+	title: 'Beautiful “like” buttons with counters for popular social networks',
+	counters: true
+});
 ```
 
 ### Services specific options
