@@ -9,9 +9,13 @@ light_gray = #999;
 
 .social-likes {
 	margin:-.5em;
-	font-size:14px;
 	line-height:1.5;
 
+	&,
+	&__button_single {
+		font-size:15px;  // Base font size
+	}
+	
 	&__widget {
 		margin:.5em;
 		line-height:1.5;
@@ -26,8 +30,7 @@ light_gray = #999;
 	}
 
 	&__button {
-		padding:.1em .7em .2em 1.65em;
-		font-size:1.2em;
+		padding:.025em .7em .2em 1.65em;
 		font-weight:bold;
 		color:#fff;
 		-webkit-font-smoothing:antialiased;
@@ -42,12 +45,12 @@ light_gray = #999;
 		font-style:normal;
 		speak:none;
 		text-transform:none;
-		font-size:1.25em;
+		font-size:1.15em;
 		vertical-align:baseline;
 	}
 
 	&__counter {
-		padding:.4em .5em .25em;
+		padding:0 .5em;
 		font-weight:normal;
 		color:#000;
 	}
@@ -97,7 +100,7 @@ light_gray = #999;
 	// Icons only mode
 	&_notext {
 		.social-likes__button {
-			width:2em;
+			width:1.85em;
 		}
 		.social-likes__icon {
 			margin-left:.1em;
@@ -128,7 +131,6 @@ light_gray = #999;
 // Single button
 .social-likes__button_single {
 	background:#87c44d;
-	font-size:.9em;
 	.social-likes_single-light + & {
 		color:@background;
 	}
@@ -180,6 +182,9 @@ light_gray = #999;
 		margin-left:0;
 	}
 }
+.social-likes__icon_plusone {
+	left:.25em;
+}
 
 // Mail.ru
 .social-likes__button_mailru {
@@ -206,7 +211,7 @@ light_gray = #999;
 }
 .social-likes__icon_vkontakte {
 	top:.2em;
-	left:.1em;
+	left:.2em;
 }
 
 // Odnoklassniki
