@@ -49,7 +49,8 @@ var services = {
 			// Add colon to improve readability
 			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
 			return true;
-		}
+		},
+		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
 	},
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
@@ -85,7 +86,8 @@ var services = {
 		},
 		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
-		popupHeight: 330
+		popupHeight: 330,
+		searchUrl: 'http://vk.com/feed?section=search&q=url%3A{url}'
 	},
 	odnoklassniki: {
 		counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
@@ -245,7 +247,7 @@ SocialLikes.prototype = {
 	},
 	initUserButtons: function() {
 		if (!this.userButtonInited && window.socialLikesButtons) {
-			$.extend(services, socialLikesButtons);
+			$.extend(true, services, socialLikesButtons);
 		}
 		this.userButtonInited = true;
 	},
@@ -419,10 +421,13 @@ Button.prototype = {
 		number = parseInt(number, 10);
 		if (!number) return;
 
-		var counterElem = $('<span>', {
+		var searchUrl = this.options.searchUrl ? makeUrl(this.options.searchUrl, {url: this.options.pageUrl}) : null;
+		var counterElem = $((this.options.searchUrl ? '<a>' : '<span>'), {
 			'class': this.getElementClassNames('counter'),
-			'text': number
+			'text': number,
+			'href': searchUrl
 		});
+
 		this.widget.append(counterElem);
 
 		this.widget.trigger('counter.social-likes', [this.service, number]);
