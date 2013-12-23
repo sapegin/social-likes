@@ -4,7 +4,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 		cmpnt: grunt.file.readJSON('../bower.json'),
@@ -78,6 +78,21 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		imagemin: {
+			options: {
+				pngquant: true
+			},
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'styles/classic/icons_src/',
+						src: '*.png',
+						dest: 'styles/classic/icons/'
+					}
+				]
+			}
+		},
 		watch: {
 			options: {
 				livereload: true
@@ -86,15 +101,10 @@ module.exports = function(grunt) {
 				files: 'styles/**',
 				tasks: ['stylus:compile']
 			}
-		},
-		imgo: {
-			imgo: {
-				src: 'icons/*.png'
-			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'imgo', 'webfont', 'stylus', 'csso']);
-	grunt.registerTask('build', ['uglify', 'imgo', 'webfont', 'stylus', 'csso']);
+	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'imagemin', 'webfont', 'stylus', 'csso']);
+	grunt.registerTask('build', ['uglify', 'imagemin', 'webfont', 'stylus', 'csso']);
 
 };
