@@ -88,8 +88,8 @@ module.exports = (grunt) ->
 					path: '<%= concat.main.dest %>'
 					href: prefix + 'build/scripts.js?{version}'
 				slcss:
-					path: 'src/social-likes.css'
-					href: prefix + 'src/social-likes.css?{version}'
+					path: 'src/social-likes_all.css'
+					href: prefix + 'src/social-likes_all.css?{version}'
 				sljs:
 					path: 'src/social-likes.min.js'
 					href: prefix + 'src/social-likes.min.js?{version}'

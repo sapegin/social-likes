@@ -18,7 +18,7 @@
 		},
 		filesUrls = {
 			'social-likes.min.js': '/social-likes/src/social-likes.min.js',
-			'social-likes.css': '/social-likes/src/social-likes.css'
+			'social-likes.css': '/social-likes/src/social-likes_classic.css'
 		},
 		files = null,
 		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
