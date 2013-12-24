@@ -12,16 +12,19 @@
 
 /*global define:false, socialLikesButtons:false */
 
-(function (factory) {  // Try to register as an anonymous AMD module
+(function(factory) {  // Try to register as an anonymous AMD module
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
-	} else {
+	}
+	else {
 		factory(jQuery);
 	}
-}(function ($) { 'use strict';
+}(function($, undefined) {
+'use strict';
 
-var prefix = 'social-likes__',
-	fadeSpeed = 'fast';
+var prefix = 'social-likes';
+var classPrefix = prefix + '__';
+var visibleClass = prefix + '_visible';
 
 
 /**
@@ -55,8 +58,10 @@ var services = {
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
-			for (var url in data) if (data.hasOwnProperty(url)) {
-				return data[url].shares;
+			for (var url in data) {
+				if (data.hasOwnProperty(url)) {
+					return data[url].shares;
+				}
 			}
 		},
 		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
@@ -103,30 +108,6 @@ var services = {
 		popupWidth: 700,
 		popupHeight: 500
 	},
-	livejournal: {
-		click: function(e) {
-			var form = this._livejournalForm;
-			if (!form) {
-				var html = this.options.pageHtml
-					.replace(/&/g, '&amp;')
-					.replace(/"/g, '&quot;');
-				form = $(template(
-					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
-						'<input type="hidden" name="mode" value="full">' +
-						'<input type="hidden" name="subject" value="{title}">' +
-						'<input type="hidden" name="event" value="{html}">' +
-					'</form>',
-					{
-						title: this.options.pageTitle,
-						html: html
-					}
-				));
-				this.widget.append(form);
-				this._livejournalForm = form;
-			}
-			form.submit();
-		}
-	},
 	pinterest: {
 		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
@@ -152,9 +133,9 @@ var counters = {
 			return servicePromises[url];
 		}
 		else {
-			var options = $.extend({}, services[service], extraOptions),
-				deferred = $.Deferred(),
-				jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
+			var options = $.extend({}, services[service], extraOptions);
+			var deferred = $.Deferred();
+			var jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
 
 			if ($.isFunction(options.counter)) {
 				options.counter(jsonUrl, deferred);
@@ -185,16 +166,16 @@ var counters = {
 /**
  * jQuery plugin
  */
-$.fn.socialLikes = function() {
+$.fn.socialLikes = function(opts) {
 	return this.each(function() {
-		new SocialLikes($(this));
+		new SocialLikes($(this), opts);
 	});
 };
 
 
-function SocialLikes(container) {
+function SocialLikes(container, opts) {
 	this.container = container;
-	this.init();
+	this.init(opts);
 }
 
 SocialLikes.prototype = {
@@ -211,18 +192,27 @@ SocialLikes.prototype = {
 			attr: 'html',
 			defaultValue: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
 		},
-		pageCounters: {
+		showCounters: {
 			attr: 'counters',
 			defaultValue: 'yes',
-			convert: function(value) { return value === 'yes'; }
+			convert: function(value) { return value === true || value === 'yes'; }
+		},
+		showZeroes: {
+			attr: 'zeroes',
+			defaultValue: 'no',
+			convert: function(value) { return value === true || value === 'yes'; }
+		},
+		singleTitle: {
+			attr: 'single-title',
+			defaultValue: 'Share'
 		}
 	},
-	init: function() {
+	init: function(opts) {
 		// Add class in case of manual initialization
-		this.container.addClass('social-likes');
+		this.container.addClass(prefix);
 
-		this.readOptions();
-		this.single = this.container.hasClass('social-likes_single');
+		this.readOptions(opts);
+		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
 
@@ -231,18 +221,30 @@ SocialLikes.prototype = {
 		}
 
 		var options = this.options;
-		this.container.find('li').each(function() {
+		this.container.children().each(function() {
 			new Button($(this), options);
 		});
 	},
-	readOptions: function() {
+	readOptions: function(opts) {
+		opts = opts || {};
 		this.options = {};
+
 		for (var key in this.optionsMap) {
 			var option = this.optionsMap[key];
-			this.options[key] = this.container.data(option.attr) ||
-				($.isFunction(option.defaultValue) ? $.proxy(option.defaultValue, this)() : option.defaultValue);
-			if ($.isFunction(option.convert))
-				this.options[key] = option.convert(this.options[key]);
+			var value = opts[option.attr] !== undefined ? opts[option.attr] : this.container.data(option.attr);
+
+			if (value === undefined) {
+				if ($.isFunction(option.defaultValue)) {
+					value = $.proxy(option.defaultValue, this)();
+				}
+				else {
+					value = option.defaultValue;
+				}
+			}
+			if ($.isFunction(option.convert)) {
+				value = option.convert(value);
+			}
+			this.options[key] = value;
 		}
 	},
 	initUserButtons: function() {
@@ -253,24 +255,22 @@ SocialLikes.prototype = {
 	},
 	makeSingleButton: function() {
 		var container = this.container;
-		container.addClass('social-likes_vertical');
-		container.wrap($('<div>', {'class': 'social-likes_single-w'}));
+		container.addClass(prefix + '_vertical');
+		container.wrap($('<div>', {'class': prefix + '_single-w'}));
 		var wrapper = container.parent();
 
-		var defaultLeft = parseInt(container.css('left'), 10),
-			defaultTop = parseInt(container.css('top'), 10);
-
-		container.hide();
+		var defaultLeft = parseInt(container.css('left'), 10);
+		var defaultTop = parseInt(container.css('top'), 10);
 
 		var button = $('<div>', {
 			'class': getElementClassNames('button', 'single'),
-			'text': container.data('single-title') || 'Share'
+			'text': this.options.singleTitle
 		});
 		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
 		wrapper.append(button);
 
 		var close = $('<li>', {
-			'class': prefix + 'close',
+			'class': classPrefix + 'close',
 			'html': '&times;'
 		});
 		container.append(close);
@@ -285,12 +285,12 @@ SocialLikes.prototype = {
 			return false;
 		});
 		close.click(function() {
-			container.fadeOut(fadeSpeed);
+			container.removeClass(visibleClass);
 		});
 
 		this.wrapper = wrapper;
 
-		this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
+		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 	},
 	updateCounter: function(e, service, number) {
 		if (!number) return;
@@ -299,7 +299,7 @@ SocialLikes.prototype = {
 		this.getCounterElem().text(this.number);
 	},
 	getCounterElem: function() {
-		var counterElem = this.wrapper.find('.' + prefix + 'counter_single');
+		var counterElem = this.wrapper.find('.' + classPrefix + 'counter_single');
 		if (!counterElem.length) {
 			counterElem = $('<span>', {
 				'class': getElementClassNames('counter', 'single')
@@ -325,7 +325,7 @@ Button.prototype = {
 		this.detectParams();
 		this.initHtml();
 
-		if (this.options.pageCounters) {
+		if (this.options.showCounters) {
 			if (this.options.counterNumber) {
 				this.updateCounter(this.options.counterNumber);
 			}
@@ -370,8 +370,8 @@ Button.prototype = {
 	},
 
 	initHtml: function() {
-		var options = this.options,
-			widget = this.widget;
+		var options = this.options;
+		var widget = this.widget;
 		var isLink = !!options.clickUrl;
 
 		widget.removeClass(this.service);
@@ -408,8 +408,10 @@ Button.prototype = {
 
 	cloneDataAttrs: function(source, destination) {
 		var data = source.data();
-		for (var key in data) if (data.hasOwnProperty(key)) {
-			destination.data(key, data[key]);
+		for (var key in data) {
+			if (data.hasOwnProperty(key)) {
+				destination.data(key, data[key]);
+			}
 		}
 	},
 
@@ -419,23 +421,29 @@ Button.prototype = {
 
 	updateCounter: function(number) {
 		number = parseInt(number, 10);
-		if (!number) return;
+		if (!number && !this.options.showZeroes) return;
 
-		var searchUrl = this.options.searchUrl ? makeUrl(this.options.searchUrl, {url: this.options.pageUrl}) : null;
-		var counterElem = $((this.options.searchUrl ? '<a>' : '<span>'), {
+		var counterParams = {
 			'class': this.getElementClassNames('counter'),
 			'text': number,
-			'href': searchUrl
-		});
-
+		};
+		var counterElem;
+		if (this.options.searchUrl) {
+			counterParams.class += ' ' + classPrefix + 'counter_link';
+			counterParams.href = makeUrl(this.options.searchUrl, {url: this.options.pageUrl});
+			counterElem = $('<a>', counterParams);
+		}
+		else {
+			counterElem = $('<span>', counterParams);
+		}
 		this.widget.append(counterElem);
 
-		this.widget.trigger('counter.social-likes', [this.service, number]);
+		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},
 
 	click: function(e) {
-		var options = this.options,
-			process = true;
+		var options = this.options;
+		var process = true;
 		if ($.isFunction(options.click)) {
 			process = options.click.call(this, e);
 		}
@@ -461,8 +469,8 @@ Button.prototype = {
 	},
 
 	openPopup: function(url, params) {
-		var left = Math.round(screen.width/2 - params.width/2),
-			top = 0;
+		var left = Math.round(screen.width/2 - params.width/2);
+		var top = 0;
 		if (screen.height > params.height) {
 			top = Math.round(screen.height/3 - params.height/2);
 		}
@@ -471,7 +479,8 @@ Button.prototype = {
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 		if (win) {
 			win.focus();
-		} else {
+		}
+		else {
 			location.href = url;
 		}
 	}
@@ -494,26 +503,25 @@ function template(tmpl, context, filter) {
 }
 
 function getElementClassNames(elem, mod) {
-	var cls = prefix + elem;
+	var cls = classPrefix + elem;
 	return cls + ' ' + cls + '_' + mod;
 }
 
 function closeOnClick(elem) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
-		elem.fadeOut(fadeSpeed);
+		elem.removeClass(visibleClass);
 		doc.off(events, handler);
 	}
-	var doc = $(document),
-		events = 'click touchstart keydown';
+	var doc = $(document);
+	var events = 'click touchstart keydown';
 	doc.on(events, handler);
 }
 
 function showInViewport(elem, offset) {
 	if (document.documentElement.getBoundingClientRect) {
-		var left = parseInt(elem.css('left'), 10),
-			top = parseInt(elem.css('top'), 10);
-		elem.css('visibility', 'hidden').show();
+		var left = parseInt(elem.css('left'), 10);
+		var top = parseInt(elem.css('top'), 10);
 
 		var rect = elem[0].getBoundingClientRect();
 		if (rect.left < offset)
@@ -525,10 +533,8 @@ function showInViewport(elem, offset) {
 			elem.css('top', offset - rect.top + top);
 		else if (rect.bottom > window.innerHeight - offset)
 			elem.css('top', window.innerHeight - rect.bottom - offset + top);
-
-		elem.hide().css('visibility', 'visible');
 	}
-	elem.fadeIn(fadeSpeed);
+	elem.addClass(visibleClass);
 }
 
 
@@ -536,7 +542,7 @@ function showInViewport(elem, offset) {
  * Auto initialization
  */
 $(function() {
-	$('.social-likes').socialLikes();
+	$('.' + prefix).socialLikes();
 });
 
 }));
