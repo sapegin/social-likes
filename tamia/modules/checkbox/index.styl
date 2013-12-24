@@ -1,0 +1,108 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Checkbox and radio button
+// Requires Modernizr.svg
+// Dependencies: form
+
+// Bones
+
+.checkbox,
+.radio
+	white-space: nowrap
+
+	&__button
+		// For prehistoric browsers
+		display: none
+
+	&__text
+		display: inline-block
+		white-space: normal
+
+	&__button,
+	&__text
+		vertical-align: middle
+
+
+	&__input:checked,
+	&__input:not(:checked)
+		// Input should be hidden but focusable
+		// display:none and width=height=0 don’t work here
+		position: absolute
+		opacity: 0
+		overflow: hidden
+		height: 1px
+		width: 1px
+		padding: 0
+		border: 0
+
+	&__input:checked + &__label &__button,
+	&__input:not(:checked) + &__label &__button
+		display: inline-block
+
+	&__input:checked + &__label &__button
+		position: relative
+		&:before
+			content: ""
+			position: absolute
+			line-height: 1
+
+	&.is-disabled &__input + &__label
+		opacity: .4
+
+
+// Default skin
+
+modules_default_skin ?= true
+checkbox_default_skin ?= false
+
+if modules_default_skin or checkbox_default_skin
+
+	.checkbox,
+	.radio
+		&__button,
+		&__text
+			line-height: 1.8
+			font-size: 1em
+
+		&__input:checked + &__label &__button,
+		&__input:not(:checked) + &__label &__button
+			width: size = 1em
+			height: size
+			margin-top: -.15em
+			margin-right: .15em
+			border: 1px solid #bbb
+			border-radius: form_border_radius
+			box-shadow: inset 0 .1em .2em black(.1)
+
+		&__input:checked + &__label &__button
+			&:before
+				background-size: 100% 100%
+				background-repeat: no-repeat
+
+		&__input:enabled:active + &__label &__button,
+		&__input:focus + &__label &__button
+			background: #f4f4f4
+
+	.checkbox
+		&__input:checked + &__label &__button
+			&:before
+				center(.8em, .65em)
+				background-image: embedurl("check.svg")
+			.no-svg &:before
+				margin-top:-.5em;
+				font-size: 0.8em
+				font-weight:bold;
+				color: #444
+				content: "✓"
+
+	.radio
+		&__input:checked + &__label &__button,
+		&__input:not(:checked) + &__label &__button
+			border-radius: 50%
+
+		&__input:checked + &__label &__button
+			&:before
+				center(.5em)
+				background-image: embedurl("radio.svg")
+			.no-svg &:before
+				background: #444
+				border-radius: 50%

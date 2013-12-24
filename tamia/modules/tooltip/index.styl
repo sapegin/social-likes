@@ -1,0 +1,63 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Tooltip
+
+// Bones
+
+.tooltip,
+.has-tooltip:before
+	position: relative
+	display: inline-block
+	text-decoration: none
+	white-space: nowrap
+
+.tooltip:after,
+.has-tooltip:before,
+.has-tooltip:after
+	content: ""
+	position: absolute
+	left: 50%
+	transform: translateX(-50%)
+
+.has-tooltip
+	position: relative
+
+	&:before
+		content: attr(data-tooltip);
+
+	&:before,
+	&:after
+		top: 100%
+		display: none
+
+	&:hover:before,
+	&:hover:after
+		display: block
+
+
+// Default skin
+
+modules_default_skin ?= true
+tooltip_default_skin ?= false
+
+if modules_default_skin or tooltip_default_skin
+
+	_tooltip_arrow = 5px
+	_tooltip_bg = black(0.9)
+
+	.tooltip,
+	.has-tooltip:before
+		padding: .2em .5em
+		background: _tooltip_bg
+		color: #fff
+		font-size: 14px
+		border-radius: form_border_radius
+
+	.tooltip:after,
+	.has-tooltip:after
+		triangle("up", _tooltip_arrow, _tooltip_bg)
+
+	.tooltip:after
+		top: (-(_tooltip_arrow))
+
+	.has-tooltip:before
+		margin-top: _tooltip_arrow

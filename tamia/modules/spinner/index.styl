@@ -1,0 +1,81 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Spinner
+// Based on http://codepen.io/beben-koben/pen/JcGnK
+
+spinner_fallback_gif ?= false
+loader_shade_color ?= white(.8)
+
+
+@keyframes spinner-rotate
+	0%
+		transform: rotate(0deg)
+	100%
+		transform: rotate(360deg)
+
+
+// Regular spinner
+.spinner,
+.loader
+	display: inline-block
+	width: .25em
+	height: .25em
+	margin: .5em .2em
+	opacity: .7
+	border-radius: 50%
+	font-size: 16px
+	box-shadow: 0 -.4em 0 0 rgba(0,0,0,1), -.28em -.28em 0 0 rgba(0,0,0,.75), -.4em 0 0 0 rgba(0,0,0,.5), -.28em .28em 0 0 rgba(0,0,0,.25)
+
+	&_big
+		font-size: 32px
+
+
+// Loader
+.loader
+	visibility: hidden
+	opacity: 0
+	transition: visibility 0s .3s, opacity .3s ease-out
+
+	.is-loading &
+		visibility: visible
+		opacity: 1
+		transition: opacity .5s ease-out
+
+
+// Enable animation only when spinner is visible to increase page performance
+.spinner,
+.is-loading .loader
+	animation: .85s spinner-rotate steps(9) infinite
+
+.spinner.is-hidden,
+.loader.is-hidden
+	animation: none
+
+
+// Loader shade
+.loader-wrapper
+	position: relative
+
+.loader-shade
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	opacity: 0
+	background: loader_shade_color
+	border-radius: inherit
+	z-index: 99999
+	transition: opacity .15s ease-out
+
+	.is-loading &
+		opacity: 1
+
+
+// Fallback GIF image for browsers that don’t support CSS animations
+if spinner_fallback_gif
+	.no-cssanimations .spinner
+		width: 16px
+		height: 16px
+		margin: 0
+		opacity: 1
+		background: url(spinner_fallback_gif)

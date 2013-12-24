@@ -1,0 +1,138 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Base CSS
+
+// Global reset.
+*
+	padding: 0
+	margin: 0
+	box-sizing: border-box
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary
+	display: block
+sup, sub, small, code
+	line-height: 0
+img
+	max-width: 100%
+	height: auto
+img
+	vertical-align: middle
+a img, a.img
+	border: none !important
+	background-image: none !important
+abbr
+	border-bottom: none
+ul
+	list-style: none
+table
+	border-collapse: collapse
+	border-spacing: 0
+
+html
+	// Force scrollbar in non IE
+	overflow-y: scroll
+	// Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
+	-webkit-text-size-adjust: 100%
+	    -ms-text-size-adjust: 100%
+	if sticky_footer_height
+		position: relative
+		min-height: 100%
+
+// Sticky footer: mystrd.at/modern-clean-css-sticky-footer/.
+if sticky_footer_height
+	body
+		padding-bottom: sticky_footer_height
+	.footer
+		sticky-footer(sticky_footer_height)
+		padding: 0 spacer
+		if max_width
+			&-i
+				max-width: max_width
+				margin-left: auto
+				margin-right: auto
+
+// www.aestheticallyloyal.com/public/optimize-legibility/
+h1, h2, h3
+	text-rendering: optimizeLegibility
+
+// Hand cursor on clickable input elements
+input[type="button"],
+input[type="submit"],
+input[type="image"],
+button
+	cursor: pointer
+button[disabled],
+input[disabled]
+	cursor: default
+
+// Forms: github.com/necolas/normalize.css/blob/master/normalize.css.
+button,
+input
+	line-height: normal
+button,
+input,
+select,
+textarea
+	font-family: inherit
+	font-size: 100%
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"]
+	-webkit-appearance: button
+input[type="search"]
+	-webkit-appearance: textfield
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button
+	-webkit-appearance: none
+button::-moz-focus-inner,
+input::-moz-focus-inner
+	border: 0
+textarea
+	overflow: auto
+	vertical-align: top
+	resize: vertical
+fieldset,
+legend
+	border: 0
+[hidden]
+	display: none
+
+// Pre with wrapping.
+pre
+	white-space: pre-wrap
+
+// Addresses outline inconsistency between Chrome and other browsers.
+a:focus
+	outline: thin dotted
+
+// Improve readability when focused and also mouse hovered in all browsers.
+a:hover,
+a:active
+	outline: 0
+
+// Text selection and iOS tap highlighting.
+if light(bg_color)
+	_selection_color = rgba(darken(bg_color,60),.5)
+else
+	_selection_color = rgba(lighten(bg_color,60),.5)
+text-selection(base_color, _selection_color)
+a:link
+	-webkit-tap-highlight-color: rgba(_selection_color,.25)
+
+// Hide phone links from desktop browsers.
+.no-touch a[href^="tel"]
+	&:link,
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus
+		position: inherit
+		text-decoration: inherit
+		border: inherit
+		color: inherit
+		background-image: none
+		cursor: default
+
+if content_max_width
+	.content
+		max-width: content_max_width
+		margin: 0 auto

@@ -1,0 +1,195 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Links
+
+//
+// Configuration
+//
+
+// Link style (default: underline).
+//
+// Values:
+// - underline - text-decoration:underline.
+// - border - border-bottom:1px solid.
+// - gradient - Uses CSS gradients to position line under text (cannot change line color on hover).
+link_style ?= "underline"
+
+// Link color (default: #1978c8).
+link_color ?= #1978c8
+
+// Visited link color.
+visited_color ?= link_color
+
+// Hovered link color.
+hover_color ?= link_color
+
+// Link underline color.
+link_underline_color ?= rgba(link_color,.4)
+
+// Visited link underline color.
+visited_underline_color ?= rgba(visited_color,.4)
+
+// Hovered link underline color.
+hover_underline_color ?= rgba(hover_color,.4)
+
+// Link underline position (only when link_style == gradient, default: 80%)
+link_underline_position ?= 80%
+link_underline_position = 76.5% if link_style == "underline"
+
+// Pressable links (shifts down by 1px, default: false).
+link_pressable ?= false
+
+
+//
+// Mixins
+//
+
+// Adds link underline (adds nothing for "underline" and "border" types)
+link-underline(color)
+	if link_style == "gradient"
+		background-image: linear-gradient(to right, color, color)
+
+// Adds fake link underline (adds nothing for "underline" type)
+link-fake-underline(color)
+	if link_style != "border"
+		background-image: linear-gradient(to right, color, color 50%, transparent 50%)
+
+// :hover, :active and :focus states of the link.
+//
+// Example:
+// 	 +link-hovers()
+//	 	color: #bada55
+link-hovers() {
+	&:hover,
+	&:active,
+	&:focus {
+		{block}
+	}
+}
+
+// All states of the link.
+//
+// Example:
+// 	 +link-all-states()
+//	 	color: @color
+link-all-states() {
+	&,
+	&:link,
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus {
+		{block}
+	}
+}
+
+
+//
+// Classes
+//
+
+// Pressable element: pointer cursor + disable text selection.
+.pressable-inset
+	no-select()
+	cursor: pointer
+
+// Pressable element: shifts down by 1px on click.
+.pressable
+	@extend .pressable-inset
+	&:active
+		position: relative if link_pressable
+		top: 1px if link_pressable
+
+// Non-pressable element: cancels .pressable.
+.no-pressable
+	&,
+	&:hover,
+	&:active
+		cursor: default
+	&:active
+		position: static if link_pressable
+
+// Remove underline.
+.no-underline
+	&,
+	&:link,
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus
+		text-decoration: none
+		border-bottom: 0
+		background-image: none
+
+// Link.
+//
+// .link_fake - Pseudo link with dashed underline.
+// .link_quoted - Link in quotes (quotes should be colored but not underlined). Example: a.link.link_quoted>u.
+.link
+	&,
+	& u
+		@extend .pressable
+		transition: border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out
+		cursor: pointer
+		if link_style == "underline"
+			text-decoration: underline
+		else
+			text-decoration: none
+		if link_style == "border"
+			border-bottom-width: 1px
+			border-bottom-style: solid
+		if link_style == "gradient"
+			background-position: 0 link_underline_position
+			background-size: 5px 1px
+			background-repeat: repeat-x
+
+	&,
+	&:link,
+	& u,
+	&:link u
+		link-underline(link_underline_color)
+		color: link_color
+
+	&:visited,
+	&:visited u
+		link-underline(visited_underline_color)
+		color: visited_color
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:hover u,
+	&:active u,
+	&:focus u
+		link-underline(hover_underline_color)
+		color: hover_color
+
+	&_fake
+		if link_style == "border"
+			border-bottom-style: dotted
+		if link_style != "gradient"
+			text-decoration: none
+			background-position: 0 link_underline_position
+			background-size: 5px 1px
+			background-repeat: repeat-x
+
+		&,
+		&:link,
+		&:visited
+			link-fake-underline(link_underline_color)
+			color: link_color
+
+		&:hover,
+		&:active,
+		&:focus
+			link-fake-underline(link_underline_color)
+			color: hover_color
+
+	&_quoted
+		@extend .no-underline
+
+.no-cssgradients
+	.link
+		text-decoration: underline
+	.link_fake
+		text-decoration: none
+		border-bottom: 1px dotted

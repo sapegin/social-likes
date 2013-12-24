@@ -1,8 +1,6 @@
 /* Author: Artem Sapegin, http://sapegin.me, 2012 */
 
-/*jshint browser:true, jquery:true, white:false, smarttabs:true, eqeqeq:true,
-         immed:true, latedef:true, newcap:true, undef:true */
-/*global utils:false, doT:true, htmlhl:false, JSZip:false, store:false */
+/*global tamia:false, doT:true, htmlhl:false, JSZip:false, store:false */
 ;(function ($) {
 	'use strict';
 
@@ -159,7 +157,7 @@
 		});
 	}
 
-	utils.initComponents({
+	tamia.initComponents({
 		builder: function(elem) {
 			var form = $(elem),
 				preview = $('.js-preview'),

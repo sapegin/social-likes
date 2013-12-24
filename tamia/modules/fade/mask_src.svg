@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<mask id="fade-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+		<linearGradient id="g">
+			<stop stop-color="#fff" stop-opacity="1" offset=".7"></stop>
+			<stop stop-color="#fff" stop-opacity="0" offset="1"></stop>
+		</linearGradient>
+		<rect x="0" y="0" width="1" height="1" fill="url(#g)"></rect>
+	</mask>
+</svg>
