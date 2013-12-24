@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 				files: {
 					'../social-likes.css': 'styles/flat/index.styl',
 					'../social-likes_classic.css': 'styles/classic/index.styl',
-					'../social-likes_all.css': 'styles/all.styl'
+					'../specs/social-likes_all.css': 'styles/all.styl'
 				}
 			},
 			contrib: {
