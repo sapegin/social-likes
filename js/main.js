@@ -172,6 +172,8 @@
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
+				form.find('.js-experimental').toggleClass('is-hidden', !experimental);
+
 				store.set(lang, {
 					skin: data.skin,
 					type: data.type,
