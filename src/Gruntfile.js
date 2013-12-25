@@ -38,8 +38,7 @@ module.exports = function(grunt) {
 			compile: {
 				files: {
 					'../social-likes.css': 'styles/flat/index.styl',
-					'../social-likes_classic.css': 'styles/classic/index.styl',
-					'../specs/social-likes_all.css': 'styles/all.styl'
+					'../social-likes_classic.css': 'styles/classic/index.styl'
 				}
 			},
 			contrib: {

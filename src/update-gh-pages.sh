@@ -3,7 +3,6 @@
 echo "Updating Social Likes on gh-pages…"
 
 grunt build
-cp ../specs/social-likes_all.css ../../social-likes_gh-pages/src/
 cp ../social-likes.css ../../social-likes_gh-pages/src/
 cp ../social-likes_classic.css ../../social-likes_gh-pages/src/
 cp ../social-likes.min.js ../../social-likes_gh-pages/src/

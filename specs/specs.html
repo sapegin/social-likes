@@ -3,7 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<title>Social Likes</title>
-	<link href="social-likes_all.css" rel="stylesheet">
+	<link id="styles_flat" href="../social-likes.css" rel="stylesheet">
+	<link id="styles_classic" href="../social-likes_classic.css" rel="stylesheet" disabled>
+
+<script>
+(function() {
+function updateSkin() {
+	function el(id) { return document.getElementById(id); }
+	el('styles_flat').disabled = true;
+	el('styles_classic').disabled = true;
+	el('styles_' + location.hash.slice(1)).disabled = false;
+}
+if (location.hash) {
+	updateSkin();
+}
+else {
+	location.hash = '#flat';
+}
+window.onhashchange = updateSkin;
+})();
+</script>
+
 	<!--script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script-->
 	<script src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
 	<script src="../src/social-likes.js"></script>
@@ -39,18 +59,7 @@ body {
 </head>
 <body class="skin_classic">
 
-	<div class="skin-switcher">Skin: <a id="classic" href="#classic">Classic</a>, <a id="flat" href="#flat">Flat</a>.</div>
-<script>
-(function() {
-function updateSkin() {
-	document.body.className = document.body.className.replace(/skin_\w+/, 'skin_' + location.hash.slice(1));
-}
-if (location.hash) {
-	updateSkin();
-}
-window.onhashchange = updateSkin;
-})();
-</script>
+	<div class="skin-switcher">Skin: <a id="flat" href="#flat">Flat</a>, <a id="classic" href="#classic">Classic</a>.</div>
 
 	<h3>Standard</h3>
 	<div class="social-likes" data-url="http://mail.ru/">
