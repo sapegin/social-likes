@@ -16,14 +16,18 @@
 			footer: $('#index_footer_tmpl').html(),
 			html: ''
 		},
-		filesUrls = {
-			'social-likes.min.js': '/social-likes/src/social-likes.min.js',
-			'social-likes.css': '/social-likes/src/social-likes_classic.css'
+		prefix = location.hostname === '127.0.0.1' ? '' : '/social-likes/',
+		sourceFiles = {
+			'social-likes.min.js': {url: prefix + 'src/social-likes.min.js'},
+			'social-likes.css': {
+				classic: {url: prefix + 'src/social-likes_classic.css'},
+				flat: {url: prefix + 'src/social-likes.css'}
+			}
 		},
-		files = null,
 		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
 		experimental = location.hash === '#ponies',
-		simple = !('download' in document.createElement('a'));
+		simple = !('download' in document.createElement('a')),
+		skin = 'classic';
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
@@ -119,9 +123,7 @@
 	}
 
 	function download(e) {
-		if (!files) {
-			getFiles();
-		}
+		var files = getFiles();
 
 		var zip = new JSZip();
 		zip.file('index.html', templateIndex(downloadData));
@@ -145,16 +147,21 @@
 	}
 
 	function getFiles() {
-		files = {};
-		for (var fileName in filesUrls) {
-			getFile(fileName);
+		var files = {};
+		for (var fileName in sourceFiles) {
+			files[fileName] = getFile(fileName);
 		}
+		return files;
 	}
 
 	function getFile(fileName) {
-		$.ajax(filesUrls[fileName], { async: false, dataType: 'html' }).then(function(data) {
-			files[fileName] = data;
-		});
+		var file = 'url' in sourceFiles[fileName] ? sourceFiles[fileName] : sourceFiles[fileName][skin];
+		if (!file.file) {
+			$.ajax(file.url, { async: false, dataType: 'html' }).then(function(data) {
+				file.file = data;
+			});
+		}
+		return file.file;
 	}
 
 	tamia.initComponents({
@@ -173,6 +180,7 @@
 				preview.find('.social-likes').socialLikes();
 
 				form.find('.js-experimental').toggleClass('is-hidden', !experimental);
+				skin = data.skin;
 
 				store.set(lang, {
 					skin: data.skin,
