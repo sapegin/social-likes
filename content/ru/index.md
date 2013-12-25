@@ -4,6 +4,9 @@ subtitle: Красивые кнопки «лайков» социальных с
 description: Красивые кнопки «лайков» в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и LiveJournal. Рядом с кнопками отображается количество «лайков» (кроме Google+ и LiveJournal).
 translationLink: /social-likes/
 translationTitle: In English
+builderSkin: Скин
+builderSkinClassic: Классический
+builderSkinFlat: Плоский β
 builderType: Вид
 builderTypeHorizontal: Горизонтальный
 builderTypeVertical: Вертикальный

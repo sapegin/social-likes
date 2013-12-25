@@ -168,10 +168,12 @@
 				template = doT.template($('#build_tmpl').html()),
 				previous;
 			var delayedUpdate = debounce(function(html, data) {
+				preview[0].className = preview[0].className.replace(/skin_\w+/, 'skin_' + data.skin);
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
 				store.set(lang, {
+					skin: data.skin,
 					type: data.type,
 					counters: data.counters,
 					title: data.title,

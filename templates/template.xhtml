@@ -52,6 +52,23 @@
 					<input type="hidden" name="titleLivejournal" value="{$.titleLivejournal}"/>
 					<input type="hidden" name="titlePinterest" value="{$.titlePinterest}"/>
 					<input type="hidden" name="singleTitle" value="{$.singleTitle}"/>
+
+					<!-- Skin -->
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderSkin</f:value>
+						</div>
+						<div class="builder__widget">
+							<div class="switcher">
+								<input class="switcher__input" id="skin_classic" type="radio" name="skin" value="classic" checked="checked"/>
+								<label class="switcher__label" for="skin_classic"><f:value>$.builderSkinClassic</f:value></label>
+								<input class="switcher__input" id="skin_flat" type="radio" name="skin" value="flat"/>
+								<label class="switcher__label" for="skin_flat"><f:value>$.builderSkinFlat</f:value></label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Type (look) -->
 					<div class="builder__row">
 						<div class="builder__label">
 							<f:value>$.builderType</f:value>
@@ -67,6 +84,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="builder__row">
 						<div class="builder__widget">
 							<div class="checkbox">
@@ -79,6 +97,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="builder__row">
 						<div class="builder__label">
 							<f:value>$.builderSites</f:value>

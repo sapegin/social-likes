@@ -5,6 +5,9 @@ description: Single style buttons with like counters: Facebook, Twitter, Google+
 descriptionHead: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular Russian social networks.
 translationLink: /social-likes/ru/
 translationTitle: По-русски
+builderSkin: Skin
+builderSkinClassic: Classic
+builderSkinFlat: Flat β
 builderType: Look
 builderTypeHorizontal: Horizontal
 builderTypeVertical: Vertical
