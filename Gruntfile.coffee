@@ -87,12 +87,15 @@ module.exports = (grunt) ->
 				js:
 					path: '<%= concat.main.dest %>'
 					href: prefix + 'build/scripts.js?{version}'
-				slcss:
-					path: 'src/social-likes_all.css'
-					href: prefix + 'src/social-likes_all.css?{version}'
 				sljs:
 					path: 'src/social-likes.min.js'
 					href: prefix + 'src/social-likes.min.js?{version}'
+				slcss_classic:
+					path: 'src/social-likes_classic.css'
+					href: prefix + 'src/social-likes_classic.css?{version}'
+				slcss_flat:
+					path: 'src/social-likes.css'
+					href: prefix + 'src/social-likes.css?{version}'
 		connect:
 			server:
 				options:
@@ -101,18 +104,24 @@ module.exports = (grunt) ->
 		watch:
 			livereload:
 				options:
-					livereload:true
+					livereload: true
 				files: [
 					'<%= concat.main.dest %>'
 					'build/styles.css'
 				]
 			concat:
+				options:
+					atBegin: true
 				files: '<%= concat.main.src %>'
 				tasks: 'concat'
 			stylus:
+				options:
+					atBegin: true
 				files: 'styles/**'
 				tasks: 'stylus'
 			sweet:
+				options:
+					atBegin: true
 				files: ['content/**', 'templates/**']
 				tasks: 'sweet'
 

@@ -175,13 +175,19 @@
 				prepend = $('#prepend_tmpl').html(),
 				template = doT.template($('#build_tmpl').html()),
 				previous;
+
 			var delayedUpdate = debounce(function(html, data) {
-				preview[0].className = preview[0].className.replace(/skin_\w+/, 'skin_' + data.skin);
+				// Switch skin
+				skin = data.skin;
+				$.each(['flat', 'classic'], function(i, s) {
+					$('#styles_' + s).prop('disabled', s !== skin);
+				});
+
+				// Render preview
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
 				form.find('.js-experimental').toggleClass('is-hidden', !experimental);
-				skin = data.skin;
 
 				store.set(lang, {
 					skin: data.skin,
