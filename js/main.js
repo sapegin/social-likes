@@ -171,6 +171,7 @@
 				code = $('.js-code'),
 				twitterExtra = form.find('.js-twitter-extra'),
 				pinterestExtra = form.find('.js-pinterest-extra'),
+				lightStyle = form.find('.js-light'),
 				prepend = $('#prepend_tmpl').html(),
 				template = doT.template($('#build_tmpl').html()),
 				previous;
@@ -186,6 +187,7 @@
 					skin: data.skin,
 					type: data.type,
 					counters: data.counters,
+					light: data.light,
 					title: data.title,
 					url: data.url,
 					site_facebook: !!data.site_facebook,
@@ -215,6 +217,7 @@
 
 					twitterExtra.toggle(data.site_twitter === '1', 200);
 					pinterestExtra.toggle(data.site_pinterest === '1', 200);
+					lightStyle.toggle(data.skin === 'flat', 200);
 
 					var html = cleanHtml(template(data));
 					code.html(highlight(prepend + html));

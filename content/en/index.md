@@ -13,6 +13,7 @@ builderTypeHorizontal: Horizontal
 builderTypeVertical: Vertical
 builderTypeSingle: Single button
 builderCounters: Show counters
+builderLight: Light style
 builderSites: Websites
 builderUrl: URL
 builderUrlHelp: When buttons used on different page

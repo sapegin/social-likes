@@ -87,12 +87,20 @@
 
 					<div class="builder__row">
 						<div class="builder__widget">
-							<div class="checkbox">
+							<div class="builder__checkbox checkbox">
 								<input class="checkbox__input" id="counters" type="checkbox" name="counters" value="1" checked="checked"/>
 								<label class="checkbox__label" for="counters">
 									<span class="checkbox__button"></span>
 									<f:space/>
 									<span class="checkbox__text"><f:value>$.builderCounters</f:value></span>
+								</label>
+							</div>
+							<div class="builder__checkbox checkbox js-light">
+								<input class="checkbox__input" id="light" type="checkbox" name="light" value="1"/>
+								<label class="checkbox__label" for="light">
+									<span class="checkbox__button"></span>
+									<f:space/>
+									<span class="checkbox__text"><f:value>$.builderLight</f:value></span>
 								</label>
 							</div>
 						</div>
@@ -105,7 +113,7 @@
 						<div class="builder__widget builder__sites group">
 							<f:for iterate="$.common.sites" index="i" value="site">
 								<f:if test="!site.langs || site.langs.indexOf($.lang) !== -1">
-									<div class="builder__site checkbox">
+									<div class="builder__checkbox checkbox">
 										<input class="checkbox__input" id="site_{site.id}" type="checkbox" name="site_{site.id}" value="1">
 											<f:attributes>
 												<f:if test="site.checked">

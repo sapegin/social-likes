@@ -12,6 +12,7 @@ builderTypeHorizontal: Горизонтальный
 builderTypeVertical: Вертикальный
 builderTypeSingle: Одной кнопкой
 builderCounters: Показывать счётчики
+builderLight: Лёгкий стиль
 builderSites: Сайты
 builderUrl: Адрес страницы
 builderUrlHelp: Если отличается от адреса страницы, где размещены кнопки
