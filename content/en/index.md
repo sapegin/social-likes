@@ -1,8 +1,8 @@
 name: Social Likes
 title: Social Likes: beautiful social like buttons with jQuery
 subtitle: Beautiful social like buttons with jQuery
-description: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular <a href="/social-likes/ru/">Russian social networks</a>.
-descriptionHead: Single style buttons with like counters: Facebook, Twitter, Google+, LiveJournal and also popular Russian social networks.
+description: Single style buttons with like counters: Facebook, Twitter, Google+, Pinterest and also popular <a href="/social-likes/ru/">Russian social networks</a>.
+descriptionHead: Single style buttons with like counters: Facebook, Twitter, Google+, Pinterest and also popular Russian social networks.
 translationLink: /social-likes/ru/
 translationTitle: По-русски
 builderSkin: Skin
@@ -28,7 +28,6 @@ builderPinterestMediaHelp: Image URL for Pinterest (required)
 titleFacebook: Share link on Facebook
 titleTwitter: Share link on Twitter
 titlePlusone: Share link on Google+
-titleLivejournal: Share link on LiveJournal
 titlePinterest: Share image on Pinterest
 singleTitle: Share
 downloadArchive: Download Buttons
@@ -37,5 +36,5 @@ browseCode: view source
 onGitHub: on GitHub
 archiveContains: Archive contains all you need to use like buttons with chosen options.
 archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">documentation</a>
-docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Documentation</a> with customization and extension examples.<br><a href="http://sapegin.me/contacts">Contact me</a> if you have any questions or <a href="https://github.com/sapegin/social-likes/issues">file an issue</a> on GitHub.
+docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Documentation</a> with advanced customization examples.<br>If you have any questions <a href="https://github.com/sapegin/social-likes/issues">file an issue</a> on GitHub or <a href="http://sapegin.me/contacts">contact me</a>.
 footer: © 2013 <a href="https://github.com/sapegin">Artem Sapegin</a> and contributors. Flat skin: <a href="http://genn.org/">Genn Osypenko</a>
