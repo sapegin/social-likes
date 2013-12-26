@@ -37,4 +37,5 @@ browseCode: view source
 onGitHub: on GitHub
 archiveContains: Archive contains all you need to use like buttons with chosen options.
 archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">documentation</a>
-footer: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Documentation</a> with customization and extension examples. <a href="http://sapegin.me/contacts">Contact me</a> if you have any questions or <a href="https://github.com/sapegin/social-likes/issues">file an issue</a> on GitHub.
+docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Documentation</a> with customization and extension examples.<br><a href="http://sapegin.me/contacts">Contact me</a> if you have any questions or <a href="https://github.com/sapegin/social-likes/issues">file an issue</a> on GitHub.
+footer: © 2013 <a href="https://github.com/sapegin">Artem Sapegin</a> and contributors. Flat skin: <a href="http://genn.org/">Genn Osypenko</a>
