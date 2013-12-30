@@ -29,20 +29,20 @@ var prefix = 'social-likes__',
  */
 var services = {
 	facebook: {
-		counterUrl: 'http://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
+		counterUrl: '//graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
 		convertNumber: function(data) {
 			return data.data[0].total_count;
 		},
-		popupUrl: 'http://www.facebook.com/sharer/sharer.php?u={url}',
+		popupUrl: '//www.facebook.com/sharer/sharer.php?u={url}',
 		popupWidth: 600,
 		popupHeight: 500
 	},
 	twitter: {
-		counterUrl: 'http://urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
+		counterUrl: '//urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
+		popupUrl: '//twitter.com/intent/tweet?url={url}&text={title}',
 		popupWidth: 600,
 		popupHeight: 450,
 		click: function() {
@@ -50,21 +50,21 @@ var services = {
 			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
 			return true;
 		},
-		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
+		searchUrl: '//twitter.com/search?src=typd&q={url}'
 	},
 	mailru: {
-		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
+		counterUrl: '//connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
 			for (var url in data) if (data.hasOwnProperty(url)) {
 				return data[url].shares;
 			}
 		},
-		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
+		popupUrl: '//connect.mail.ru/share?share_url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	vkontakte: {
-		counterUrl: 'http://vkontakte.ru/share.php?act=count&url={url}&index={index}',
+		counterUrl: '//vkontakte.ru/share.php?act=count&url={url}&index={index}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.vkontakte;
 			if (!options._) {
@@ -84,22 +84,22 @@ var services = {
 				dataType: 'jsonp'
 			});
 		},
-		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
+		popupUrl: '//vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 330,
-		searchUrl: 'http://vk.com/feed?section=search&q=url%3A{url}'
+		searchUrl: '//vk.com/feed?section=search&q=url%3A{url}'
 	},
 	odnoklassniki: {
-		counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
+		counterUrl: '//www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
+		popupUrl: '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	plusone: {
-		popupUrl: 'https://plus.google.com/share?url={url}',
+		popupUrl: '//plus.google.com/share?url={url}',
 		popupWidth: 700,
 		popupHeight: 500
 	},
@@ -111,7 +111,7 @@ var services = {
 					.replace(/&/g, '&amp;')
 					.replace(/"/g, '&quot;');
 				form = $(template(
-					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
+					'<form action="//www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
 						'<input type="hidden" name="mode" value="full">' +
 						'<input type="hidden" name="subject" value="{title}">' +
 						'<input type="hidden" name="event" value="{html}">' +
@@ -128,11 +128,11 @@ var services = {
 		}
 	},
 	pinterest: {
-		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
+		counterUrl: '//api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://pinterest.com/pin/create/button/?url={url}&description={title}',
+		popupUrl: '//pinterest.com/pin/create/button/?url={url}&description={title}',
 		popupWidth: 630,
 		popupHeight: 270
 	}
