@@ -260,8 +260,8 @@ See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-
 
 ### 2013-02-05 v2.0.7
 
-* `data-title` and `data-url` attributes (by [@jalkoby](https://github.com/jalkoby]).
-* Pinterest button (mostly by [@jalkoby](https://github.com/jalkoby]).
+* `data-title` and `data-url` attributes (by [@jalkoby](https://github.com/jalkoby)).
+* Pinterest button (mostly by [@jalkoby](https://github.com/jalkoby)).
 * Code button removed.
 
 
