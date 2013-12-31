@@ -6,10 +6,14 @@
 @import 'font/social-likes'
 
 light_gray = #999;
+margin=.5em;
 
 .social-likes {
-	margin:-.5em;
-	line-height:1.5;
+	&,
+	&_single-w {
+		margin:(-(margin));
+		line-height:1.5;
+	}
 
 	&,
 	&__button_single {
@@ -17,9 +21,10 @@ light_gray = #999;
 	}
 	
 	&__widget {
-		margin:.5em;
+		margin:margin;
 		line-height:1.5;
 		background:#fff;
+		border:0;
 	}
 
 	&__button,
@@ -54,10 +59,9 @@ light_gray = #999;
 		font-weight:normal;
 		color:#000;
 		&_link {
-			cursor:pointer;
-		}
-		&_link:hover {
-			text-decoration:underline;
+			+link-base() {
+				color:@color;
+			}
 		}
 	}
 

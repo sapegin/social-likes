@@ -3,28 +3,30 @@
 
 @import '../base'
 
+margin=3px;
+
 .social-likes,
 .social-likes__widget {
+	border:0;
 	line-height:20px;
 	font-size:14px;
 }
 
 .social-likes {
-	margin:-3px;
-	line-height:26px;
+	&,
+	&_single-w {
+		margin:(-(margin));
+		line-height:20px;
+	}
 
 	&__widget {
-		margin:3px;
+		margin:margin;
 	}
 
 	&__button,
 	&__counter {
 		font-family:"Trebuchet MS", "Helvetica Neue", Tahoma, sans-serif;
 		font-size:14px;
-	}
-
-	&__button,
-	&__counter {
 		line-height:18px;
 		border-width:1px;
 		border-style:solid;
@@ -51,6 +53,11 @@
 		font-weight:normal;
 		color:#666;
 		color:hsla(0,0%,0%,.5);
+		&_link {
+			+link-base() {
+				color:@color;
+			}
+		}
 	}
 
 	&__counter:before,

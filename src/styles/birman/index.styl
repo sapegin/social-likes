@@ -1,0 +1,193 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+// Birman skin
+// Design: Ilya Birman, http://ilyabirman.net/
+
+@import '../base'
+
+border_color=#ccc;
+margin=6px;
+
+hover-button(button, color, text=null) {
+	.social-likes__widget_{button} {
+		+link-hovers() {
+			background:color;
+			border-color:color;
+			color:text  if text;
+			.social-likes__icon_{button} {
+				background-image:embedurl('icons/' button '-hover.png');
+			}
+		}
+	}
+}
+
+.social-likes {
+	&,
+	&_single-w {
+		margin:(-(margin));
+		line-height:20px;
+	}
+
+	&__widget {
+		margin:margin;
+		color:#000;
+		background:#fff;
+		border:1px solid border_color;
+		border-radius:3px;
+		line-height:18px;
+
+		&,
+		&__counter_link {
+			+link-hovers() {
+				tweak-inverted-text();
+				color:#fff;
+	 			cursor:pointer;
+	 		}
+	 	}
+	}
+
+	&__button,
+	&__counter {
+		vertical-align:middle;
+		font-family:"Helvetica Neue", Arial, sans-serif;
+		font-size:14px;
+		// line-height:20px;
+		cursor:inherit;
+	}
+
+	&__button {
+		margin:-1px;
+		padding:2px 6px 2px 20px;
+		font-weight:bold;
+		border-right:0;
+	}
+
+	&__icon {
+		width:20px;
+		height:20px;
+		background-repeat:no-repeat;
+		background-position:4px 5px;
+	}
+
+	&__counter {
+		min-width:12px;
+		padding:1px 4px 2px;
+		font-weight:normal;
+		text-align:center;
+		border-left:1px solid border_color;
+	}
+
+	// On hover we replace usual border-left with border inside :before because it should be 2px longer to on top of
+	// widget border which is now the same color as widget background.
+	&__widget:hover > &__counter,
+	&__widget:focus > &__counter,
+	&__widget:active > &__counter {
+		position:relative;
+		border-left-color:transparent;
+		&:before {
+			content:"";
+			position:absolute;
+			top:-1px;
+			bottom:-1px;
+			left:1px;
+			// Color: text color with 40% opacity
+			border-left:1px solid;
+			opacity:.4;
+		}
+	}
+
+	&__close {
+		padding:2px 4px;
+		font:16px Verdana, Geneva, sans-serif;
+		color:#999;
+	}
+	&__close:hover {
+		color:#111;
+	}
+
+	// Vertical mode
+	&_vertical {
+		margin:-6px (-(margin));
+		
+		.social-likes__widget {
+			margin:6px margin;
+		}
+	}
+
+	// Icons only mode
+	&_notext {
+		margin:-3px;
+		
+		.social-likes__widget {
+			margin:3px;
+		}
+		.social-likes__button {
+			width:18px;
+		}
+		.social-likes__icon {
+			width:100%;
+			background-position:center center;
+		}
+	}
+
+	// Single button mode
+	&_single {
+		padding:margin !important;
+		background:#fff;
+		box-shadow:0 0 15px hsla(0,0%,0%,.3);
+	}
+	&_single &__widget:first-of-type {
+		margin-right:margin+10px;  // Prevent collapse of widget and close button
+	}
+}
+
+
+// Single button
+.social-likes__icon_single {
+	background-image:embedurl('icons/single.png');
+	background-position:5px 4px;
+}
+hover-button('single', #3673f4);
+
+// Facebook
+.social-likes__icon_facebook {
+	background-image:embedurl('icons/facebook.png');
+	background-position:5px 5px;
+}
+hover-button('facebook', #425497);
+
+// Twitter
+.social-likes__icon_twitter {
+	background-image:embedurl('icons/twitter.png');
+}
+hover-button('twitter', #00b7ec);
+
+// Google+
+.social-likes__icon_plusone {
+	background-image:embedurl('icons/plusone.png');
+}
+hover-button('plusone', #dd4241);
+
+// Mail.ru
+.social-likes__icon_mailru {
+	background-image:embedurl('icons/mailru.png');
+}
+hover-button('mailru', #255896, #ffcd00);
+
+// Vkontakte
+.social-likes__icon_vkontakte {
+	background-image:embedurl('icons/vkontakte.png');
+}
+hover-button('vkontakte', #526e8f);
+
+// Odnoklassniki
+.social-likes__icon_odnoklassniki {
+	background-image:embedurl('icons/odnoklassniki.png');
+	background-position:5px 5px;
+}
+hover-button('odnoklassniki', #f6903b);
+
+// Pinterest
+.social-likes__icon_pinterest {
+	background-image:embedurl('icons/pinterest.png');
+}
+hover-button('pinterest', #cc002b);

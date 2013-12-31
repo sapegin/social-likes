@@ -1,24 +1,57 @@
 // Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
 
-.social-likes,
-.social-likes__widget {
-	display:inline-block;
-	vertical-align:middle;
-	text-indent:0;
-	padding:0;
-	border:0;
-	word-spacing:0 !important;
-	text-indent:0 !important;
+// :link and :visited states of the link.
+//
+// Example:
+//   +link-base()
+//     color: #bada55
+link-base() {
+	&,
+	&:link,
+	&:visited {
+		{block}
+	}
+}
+
+// :hover, :active and :focus states of the link.
+//
+// Example:
+//   +link-hovers()
+//     color: #bada55
+link-hovers() {
+	&:hover,
+	&:active,
+	&:focus {
+		{block}
+	}
+}
+
+// Tweak inverted text (light on dark) for OS X.
+tweak-inverted-text() {
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
 }
 
 .social-likes {
+	border:0 !important;
+}
+.social-likes,
+.social-likes__widget {
+	display:inline-block;
+	vertical-align:middle !important;
+	text-indent:0 !important;
+	padding:0 !important;
+	word-spacing:0 !important;
+	text-indent:0 !important;
 	list-style:none !important;
+}
 
+.social-likes {
 	&__widget {
 		display:inline-block;
 		position:relative;
 		white-space:nowrap;
-		overflow:hidden;
+		// overflow:hidden;
 		&:before,
 		&:after {
 			display:none !important;  // Remove nice bullets
@@ -26,6 +59,8 @@
 	}
 	&_vertical &__widget {
 		display:block;
+		float:left;
+		clear:left;
 	}
 
 	&__button,
@@ -64,6 +99,13 @@
 		position:relative;
 		font-weight:normal;
 		cursor:default;
+		&_link {
+			color:inherit;
+			+link-hovers() {
+				cursor:pointer;
+				text-decoration:underline;
+			}
+		}
 	}
 
 	&__close {

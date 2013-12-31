@@ -5,6 +5,7 @@
 	<title>Social Likes</title>
 	<link id="styles_flat" href="../social-likes.css" rel="stylesheet">
 	<link id="styles_classic" href="../social-likes_classic.css" rel="stylesheet" disabled>
+	<link id="styles_birman" href="../social-likes_birman.css" rel="stylesheet" disabled>
 
 <script>
 (function() {
@@ -12,6 +13,7 @@ function updateSkin() {
 	function el(id) { return document.getElementById(id); }
 	el('styles_flat').disabled = true;
 	el('styles_classic').disabled = true;
+	el('styles_birman').disabled = true;
 	el('styles_' + location.hash.slice(1)).disabled = false;
 }
 if (location.hash) {
@@ -34,6 +36,12 @@ body {
 	padding:20px;
 	font-family:Arial;
 	}
+table {
+	border-collapse:collapse;
+	}
+td {
+	padding:0;
+	}
 .dark-bg {
 	margin:0 -20px;
 	padding:20px;
@@ -54,12 +62,23 @@ body {
 	font-weight:bold;
 	cursor:none;
 	}
+.show-grid .grid {
+	border-left:1px solid hsla(0,0%,0%,.2);
+	}
 </style>
 
 </head>
 <body class="skin_classic">
 
-	<div class="skin-switcher">Skin: <a id="flat" href="#flat">Flat</a>, <a id="classic" href="#classic">Classic</a>.</div>
+	<div class="skin-switcher">
+		Skin:
+		<a id="flat" href="#flat">Flat</a>,
+		<a id="birman" href="#birman">Birman</a>,
+		<a id="classic" href="#classic">Classic</a>.
+		<a id="grid" href="#">Toggle grid</a>
+	</div>
+
+	<div class="grid">
 
 	<h3>Standard</h3>
 	<div class="social-likes" data-url="http://mail.ru/">
@@ -153,29 +172,35 @@ body {
 	</ul>
 
 	<h3>Single button</h3>
-	<ul class="social-likes social-likes_single" data-url="http://mail.ru/">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-		<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-	</ul>
-	<ul class="social-likes social-likes_single social-likes_light" data-url="http://mail.ru/">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-		<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-	</ul>
-	<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/" data-single-title="Share me">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-	</ul>
+	<p>
+		<ul class="social-likes social-likes_single" data-url="http://mail.ru/">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+			<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
+		</ul>
+	</p>
+	<p>
+		<ul class="social-likes social-likes_single social-likes_light" data-url="http://mail.ru/">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
+			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
+			<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
+		</ul>
+	</p>
+	<p>
+		<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/" data-single-title="Share me">
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
+		</ul>
+	</p>
 
 	<h3>Icons only</h3>
 	<ul class="social-likes social-likes_notext" data-url="http://maps.mail.ru/">
@@ -290,5 +315,18 @@ var socialLikesButtons = {
 	<ul class="social-likes">
 		<li class="surfingbird" data-counter="666">Surf</li>
 	</ul>
+
+	</div>
+
+<script>
+if ('localStorage' in window) {
+	$('body').toggleClass('show-grid', localStorage.getItem('show-grid') === 'true');
+	$('#grid').click(function(e) {
+		$('body').toggleClass('show-grid');
+		localStorage.setItem('show-grid', $('body').hasClass('show-grid'));
+		e.preventDefault();
+	});
+}
+</script>
 </body>
 </html>

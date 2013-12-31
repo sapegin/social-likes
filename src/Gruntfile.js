@@ -38,7 +38,8 @@ module.exports = function(grunt) {
 			compile: {
 				files: {
 					'../social-likes.css': 'styles/flat/index.styl',
-					'../social-likes_classic.css': 'styles/classic/index.styl'
+					'../social-likes_classic.css': 'styles/classic/index.styl',
+					'../social-likes_birman.css': 'styles/birman/index.styl'
 				}
 			},
 			contrib: {
@@ -82,13 +83,23 @@ module.exports = function(grunt) {
 			options: {
 				pngquant: true
 			},
-			main: {
+			classic: {
 				files: [
 					{
 						expand: true,
 						cwd: 'styles/classic/icons_src/',
 						src: '*.png',
 						dest: 'styles/classic/icons/'
+					}
+				]
+			},
+			birman: {
+				files: [
+					{
+						expand: true,
+						cwd: 'styles/birman/icons_src/',
+						src: '*.png',
+						dest: 'styles/birman/icons/'
 					}
 				]
 			}
@@ -98,6 +109,9 @@ module.exports = function(grunt) {
 				livereload: true
 			},
 			stylus: {
+				options: {
+					atBegin: true
+				},
 				files: 'styles/**',
 				tasks: ['stylus:compile']
 			}
