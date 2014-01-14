@@ -294,7 +294,7 @@ SocialLikes.prototype = {
 		widget.append(button);
 		wrapper.append(widget);
 
-		button.click(function() {
+		widget.click(function() {
 			container.css({ left: defaultLeft,  top: defaultTop });
 			showInViewport(container, 20);
 			closeOnClick(container);
@@ -398,10 +398,6 @@ Button.prototype = {
 	initHtml: function() {
 		var options = this.options;
 		var widget = this.widget;
-		var isLink = !!options.clickUrl;
-
-		widget.removeClass(this.service);
-		widget.addClass(this.getElementClassNames('widget'));
 
 		// Old initialization HTML
 		var a = widget.find('a');
@@ -410,20 +406,27 @@ Button.prototype = {
 		}
 
 		// Button
-		var button = $(isLink ? '<a>' : '<span>', {
+		var button = $('<span>', {
 			'class': this.getElementClassNames('button'),
 			'text': widget.text()
 		});
-		if (isLink) {
+		if (options.clickUrl) {
 			var url = makeUrl(options.clickUrl, {
 				url: options.pageUrl,
 				title: options.pageTitle
 			});
-			button.attr('href', url);
+			var link = $('<a>', {
+				href: url
+			});
+			this.cloneDataAttrs(widget, link);
+			widget.replaceWith(link);
 		}
 		else {
-			button.click($.proxy(this.click, this));
+			widget.click($.proxy(this.click, this));
 		}
+
+		widget.removeClass(this.service);
+		widget.addClass(this.getElementClassNames('widget'));
 
 		// Icon
 		button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
