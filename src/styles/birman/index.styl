@@ -4,8 +4,8 @@
 
 @import '../base'
 
-bg_color=#e8e8e8;
-border_color=#d0d0d0;
+bg_color=#fff;
+border_color=#ccc;
 margin=6px;
 
 hover-button(button, color, text=null) {
@@ -32,7 +32,7 @@ hover-button(button, color, text=null) {
 		margin:margin;
 		color:#000;
 		background:bg_color;
-		border:1px solid bg_color;
+		border:1px solid border_color;
 		border-radius:3px;
 		line-height:18px;
 
@@ -45,10 +45,10 @@ hover-button(button, color, text=null) {
 
 	&__button,
 	&__counter {
-		vertical-align:baseline;
+		vertical-align:middle;
 		font-family:"Helvetica Neue", Arial, sans-serif;
 		font-size:13px;
-		line-height:18px;
+		line-height:19px;
 		cursor:inherit;
 	}
 
@@ -62,6 +62,7 @@ hover-button(button, color, text=null) {
 	&__icon {
 		width:20px;
 		height:18px;
+		margin-top:1px;
 		background-repeat:no-repeat;
 		background-position:50% 50%;
 	}
