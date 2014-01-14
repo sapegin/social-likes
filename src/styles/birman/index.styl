@@ -4,7 +4,8 @@
 
 @import '../base'
 
-border_color=#ccc;
+bg_color=#e8e8e8;
+border_color=#d0d0d0;
 margin=6px;
 
 hover-button(button, color, text=null) {
@@ -30,8 +31,8 @@ hover-button(button, color, text=null) {
 	&__widget {
 		margin:margin;
 		color:#000;
-		background:#fff;
-		border:1px solid border_color;
+		background:bg_color;
+		border:1px solid bg_color;
 		border-radius:3px;
 		line-height:18px;
 
@@ -46,35 +47,33 @@ hover-button(button, color, text=null) {
 	&__counter {
 		vertical-align:middle;
 		font-family:"Helvetica Neue", Arial, sans-serif;
-		font-size:14px;
-		// line-height:20px;
+		font-size:13px;
+		line-height:18px;
 		cursor:inherit;
 	}
 
 	&__button {
 		margin:-1px;
-		padding:2px 6px 2px 20px;
-		font-weight:bold;
+		padding:1px 6px 1px 20px;
+		font-weight:normal;
 		border-right:0;
 	}
 
 	&__icon {
 		width:20px;
-		height:20px;
+		height:18px;
 		background-repeat:no-repeat;
-		background-position:4px 5px;
+		background-position:50% 50%;
 	}
 
 	&__counter {
 		min-width:12px;
-		padding:1px 4px 2px;
+		padding:1px 4px 1px;
 		font-weight:normal;
 		text-align:center;
 		border-left:1px solid border_color;
 	}
 
-	// On hover we replace usual border-left with border inside :before because it should be 2px longer to on top of
-	// widget border which is now the same color as widget background.
 	&__widget:hover > &__counter,
 	&__widget:focus > &__counter,
 	&__widget:active > &__counter {
@@ -83,9 +82,9 @@ hover-button(button, color, text=null) {
 		&:before {
 			content:"";
 			position:absolute;
-			top:-1px;
-			bottom:-1px;
-			left:1px;
+			top:0;
+			bottom:0;
+			left:-1px;
 			// Color: text color with 40% opacity
 			border-left:1px solid;
 			opacity:.4;
@@ -141,14 +140,12 @@ hover-button(button, color, text=null) {
 // Single button
 .social-likes__icon_single {
 	background-image:embedurl('icons/single.png');
-	background-position:5px 4px;
 }
 hover-button('single', #3673f4);
 
 // Facebook
 .social-likes__icon_facebook {
 	background-image:embedurl('icons/facebook.png');
-	background-position:5px 5px;
 }
 hover-button('facebook', #425497);
 
@@ -179,7 +176,7 @@ hover-button('vkontakte', #526e8f);
 // Odnoklassniki
 .social-likes__icon_odnoklassniki {
 	background-image:embedurl('icons/odnoklassniki.png');
-	background-position:5px 5px;
+	background-position:6px 3px;
 }
 hover-button('odnoklassniki', #f6903b);
 
