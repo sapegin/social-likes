@@ -83,10 +83,8 @@ var services = {
 
 			var index = options._.length;
 			options._.push(deferred);
-			$.ajax({
-				url: makeUrl(jsonUrl, {index: index}),
-				dataType: 'jsonp'
-			});
+			$.getScript(makeUrl(jsonUrl, {index: index}))
+				.fail(deferred.reject);
 		},
 		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
@@ -105,7 +103,10 @@ var services = {
 		counterUrl: 'http://share.yandex.ru/gpp.xml?url={url}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.plusone;
-			if (options._) return;
+			if (options._) {
+				deferred.reject();
+				return;
+			}
 
 			if (!window.services) window.services = {};
 			window.services.gplus = {
@@ -115,10 +116,8 @@ var services = {
 			};
 
 			options._ = deferred;
-			$.ajax({
-				url: makeUrl(jsonUrl),
-				dataType: 'jsonp'
-			});
+			$.getScript(makeUrl(jsonUrl))
+				.fail(deferred.reject);
 		},
 		popupUrl: 'https://plus.google.com/share?url={url}',
 		popupWidth: 700,
@@ -167,9 +166,15 @@ var counters = {
 							deferred.resolve(number);
 						}
 						catch (e) {
-							deferred.reject(e);
+							deferred.reject();
 						}
+					})
+					.fail(function() { 
+						deferred.reject()
 					});
+			}
+			else {
+				deferred.reject();
 			}
 
 			servicePromises[url] = deferred.promise();
@@ -231,12 +236,18 @@ SocialLikes.prototype = {
 		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
-		this.makeSingleButton();
+
+		this.number = 0;
+		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 
 		var options = this.options;
-		this.container.children().each(function() {
-			new Button($(this), options);
-		});
+		this.countersLeft = 0;
+		this.container.children().each($.proxy(function(idx, elem) {
+			this.countersLeft++;
+			new Button($(elem), options);
+		}, this));
+
+		this.makeSingleButton();
 	},
 	readOptions: function(opts) {
 		opts = opts || {};
@@ -312,17 +323,21 @@ SocialLikes.prototype = {
 			container.removeClass(visibleClass);
 		});
 
-		this.number = 0;
-
 		this.widget = widget;
-
-		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 	},
 	updateCounter: function(e, service, number) {
-		if (!number) return;
+		if (number) {
+			this.number += number;			
+			if (this.single) {
+				this.getCounterElem().text(this.number);
+			}
+		}
 
-		this.number += number;
-		this.getCounterElem().text(this.number);
+		this.countersLeft--;
+		if (this.countersLeft === 0) {
+			this.container.addClass(prefix + '_ready');
+			this.container.trigger('ready.' + prefix, this.number);
+		}
 	},
 	getCounterElem: function() {
 		var counterElem = this.widget.find('.' + classPrefix + 'counter_single');
@@ -358,7 +373,7 @@ Button.prototype = {
 			else {
 				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
 				counters.fetch(this.service, this.options.pageUrl, extraOptions)
-					.done($.proxy(this.updateCounter, this));
+					.always($.proxy(this.updateCounter, this));
 			}
 		}
 	},
@@ -449,14 +464,15 @@ Button.prototype = {
 	},
 
 	updateCounter: function(number) {
-		number = parseInt(number, 10);
-		if (!number && !this.options.showZeroes) return;
-
-		var counterElem = $('<span>', {
-			'class': this.getElementClassNames('counter'),
-			'text': number,
-		});
-		this.widget.append(counterElem);
+		number = parseInt(number, 10) || 0;
+		
+		if (number || this.options.showZeroes) {
+			var counterElem = $('<span>', {
+				'class': this.getElementClassNames('counter'),
+				'text': number,
+			});
+			this.widget.append(counterElem);
+		}
 
 		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},

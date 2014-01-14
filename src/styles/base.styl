@@ -108,9 +108,14 @@ tweak-inverted-text() {
 	}
 
 	&__counter {
+		display:none;
 		position:relative;
 		font-weight:normal;
 		cursor:default;
+	}
+	&_ready &__counter,
+	&__counter_single {
+		display:inline-block;
 	}
 
 	&__close {

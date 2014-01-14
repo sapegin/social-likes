@@ -153,11 +153,21 @@ $('#share').socialLikes();
 
 #### `counter.social-likes`
 
-Triggers for every non-zero counter.
+Triggers for every counter.
 
 ```javascript
 $('.social-likes').on('counter.social-likes', function(event, service, number) {
 	// service: facebook, twitter, etc.
+});
+```
+
+#### `ready.social-likes`
+
+Triggers after all counters loaded.
+
+```javascript
+$('.social-likes').on('ready.social-likes', function(event, number) {
+	// number is total number of shares
 });
 ```
 
