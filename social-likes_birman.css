@@ -139,7 +139,7 @@
 .social-likes,
 .social-likes_single-w {
   margin: -6px;
-  line-height: 20px;
+  line-height: 19px;
 }
 
 .social-likes__widget {
@@ -148,7 +148,7 @@
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
-  line-height: 18px;
+  line-height: 19px;
 }
 
 .social-likes__widget:hover,
@@ -170,8 +170,7 @@
 }
 
 .social-likes__button {
-  margin: -1px;
-  padding: 1px 6px 2px 20px;
+  padding: 1px 6px 1px 20px;
   font-weight: normal;
   border-right: 0;
 }
