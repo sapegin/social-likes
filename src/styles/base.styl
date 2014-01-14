@@ -46,6 +46,18 @@ tweak-inverted-text() {
 	list-style:none !important;
 }
 
+// Hide buttons until they are loaded
+.social-likes > * {
+	display:inline-block;
+	visibility:hidden;
+}
+.social-likes_vertical > * {
+	display:block;
+}
+.social-likes .social-likes__widget {
+	visibility:visible;
+}	
+
 .social-likes {
 	&__widget {
 		display:inline-block;
