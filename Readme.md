@@ -161,14 +161,6 @@ $('.social-likes').on('counter.social-likes', function(event, service, number) {
 });
 ```
 
-### Experimental Google+ counter
-
-Place `googleplusonecount.php` somewhere on your server. And change buttons HTML like this:
-
-```html
-<li class="plusone" data-counter="http://example.com/path/to/googleplusonecount.php?url={url}&amp;callback=?">Google+</li>
-```
-
 ### Adding your own button
 
 You can find some custom buttons in `contrib` folder.
@@ -195,7 +187,6 @@ var socialLikesButtons = {
 	}
 };
 ``` 
-
 
 Add some CSS:
 
@@ -241,9 +232,11 @@ You can add additional Twitter data using [Twitter Card](https://dev.twitter.com
 
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
+
 ## Release History
 
 The changelog can be found in the `Changelog.md` file.
+
 
 ---
 

@@ -104,6 +104,24 @@ var services = {
 		popupHeight: 360
 	},
 	plusone: {
+		counterUrl: 'http://share.yandex.ru/gpp.xml?url={url}',
+		counter: function(jsonUrl, deferred) {
+			var options = services.plusone;
+			if (options._) return;
+
+			if (!window.services) window.services = {};
+			window.services.gplus = {
+				cb: function(number) {
+					options._.resolve(number);
+				}
+			};
+
+			options._ = deferred;
+			$.ajax({
+				url: makeUrl(jsonUrl),
+				dataType: 'jsonp'
+			});
+		},
 		popupUrl: 'https://plus.google.com/share?url={url}',
 		popupWidth: 700,
 		popupHeight: 500
