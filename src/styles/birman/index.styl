@@ -35,14 +35,11 @@ hover-button(button, color, text=null) {
 		border-radius:3px;
 		line-height:18px;
 
-		&,
-		&__counter_link {
-			+link-hovers() {
-				tweak-inverted-text();
-				color:#fff;
-	 			cursor:pointer;
-	 		}
-	 	}
+		+link-hovers() {
+			tweak-inverted-text();
+			color:#fff;
+ 			cursor:pointer;
+ 		}
 	}
 
 	&__button,
