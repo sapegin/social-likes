@@ -6,7 +6,7 @@
  *
  * @requires jQuery
  * @author Artem Sapegin
- * @copyright 2012 Artem Sapegin (sapegin.me)
+ * @copyright 2014 Artem Sapegin (sapegin.me)
  * @license MIT
  */
 
