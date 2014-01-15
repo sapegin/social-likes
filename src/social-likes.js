@@ -50,7 +50,7 @@ var services = {
 		popupHeight: 450,
 		click: function() {
 			// Add colon to improve readability
-			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
+			if (!/[\.:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
 			return true;
 		}
 	},
@@ -187,52 +187,33 @@ var counters = {
 /**
  * jQuery plugin
  */
-$.fn.socialLikes = function(opts) {
+$.fn.socialLikes = function(options) {
 	return this.each(function() {
-		new SocialLikes($(this), opts);
+		var elem = $(this);
+		options = $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem));
+		new SocialLikes(elem, options);
 	});
 };
 
+$.fn.socialLikes.defaults = {
+	url: window.location.href.replace(window.location.hash, ''),
+	title: document.title,
+	counters: true,
+	zeroes: false,
+	singleTitle: 'Share'
+};
 
-function SocialLikes(container, opts) {
+function SocialLikes(container, options) {
 	this.container = container;
-	this.init(opts);
+	this.options = options;
+	this.init();
 }
 
 SocialLikes.prototype = {
-	optionsMap: {
-		pageUrl: {
-			attr: 'url',
-			defaultValue: function() { return window.location.href.replace(window.location.hash, ''); }
-		},
-		pageTitle: {
-			attr: 'title',
-			defaultValue: function() { return document.title; }
-		},
-		pageHtml: {
-			attr: 'html',
-			defaultValue: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
-		},
-		showCounters: {
-			attr: 'counters',
-			defaultValue: 'yes',
-			convert: function(value) { return value === true || value === 'yes'; }
-		},
-		showZeroes: {
-			attr: 'zeroes',
-			defaultValue: 'no',
-			convert: function(value) { return value === true || value === 'yes'; }
-		},
-		singleTitle: {
-			attr: 'single-title',
-			defaultValue: 'Share'
-		}
-	},
-	init: function(opts) {
+	init: function() {
 		// Add class in case of manual initialization
 		this.container.addClass(prefix);
 
-		this.readOptions(opts);
 		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
@@ -240,36 +221,13 @@ SocialLikes.prototype = {
 		this.number = 0;
 		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 
-		var options = this.options;
 		this.countersLeft = 0;
 		this.container.children().each($.proxy(function(idx, elem) {
 			this.countersLeft++;
-			new Button($(elem), options);
+			new Button($(elem), this.options);
 		}, this));
 
 		this.makeSingleButton();
-	},
-	readOptions: function(opts) {
-		opts = opts || {};
-		this.options = {};
-
-		for (var key in this.optionsMap) {
-			var option = this.optionsMap[key];
-			var value = opts[option.attr] !== undefined ? opts[option.attr] : this.container.data(option.attr);
-
-			if (value === undefined) {
-				if ($.isFunction(option.defaultValue)) {
-					value = $.proxy(option.defaultValue, this)();
-				}
-				else {
-					value = option.defaultValue;
-				}
-			}
-			if ($.isFunction(option.convert)) {
-				value = option.convert(value);
-			}
-			this.options[key] = value;
-		}
 	},
 	initUserButtons: function() {
 		if (!this.userButtonInited && window.socialLikesButtons) {
@@ -295,11 +253,12 @@ SocialLikes.prototype = {
 		var button = $(template(
 			'<div class="{buttonCls}">' +
 				'<span class="{iconCls}"></span>' +
-				this.options.singleTitle +
+				'{title}' +
 			'</div>',
 			{
 				buttonCls: getElementClassNames('button', 'single'),
-				iconCls: getElementClassNames('icon', 'single')
+				iconCls: getElementClassNames('icon', 'single'),
+				title: this.options.singleTitle
 			}
 		));
 		widget.append(button);
@@ -366,13 +325,13 @@ Button.prototype = {
 		this.detectParams();
 		this.initHtml();
 
-		if (this.options.showCounters) {
+		if (this.options.counters) {
 			if (this.options.counterNumber) {
 				this.updateCounter(this.options.counterNumber);
 			}
 			else {
 				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
-				counters.fetch(this.service, this.options.pageUrl, extraOptions)
+				counters.fetch(this.service, this.options.url, extraOptions)
 					.always($.proxy(this.updateCounter, this));
 			}
 		}
@@ -391,23 +350,28 @@ Button.prototype = {
 	},
 
 	detectParams: function() {
+		var data = this.widget.data();
+
 		// Custom page counter URL or number
-		var counter = this.widget.data('counter');
-		if (counter) {
-			var number = parseInt(counter, 10);
-			if (isNaN(number))
-				this.options.counterUrl = counter;
-			else
+		if (data.counter) {
+			var number = parseInt(data.counter, 10);
+			if (isNaN(number)) {
+				this.options.counterUrl = data.counter;
+			}
+			else {
 				this.options.counterNumber = number;
+			}
 		}
 		
-		var customTitle = this.widget.data('title');
-		if (customTitle)
-			this.options.pageTitle = customTitle;
+		// Custom page title
+		if (data.title) {
+			this.options.title = data.title;
+		}
 
-		var customUrl = this.widget.data('url');
-		if (customUrl)
-			this.options.pageUrl = customUrl;
+		// Custom page URL
+		if (data.url) {
+			this.options.url = data.url;
+		}
 	},
 
 	initHtml: function() {
@@ -427,8 +391,8 @@ Button.prototype = {
 		});
 		if (options.clickUrl) {
 			var url = makeUrl(options.clickUrl, {
-				url: options.pageUrl,
-				title: options.pageTitle
+				url: options.url,
+				title: options.title
 			});
 			var link = $('<a>', {
 				href: url
@@ -466,7 +430,7 @@ Button.prototype = {
 	updateCounter: function(number) {
 		number = parseInt(number, 10) || 0;
 		
-		if (number || this.options.showZeroes) {
+		if (number || this.options.zeroes) {
 			var counterElem = $('<span>', {
 				'class': this.getElementClassNames('counter'),
 				'text': number,
@@ -485,8 +449,8 @@ Button.prototype = {
 		}
 		if (process) {
 			var url = makeUrl(options.popupUrl, {
-				url: options.pageUrl,
-				title: options.pageTitle
+				url: options.url,
+				title: options.title
 			});
 			url = this.addAdditionalParamsToUrl(url);
 			this.openPopup(url, {
@@ -526,6 +490,22 @@ Button.prototype = {
 /**
  * Helpers
  */
+
+ // Camelize data-attributes
+function dataToOptions(elem) {
+	function upper(m, l) {
+		return l.toUpper();
+	}
+	var options = {};
+	var data = elem.data();
+	for (var key in data) {
+		var value = data[key];
+		if (value === 'yes') value = true;
+		else if (value === 'no') value = false;
+		options[key.replace(/-(\w)/g, upper)] = value;
+	}
+	return options;
+}
 
 function makeUrl(url, context) {
 	return template(url, context, encodeURIComponent);
