@@ -219,9 +219,12 @@ SocialLikes.prototype = {
 		this.number = 0;
 		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 
-		this.countersLeft = 0;
-		this.container.children().each($.proxy(function(idx, elem) {
-			this.countersLeft++;
+		var buttons = this.container.children();
+		this.countersLeft = buttons.length;
+
+		this.makeSingleButton();
+
+		buttons.each($.proxy(function(idx, elem) {
 			new Button($(elem), this.options);
 		}, this));
 
@@ -231,8 +234,6 @@ SocialLikes.prototype = {
 		else {
 			this.appear();
 		}
-
-		this.makeSingleButton();
 	},
 	initUserButtons: function() {
 		if (!this.userButtonInited && window.socialLikesButtons) {
