@@ -24,7 +24,7 @@
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
-var visibleClass = prefix + '_visible';
+var openClass = prefix + '_open';
 
 
 /**
@@ -169,7 +169,7 @@ var counters = {
 							deferred.reject();
 						}
 					})
-					.fail(function() { 
+					.fail(function() {
 						deferred.reject()
 					});
 			}
@@ -190,8 +190,7 @@ var counters = {
 $.fn.socialLikes = function(options) {
 	return this.each(function() {
 		var elem = $(this);
-		options = $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem));
-		new SocialLikes(elem, options);
+		new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
 	});
 };
 
@@ -200,6 +199,7 @@ $.fn.socialLikes.defaults = {
 	title: document.title,
 	counters: true,
 	zeroes: false,
+	wait: 500,
 	singleTitle: 'Share'
 };
 
@@ -226,6 +226,13 @@ SocialLikes.prototype = {
 			this.countersLeft++;
 			new Button($(elem), this.options);
 		}, this));
+
+		if (this.options.counters) {
+			this.timer = setTimeout($.proxy(this.appear, this), this.options.wait);
+		}
+		else {
+			this.appear();
+		}
 
 		this.makeSingleButton();
 	},
@@ -279,7 +286,7 @@ SocialLikes.prototype = {
 		container.append(close);
 
 		close.click(function() {
-			container.removeClass(visibleClass);
+			container.removeClass(openClass);
 		});
 
 		this.widget = widget;
@@ -294,9 +301,13 @@ SocialLikes.prototype = {
 
 		this.countersLeft--;
 		if (this.countersLeft === 0) {
+			this.appear();
 			this.container.addClass(prefix + '_ready');
 			this.container.trigger('ready.' + prefix, this.number);
 		}
+	},
+	appear: function() {
+		this.container.addClass(prefix + '_visible');
 	},
 	getCounterElem: function() {
 		var counterElem = this.widget.find('.' + classPrefix + 'counter_single');
@@ -526,7 +537,7 @@ function getElementClassNames(elem, mod) {
 function closeOnClick(elem) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
-		elem.removeClass(visibleClass);
+		elem.removeClass(openClass);
 		doc.off(events, handler);
 	}
 	var doc = $(document);
@@ -550,7 +561,7 @@ function showInViewport(elem, offset) {
 		else if (rect.bottom > window.innerHeight - offset)
 			elem.css('top', window.innerHeight - rect.bottom - offset + top);
 	}
-	elem.addClass(visibleClass);
+	elem.addClass(openClass);
 }
 
 

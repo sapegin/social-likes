@@ -32,21 +32,26 @@ tweak-inverted-text() {
 	-moz-osx-font-smoothing:grayscale;
 }
 
-.social-likes {
-	border:0 !important;
-}
 .social-likes,
 .social-likes__widget {
 	display:inline-block;
+	margin:0;
+	padding:0;
 	vertical-align:middle !important;
 	text-indent:0 !important;
-	padding:0 !important;
 	word-spacing:0 !important;
 	text-indent:0 !important;
 	list-style:none !important;
 }
 
 // Hide buttons until they are loaded
+.social-likes {
+	opacity:0;
+}
+.social-likes_visible {
+	opacity:1;
+	transition:opacity .1s ease-in;
+}
 .social-likes > * {
 	display:inline-block;
 	visibility:hidden;
@@ -54,9 +59,9 @@ tweak-inverted-text() {
 .social-likes_vertical > * {
 	display:block;
 }
-.social-likes .social-likes__widget {
+.social-likes_visible .social-likes__widget {
 	visibility:inherit;
-}	
+}
 
 .social-likes {
 	&__widget {
@@ -118,13 +123,11 @@ tweak-inverted-text() {
 	}
 
 	&__close {
+		visibility:visible;
 		position:absolute;
 		right:0;
 		top:0;
 		cursor:pointer;
-	}
-	&__close:before {
-		display:none;  // Remove nice bullets
 	}
 
 	// Vertical mode
@@ -154,7 +157,7 @@ tweak-inverted-text() {
 		opacity:0;
 		transition:visibility 0s .3s, opacity .3s ease-out;
 		backface-visibility:hidden;
-		&.social-likes_visible {
+		&.social-likes_open {
 			visibility:visible;
 			opacity:1;
 			transition:opacity .3s ease-out;
