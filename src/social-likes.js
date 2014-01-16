@@ -410,6 +410,7 @@ Button.prototype = {
 			});
 			this.cloneDataAttrs(widget, link);
 			widget.replaceWith(link);
+			this.widget = widget = link;
 		}
 		else {
 			widget.click($.proxy(this.click, this));
