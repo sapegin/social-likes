@@ -104,6 +104,9 @@ button-colors(button, color) {
 		-webkit-font-smoothing:subpixel-antialiased;
 		-moz-osx-font-smoothing:auto;
 	}
+	&_light .social-likes__icon {
+		margin-top:-.1em;
+	}
 	&_light .social-likes__counter,
 	&_single-light + .social-likes__button + .social-likes__counter {
 		float:none;
@@ -185,6 +188,9 @@ button-colors('plusone', #d23e30);
 }
 .social-likes__icon_plusone {
 	left:.25em;
+	.social-likes_light & {
+		margin-top:0;
+	}
 }
 
 // Mail.ru
