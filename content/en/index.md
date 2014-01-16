@@ -8,6 +8,7 @@ translationTitle: По-русски
 builderSkin: Skin
 builderSkinClassic: Classic
 builderSkinFlat: Flat β
+builderSkinBirman: Birman β
 builderType: Look
 builderTypeHorizontal: Horizontal
 builderTypeVertical: Vertical
@@ -37,4 +38,4 @@ onGitHub: on GitHub
 archiveContains: Archive contains all you need to use like buttons with chosen options.
 archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">documentation</a>
 docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Documentation</a> with advanced customization examples.<br>If you have any questions <a href="https://github.com/sapegin/social-likes/issues">file an issue</a> on GitHub or <a href="http://sapegin.me/contacts">contact me</a>.
-footer: © 2013 <a href="https://github.com/sapegin">Artem Sapegin</a> and contributors. Flat skin: <a href="http://genn.org/">Genn Osypenko</a>
+footer: © 2013 <a href="https://github.com/sapegin">Artem Sapegin</a> and contributors. Flat skin: <a href="http://genn.org/">Genn Osypenko</a>, Birman skin: <a href="http://ilyabirman.net/">Ilya Birman</a>

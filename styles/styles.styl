@@ -41,6 +41,13 @@
 	}	
 }
 
+.checkbox__input:checked + .checkbox__label .checkbox__button,
+.radio__input:checked + .radio__label .radio__button,
+.checkbox__input:not(:checked) + .checkbox__label .checkbox__button,
+.radio__input:not(:checked) + .radio__label .radio__button {
+	margin-top:0;
+}
+
 .preview {
 	min-height:55px;
 	margin:2*spacer (-(2*spacer));

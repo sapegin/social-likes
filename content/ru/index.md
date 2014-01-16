@@ -7,6 +7,7 @@ translationTitle: In English
 builderSkin: Скин
 builderSkinClassic: Классический
 builderSkinFlat: Плоский β
+builderSkinBirman: Бирман β
 builderType: Вид
 builderTypeHorizontal: Горизонтальный
 builderTypeVertical: Вертикальный
@@ -36,4 +37,4 @@ onGitHub: на Гитхабе
 archiveContains: В архиве есть всё необходимое для подключения кнопок с выбранными параметрами.
 archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">документация</a>
 docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Документация</a> с примерами настройки и расширения.<br>По всем вопросам <a href="http://sapegin.ru/contacts">пишите мне</a> или в <a href="https://github.com/sapegin/social-likes/issues">issues на Гитхабе</a>.
-footer: © 2013 <a href="https://github.com/sapegin">Артём Сапегин</a> и другие. Плоский скин: <a href="http://genn.org/">Гена Осипенко</a>
+footer: © 2013 <a href="https://github.com/sapegin">Артём Сапегин</a> и другие. Плоский скин: <a href="http://genn.org/">Гена Осипенко</a>, скин Бирмана: <a href="http://ilyabirman.ru/">Илья Бирман</a>

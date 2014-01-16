@@ -94,8 +94,11 @@ module.exports = (grunt) ->
 					path: 'src/social-likes_classic.css'
 					href: prefix + 'src/social-likes_classic.css?{version}'
 				slcss_flat:
-					path: 'src/social-likes.css'
-					href: prefix + 'src/social-likes.css?{version}'
+					path: 'src/social-likes_flat.css'
+					href: prefix + 'src/social-likes_flat.css?{version}'
+				slcss_birman:
+					path: 'src/social-likes_birman.css'
+					href: prefix + 'src/social-likes_birman.css?{version}'
 		connect:
 			server:
 				options:
@@ -126,4 +129,3 @@ module.exports = (grunt) ->
 				tasks: 'sweet'
 
 	grunt.registerTask 'default', ['jshint', 'concat', 'uglify', 'stylus', 'modernizr', 'sweet']
-	# grunt.registerTask 'deploy', ['stylus', 'bower_concat', 'coffee', 'concat', 'uglify', 'modernizr']

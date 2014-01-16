@@ -19,14 +19,12 @@
 		prefix = location.hostname === '127.0.0.1' ? '' : '/social-likes/',
 		sourceFiles = {
 			'social-likes.min.js': {url: prefix + 'src/social-likes.min.js'},
-			'social-likes.css': {
-				classic: {url: prefix + 'src/social-likes_classic.css'},
-				flat: {url: prefix + 'src/social-likes.css'}
-			}
+			'social-likes_{skin}.css': {url: prefix + 'src/social-likes_{skin}.css'}
 		},
 		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
 		experimental = location.hash === '#ponies',
 		simple = !('download' in document.createElement('a')),
+		skins = ['flat', 'classic', 'birman'],
 		skin = 'classic';
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
@@ -149,19 +147,23 @@
 	function getFiles() {
 		var files = {};
 		for (var fileName in sourceFiles) {
-			files[fileName] = getFile(fileName);
+			files[getFilenameForSkin(fileName)] = getFile(fileName);
 		}
 		return files;
 	}
 
 	function getFile(fileName) {
-		var file = 'url' in sourceFiles[fileName] ? sourceFiles[fileName] : sourceFiles[fileName][skin];
+		var file = sourceFiles[fileName];
 		if (!file.file) {
-			$.ajax(file.url, { async: false, dataType: 'html' }).then(function(data) {
+			$.ajax(getFilenameForSkin(file), { async: false, dataType: 'html' }).then(function(data) {
 				file.file = data;
 			});
 		}
 		return file.file;
+	}
+
+	function getFilenameForSkin(fileName) {
+		return fileName.replace('{skin}', skin);
 	}
 
 	tamia.initComponents({
@@ -172,14 +174,14 @@
 				twitterExtra = form.find('.js-twitter-extra'),
 				pinterestExtra = form.find('.js-pinterest-extra'),
 				lightStyle = form.find('.js-light'),
-				prepend = $('#prepend_tmpl').html(),
+				prepend = doT.template($('#prepend_tmpl').html()),
 				template = doT.template($('#build_tmpl').html()),
 				previous;
 
 			var delayedUpdate = debounce(function(html, data) {
 				// Switch skin
 				skin = data.skin;
-				$.each(['flat', 'classic'], function(i, s) {
+				$.each(skins, function(i, s) {
 					$('#styles_' + s).prop('disabled', s !== skin);
 				});
 
@@ -203,7 +205,6 @@
 					site_twitter: !!data.site_twitter,
 					site_pinterest: !!data.site_pinterest,
 					site_vkontakte: !!data.site_vkontakte,
-					site_livejournal: !!data.site_livejournal,
 					twitter_related: data.twitter_related,
 					twitter_via: data.twitter_via,
 					pinterest_media: data.pinterest_media
@@ -226,7 +227,7 @@
 					lightStyle.toggle(data.skin === 'flat', 200);
 
 					var html = cleanHtml(template(data));
-					code.html(highlight(prepend + html));
+					code.html(highlight(prepend(data) + html));
 					delayedUpdate(html, data);
 					downloadData.html = html;
 
