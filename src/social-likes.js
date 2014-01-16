@@ -6,7 +6,7 @@
  *
  * @requires jQuery
  * @author Artem Sapegin
- * @copyright 2012 Artem Sapegin (sapegin.me)
+ * @copyright 2014 Artem Sapegin (sapegin.me)
  * @license MIT
  */
 
@@ -24,7 +24,7 @@
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
-var visibleClass = prefix + '_visible';
+var openClass = prefix + '_opened';
 
 
 /**
@@ -50,10 +50,9 @@ var services = {
 		popupHeight: 450,
 		click: function() {
 			// Add colon to improve readability
-			if (!/[\.:\-–—]\s*$/.test(this.options.pageTitle)) this.options.pageTitle += ':';
+			if (!/[\.:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
 			return true;
-		},
-		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
+		}
 	},
 	mailru: {
 		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
@@ -84,15 +83,12 @@ var services = {
 
 			var index = options._.length;
 			options._.push(deferred);
-			$.ajax({
-				url: makeUrl(jsonUrl, {index: index}),
-				dataType: 'jsonp'
-			});
+			$.getScript(makeUrl(jsonUrl, {index: index}))
+				.fail(deferred.reject);
 		},
 		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
-		popupHeight: 330,
-		searchUrl: 'http://vk.com/feed?section=search&q=url%3A{url}'
+		popupHeight: 330
 	},
 	odnoklassniki: {
 		counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
@@ -104,6 +100,25 @@ var services = {
 		popupHeight: 360
 	},
 	plusone: {
+		counterUrl: 'http://share.yandex.ru/gpp.xml?url={url}',
+		counter: function(jsonUrl, deferred) {
+			var options = services.plusone;
+			if (options._) {
+				deferred.reject();
+				return;
+			}
+
+			if (!window.services) window.services = {};
+			window.services.gplus = {
+				cb: function(number) {
+					options._.resolve(number);
+				}
+			};
+
+			options._ = deferred;
+			$.getScript(makeUrl(jsonUrl))
+				.fail(deferred.reject);
+		},
 		popupUrl: 'https://plus.google.com/share?url={url}',
 		popupWidth: 700,
 		popupHeight: 500
@@ -151,9 +166,13 @@ var counters = {
 							deferred.resolve(number);
 						}
 						catch (e) {
-							deferred.reject(e);
+							deferred.reject();
 						}
-					});
+					})
+					.fail(deferred.reject);
+			}
+			else {
+				deferred.reject();
 			}
 
 			servicePromises[url] = deferred.promise();
@@ -166,86 +185,54 @@ var counters = {
 /**
  * jQuery plugin
  */
-$.fn.socialLikes = function(opts) {
+$.fn.socialLikes = function(options) {
 	return this.each(function() {
-		new SocialLikes($(this), opts);
+		var elem = $(this);
+		new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
 	});
 };
 
+$.fn.socialLikes.defaults = {
+	url: window.location.href.replace(window.location.hash, ''),
+	title: document.title,
+	counters: true,
+	zeroes: false,
+	wait: 500,
+	singleTitle: 'Share'
+};
 
-function SocialLikes(container, opts) {
+function SocialLikes(container, options) {
 	this.container = container;
-	this.init(opts);
+	this.options = options;
+	this.init();
 }
 
 SocialLikes.prototype = {
-	optionsMap: {
-		pageUrl: {
-			attr: 'url',
-			defaultValue: function() { return window.location.href.replace(window.location.hash, ''); }
-		},
-		pageTitle: {
-			attr: 'title',
-			defaultValue: function() { return document.title; }
-		},
-		pageHtml: {
-			attr: 'html',
-			defaultValue: function() { return '<a href="' + this.options.pageUrl + '">' + this.options.pageTitle + '</a>'; }
-		},
-		showCounters: {
-			attr: 'counters',
-			defaultValue: 'yes',
-			convert: function(value) { return value === true || value === 'yes'; }
-		},
-		showZeroes: {
-			attr: 'zeroes',
-			defaultValue: 'no',
-			convert: function(value) { return value === true || value === 'yes'; }
-		},
-		singleTitle: {
-			attr: 'single-title',
-			defaultValue: 'Share'
-		}
-	},
-	init: function(opts) {
+	init: function() {
 		// Add class in case of manual initialization
 		this.container.addClass(prefix);
 
-		this.readOptions(opts);
 		this.single = this.container.hasClass(prefix + '_single');
 
 		this.initUserButtons();
 
-		if (this.single) {
-			this.makeSingleButton();
+		this.number = 0;
+		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
+
+		this.countersLeft = 0;
+		this.container.children().each($.proxy(function(idx, elem) {
+			this.countersLeft++;
+			new Button($(elem), this.options);
+		}, this));
+
+		if (this.options.counters) {
+			this.timer = setTimeout($.proxy(this.appear, this), this.options.wait);
+		}
+		else {
+			this.appear();
 		}
 
-		var options = this.options;
-		this.container.children().each(function() {
-			new Button($(this), options);
-		});
-	},
-	readOptions: function(opts) {
-		opts = opts || {};
-		this.options = {};
-
-		for (var key in this.optionsMap) {
-			var option = this.optionsMap[key];
-			var value = opts[option.attr] !== undefined ? opts[option.attr] : this.container.data(option.attr);
-
-			if (value === undefined) {
-				if ($.isFunction(option.defaultValue)) {
-					value = $.proxy(option.defaultValue, this)();
-				}
-				else {
-					value = option.defaultValue;
-				}
-			}
-			if ($.isFunction(option.convert)) {
-				value = option.convert(value);
-			}
-			this.options[key] = value;
-		}
+		this.makeSingleButton();
 	},
 	initUserButtons: function() {
 		if (!this.userButtonInited && window.socialLikesButtons) {
@@ -254,6 +241,8 @@ SocialLikes.prototype = {
 		this.userButtonInited = true;
 	},
 	makeSingleButton: function() {
+		if (!this.single) return;
+
 		var container = this.container;
 		container.addClass(prefix + '_vertical');
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
@@ -262,49 +251,69 @@ SocialLikes.prototype = {
 		var defaultLeft = parseInt(container.css('left'), 10);
 		var defaultTop = parseInt(container.css('top'), 10);
 
-		var button = $('<div>', {
-			'class': getElementClassNames('button', 'single'),
-			'text': this.options.singleTitle
+		// Widget
+		var widget = $('<div>', {
+			'class': getElementClassNames('widget', 'single')
 		});
-		button.prepend($('<span>', {'class': getElementClassNames('icon', 'single')}));
-		wrapper.append(button);
+		var button = $(template(
+			'<div class="{buttonCls}">' +
+				'<span class="{iconCls}"></span>' +
+				'{title}' +
+			'</div>',
+			{
+				buttonCls: getElementClassNames('button', 'single'),
+				iconCls: getElementClassNames('icon', 'single'),
+				title: this.options.singleTitle
+			}
+		));
+		widget.append(button);
+		wrapper.append(widget);
 
-		var close = $('<li>', {
+		widget.click(function() {
+			container.css({ left: defaultLeft,  top: defaultTop });
+			showInViewport(container, 20);
+			closeOnClick(container);
+			return false;
+		});
+
+		// Close button
+		var close = $('<div>', {
 			'class': classPrefix + 'close',
 			'html': '&times;'
 		});
 		container.append(close);
 
-		this.number = 0;
-
-		button.click(function() {
-			container.css({ left: defaultLeft,  top: defaultTop });
-			showInViewport(container, 20);
-			closeOnClick(container);
-
-			return false;
-		});
 		close.click(function() {
-			container.removeClass(visibleClass);
+			container.removeClass(openClass);
 		});
 
-		this.wrapper = wrapper;
-
-		this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
+		this.widget = widget;
 	},
 	updateCounter: function(e, service, number) {
-		if (!number) return;
+		if (number) {
+			this.number += number;			
+			if (this.single) {
+				this.getCounterElem().text(this.number);
+			}
+		}
 
-		this.number += number;
-		this.getCounterElem().text(this.number);
+		this.countersLeft--;
+		if (this.countersLeft === 0) {
+			this.appear();
+			this.container.addClass(prefix + '_ready');
+			this.container.trigger('ready.' + prefix, this.number);
+		}
+	},
+	appear: function() {
+		this.container.addClass(prefix + '_visible');
 	},
 	getCounterElem: function() {
-		var counterElem = this.wrapper.find('.' + classPrefix + 'counter_single');
+		var counterElem = this.widget.find('.' + classPrefix + 'counter_single');
 		if (!counterElem.length) {
 			counterElem = $('<span>', {
 				'class': getElementClassNames('counter', 'single')
 			});
-			this.wrapper.append(counterElem);
+			this.widget.append(counterElem);
 		}
 		return counterElem;
 	}
@@ -325,14 +334,14 @@ Button.prototype = {
 		this.detectParams();
 		this.initHtml();
 
-		if (this.options.showCounters) {
+		if (this.options.counters) {
 			if (this.options.counterNumber) {
 				this.updateCounter(this.options.counterNumber);
 			}
 			else {
 				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
-				counters.fetch(this.service, this.options.pageUrl, extraOptions)
-					.done($.proxy(this.updateCounter, this));
+				counters.fetch(this.service, this.options.url, extraOptions)
+					.always($.proxy(this.updateCounter, this));
 			}
 		}
 	},
@@ -350,32 +359,33 @@ Button.prototype = {
 	},
 
 	detectParams: function() {
+		var data = this.widget.data();
+
 		// Custom page counter URL or number
-		var counter = this.widget.data('counter');
-		if (counter) {
-			var number = parseInt(counter, 10);
-			if (isNaN(number))
-				this.options.counterUrl = counter;
-			else
+		if (data.counter) {
+			var number = parseInt(data.counter, 10);
+			if (isNaN(number)) {
+				this.options.counterUrl = data.counter;
+			}
+			else {
 				this.options.counterNumber = number;
+			}
 		}
 		
-		var customTitle = this.widget.data('title');
-		if (customTitle)
-			this.options.pageTitle = customTitle;
+		// Custom page title
+		if (data.title) {
+			this.options.title = data.title;
+		}
 
-		var customUrl = this.widget.data('url');
-		if (customUrl)
-			this.options.pageUrl = customUrl;
+		// Custom page URL
+		if (data.url) {
+			this.options.url = data.url;
+		}
 	},
 
 	initHtml: function() {
 		var options = this.options;
 		var widget = this.widget;
-		var isLink = !!options.clickUrl;
-
-		widget.removeClass(this.service);
-		widget.addClass(this.getElementClassNames('widget'));
 
 		// Old initialization HTML
 		var a = widget.find('a');
@@ -384,20 +394,28 @@ Button.prototype = {
 		}
 
 		// Button
-		var button = $(isLink ? '<a>' : '<span>', {
+		var button = $('<span>', {
 			'class': this.getElementClassNames('button'),
 			'text': widget.text()
 		});
-		if (isLink) {
+		if (options.clickUrl) {
 			var url = makeUrl(options.clickUrl, {
-				url: options.pageUrl,
-				title: options.pageTitle
+				url: options.url,
+				title: options.title
 			});
-			button.attr('href', url);
+			var link = $('<a>', {
+				href: url
+			});
+			this.cloneDataAttrs(widget, link);
+			widget.replaceWith(link);
+			this.widget = widget = link;
 		}
 		else {
-			button.click($.proxy(this.click, this));
+			widget.click($.proxy(this.click, this));
 		}
+
+		widget.removeClass(this.service);
+		widget.addClass(this.getElementClassNames('widget'));
 
 		// Icon
 		button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
@@ -420,23 +438,15 @@ Button.prototype = {
 	},
 
 	updateCounter: function(number) {
-		number = parseInt(number, 10);
-		if (!number && !this.options.showZeroes) return;
-
-		var counterParams = {
-			'class': this.getElementClassNames('counter'),
-			'text': number,
-		};
-		var counterElem;
-		if (this.options.searchUrl) {
-			counterParams.class += ' ' + classPrefix + 'counter_link';
-			counterParams.href = makeUrl(this.options.searchUrl, {url: this.options.pageUrl});
-			counterElem = $('<a>', counterParams);
+		number = parseInt(number, 10) || 0;
+		
+		if (number || this.options.zeroes) {
+			var counterElem = $('<span>', {
+				'class': this.getElementClassNames('counter'),
+				'text': number,
+			});
+			this.widget.append(counterElem);
 		}
-		else {
-			counterElem = $('<span>', counterParams);
-		}
-		this.widget.append(counterElem);
 
 		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},
@@ -449,8 +459,8 @@ Button.prototype = {
 		}
 		if (process) {
 			var url = makeUrl(options.popupUrl, {
-				url: options.pageUrl,
-				title: options.pageTitle
+				url: options.url,
+				title: options.title
 			});
 			url = this.addAdditionalParamsToUrl(url);
 			this.openPopup(url, {
@@ -491,6 +501,22 @@ Button.prototype = {
  * Helpers
  */
 
+ // Camelize data-attributes
+function dataToOptions(elem) {
+	function upper(m, l) {
+		return l.toUpper();
+	}
+	var options = {};
+	var data = elem.data();
+	for (var key in data) {
+		var value = data[key];
+		if (value === 'yes') value = true;
+		else if (value === 'no') value = false;
+		options[key.replace(/-(\w)/g, upper)] = value;
+	}
+	return options;
+}
+
 function makeUrl(url, context) {
 	return template(url, context, encodeURIComponent);
 }
@@ -510,7 +536,7 @@ function getElementClassNames(elem, mod) {
 function closeOnClick(elem) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
-		elem.removeClass(visibleClass);
+		elem.removeClass(openClass);
 		doc.off(events, handler);
 	}
 	var doc = $(document);
@@ -534,7 +560,7 @@ function showInViewport(elem, offset) {
 		else if (rect.bottom > window.innerHeight - offset)
 			elem.css('top', window.innerHeight - rect.bottom - offset + top);
 	}
-	elem.addClass(visibleClass);
+	elem.addClass(openClass);
 }
 
 
