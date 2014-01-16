@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 			},
 			compile: {
 				files: {
-					'../social-likes.css': 'styles/flat/index.styl',
+					'../social-likes_flat.css': 'styles/flat/index.styl',
 					'../social-likes_classic.css': 'styles/classic/index.styl',
 					'../social-likes_birman.css': 'styles/birman/index.styl'
 				}

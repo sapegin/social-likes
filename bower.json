@@ -1,7 +1,7 @@
 {
   "name": "social-likes",
-  "main": ["./src/social-likes.js", "./social-likes_classic.css"],
   "version": "3.0.0-alpha-2",
+  "main": ["./src/social-likes.js", "./social-likes_classic.css", "./social-likes_flat.css", "./social-likes_birman.css"],
   "ignore": [
   	"contrib/icons",
   	"contrib/styles",
