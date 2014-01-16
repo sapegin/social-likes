@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 				options: {
 					font: 'social-likes',
 					types: 'woff,ttf',
-					embed: true,
+					embed: 'woff,ttf',
 					template: 'styles/flat/webfont.styl',
 					stylesheet: 'styl',
 					relativeFontPath: '',
