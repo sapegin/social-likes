@@ -1,4 +1,4 @@
-﻿name: Social Likes
+name: Social Likes
 title: Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery
 subtitle: Красивые кнопки «лайков» социальных сетей с использованием jQuery
 description: Красивые кнопки «лайков» со счётчиками в едином стиле для популярных социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и Pinterest.
@@ -12,7 +12,7 @@ builderType: Вид
 builderTypeHorizontal: Горизонтальный
 builderTypeVertical: Вертикальный
 builderTypeSingle: Одной кнопкой
-builderCounters: Показывать счётчики
+builderCounters: Счётчики
 builderLight: Лёгкий стиль
 builderSites: Сайты
 builderUrl: Адрес страницы
