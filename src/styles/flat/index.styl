@@ -18,6 +18,8 @@ button-colors(button, color) {
 }
 
 .social-likes {
+	transform:translate3d(0,0,0);  // Prevent icons shift when appearing
+
 	&,
 	&_single-w {
 		margin:(-(margin));
@@ -91,6 +93,7 @@ button-colors(button, color) {
 
 	// Light mode
 	&_light .social-likes__widget {
+		min-width:0;
 		background:none;
 	}
 	&_light .social-likes__button,
@@ -130,18 +133,19 @@ button-colors(button, color) {
 	&_single {
 		top:(-(margin));
 		left:(-(margin));
-		padding:.35em .5em .25em;
+		padding:margin;
 		background:#fff;
 		border:1px solid #ddd;
 	}
 	&_single &__widget:first-of-type {
-		margin-right:1em;  // Prevent collapse of widget and close button
+		margin-right:2em;  // Prevent collapse of widget and close button
 	}
 }
 
 // Single button
 .social-likes__widget_single {
-	line-height:1.2;
+	height:1.5em;
+	line-height:1.5;
 	background:#87c44d;
 	.social-likes_single-light + & {
 		color:@background;
