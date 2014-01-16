@@ -10,11 +10,14 @@
 	});
 
 	var lang = $('html').attr('lang'),
+		skins = ['flat', 'classic', 'birman'],
+		skin = 'classic',
 		downloadData = {
 			lang: lang,
 			jquery_ver: jQuery.fn.jquery,
 			footer: $('#index_footer_tmpl').html(),
-			html: ''
+			html: '',
+			skin: skin
 		},
 		prefix = location.hostname === '127.0.0.1' ? '' : '/social-likes/',
 		sourceFiles = {
@@ -23,9 +26,7 @@
 		},
 		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
 		experimental = location.hash === '#ponies',
-		simple = !('download' in document.createElement('a')),
-		skins = ['flat', 'classic', 'birman'],
-		skin = 'classic';
+		simple = !('download' in document.createElement('a'));
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
@@ -155,7 +156,7 @@
 	function getFile(fileName) {
 		var file = sourceFiles[fileName];
 		if (!file.file) {
-			$.ajax(getFilenameForSkin(file), { async: false, dataType: 'html' }).then(function(data) {
+			$.ajax(getFilenameForSkin(file.url), { async: false, dataType: 'html' }).then(function(data) {
 				file.file = data;
 			});
 		}
@@ -230,6 +231,7 @@
 					code.html(highlight(prepend(data) + html));
 					delayedUpdate(html, data);
 					downloadData.html = html;
+					downloadData.skin = skin;
 
 					previous = dataString;
 				}
