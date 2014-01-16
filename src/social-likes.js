@@ -24,7 +24,7 @@
 
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
-var openClass = prefix + '_open';
+var openClass = prefix + '_opened';
 
 
 /**
