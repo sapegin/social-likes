@@ -7,11 +7,13 @@
 }
 
 .description {
-	margin-bottom:3*spacer;
+	space(2);
 }
 
 // Forms
 .builder {
+	space(3);
+	
 	&__row {
 		clearfix();
 		margin-top:.5em;
@@ -49,23 +51,26 @@
 }
 
 .preview {
-	min-height:55px;
-	margin:2*spacer (-(2*spacer));
-	padding:spacer+5 2*spacer;
-	box-shadow:inset 0 3px 3px -1px black(.2), inset 0 -2px 3px -1px black(.2);
+	space(2);
+	height:150px;
+	padding:6*spacer 0 0;
+	overflow:auto;
+	text-align:center;
+
+	.social-likes_vertical {
+		margin-top:-60px;
+	}
 }
 
 .code {
-	margin:2*spacer (-(2*spacer)) 3*spacer;
-	padding:spacer 2*spacer;	
+	space(4);
+	padding:spacer;	
 	background:#f5f2f0;
-
-	&-i {
-		font-size:12px;
-		white-space:pre-wrap;
-		tab-size:4;
-	}
+	border-radius: 3px
+	border: 1px solid #ccc
+	border-color: black(.2)
 }
+
 
 // Syntax highlighting
 .hl-gray {
@@ -87,10 +92,15 @@
 	margin-bottom:2*spacer;
 	
 	&__links {
-		margin-bottom:spacer;
+		margin-bottom:1.5*spacer;
 		.big-button {
 			margin-right:.2em;
 		}
+	}
+	&__button {
+		display:inline-block;
+		font-size:36px;
+		// position:relative;
 	}
 	&__descr {
 		font-size:14px;
@@ -105,44 +115,30 @@
 .big-button,
 .big-button:link,
 .big-button:visited {
-	padding:5px 15px;
+	tweak-inverted-text();
+	display:inline-block;
+	padding:10px 20px;
 	background:#ff6d00;
-	background:noise, linear-gradient(top, #ffcc00, #ff6d00);
-	border-radius:35px;
+	background:linear-gradient(top, #ffb300, #ff6d00);
+	border-radius:5px;
 	color:#fff;
-	color:white(.97);
-	font-size:28px;
+	font-size:36px;
 	text-decoration:none;
-	text-shadow:0 -1px 1px black(.5);
-	box-shadow:inset 0 1px 0 white(.6),
-		inset 0 2px 8px white(.7),
-		inset 0 -2px 4px black(.1),
-		0 -1px 0 hsla(41,90%,45%,.95),
-		0 1px 0 hsla(20,100%,30%,.95),
-		0 2px 4px black(.1);
+	text-shadow:0 -1px 0 black(.15);
+	outline:0;
 }
 .big-button:hover,
 .big-button:focus {
 	background:#ff7c1a;
-	background:noise, linear-gradient(top, #ffd739, #ff7c1a);
-	color:#fff;
-	box-shadow:inset 0 1px 0 white(.6),
-		inset 0 2px 8px white(.7),
-		inset 0 -2px 4px black(.1),
-		0 -1px 0 hsla(41,90%,45%,.8),
-		0 1px 0 hsla(20,100%,30%,.8),
-		0 2px 4px black(.1);
-	outline:0;
+	background:linear-gradient(top, #fbbd00, #ff750d);
 }
 .big-button:active {
-	padding:6px 15px 4px;
+	position:relative;
+	top:1px;
+	margin-top:-1px;
+	margin-bottom:1px;
+	padding:11px 20px 9px;
 	background:#faa643;
-	background:noise, linear-gradient(top, #ff7c1a, #faa643);
-	color:white(.93);
-	text-shadow:0 -1px 0 black(.4);
-	box-shadow:0 -1px 0 hsla(20,100%,30%,.8),
-		inset 0 -2px 1px white(.1),
-		inset 0 -1px 0 hsla(41,90%,25%,.2),
-		inset 0 2px 7px black(.3),
-		0 1px 1px black(.1);
+	background:linear-gradient(top, #ff7c1a, #faa643);
+	box-shadow:inset 0 2px 2px black(.2);
 }
