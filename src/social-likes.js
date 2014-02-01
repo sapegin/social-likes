@@ -293,7 +293,7 @@ SocialLikes.prototype = {
 		this.container.on('counter.social-likes', $.proxy(this.updateCounter, this));
 	},
 	updateCounter: function(e, service, number) {
-		if (!number) return;
+		if (!number && number !== 0) return;
 
 		this.number += number;
 		this.getCounterElem().text(this.number);
@@ -419,7 +419,7 @@ Button.prototype = {
 
 	updateCounter: function(number) {
 		number = parseInt(number, 10);
-		if (!number) return;
+		if (!number && number !== 0) return;
 
 		var searchUrl = this.options.searchUrl ? makeUrl(this.options.searchUrl, {url: this.options.pageUrl}) : null;
 		var counterElem = $((this.options.searchUrl ? '<a>' : '<span>'), {
