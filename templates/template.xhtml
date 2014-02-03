@@ -231,12 +231,7 @@
 			<script type="text/plain" id="index_tmpl"><f:insert src="index.tmpl.html"/></script>
 			<script type="text/plain" id="index_footer_tmpl"><f:value output="text">$.archiveFooter</f:value></script>
 
-			<!--[if lt IE 9]>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<![endif]-->
-			<!--[if gte IE 9]><!-->
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-			<!--<![endif]-->
 			<script src="{$.files.js}"></script>
 			<f:choose>
 				<f:when test="$.debug">
