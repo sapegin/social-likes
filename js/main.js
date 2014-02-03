@@ -188,6 +188,7 @@
 				});
 
 				// Render preview
+				preview.attr('class', preview.attr('class').replace(/(preview_)\w+/, '$1' + data.type));
 				preview.html(html);
 				preview.find('.social-likes').socialLikes();
 
