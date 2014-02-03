@@ -26,7 +26,6 @@ module.exports = (grunt) ->
 		concat:
 			main:
 				src: [
-					'bower_components/jquery/jquery.js'
 					'js/mylibs/htmlhl.js'
 					'js/libs/doT.min.js'
 					'js/libs/jszip.js'
