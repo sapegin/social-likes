@@ -182,6 +182,7 @@
 			var delayedUpdate = debounce(function(html, data) {
 				// Switch skin
 				skin = data.skin;
+				
 				$.each(skins, function(i, s) {
 					$('#styles_' + s).prop('disabled', s !== skin);
 				});
@@ -193,7 +194,7 @@
 				form.find('.js-experimental').toggleClass('is-hidden', !experimental);
 
 				store.set(lang, {
-					skin: data.skin,
+					skin: skin,
 					type: data.type,
 					counters: data.counters,
 					light: data.light,
@@ -223,15 +224,15 @@
 					var data = escapeFormData(form.serializeObject());
 					data.experimental = experimental;
 
-					twitterExtra.toggle(data.site_twitter === '1', 200);
-					pinterestExtra.toggle(data.site_pinterest === '1', 200);
-					lightStyle.toggle(data.skin === 'flat', 200);
+					twitterExtra.toggleClass('is-hidden', data.site_twitter !== '1');
+					pinterestExtra.toggleClass('is-hidden', data.site_pinterest !== '1');
+					lightStyle.toggleClass('is-hidden', data.skin !== 'flat');
 
 					var html = cleanHtml(template(data));
 					code.html(highlight(prepend(data) + html));
 					delayedUpdate(html, data);
 					downloadData.html = html;
-					downloadData.skin = skin;
+					downloadData.skin = data.skin;
 
 					previous = dataString;
 				}
