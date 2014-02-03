@@ -68,7 +68,7 @@ var services = {
 		popupHeight: 360
 	},
 	vkontakte: {
-		counterUrl: 'http://vkontakte.ru/share.php?act=count&url={url}&index={index}',
+		counterUrl: 'http://vk.com/share.php?act=count&url={url}&index={index}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.vkontakte;
 			if (!options._) {
