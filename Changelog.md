@@ -1,3 +1,17 @@
+### 2014-02-03 v3.0.0
+
+* New skins: Flat and Birman.
+* `zeroes` option.
+* `ready.social-likes` event.
+* `counter.social-likes` fires on zeroes too.
+* Reduce flickering couters on page load.
+* Ability to pass options to `$.socialLikes()` jQuery method (by [@albburtsev](https://github.com/albburtsev)).
+* Internal counter for Google+ button (uses Yandex).
+* Remove search links on counters.
+* Remove LiveJournal button.
+* Remove IE7 support.
+* Lots other improvements and refactorings.
+
 ### 2013-12-23 v2.0.13
 
 * `searchUrl` option (by [@pivchanskiy](https://github.com/pivchanskiy)).

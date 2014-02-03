@@ -89,6 +89,10 @@ HTML code for LiveJournal button. By default <A> tag with link to current page.
 
 Disables “likes” counters when “no”. Default: “yes”.
 
+`zeroes`
+
+Show counters even when number is `0`. Default: “no”.
+
 `single-title`
 
 Share button title for “single button” mode. Default: “Share”.
@@ -111,7 +115,8 @@ Examples:
 $('.social-likes').socialLikes({
 	url: 'https://github.com/sapegin/social-likes/',
 	title: 'Beautiful “like” buttons with counters for popular social networks',
-	counters: true
+	counters: true,
+	singleTitle: 'Share it!'
 });
 ```
 
