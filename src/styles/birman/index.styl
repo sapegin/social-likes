@@ -127,12 +127,45 @@ hover-button(button, color, text=null) {
 
 	// Single button mode
 	&_single {
-		padding:margin !important;
+		width:100%;
+		display:table;
+		margin:0;
+		padding:4px 0;
 		background:#fff;
-		box-shadow:0 0 15px hsla(0,0%,0%,.3);
+		border:1px solid border_color;
+		border-radius:3px;
 	}
-	&_single &__widget:first-of-type {
-		margin-right:margin+10px;  // Prevent collapse of widget and close button
+	&_single &__widget {
+		float:none;
+		display:table-row;
+		margin:0;
+		border:0;
+		border-radius:0;
+		background:none;
+	}
+	&_single &__button {
+		display:table-cell;
+		padding:2px 6px 2px 24px;
+	}
+	&_single &__icon {
+		margin-left:4px;
+		margin-top:2px;
+	}
+	&_single  &__counter {
+		display:table-cell;
+		padding:2px 8px 2px 4px;
+		border-left:0;
+		text-align:right;
+	}
+	&_single &__widget:hover > &__counter,
+	&_single &__widget:focus > &__counter,
+	&_single &__widget:active > &__counter {
+		&:before {
+			display:none;
+		}
+	}
+	&__close {
+		display:none;
 	}
 }
 
