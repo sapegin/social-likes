@@ -25,6 +25,7 @@
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
 var openClass = prefix + '_opened';
+var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
 
 
 /**
@@ -41,11 +42,11 @@ var services = {
 		popupHeight: 500
 	},
 	twitter: {
-		counterUrl: 'http://urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
+		counterUrl: protocol + '//urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
+		popupUrl: protocol + '//twitter.com/intent/tweet?url={url}&text={title}',
 		popupWidth: 600,
 		popupHeight: 450,
 		click: function() {
@@ -55,7 +56,7 @@ var services = {
 		}
 	},
 	mailru: {
-		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
+		counterUrl: protocol + '//connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
 			for (var url in data) {
 				if (data.hasOwnProperty(url)) {
@@ -63,12 +64,12 @@ var services = {
 				}
 			}
 		},
-		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
+		popupUrl: protocol + '//connect.mail.ru/share?share_url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	vkontakte: {
-		counterUrl: 'http://vk.com/share.php?act=count&url={url}&index={index}',
+		counterUrl: protocol + '//vk.com/share.php?act=count&url={url}&index={index}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.vkontakte;
 			if (!options._) {
@@ -86,21 +87,21 @@ var services = {
 			$.getScript(makeUrl(jsonUrl, {index: index}))
 				.fail(deferred.reject);
 		},
-		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
+		popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 330
 	},
 	odnoklassniki: {
-		counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
+		counterUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
+		popupUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	plusone: {
-		counterUrl: 'http://share.yandex.ru/gpp.xml?url={url}',
+		counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.plusone;
 			if (options._) {
@@ -124,11 +125,11 @@ var services = {
 		popupHeight: 500
 	},
 	pinterest: {
-		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
+		counterUrl: protocol + '//api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://pinterest.com/pin/create/button/?url={url}&description={title}',
+		popupUrl: protocol + '//pinterest.com/pin/create/button/?url={url}&description={title}',
 		popupWidth: 630,
 		popupHeight: 270
 	}
