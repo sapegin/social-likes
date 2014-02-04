@@ -189,7 +189,16 @@ var counters = {
 $.fn.socialLikes = function(options) {
 	return this.each(function() {
 		var elem = $(this);
-		new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
+		var instance = elem.data(prefix);
+		if (instance) {
+			if ($.isPlainObject(options)) {
+				instance.update(options);
+			}
+		}
+		else {
+			instance = new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
+			elem.data(prefix, instance);
+		}
 	});
 };
 
@@ -225,8 +234,9 @@ SocialLikes.prototype = {
 
 		this.makeSingleButton();
 
+		this.buttons = [];
 		buttons.each($.proxy(function(idx, elem) {
-			new Button($(elem), this.options);
+			this.buttons.push(new Button($(elem), this.options));
 		}, this));
 
 		if (this.options.counters) {
@@ -281,6 +291,20 @@ SocialLikes.prototype = {
 
 		this.widget = widget;
 	},
+	update: function(options) {
+		if (options.url === this.options.url) return;
+
+		// Reset counters
+		this.number = 0;
+		this.countersLeft = this.buttons.length;
+		if (this.widget) this.widget.find('.' + prefix + '__counter').remove();
+
+		// Update options
+		$.extend(this.options, options);
+		for (var buttonIdx = 0; buttonIdx < this.buttons.length; buttonIdx++) {
+			this.buttons[buttonIdx].update(options);
+		}
+	},
 	updateCounter: function(e, service, number) {
 		if (number) {
 			this.number += number;			
@@ -325,17 +349,13 @@ Button.prototype = {
 	init: function() {
 		this.detectParams();
 		this.initHtml();
+		this.initCounter();
+	},
 
-		if (this.options.counters) {
-			if (this.options.counterNumber) {
-				this.updateCounter(this.options.counterNumber);
-			}
-			else {
-				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
-				counters.fetch(this.service, this.options.url, extraOptions)
-					.always($.proxy(this.updateCounter, this));
-			}
-		}
+	update: function(options) {
+		$.extend(this.options, options);
+		this.widget.find('.' + prefix + '__counter').remove();  // Remove old counter
+		this.initCounter();
 	},
 
 	detectService: function() {
@@ -414,6 +434,19 @@ Button.prototype = {
 
 		widget.empty().append(button);
 		this.button = button;
+	},
+
+	initCounter: function() {
+		if (this.options.counters) {
+			if (this.options.counterNumber) {
+				this.updateCounter(this.options.counterNumber);
+			}
+			else {
+				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
+				counters.fetch(this.service, this.options.url, extraOptions)
+					.always($.proxy(this.updateCounter, this));
+			}
+		}
 	},
 
 	cloneDataAttrs: function(source, destination) {

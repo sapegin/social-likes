@@ -275,13 +275,20 @@ section {
 		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
 	</ul>
-
+	<p><a href="#" id="social-likes-update">Change URL</a></p>
 <script>
 var sl = $('#social-likes-manual');
 sl.on('counter.social-likes', function(event, service, number) {
 	console.log('Counter', service, number);
 });
 sl.socialLikes();
+$('#social-likes-update').click(function() {
+	sl.socialLikes({
+		url: 'https://github.com/sapegin/grunt-webfont/',
+		title: 'SVG to webfont converter for Grunt'
+	});
+	return false;
+});
 </script>
 
 	<h3>Manual initialization with JavaScript options</h3>

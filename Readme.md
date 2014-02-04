@@ -140,7 +140,7 @@ You should specify an image URL via data-media attribute on `<li class="pinteres
 
 ### Manual initialization
 
-Could be useful on dynamic (Ajax) websites.
+Could be useful on dynamic (AJAX) websites.
 
 ```html
 <ul id="share">
@@ -151,6 +151,24 @@ Could be useful on dynamic (Ajax) websites.
 
 ```javascript
 $('#share').socialLikes();
+```
+
+### Dynamic URL changing
+
+You can dynamically replace URL and title without reinitialization.
+
+```html
+<ul id="share2" class="social-likes" data-url="http://example.com/" data-title="My example">
+	<li class="facebook">Facebook</li>
+	...
+</ul>
+```
+
+```javascript
+$('#share2').socialLikes({
+	url: 'http://github.com/',
+	title: 'GitHub'
+});
 ```
 
 
