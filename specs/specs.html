@@ -26,8 +26,12 @@ window.onhashchange = updateSkin;
 })();
 </script>
 
-	<!--script src="http://yandex.st/jquery/1.10.2/jquery.min.js"></script-->
-	<script src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<![endif]-->
+	<!--[if gte IE 9]><!-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<!--<![endif]-->
 	<script src="../src/social-likes.js"></script>
 
 <style>
@@ -46,6 +50,9 @@ td {
 	margin:0 -20px;
 	padding:20px;
 	background:#333;
+	}
+section {
+	margin-bottom:10px;
 	}
 .skin-switcher {
 	margin-top:-20px;
@@ -172,8 +179,8 @@ td {
 	</ul>
 
 	<h3>Single button</h3>
-	<p>
-		<ul class="social-likes social-likes_single" data-url="http://mail.ru/">
+	<section>
+		<ul class="social-likes social-likes_single" data-url="http://maill.ru/">
 			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
 			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
@@ -182,25 +189,25 @@ td {
 			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
 			<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
 		</ul>
-	</p>
-	<p>
-		<ul class="social-likes social-likes_single social-likes_light" data-url="http://mail.ru/">
-			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-			<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-		</ul>
-	</p>
-	<p>
+	</section>
+	<section style="padding-left:100px">
+		<div class="social-likes social-likes_single social-likes_light" data-url="http://mail.ru/">
+			<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+			<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
+			<div class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</div>
+			<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+			<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+			<div class="plusone" title="Плюсануть в Гугле">Google+</div>
+			<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</div>
+		</div>
+	</section>
+	<section>
 		<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/" data-single-title="Share me">
 			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
 			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
 		</ul>
-	</p>
+	</section>
 
 	<h3>Icons only</h3>
 	<ul class="social-likes social-likes_notext" data-url="http://maps.mail.ru/">

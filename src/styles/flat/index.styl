@@ -18,16 +18,16 @@ button-colors(button, color) {
 }
 
 .social-likes {
+	margin:(-(margin));
 	transform:translate3d(0,0,0);  // Prevent icons shift when appearing
 
 	&,
 	&_single-w {
-		margin:(-(margin));
 		line-height:1.5;
 	}
 
 	&,
-	&__button_single {
+	&__widget_single {
 		font-size:14px;  // Base font size
 	}
 	
@@ -70,15 +70,6 @@ button-colors(button, color) {
 		padding-right:.5em;
 		font-weight:normal;
 		font-size:.85em;
-	}
-
-	&__close {
-		padding:.2em .4em;
-		font:1.2em Verdana, Geneva, Tahoma, sans-serif;
-		color:light_gray;
-	}
-	&__close:hover {
-		color:#111;
 	}
 
 	// Vertical mode
@@ -135,28 +126,23 @@ button-colors(button, color) {
 
 	// Single button mode
 	&_single {
-		top:(-(margin));
-		left:(-(margin));
+		margin-top:-1.2em;
 		padding:margin;
 		background:#fff;
 		border:1px solid #ddd;
-	}
-	&_single &__widget:first-of-type {
-		margin-right:2em;  // Prevent collapse of widget and close button
 	}
 }
 
 // Single button
 .social-likes__widget_single {
 	height:1.5em;
+	margin:0;
+	padding:.1em 0;
 	line-height:1.5;
 	background:#87c44d;
 	.social-likes_single-light + & {
 		color:@background;
 	}
-}
-.social-likes__counter_single {
-	font-size:.75em;
 }
 .social-likes__icon_single {
 	top:.07em;

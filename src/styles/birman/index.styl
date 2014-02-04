@@ -22,9 +22,10 @@ hover-button(button, color, text=null) {
 }
 
 .social-likes {
+	margin:(-(margin));
+	
 	&,
 	&_single-w {
-		margin:(-(margin));
 		line-height:19px;
 	}
 
@@ -76,7 +77,8 @@ hover-button(button, color, text=null) {
 
 	&__widget:hover > &__counter,
 	&__widget:focus > &__counter,
-	&__widget:active > &__counter {
+	&__widget:active > &__counter,
+	&__widget_active > &__counter {
 		position:relative;
 		border-left-color:transparent;
 		&:before {
@@ -89,15 +91,6 @@ hover-button(button, color, text=null) {
 			border-left:1px solid;
 			opacity:.4;
 		}
-	}
-
-	&__close {
-		padding:2px 4px;
-		font:16px Verdana, Geneva, sans-serif;
-		color:#999;
-	}
-	&__close:hover {
-		color:#111;
 	}
 
 	// Vertical mode
@@ -126,10 +119,13 @@ hover-button(button, color, text=null) {
 	}
 
 	// Single button mode
+	&__widget_single {
+		margin:0;
+	}
 	&_single {
 		width:100%;
 		display:table;
-		margin:0;
+		margin:-12px 0 0;
 		padding:4px 0;
 		background:#fff;
 		border:1px solid border_color;
@@ -164,9 +160,6 @@ hover-button(button, color, text=null) {
 			display:none;
 		}
 	}
-	&__close {
-		display:none;
-	}
 }
 
 
@@ -174,7 +167,18 @@ hover-button(button, color, text=null) {
 .social-likes__icon_single {
 	background-image:embedurl('icons/single.png');
 }
-hover-button('single', #3673f4);
+.social-likes__widget_single:hover,
+.social-likes__widget_single:active,
+.social-likes__widget_single:focus,
+.social-likes__widget_active {
+	tweak-inverted-text();
+	background:#3673f4;
+	border-color:@background;
+	color:#fff;
+	.social-likes__icon_single {
+		background-image:embedurl('icons/single-hover.png');
+	}
+}
 
 // Facebook
 .social-likes__icon_facebook {

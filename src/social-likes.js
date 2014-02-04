@@ -250,9 +250,6 @@ SocialLikes.prototype = {
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
 		var wrapper = container.parent();
 
-		var defaultLeft = parseInt(container.css('left'), 10);
-		var defaultTop = parseInt(container.css('top'), 10);
-
 		// Widget
 		var widget = $('<div>', {
 			'class': getElementClassNames('widget', 'single')
@@ -272,21 +269,14 @@ SocialLikes.prototype = {
 		wrapper.append(widget);
 
 		widget.click(function() {
-			container.css({ left: defaultLeft,  top: defaultTop });
-			showInViewport(container, 20);
-			closeOnClick(container);
+			var activeClass = prefix + '__widget_active';
+			widget.addClass(activeClass);
+			container.css({left: -(container.width()-widget.width())/2,  top: -container.height()});
+			showInViewport(container);
+			closeOnClick(container, function() {
+				widget.removeClass(activeClass);
+			});
 			return false;
-		});
-
-		// Close button
-		var close = $('<div>', {
-			'class': classPrefix + 'close',
-			'html': '&times;'
-		});
-		container.append(close);
-
-		close.click(function() {
-			container.removeClass(openClass);
 		});
 
 		this.widget = widget;
@@ -441,14 +431,17 @@ Button.prototype = {
 
 	updateCounter: function(number) {
 		number = parseInt(number, 10) || 0;
-		
-		if (number || this.options.zeroes) {
-			var counterElem = $('<span>', {
-				'class': this.getElementClassNames('counter'),
-				'text': number,
-			});
-			this.widget.append(counterElem);
+
+		var params = {
+			'class': this.getElementClassNames('counter'),
+			'text': number,
+		};
+		if (!number && !this.options.zeroes) {
+			params.class += ' ' + prefix + '__counter_empty';
+			params.text = '';
 		}
+		var counterElem = $('<span>', params);
+		this.widget.append(counterElem);
 
 		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},
@@ -535,18 +528,20 @@ function getElementClassNames(elem, mod) {
 	return cls + ' ' + cls + '_' + mod;
 }
 
-function closeOnClick(elem) {
+function closeOnClick(elem, callback) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
 		elem.removeClass(openClass);
 		doc.off(events, handler);
+		if ($.isFunction(callback)) callback(); 
 	}
 	var doc = $(document);
 	var events = 'click touchstart keydown';
 	doc.on(events, handler);
 }
 
-function showInViewport(elem, offset) {
+function showInViewport(elem) {
+	var offset = 10;
 	if (document.documentElement.getBoundingClientRect) {
 		var left = parseInt(elem.css('left'), 10);
 		var top = parseInt(elem.css('top'), 10);
