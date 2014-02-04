@@ -121,7 +121,10 @@ tweak-inverted-text() {
 	&__counter_single {
 		display:inline-block;
 	}
-
+	&_ready &__counter_empty {
+		display:none;
+	}
+	
 	// Vertical mode
 	&_vertical {
 		.social-likes__widget {
