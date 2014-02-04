@@ -500,8 +500,8 @@ Button.prototype = {
 	},
 
 	addAdditionalParamsToUrl: function(url) {
-		var params = $.param(this.widget.data());
-		if (!params) return url;
+		var params = $.param($.extend(this.widget.data(), this.options.data));
+		if ($.isEmptyObject(params)) return url;
 		var glue = url.indexOf('?') === -1 ? '?' : '&';
 		return url + glue + params;
 	},

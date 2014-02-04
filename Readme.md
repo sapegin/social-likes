@@ -155,7 +155,7 @@ $('#share').socialLikes();
 
 ### Dynamic URL changing
 
-You can dynamically replace URL and title without reinitialization.
+You can dynamically replace URL, title and Pinterest image without reinitialization.
 
 ```html
 <ul id="share2" class="social-likes" data-url="http://example.com/" data-title="My example">
@@ -167,7 +167,10 @@ You can dynamically replace URL and title without reinitialization.
 ```javascript
 $('#share2').socialLikes({
 	url: 'http://github.com/',
-	title: 'GitHub'
+	title: 'GitHub',
+	data: {
+		media: 'http://birdwatcher.ru/i/userpic.jpg'  // Image for Pinterest button
+	}
 });
 ```
 
