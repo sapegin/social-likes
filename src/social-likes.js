@@ -25,6 +25,7 @@
 var prefix = 'social-likes';
 var classPrefix = prefix + '__';
 var openClass = prefix + '_opened';
+var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
 
 
 /**
@@ -32,20 +33,20 @@ var openClass = prefix + '_opened';
  */
 var services = {
 	facebook: {
-		counterUrl: 'http://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
+		counterUrl: 'https://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
 		convertNumber: function(data) {
 			return data.data[0].total_count;
 		},
-		popupUrl: 'http://www.facebook.com/sharer/sharer.php?u={url}',
+		popupUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
 		popupWidth: 600,
 		popupHeight: 500
 	},
 	twitter: {
-		counterUrl: 'http://urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
+		counterUrl: protocol + '//urls.api.twitter.com/1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://twitter.com/intent/tweet?url={url}&text={title}',
+		popupUrl: protocol + '//twitter.com/intent/tweet?url={url}&text={title}',
 		popupWidth: 600,
 		popupHeight: 450,
 		click: function() {
@@ -55,7 +56,7 @@ var services = {
 		}
 	},
 	mailru: {
-		counterUrl: 'http://connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
+		counterUrl: protocol + '//connect.mail.ru/share_count?url_list={url}&callback=1&func=?',
 		convertNumber: function(data) {
 			for (var url in data) {
 				if (data.hasOwnProperty(url)) {
@@ -63,12 +64,12 @@ var services = {
 				}
 			}
 		},
-		popupUrl: 'http://connect.mail.ru/share?share_url={url}&title={title}',
+		popupUrl: protocol + '//connect.mail.ru/share?share_url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	vkontakte: {
-		counterUrl: 'http://vk.com/share.php?act=count&url={url}&index={index}',
+		counterUrl: protocol + '//vk.com/share.php?act=count&url={url}&index={index}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.vkontakte;
 			if (!options._) {
@@ -86,21 +87,21 @@ var services = {
 			$.getScript(makeUrl(jsonUrl, {index: index}))
 				.fail(deferred.reject);
 		},
-		popupUrl: 'http://vk.com/share.php?url={url}&title={title}',
+		popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}',
 		popupWidth: 550,
 		popupHeight: 330
 	},
 	odnoklassniki: {
-		counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
+		counterUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
+		popupUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 		popupWidth: 550,
 		popupHeight: 360
 	},
 	plusone: {
-		counterUrl: 'http://share.yandex.ru/gpp.xml?url={url}',
+		counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}',
 		counter: function(jsonUrl, deferred) {
 			var options = services.plusone;
 			if (options._) {
@@ -124,11 +125,11 @@ var services = {
 		popupHeight: 500
 	},
 	pinterest: {
-		counterUrl: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
+		counterUrl: protocol + '//api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 		convertNumber: function(data) {
 			return data.count;
 		},
-		popupUrl: 'http://pinterest.com/pin/create/button/?url={url}&description={title}',
+		popupUrl: protocol + '//pinterest.com/pin/create/button/?url={url}&description={title}',
 		popupWidth: 630,
 		popupHeight: 270
 	}
@@ -188,7 +189,16 @@ var counters = {
 $.fn.socialLikes = function(options) {
 	return this.each(function() {
 		var elem = $(this);
-		new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
+		var instance = elem.data(prefix);
+		if (instance) {
+			if ($.isPlainObject(options)) {
+				instance.update(options);
+			}
+		}
+		else {
+			instance = new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
+			elem.data(prefix, instance);
+		}
 	});
 };
 
@@ -224,8 +234,9 @@ SocialLikes.prototype = {
 
 		this.makeSingleButton();
 
+		this.buttons = [];
 		buttons.each($.proxy(function(idx, elem) {
-			new Button($(elem), this.options);
+			this.buttons.push(new Button($(elem), this.options));
 		}, this));
 
 		if (this.options.counters) {
@@ -249,9 +260,6 @@ SocialLikes.prototype = {
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
 		var wrapper = container.parent();
 
-		var defaultLeft = parseInt(container.css('left'), 10);
-		var defaultTop = parseInt(container.css('top'), 10);
-
 		// Widget
 		var widget = $('<div>', {
 			'class': getElementClassNames('widget', 'single')
@@ -271,24 +279,31 @@ SocialLikes.prototype = {
 		wrapper.append(widget);
 
 		widget.click(function() {
-			container.css({ left: defaultLeft,  top: defaultTop });
-			showInViewport(container, 20);
-			closeOnClick(container);
+			var activeClass = prefix + '__widget_active';
+			widget.addClass(activeClass);
+			container.css({left: -(container.width()-widget.width())/2,  top: -container.height()});
+			showInViewport(container);
+			closeOnClick(container, function() {
+				widget.removeClass(activeClass);
+			});
 			return false;
 		});
 
-		// Close button
-		var close = $('<div>', {
-			'class': classPrefix + 'close',
-			'html': '&times;'
-		});
-		container.append(close);
-
-		close.click(function() {
-			container.removeClass(openClass);
-		});
-
 		this.widget = widget;
+	},
+	update: function(options) {
+		if (options.url === this.options.url) return;
+
+		// Reset counters
+		this.number = 0;
+		this.countersLeft = this.buttons.length;
+		if (this.widget) this.widget.find('.' + prefix + '__counter').remove();
+
+		// Update options
+		$.extend(this.options, options);
+		for (var buttonIdx = 0; buttonIdx < this.buttons.length; buttonIdx++) {
+			this.buttons[buttonIdx].update(options);
+		}
 	},
 	updateCounter: function(e, service, number) {
 		if (number) {
@@ -334,17 +349,13 @@ Button.prototype = {
 	init: function() {
 		this.detectParams();
 		this.initHtml();
+		this.initCounter();
+	},
 
-		if (this.options.counters) {
-			if (this.options.counterNumber) {
-				this.updateCounter(this.options.counterNumber);
-			}
-			else {
-				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
-				counters.fetch(this.service, this.options.url, extraOptions)
-					.always($.proxy(this.updateCounter, this));
-			}
-		}
+	update: function(options) {
+		$.extend(this.options, options);
+		this.widget.find('.' + prefix + '__counter').remove();  // Remove old counter
+		this.initCounter();
 	},
 
 	detectService: function() {
@@ -425,6 +436,19 @@ Button.prototype = {
 		this.button = button;
 	},
 
+	initCounter: function() {
+		if (this.options.counters) {
+			if (this.options.counterNumber) {
+				this.updateCounter(this.options.counterNumber);
+			}
+			else {
+				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
+				counters.fetch(this.service, this.options.url, extraOptions)
+					.always($.proxy(this.updateCounter, this));
+			}
+		}
+	},
+
 	cloneDataAttrs: function(source, destination) {
 		var data = source.data();
 		for (var key in data) {
@@ -440,14 +464,17 @@ Button.prototype = {
 
 	updateCounter: function(number) {
 		number = parseInt(number, 10) || 0;
-		
-		if (number || this.options.zeroes) {
-			var counterElem = $('<span>', {
-				'class': this.getElementClassNames('counter'),
-				'text': number,
-			});
-			this.widget.append(counterElem);
+
+		var params = {
+			'class': this.getElementClassNames('counter'),
+			'text': number,
+		};
+		if (!number && !this.options.zeroes) {
+			params.class += ' ' + prefix + '__counter_empty';
+			params.text = '';
 		}
+		var counterElem = $('<span>', params);
+		this.widget.append(counterElem);
 
 		this.widget.trigger('counter.' + prefix, [this.service, number]);
 	},
@@ -473,8 +500,8 @@ Button.prototype = {
 	},
 
 	addAdditionalParamsToUrl: function(url) {
-		var params = $.param(this.widget.data());
-		if (!params) return url;
+		var params = $.param($.extend(this.widget.data(), this.options.data));
+		if ($.isEmptyObject(params)) return url;
 		var glue = url.indexOf('?') === -1 ? '?' : '&';
 		return url + glue + params;
 	},
@@ -534,18 +561,20 @@ function getElementClassNames(elem, mod) {
 	return cls + ' ' + cls + '_' + mod;
 }
 
-function closeOnClick(elem) {
+function closeOnClick(elem, callback) {
 	function handler(e) {
 		if ((e.type === 'keydown' && e.which !== 27) || $(e.target).closest(elem).length) return;
 		elem.removeClass(openClass);
 		doc.off(events, handler);
+		if ($.isFunction(callback)) callback(); 
 	}
 	var doc = $(document);
 	var events = 'click touchstart keydown';
 	doc.on(events, handler);
 }
 
-function showInViewport(elem, offset) {
+function showInViewport(elem) {
+	var offset = 10;
 	if (document.documentElement.getBoundingClientRect) {
 		var left = parseInt(elem.css('left'), 10);
 		var top = parseInt(elem.css('top'), 10);
