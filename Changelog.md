@@ -1,3 +1,11 @@
+### 2014-02-05 v3.0.1
+
+* Ability to dynamically update URL.
+* Detect HTTPS.
+* Use HTTPS for Facebook.
+* New single button popups.
+* Skins tweaks.
+
 ### 2014-02-03 v3.0.0
 
 * New skins: Flat and Birman.
