@@ -9,6 +9,8 @@ module.exports = (grunt) ->
 	prefix = if debug then '' else '/social-likes/'
 
 	grunt.initConfig
+		bwr: grunt.file.readJSON('src/bower.json')
+		banner: '/* Author: Artem Sapegin, http://sapegin.me, <%= grunt.template.today("yyyy") %> */\n'
 		modernizr:
 			devFile: 'bower_components/modernizr/modernizr.js'
 			outputFile: 'build/modernizr.js'
@@ -18,7 +20,6 @@ module.exports = (grunt) ->
 				'build/scripts.js'
 				'build/styles.css'
 			]
-		banner: '/* Author: Artem Sapegin, http://sapegin.me, <%= grunt.template.today("yyyy") %> */\n'
 		jshint:
 			all: [
 				'js/main.js'
@@ -98,6 +99,16 @@ module.exports = (grunt) ->
 				slcss_birman:
 					path: 'src/social-likes_birman.css'
 					href: prefix + 'src/social-likes_birman.css?{version}'
+		replace:
+			version:
+				files:
+					'index.html': 'index.html'
+					'ru/index.html': 'ru/index.html'
+				options:
+					patterns: [
+						match: /(<!\-\-VERSION\-\->).*?(<!\-\-\/VERSION\-\->)/
+						replacement: '$1<%= bwr.version %>$2'
+					]
 		connect:
 			server:
 				options:
@@ -127,4 +138,4 @@ module.exports = (grunt) ->
 				files: ['content/**', 'templates/**']
 				tasks: 'sweet'
 
-	grunt.registerTask 'default', ['jshint', 'concat', 'uglify', 'stylus', 'modernizr', 'sweet']
+	grunt.registerTask 'default', ['jshint', 'concat', 'uglify', 'stylus', 'modernizr', 'sweet', 'replace']

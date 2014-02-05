@@ -17,6 +17,7 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
     "matchdep": "~0.3.0",
-    "grunt-modernizr": "~0.4.1"
+    "grunt-modernizr": "~0.4.1",
+    "grunt-replace": "~0.6.0"
   }
 }
