@@ -145,7 +145,7 @@ var counters = {
 		if (!counters.promises[service]) counters.promises[service] = {};
 		var servicePromises = counters.promises[service];
 
-		if (servicePromises[url]) {
+		if (!extraOptions.forceUpdate && servicePromises[url]) {
 			return servicePromises[url];
 		}
 		else {
@@ -292,7 +292,7 @@ SocialLikes.prototype = {
 		this.widget = widget;
 	},
 	update: function(options) {
-		if (options.url === this.options.url) return;
+		if (!options.forceUpdate && options.url === this.options.url) return;
 
 		// Reset counters
 		this.number = 0;
@@ -353,7 +353,7 @@ Button.prototype = {
 	},
 
 	update: function(options) {
-		$.extend(this.options, options);
+		$.extend(this.options, {forceUpdate: false}, options);
 		this.widget.find('.' + prefix + '__counter').remove();  // Remove old counter
 		this.initCounter();
 	},
@@ -442,7 +442,10 @@ Button.prototype = {
 				this.updateCounter(this.options.counterNumber);
 			}
 			else {
-				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
+				var extraOptions = {
+					counterUrl: this.options.counterUrl,
+					forceUpdate: this.options.forceUpdate
+				};
 				counters.fetch(this.service, this.options.url, extraOptions)
 					.always($.proxy(this.updateCounter, this));
 			}

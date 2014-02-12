@@ -174,6 +174,16 @@ $('#share2').socialLikes({
 });
 ```
 
+### Refreshing counters
+
+By default counters for any uniqe URL requested only once. You can force new request with `forceUpdate` option:
+
+```javascript
+$('#share2').socialLikes({
+	forceUpdate: true
+});
+```
+
 
 ### Events
 
