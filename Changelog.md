@@ -1,3 +1,10 @@
+### 2014-02-12 v3.0.2
+
+* `popup_opened` and `popup_closed` events.
+* `forceUpdate` option.
+* Fix `class` error in IE.
+* Tweak flat skin.
+
 ### 2014-02-05 v3.0.1
 
 * Ability to dynamically update URL.
