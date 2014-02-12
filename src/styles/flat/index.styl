@@ -44,7 +44,7 @@ button-colors(button, color) {
 	&__counter {
 		box-sizing:border-box;
 		font-family:"Helvetica Neue", Arial, sans-serif;
-		vertical-align:middle;
+		vertical-align:baseline;
 		color:#fff;
 	}
 
@@ -92,6 +92,7 @@ button-colors(button, color) {
 	&_light .social-likes__button,
 	&_single-light + .social-likes__button {
 		min-width:0;
+		padding-left:1.35em;
 		font-weight:normal;
 		text-decoration:underline;
 		-webkit-font-smoothing:subpixel-antialiased;
@@ -99,6 +100,7 @@ button-colors(button, color) {
 	}
 	&_light .social-likes__icon {
 		margin-top:-.1em;
+		margin-left:-.25em;
 	}
 	&_light .social-likes__counter,
 	&_single-light + .social-likes__button + .social-likes__counter {
@@ -120,8 +122,14 @@ button-colors(button, color) {
 	// Icons only light
 	&_notext&_light {
 		&,
-		.social-likes__widget {
+		.social-likes__widget,
+		.social-likes__icon {
 			margin:0;
+			left:0;
+		}
+		.social-likes__button {
+			width:1.4em;
+			padding-left:0;
 		}
 	}
 
@@ -209,6 +217,9 @@ button-colors('odnoklassniki', #f59310);
 	.social-likes_light & {
 		left:.25em;
 	}
+}
+.social-likes_notext.social-likes_light .social-likes__button_odnoklassniki {
+	width:1em;
 }
 
 // Pinterest
