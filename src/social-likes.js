@@ -470,7 +470,7 @@ Button.prototype = {
 			'text': number,
 		};
 		if (!number && !this.options.zeroes) {
-			params.class += ' ' + prefix + '__counter_empty';
+			params['class'] += ' ' + prefix + '__counter_empty';
 			params.text = '';
 		}
 		var counterElem = $('<span>', params);
