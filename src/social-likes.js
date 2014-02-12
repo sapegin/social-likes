@@ -145,7 +145,7 @@ var counters = {
 		if (!counters.promises[service]) counters.promises[service] = {};
 		var servicePromises = counters.promises[service];
 
-		if (servicePromises[url]) {
+		if (!extraOptions.forceUpdate && servicePromises[url]) {
 			return servicePromises[url];
 		}
 		else {
@@ -208,6 +208,7 @@ $.fn.socialLikes.defaults = {
 	counters: true,
 	zeroes: false,
 	wait: 500,
+	popupCheckInterval: 500,
 	singleTitle: 'Share'
 };
 
@@ -292,7 +293,7 @@ SocialLikes.prototype = {
 		this.widget = widget;
 	},
 	update: function(options) {
-		if (options.url === this.options.url) return;
+		if (!options.forceUpdate && options.url === this.options.url) return;
 
 		// Reset counters
 		this.number = 0;
@@ -353,7 +354,7 @@ Button.prototype = {
 	},
 
 	update: function(options) {
-		$.extend(this.options, options);
+		$.extend(this.options, {forceUpdate: false}, options);
 		this.widget.find('.' + prefix + '__counter').remove();  // Remove old counter
 		this.initCounter();
 	},
@@ -442,7 +443,10 @@ Button.prototype = {
 				this.updateCounter(this.options.counterNumber);
 			}
 			else {
-				var extraOptions = this.options.counterUrl ? { counterUrl: this.options.counterUrl } : {};
+				var extraOptions = {
+					counterUrl: this.options.counterUrl,
+					forceUpdate: this.options.forceUpdate
+				};
 				counters.fetch(this.service, this.options.url, extraOptions)
 					.always($.proxy(this.updateCounter, this));
 			}
@@ -470,7 +474,7 @@ Button.prototype = {
 			'text': number,
 		};
 		if (!number && !this.options.zeroes) {
-			params.class += ' ' + prefix + '__counter_empty';
+			params['class'] += ' ' + prefix + '__counter_empty';
 			params.text = '';
 		}
 		var counterElem = $('<span>', params);
@@ -517,6 +521,12 @@ Button.prototype = {
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 		if (win) {
 			win.focus();
+			this.widget.trigger('popup_opened.' + prefix, [this.service, win]);
+			var timer = setInterval($.proxy(function() {
+				if (!win.closed) return;
+				clearInterval(timer);
+				this.widget.trigger('popup_closed.' + prefix, this.service);
+			}, this), this.options.popupCheckInterval);
 		}
 		else {
 			location.href = url;
