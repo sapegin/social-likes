@@ -208,6 +208,7 @@ $.fn.socialLikes.defaults = {
 	counters: true,
 	zeroes: false,
 	wait: 500,
+	popupCheckInterval: 500,
 	singleTitle: 'Share'
 };
 
@@ -520,6 +521,12 @@ Button.prototype = {
 			'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 		if (win) {
 			win.focus();
+			this.widget.trigger('popup_opened.' + prefix, [this.service, win]);
+			var timer = setInterval($.proxy(function() {
+				if (!win.closed) return;
+				clearInterval(timer);
+				this.widget.trigger('popup_closed.' + prefix, this.service);
+			}, this), this.options.popupCheckInterval);
 		}
 		else {
 			location.href = url;

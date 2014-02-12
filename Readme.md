@@ -207,6 +207,26 @@ $('.social-likes').on('ready.social-likes', function(event, number) {
 });
 ```
 
+#### `popup_opened.social-likes`
+
+Triggers after popup window opened.
+
+```javascript
+$('.social-likes').on('popup_opened.social-likes', function(event, service, win) {
+	// win is popup window handler (window.open())
+});
+```
+
+#### `popup_closed.social-likes`
+
+Triggers after popup window closed.
+
+```javascript
+$('.social-likes').on('popup_closed.social-likes', function(event, service) {
+	$(event.currentTarget).socialLikes({forceUpdate: true});  // Update counters
+});
+```
+
 ### Adding your own button
 
 You can find some custom buttons in `contrib` folder.
