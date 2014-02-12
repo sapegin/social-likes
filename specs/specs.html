@@ -276,7 +276,7 @@ section {
 		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
 		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</div>
 	</div>
-	<p><a href="#" id="social-likes-update">Change URL</a></p>
+	<p><a href="#" id="social-likes-update">Change URL</a>, <a href="#" id="social-likes-update-force">Force update</a></p>
 <script>
 var sl = $('#social-likes-manual');
 sl.on('counter.social-likes', function(event, service, number) {
@@ -291,6 +291,10 @@ $('#social-likes-update').click(function() {
 			media: 'http://birdwatcher.ru/i/userpic.jpg'
 		}
 	});
+	return false;
+});
+$('#social-likes-update-force').click(function() {
+	sl.socialLikes({forceUpdate: true});
 	return false;
 });
 </script>
