@@ -19,7 +19,7 @@ Use [interactive builder](http://sapegin.github.io/social-likes/) to generate th
 
 Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 
-
+зг
 ## Advanced configuration
 
 ### Layout
@@ -237,7 +237,7 @@ Define `socialLikesButtons` hash:
 var socialLikesButtons = {
 	surfingbird: {
 		popupUrl: 'http://surfingbird.ru/share?url={url}',
-		pupupWidth: 650,
+		popupWidth: 650,
 		popupHeight: 500
 	}
 };
