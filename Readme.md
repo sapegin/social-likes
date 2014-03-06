@@ -300,6 +300,15 @@ If you’re experincing any problems with meta data try [Open Graph Debugger](ht
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 
+## Troubleshooting
+
+### Counters don’t work
+
+In most cases if you don’t see counters it’s because social networks APIs return zeroes. You could check API requests results in Network tab in your browser’s developer tools.
+
+![](http://cl.ly/image/013x2M01021N/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
+
+
 ## Release History
 
 The changelog can be found in the `Changelog.md` file.
