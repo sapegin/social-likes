@@ -308,6 +308,8 @@ In most cases if you don’t see counters it’s because social networks APIs re
 
 ![](http://cl.ly/image/013x2M01021N/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
 
+If you’re sure that it’s a bug please file an issue **and provide a link** to a page with non-working counter.
+
 
 ## Release History
 
