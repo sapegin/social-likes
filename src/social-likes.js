@@ -282,12 +282,17 @@ SocialLikes.prototype = {
 
 		widget.click(function() {
 			var activeClass = prefix + '__widget_active';
-			widget.addClass(activeClass);
-			container.css({left: -(container.width()-widget.width())/2,  top: -container.height()});
-			showInViewport(container);
-			closeOnClick(container, function() {
-				widget.removeClass(activeClass);
-			});
+			widget.toggleClass(activeClass);
+			if (widget.hasClass(activeClass)) {
+				container.css({left: -(container.width()-widget.width())/2,  top: -container.height()});
+				showInViewport(container);
+				closeOnClick(container, function() {
+					widget.removeClass(activeClass);
+				});
+			}
+			else {
+				container.removeClass(openClass);
+			}
 			return false;
 		});
 
