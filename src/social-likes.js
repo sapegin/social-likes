@@ -259,6 +259,7 @@ SocialLikes.prototype = {
 		var container = this.container;
 		container.addClass(prefix + '_vertical');
 		container.wrap($('<div>', {'class': prefix + '_single-w'}));
+		container.wrapInner($('<div>', {'class': prefix + '__single-container'}));
 		var wrapper = container.parent();
 
 		// Widget
