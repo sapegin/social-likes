@@ -101,7 +101,8 @@ var services = {
 		popupHeight: 360
 	},
 	plusone: {
-		counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}',
+		// HTTPS not supported yet: http://clubs.ya.ru/share/1499
+		counterUrl: protocol === 'http:' ? 'http://share.yandex.ru/gpp.xml?url={url}' : undefined,
 		counter: function(jsonUrl, deferred) {
 			var options = services.plusone;
 			if (options._) {
@@ -153,7 +154,7 @@ var counters = {
 			var deferred = $.Deferred();
 			var jsonUrl = options.counterUrl && makeUrl(options.counterUrl, {url: url});
 
-			if ($.isFunction(options.counter)) {
+			if (jsonUrl && $.isFunction(options.counter)) {
 				options.counter(jsonUrl, deferred);
 			}
 			else if (options.counterUrl) {
