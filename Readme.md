@@ -72,6 +72,10 @@ If you want to remove button titles add `social-likes_notext` class to make it l
 
 Options define via HTML data attributes or JavaScript parameters object.
 
+`service`
+
+Setup service from data instead of class name. From class name by default.
+
 `url`
 
 URL of shareable page. Current page by default.
