@@ -368,7 +368,8 @@
 		},
 
 		detectService: function() {
-			var classes = this.widget[0].classList || this.widget[0].className.split(' ');
+			var dataService = this.widget.data().service ? this.widget.data().service.split(' ') : undefined;
+			var classes = dataService || this.widget[0].classList || this.widget[0].className.split(' ');
 			for (var classIdx = 0; classIdx < classes.length; classIdx++) {
 				var cls = classes[classIdx];
 				if (services[cls]) {
