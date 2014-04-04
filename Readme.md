@@ -315,11 +315,11 @@ If you’re sure that it’s a bug please file an issue **and provide a link** t
 
 ## Release History
 
-The changelog can be found in the `Changelog.md` file.
+The changelog can be found in the [Changelog.md](Changelog.md) file.
 
 
 ---
 
 ## License
 
-The MIT License, see the included `License.md` file.
+The MIT License, see the included [License.md](License.md) file.
