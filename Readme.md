@@ -300,7 +300,13 @@ If you’re experincing any problems with meta data try [Open Graph Debugger](ht
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 
-## Troubleshooting
+## Troubleshooting and FAQ
+
+### Likes or shares?
+
+This plugin allows your users to “share” the content of your website. (Un)fortunately¹ real “likes” are possible only when you use original Facebook, Google+, etc. buttons.
+
+¹ I believe that “shares” are much better and valuable than “likes” because they’re more visible in feed and users could add they’re own comments to links they share. “Like” costs nothing.
 
 ### Counters don’t work
 
