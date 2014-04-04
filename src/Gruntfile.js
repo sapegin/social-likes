@@ -17,6 +17,9 @@ module.exports = function(grunt) {
 			files: ['social-likes.js']
 		},
 		jscs: {
+			options: {
+				config: ".jscs.json"
+			},
 			files: ['<%= jshint.files %>']
 		},
 		uglify: {
