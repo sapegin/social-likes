@@ -76,7 +76,6 @@ module.exports = function(grunt) {
 					embed: 'woff,ttf',
 					template: 'styles/flat/webfont.styl',
 					stylesheet: 'styl',
-					relativeFontPath: '',
 					hashes: false,
 					htmlDemo: false
 				}

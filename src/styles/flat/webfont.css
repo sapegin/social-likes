@@ -7,5 +7,5 @@
 
 <% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
 .social-likes__icon_<%= glyphs[glyphIdx] %>:before {
-	content:"\<%= (61696+glyphIdx).toString(16) %>";
+	content:"\<%= codepoints[glyphIdx] %>";
 }<% } %>
