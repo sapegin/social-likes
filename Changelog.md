@@ -1,3 +1,12 @@
+### 2014-04-10 v3.0.3
+
+* Always use HTTPS for Twitter (#58).
+* Disable Google+ counter on HTTPS pages (#58).
+* Fix paddings on single button popup in Birman skin in Safari.
+* Fix height of single button in Flat skin.
+* Single button clicks toggles popup instead of just opening.
+* Now you can user data-service attribute instead of class name (by [@fliptheweb](https://github.com/fliptheweb)).
+
 ### 2014-02-12 v3.0.2
 
 * `popup_opened` and `popup_closed` events.
