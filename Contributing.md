@@ -15,6 +15,8 @@ I love pull requests. And following this simple guidelines will make your pull r
 
 ## JavaScript code style
 
+See [JSHint](.jshintrc) and [JSCS](.jscs.json) config files for more details.
+
 - Tab indentation.
 - Single-quotes.
 - Semicolon.
@@ -55,7 +57,6 @@ function foo(bar, fum) {
 - Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
 - Don’t change version number and changelog.
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
-- If code you change uses different style (probably it’s an old code) use file’s style instead of style described on this page.
 - Feel free to [ask me](http://sapegin.me/contacts) anything you need.
 
 

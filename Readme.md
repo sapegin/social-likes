@@ -327,6 +327,14 @@ If you’re sure that it’s a bug please file an issue **and provide a link** t
 
 The changelog can be found in the [Changelog.md](Changelog.md) file.
 
+## Contributing
+
+Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
+
+## Author
+
+* [Artem Sapegin](http://sapegin.me/)
+
 
 ---
 
