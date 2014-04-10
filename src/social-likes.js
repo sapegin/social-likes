@@ -368,23 +368,22 @@
 		},
 
 		detectService: function() {
-			var data = this.widget.data();
-
-			if (services[data.service]) {
-				this.service = data.service;
-				$.extend(this.options, services[data.service]);
-			}
-			else {
-				var classes = this.widget[0].classList || this.widget[0].className.split(' ');
+			var service = this.widget.data('service');
+			if (!service) {
+				// class="facebook"
+				var node = this.widget[0];
+				var classes = node.classList || node.className.split(' ');
 				for (var classIdx = 0; classIdx < classes.length; classIdx++) {
 					var cls = classes[classIdx];
 					if (services[cls]) {
-						this.service = cls;
-						$.extend(this.options, services[cls]);
-						return;
+						service = cls;
+						break;
 					}
 				}
+				if (!service) return;
 			}
+			this.service = service;
+			$.extend(this.options, services[service]);
 		},
 
 		detectParams: function() {
