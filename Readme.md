@@ -3,13 +3,13 @@
 [![Bower version](https://badge.fury.io/bo/social-likes.png)](http://badge.fury.io/bo/social-likes)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-Beautiful “like” buttons with counters for popular social networks: Facebook, Twitter, LiveJournal, etc. Uses jQuery.
+Beautiful share buttons with counters for popular social networks: Facebook, Twitter, Google+, Pinterest, Vkontakte, etc. Uses jQuery.
 
 
 ## Features
 
 - Easy to install.
-- Beautiful and all in one style.
+- Beautiful and all in one style (with three different skins).
 - Won’t explode your page’s layout.
 
 
@@ -18,6 +18,7 @@ Beautiful “like” buttons with counters for popular social networks: Facebook
 Use [interactive builder](http://sapegin.github.io/social-likes/) to generate the code.
 
 Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
+
 
 ## Advanced configuration
 
@@ -28,10 +29,10 @@ Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 All buttons in a row.
 
 ```
-<ul class="social-likes">
-	<li class="facebook" title="Share link on Facebook">Facebook</li>
+<div class="social-likes">
+	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
-</ul>
+</div>
 ```
 
 #### Vertical
@@ -39,10 +40,10 @@ All buttons in a row.
 All buttons in a column.
 
 ```
-<ul class="social-likes social-likes_vertical">
-	<li class="facebook" title="Share link on Facebook">Facebook</li>
+<div class="social-likes social-likes_vertical">
+	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
-</ul>
+</div>
 ```
 
 #### Single button
@@ -50,10 +51,10 @@ All buttons in a column.
 One button with a counter (summ of all the networks). Opens popup with like buttons in vertical layout. Use `data-single-title` attribute to change button title.
 
 ```
-<ul class="social-likes social-likes_single" data-single-title="Share me!">
-	<li class="facebook" title="Share link on Facebook">Facebook</li>
+<div class="social-likes social-likes_single" data-single-title="Share me!">
+	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
-</ul>
+</div>
 ```
 
 #### Icons only
@@ -61,20 +62,16 @@ One button with a counter (summ of all the networks). Opens popup with like butt
 If you want to remove button titles add `social-likes_notext` class to make it looks better.
 
 ```
-<ul class="social-likes social-likes_notext">
-	<li class="facebook" title="Share link on Facebook"></li>
+<div class="social-likes social-likes_notext">
+	<div class="facebook" title="Share link on Facebook"></div>
 	...
-</ul>
+</div>
 ```
 
 
 ### Options
 
 Options define via HTML data attributes or JavaScript parameters object.
-
-`service`
-
-Setup service from data instead of class name. From class name by default.
 
 `url`
 
@@ -103,15 +100,15 @@ Share button title for “single button” mode. Default: “Share”.
 Examples:
 
 ```html
-<ul class="social-likes" data-url="http://landscapists.info/" data-title="Landscapists of Russia">
+<div class="social-likes" data-url="http://landscapists.info/" data-title="Landscapists of Russia">
 	…
-</ul>
+</div>
 ```
 
 ```html
-<ul class="social-likes social-likes_single" data-single-title="This is Sharing!">
+<div class="social-likes social-likes_single" data-single-title="This is Sharing!">
 	…
-</ul>
+</div>
 ```
 
 ```js
@@ -123,22 +120,23 @@ $('.social-likes').socialLikes({
 });
 ```
 
+
 ### Services specific options
 
 #### Twitter
 
-You can specify `via` (site’s Twitter) and `related` (any other Twitter you want to advertise) values for `<li class="twitter">`:
+You can specify `via` (site’s or your own Twitter) and `related` (any other Twitter you want to advertise) values for `<div class="twitter">`:
 
 ```html
-<li class="twitter" data-via="sapegin" data-related="Landscapists">Twitter</li>
+<div class="twitter" data-via="sapegin" data-related="Landscapists">Twitter</div>
 ```
 
 #### Pinterest
 
-You should specify an image URL via data-media attribute on `<li class="pinterest">`:
+You should specify an image URL via data-media attribute on `<div class="pinterest">`:
 
 ```html
-<li class="pinterest" data-media="http://example.com/image/url.jpg">Pinterest</li>
+<div class="pinterest" data-media="http://example.com/image/url.jpg">Pinterest</div>
 ```
 
 ### Manual initialization
@@ -146,25 +144,26 @@ You should specify an image URL via data-media attribute on `<li class="pinteres
 Could be useful on dynamic (AJAX) websites.
 
 ```html
-<ul id="share">
-	<li class="facebook">Facebook</li>
+<div id="share">
+	<div class="facebook">Facebook</div>
 	...
-</ul>
+</div>
 ```
 
 ```javascript
 $('#share').socialLikes();
 ```
 
+
 ### Dynamic URL changing
 
 You can dynamically replace URL, title and Pinterest image without reinitialization.
 
 ```html
-<ul id="share2" class="social-likes" data-url="http://example.com/" data-title="My example">
-	<li class="facebook">Facebook</li>
+<div id="share2" class="social-likes" data-url="http://example.com/" data-title="My example">
+	<div class="facebook">Facebook</div>
 	...
-</ul>
+</div>
 ```
 
 ```javascript
@@ -177,9 +176,10 @@ $('#share2').socialLikes({
 });
 ```
 
+
 ### Refreshing counters
 
-By default counters for any uniqe URL requested only once. You can force new request with `forceUpdate` option:
+By default counters for any unique URL requested only once. You can force new request with `forceUpdate` option:
 
 ```javascript
 $('#share2').socialLikes({
@@ -230,11 +230,12 @@ $('.social-likes').on('popup_closed.social-likes', function(event, service) {
 });
 ```
 
+
 ### Adding your own button
 
-You can find some custom buttons in `contrib` folder.
+You can find some custom buttons in `contrib` folder.
 
-Define `socialLikesButtons` hash:
+Define `socialLikesButtons` object:
 
 ```javascript
 var socialLikesButtons = {
@@ -246,7 +247,7 @@ var socialLikesButtons = {
 };
 ```
 
-If you know the social network search page's url, you can make a link to results of searching in this network. There are search urls for Twitter and VKontakte by default.
+If you know the social network search page's URL, you can make a link to results of searching in this network. There are search URLs for Twitter and VKontakte by default.
 
 ```javascript
 var socialLikesButtons = {
@@ -255,7 +256,7 @@ var socialLikesButtons = {
 		searchUrl: 'https://twitter.com/search?src=typd&q={url}'
 	}
 };
-``` 
+```
 
 Add some CSS:
 
@@ -270,14 +271,22 @@ Add some CSS:
 	}
 ```
 
-And use in like any other button:
+And use it like any other button:
 
 ```html
-<li class="surfingbird">Surf</li>
+<div class="surfingbird">Surf</div>
 ```
 
 See sources (`src` folder) for available options and class names and `contrib` folder for custom buttons examples.
 
+
+## FAQ
+
+### Likes or shares?
+
+This plugin allows your users to “share” the content of your website. (Un)fortunately¹ real “likes” are possible only when you use original Facebook, Google+, etc. buttons.
+
+¹ I believe that “shares” are much better and valuable than “likes” because they’re more visible in feed and users could add they’re own comments to links they share. “Like” costs nothing.
 
 ### How to change title, description and image
 
@@ -296,7 +305,7 @@ You can add additional Twitter data using [Twitter Card](https://dev.twitter.com
 <meta name="twitter:creator" content="@sapegin">
 ```
 
-If you’re experincing any problems with meta data try [Open Graph Debugger](https://developers.facebook.com/tools/debug/) and [Twitter Card Validator](https://dev.twitter.com/docs/cards/validation/validator).
+If you’re experiencing any problems with meta data try [Open Graph Debugger](https://developers.facebook.com/tools/debug/) and [Twitter Card Validator](https://dev.twitter.com/docs/cards/validation/validator).
 
 
 ### How to use Social Likes with Wordpress, etc.
@@ -304,17 +313,11 @@ If you’re experincing any problems with meta data try [Open Graph Debugger](ht
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
 
-## Troubleshooting and FAQ
-
-### Likes or shares?
-
-This plugin allows your users to “share” the content of your website. (Un)fortunately¹ real “likes” are possible only when you use original Facebook, Google+, etc. buttons.
-
-¹ I believe that “shares” are much better and valuable than “likes” because they’re more visible in feed and users could add they’re own comments to links they share. “Like” costs nothing.
+## Troubleshooting
 
 ### Counters don’t work
 
-In most cases if you don’t see counters it’s because social networks APIs return zeroes. You could check API requests results in Network tab in your browser’s developer tools:
+In most cases if you don’t see counters it’s because social networks APIs return zeros. You could check API requests results in Network tab in your browser’s developer tools:
 
 ![](http://cl.ly/image/013x2M01021N/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
 
