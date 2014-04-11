@@ -486,7 +486,7 @@
 
 			var params = {
 				'class': this.getElementClassNames('counter'),
-				'text': number,
+				'text': number
 			};
 			if (!number && !this.options.zeroes) {
 				params['class'] += ' ' + prefix + '__counter_empty';
