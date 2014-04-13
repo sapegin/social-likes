@@ -88,7 +88,7 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}',
+			popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}&image={image}',
 			popupWidth: 550,
 			popupHeight: 330
 		},
@@ -409,6 +409,11 @@
 			if (data.url) {
 				this.options.url = data.url;
 			}
+			
+			// Custom page image
+			if (data.image) {
+				this.options.image = data.image;
+			}
 		},
 
 		initHtml: function() {
@@ -429,7 +434,8 @@
 			if (options.clickUrl) {
 				var url = makeUrl(options.clickUrl, {
 					url: options.url,
-					title: options.title
+					title: options.title,
+					image: options.image
 				});
 				var link = $('<a>', {
 					href: url
@@ -507,7 +513,8 @@
 			if (process) {
 				var url = makeUrl(options.popupUrl, {
 					url: options.url,
-					title: options.title
+					title: options.title,
+					image: options.image
 				});
 				url = this.addAdditionalParamsToUrl(url);
 				this.openPopup(url, {
