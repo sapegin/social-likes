@@ -197,8 +197,8 @@
 				store.set(lang, {
 					skin: skin,
 					type: data.type,
-					counters: data.counters,
-					light: data.light,
+					counters: !!data.counters,
+					light: !!data.light,
 					title: data.title,
 					url: data.url,
 					site_facebook: !!data.site_facebook,
