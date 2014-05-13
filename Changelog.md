@@ -1,3 +1,11 @@
+### 2014-05-13 v3.0.4
+
+* Tweak single button popup fade animation.
+* Flat skin: fix icons on Windows (#69).
+* Flat skin: fix counters positons in vertical mode in Firefox.
+* Birman skin: fix icon positions in single button mode in Firefox.
+* Classic skin: fix gradients in Firefox.
+
 ### 2014-04-10 v3.0.3
 
 * Always use HTTPS for Twitter (#58).
