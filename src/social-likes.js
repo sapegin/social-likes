@@ -34,6 +34,7 @@
 	 */
 	var services = {
 		facebook: {
+			// https://developers.facebook.com/docs/reference/fql/link_stat/
 			counterUrl: 'https://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
 			convertNumber: function(data) {
 				return data.data[0].total_count;
@@ -486,7 +487,7 @@
 
 			var params = {
 				'class': this.getElementClassNames('counter'),
-				'text': number,
+				'text': number
 			};
 			if (!number && !this.options.zeroes) {
 				params['class'] += ' ' + prefix + '__counter_empty';
@@ -576,7 +577,7 @@
 
 	function template(tmpl, context, filter) {
 		return tmpl.replace(/\{([^\}]+)\}/g, function(m, key) {
-			// If key don't exists in the context we should keep template tag as is
+			// If key doesn't exists in the context we should keep template tag as is
 			return key in context ? (filter ? filter(context[key]) : context[key]) : m;
 		});
 	}
