@@ -72,12 +72,13 @@ module.exports = function(grunt) {
 				dest: 'styles/flat/font',
 				options: {
 					font: 'social-likes',
-					types: 'woff,ttf',
-					embed: 'woff,ttf',
+					types: 'woff',
+					embed: 'woff',
 					template: 'styles/flat/webfont.styl',
 					stylesheet: 'styl',
 					hashes: false,
-					htmlDemo: false
+					htmlDemo: false,
+					startCodepoint: 0xF101
 				}
 			}
 		},
