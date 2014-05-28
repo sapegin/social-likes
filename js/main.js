@@ -26,7 +26,8 @@
 		},
 		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
 		experimental = location.hash === '#ponies',
-		simple = !('download' in document.createElement('a'));
+		// simple = !('download' in document.createElement('a'));
+		simple = true;  // Because of bug in Chrome 35: https://code.google.com/p/chromium/issues/detail?id=377860
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
