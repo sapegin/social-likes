@@ -5,6 +5,9 @@
 
 Beautiful share buttons with counters for popular social networks: Facebook, Twitter, Google+, Pinterest, Vkontakte, etc. Uses jQuery.
 
+[![](http://wow.sapegin.me/image/0A3b0n3K2Z1m/social-likes.png)](http://sapegin.github.io/social-likes/)
+
+[See demo](http://sapegin.github.io/social-likes/)
 
 ## Features
 
