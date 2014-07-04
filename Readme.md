@@ -315,6 +315,15 @@ If you’re experiencing any problems with meta data try [Open Graph Debugger](h
 
 See [wiki](https://github.com/sapegin/social-likes/wiki/How-to-use-Social-Likes-with-Wordpress,-etc.).
 
+### How to track activity with Google Analytics
+
+You can track how many people click on each social button on your site with Google Analytics (or other analytics service). Note that you can track clicks only, not real shares.
+
+```javascript
+$(document).on('popup_opened.social-likes', function(event, service) {
+    ga('send', 'social', service, 'share', location.href);
+});
+```
 
 ## Troubleshooting
 
