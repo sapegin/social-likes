@@ -212,7 +212,8 @@
 		zeroes: false,
 		wait: 500,
 		popupCheckInterval: 500,
-		singleTitle: 'Share'
+		singleTitle: 'Share',
+		updateHtml: true
 	};
 
 	function SocialLikes(container, options) {
@@ -223,8 +224,10 @@
 
 	SocialLikes.prototype = {
 		init: function() {
-			// Add class in case of manual initialization
-			this.container.addClass(prefix);
+			if (this.options.updateHtml) {
+				// Add class in case of manual initialization
+				this.container.addClass(prefix);
+			}
 
 			this.single = this.container.hasClass(prefix + '_single');
 
@@ -443,13 +446,15 @@
 				widget.click($.proxy(this.click, this));
 			}
 
-			widget.removeClass(this.service);
-			widget.addClass(this.getElementClassNames('widget'));
+			if (this.options.updateHtml) {
+				widget.removeClass(this.service);
+				widget.addClass(this.getElementClassNames('widget'));
 
-			// Icon
-			button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
+				// Icon
+				button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
 
-			widget.empty().append(button);
+				widget.empty().append(button);
+			}
 			this.button = button;
 		},
 
