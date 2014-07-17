@@ -533,7 +533,7 @@
 				top = Math.round(screen.height/3 - params.height/2);
 			}
 
-			var win = window.open(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
+			var win = openWindow(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
 			   'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 			if (win) {
 				win.focus();
@@ -554,6 +554,20 @@
 	/**
 	 * Helpers
 	 */
+
+     // Open window
+	function openWindow(url, name, props) {
+		if (/*@cc_on!@*/false) {
+			var windowRefIE = window.open("", name, props);
+			windowRefIE.close();
+		}
+		var windowRef = window.open(url, name, props);
+		if (!windowRef.opener) {
+			windowRef.opener = window;
+		}
+		windowRef.focus();
+		return windowRef;
+	}
 
 	 // Camelize data-attributes
 	function dataToOptions(elem) {
