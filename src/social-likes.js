@@ -556,10 +556,6 @@
 	 */
 
 	function openWindow(url, name, props) {
-		if (/*@cc_on!@*/false) {
-			var windowRefIE = window.open("", name, props);
-			windowRefIE.close();
-		}
 		var windowRef = window.open(url, name, props);
 		if (!windowRef.opener) {
 			windowRef.opener = window;
