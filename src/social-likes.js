@@ -555,7 +555,6 @@
 	 * Helpers
 	 */
 
-     // Open window
 	function openWindow(url, name, props) {
 		if (/*@cc_on!@*/false) {
 			var windowRefIE = window.open("", name, props);
