@@ -335,6 +335,8 @@ In most cases if you don’t see counters it’s because social networks APIs re
 
 Double check that you use canonical URLs (without extra parameters such as `utm_source`). You can change URL via [`data-url` option](#options).
 
+If you have more than one Social Likes blocks on a page with different URLs, Google+ counter will work only for the first block. Google+ counter also willn’t work when you refresh counters with `forceUpdate` option or change URL dynamically.
+
 If your site have internationalized domain name (e.g. `президент.рф`) make sure you convert it to [Punycode](http://en.wikipedia.org/wiki/Punycode) (e.g. `xn--d1abbgf6aiiy.xn--p1ai`).
 
 If you’re sure that it’s a bug please file an issue **and provide a link** to a page with non-working counter.
