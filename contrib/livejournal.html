@@ -7,7 +7,7 @@
 	<script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../social-likes.min.js"></script>
 	
-	<!-- GitHub button CSS -->
+	<!-- LiveJournal button CSS -->
 	<link href="css/livejournal.css" rel="stylesheet">
 
 </head>
@@ -16,24 +16,23 @@
 	<h3>LiveJournal button</h3>
 
 <script>
-// Don't forget to change your name and repo name: sapegin/social-likes
 var socialLikesButtons = {
 	livejournal: {
 		click: function(e) {
 			var form = this._livejournalForm;
 			if (!form) {
-				var html = this.options.pageHtml
+				var html = this.widget.data('html')
+					.replace(/{url}/g, this.options.url)
+					.replace(/{title}/g, this.options.title)
 					.replace(/&/g, '&amp;')
 					.replace(/"/g, '&quot;');
 				form = $(
 					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
 						'<input type="hidden" name="mode" value="full">' +
-						'<input type="hidden" name="subject" value="' + this.options.pageTitle + '">' +
+						'<input type="hidden" name="subject" value="' + this.options.title + '">' +
 						'<input type="hidden" name="event" value="' + html + '">' +
 					'</form>'
 				);
-				this.widget.append(form);
-				this._livejournalForm = form;
 			}
 			form.submit();
 		}
@@ -42,7 +41,7 @@ var socialLikesButtons = {
 </script>
 
 	<ul class="social-likes">
-		<li class="livejournal" title="Share on LiveJournal">LiveJournal</li>
+		<li class="livejournal" title="Share link on LiveJournal" data-html="&lt;a href='{url}'&gt;{title}&lt;/a&gt;">LiveJournal</li>
 	</ul>
 
 </body>
