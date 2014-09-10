@@ -108,6 +108,7 @@
 			counter: function(jsonUrl, deferred) {
 				var options = services.plusone;
 				if (options._) {
+					// Reject all counters except the first because Yandex Share counter doesn’t return URL
 					deferred.reject();
 					return;
 				}
