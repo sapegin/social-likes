@@ -229,7 +229,12 @@ Triggers after popup window closed.
 
 ```javascript
 $('.social-likes').on('popup_closed.social-likes', function(event, service) {
-	$(event.currentTarget).socialLikes({forceUpdate: true});  // Update counters
+	// Request new counters
+	$(event.currentTarget).socialLikes({forceUpdate: true});
+
+	// Or just increase the number
+	var counter = $(event.currentTarget).find('.social-likes__counter_' + service);
+	counter.text(+(counter.text()||0)+1).removeClass('social-likes__counter_empty');
 });
 ```
 
