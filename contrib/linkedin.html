@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<title>Social Likes LinkedIn button</title>
+	<link href="../social-likes_classic.css" rel="stylesheet">
+	<script src="http://yandex.st/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../social-likes.min.js"></script>
+	
+	<!-- LinkedIn button CSS -->
+	<!-- <link href="css/linkedin.css" rel="stylesheet"> -->
+
+</head>
+<body>
+	
+	<h3>LinkedIn button</h3>
+
+<script>
+var socialLikesButtons = {
+	linkedin: {
+		counterUrl: 'http://www.linkedin.com/countserv/count/share?url={url}',
+		counter: function(jsonUrl, deferred) {
+			var options = socialLikesButtons.linkedin;
+			if (!options._) {
+				options._ = {};
+				if (!window.IN) window.IN = {Tags: {}};
+				window.IN.Tags.Share = {
+					handleCount: function(params) {
+						var jsonUrl = options.counterUrl.replace(/{url}/g, encodeURIComponent(params.url));
+						options._[jsonUrl].resolve(params.count);
+					}
+				};
+			}
+			options._[jsonUrl] = deferred;
+			$.getScript(jsonUrl)
+				.fail(deferred.reject);
+		},
+		popupUrl: 'http://www.linkedin.com/shareArticle?mini=false&url={url}&title={title}',
+		popupWidth: 650,
+		popupHeight: 500
+	}
+};
+</script>
+
+	<ul class="social-likes" data-url="http://google.com/">
+		<li class="linkedin" title="Share on LinkedIn">LinkedIn</li>
+	</ul>
+
+</body>
+</html>
