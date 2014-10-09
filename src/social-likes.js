@@ -231,17 +231,18 @@
 
 			this.initUserButtons();
 
+			this.countersLeft = 0;
 			this.number = 0;
 			this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
-
-			var buttons = this.container.children();
-			this.countersLeft = buttons.length;
 
 			this.makeSingleButton();
 
 			this.buttons = [];
+			var buttons = this.container.children();
 			buttons.each($.proxy(function(idx, elem) {
-				this.buttons.push(new Button($(elem), this.options));
+				var button = new Button($(elem), this.options);
+				this.buttons.push(button);
+				if (button.options.counterUrl) this.countersLeft++;
 			}, this));
 
 			if (this.options.counters) {
