@@ -94,7 +94,7 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//appsmail.ru/share/count/{url}?callback=?', //www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
+			counterUrl: protocol + '//appsmail.ru/share/count/{url}?callback=?',
 			convertNumber: function(data) {
 				return data.share_ok;
 			},
