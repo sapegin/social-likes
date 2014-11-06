@@ -1,4 +1,4 @@
-### 2014-11-06 v3.0.5
+### 2014-11-06 v3.0.6
 
 * Odnoklassniki counter works via HTTPS (by [@zipp3r](https://github.com/zipp3r)).
 * Fix bug when counters don’t show up on HTTPS pages.
