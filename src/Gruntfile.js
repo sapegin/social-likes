@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 			options: {
 				urlfunc: 'embedurl',
 				use: [
-					function() { return require('autoprefixer-stylus')('last 2 versions', 'ie 8'); }
+					function() { return require('autoprefixer-stylus')({browsers: ['last 2 versions', 'ie 8']}); }
 				]
 			},
 			compile: {
