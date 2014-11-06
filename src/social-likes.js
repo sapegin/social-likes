@@ -235,10 +235,11 @@
 			this.number = 0;
 			this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 
+			var buttons = this.container.children();
+
 			this.makeSingleButton();
 
 			this.buttons = [];
-			var buttons = this.container.children();
 			buttons.each($.proxy(function(idx, elem) {
 				var button = new Button($(elem), this.options);
 				this.buttons.push(button);
