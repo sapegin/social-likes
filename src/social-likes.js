@@ -94,9 +94,9 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=shareData&ref={url}&cb=?',
+			counterUrl: protocol + '//appsmail.ru/share/count/{url}?callback=?',
 			convertNumber: function(data) {
-				return data.count;
+				return data.share_ok;
 			},
 			popupUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 			popupWidth: 550,
@@ -108,6 +108,7 @@
 			counter: function(jsonUrl, deferred) {
 				var options = services.plusone;
 				if (options._) {
+					// Reject all counters except the first because Yandex Share counter doesn’t return URL
 					deferred.reject();
 					return;
 				}
@@ -230,17 +231,19 @@
 
 			this.initUserButtons();
 
+			this.countersLeft = 0;
 			this.number = 0;
 			this.container.on('counter.' + prefix, $.proxy(this.updateCounter, this));
 
 			var buttons = this.container.children();
-			this.countersLeft = buttons.length;
 
 			this.makeSingleButton();
 
 			this.buttons = [];
 			buttons.each($.proxy(function(idx, elem) {
-				this.buttons.push(new Button($(elem), this.options));
+				var button = new Button($(elem), this.options);
+				this.buttons.push(button);
+				if (button.options.counterUrl) this.countersLeft++;
 			}, this));
 
 			if (this.options.counters) {
