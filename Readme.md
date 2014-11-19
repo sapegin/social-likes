@@ -333,6 +333,38 @@ $(document).on('popup_opened.social-likes', function(event, service) {
 
 ## Troubleshooting
 
+### The buttons don’t work, displayed without design or don’t displayed at all
+
+First look at your [browser’s console](http://wickedlysmart.com/hfjsconsole/). If you see an error “Uncaught ReferenceError: jQuery is not defined”:
+
+![](http://wow.sapegin.me/image/1f1h1d0z2d1j/Image%202014-11-19%20at%205.45.14%20PM.png)
+
+Then you need to include jQuery into your page. Make sure you use version at least 1.7 (and lower than 2.0 if you need to support IE8) and you include jQuery before `social-likes.js`. The easiest way to do it is to use Google CDN:
+
+```html
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+```
+
+If you don’t see any error check the following:
+
+1. `social-likes.js` is included after jQuery and the path is correct.
+
+2. `social-likes_flat.css` or `social-likes_classic.css` or `social-likes_birman.css` is included in <head> of your page and the path is correct.
+
+So you need your page to look like this:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Welcome to my site!</title>
+	<link href="social-likes_birman.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="social-likes.js"></script>
+	...
+```
+
 ### Counters don’t work
 
 In most cases if you don’t see counters it’s because social networks APIs return zeros. You could check API requests results in Network tab in your browser’s developer tools:
@@ -341,7 +373,7 @@ In most cases if you don’t see counters it’s because social networks APIs re
 
 Double check that you use canonical URLs (without extra parameters such as `utm_source`). You can change URL via [`data-url` option](#options).
 
-If you have more than one Social Likes blocks on a page with different URLs, Google+ counter will work only for the first block. Google+ counter also willn’t work when you refresh counters with `forceUpdate` option or change URL dynamically.
+If you have more than one Social Likes blocks on a page with different URLs, Google+ counter will work only for the first block. Google+ counter also won’t work when you refresh counters with `forceUpdate` option or change URL dynamically.
 
 If your site have internationalized domain name (e.g. `президент.рф`) make sure you convert it to [Punycode](http://en.wikipedia.org/wiki/Punycode) (e.g. `xn--d1abbgf6aiiy.xn--p1ai`).
 
