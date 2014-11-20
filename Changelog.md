@@ -1,3 +1,8 @@
+### 2014-11-20 v3.0.9
+
+* Do not request Odnoklassniki counter via HTTPS.
+* Fix counters after reinitialization of the plugin with the same URL.
+
 ### 2014-11-20 v3.0.8
 
 * Revert older Odnoklassniki counter API (doesn’t work via HTTPS but at least works via HTTP).
