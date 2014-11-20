@@ -94,9 +94,21 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//appsmail.ru/share/count/{url}?callback=?',
-			convertNumber: function(data) {
-				return data.share_ok;
+			counterUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			counter: function(jsonUrl, deferred) {
+				var options = services.odnoklassniki;
+				if (!options._) {
+					options._ = [];
+					if (!window.ODKL) window.ODKL = {};
+					window.ODKL.updateCount = function(idx, number) {
+						options._[idx].resolve(number);
+					};
+				}
+
+				var index = options._.length;
+				options._.push(deferred);
+				$.getScript(makeUrl(jsonUrl, {index: index}))
+					.fail(deferred.reject);
 			},
 			popupUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 			popupWidth: 550,
