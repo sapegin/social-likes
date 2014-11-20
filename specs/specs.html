@@ -271,6 +271,24 @@ section {
 		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
 	</ul>
 
+	<h3>Reinitialization</h3>
+	<div id="social-likes-re">
+		<div class="social-likes" data-url="http://mail.ru/">
+			<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+			<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
+		</div>
+	</div>
+	<p><a href="#" id="social-likes-reinit">Reinit</a></p>
+<script>
+var slre = $('#social-likes-re');
+var slre_html = slre.html();
+$('#social-likes-reinit').click(function() {
+	slre.html(slre_html);
+	slre.find('.social-likes').socialLikes();
+	return false;
+});
+</script>
+
 	<h3>Manual initialization</h3>
 	<div id="social-likes-manual" data-url="http://mail.ru/">
 		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>

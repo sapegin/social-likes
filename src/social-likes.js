@@ -375,7 +375,7 @@
 		init: function() {
 			this.detectParams();
 			this.initHtml();
-			this.initCounter();
+			setTimeout($.proxy(this.initCounter, this), 0);
 		},
 
 		update: function(options) {
