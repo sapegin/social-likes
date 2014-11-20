@@ -1,6 +1,6 @@
 {
   "name": "social-likes",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "main": [
     "./src/social-likes.js",
     "./social-likes_classic.css",
