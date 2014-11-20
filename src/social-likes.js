@@ -107,10 +107,8 @@
 
 				var index = options._.length;
 				options._.push(deferred);
-				$.ajax({
-					url: makeUrl(jsonUrl, {index: index}),
-					dataType: 'jsonp'
-				});
+				$.getScript(makeUrl(jsonUrl, {index: index}))
+					.fail(deferred.reject);
 			},
 			popupUrl: protocol + '//www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
 			popupWidth: 550,
