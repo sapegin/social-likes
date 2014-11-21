@@ -18,22 +18,19 @@
 <script>
 var socialLikesButtons = {
 	livejournal: {
-		click: function(e) {
-			var form = this._livejournalForm;
-			if (!form) {
-				var html = this.widget.data('html')
-					.replace(/{url}/g, this.options.url)
-					.replace(/{title}/g, this.options.title)
-					.replace(/&/g, '&amp;')
-					.replace(/"/g, '&quot;');
-				form = $(
-					'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
-						'<input type="hidden" name="mode" value="full">' +
-						'<input type="hidden" name="subject" value="' + this.options.title + '">' +
-						'<input type="hidden" name="event" value="' + html + '">' +
-					'</form>'
-				);
-			}
+		click: function() {
+			var html = this.widget.data('html')
+				.replace(/{url}/g, this.options.url)
+				.replace(/{title}/g, this.options.title)
+				.replace(/&/g, '&amp;')
+				.replace(/"/g, '&quot;');
+			var form = $(
+				'<form action="http://www.livejournal.com/update.bml" method="post" target="_blank" accept-charset="UTF-8">' +
+					'<input type="hidden" name="mode" value="full">' +
+					'<input type="hidden" name="subject" value="' + this.options.title + '">' +
+					'<input type="hidden" name="event" value="' + html + '">' +
+				'</form>'
+			);
 			form.submit();
 		}
 	}
