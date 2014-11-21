@@ -156,12 +156,14 @@
 
 	function getFile(fileName) {
 		var file = sourceFiles[fileName];
-		if (!file.file) {
-			$.ajax(getFilenameForSkin(file.url), { async: false, dataType: 'html' }).then(function(data) {
-				file.file = data;
+		var url = getFilenameForSkin(file.url);
+		if (!file.files) file.files = {};
+		if (!file.files[url]) {
+			$.ajax(url, { async: false, dataType: 'html' }).then(function(data) {
+				file.files[url] = data;
 			});
 		}
-		return file.file;
+		return file.files[url];
 	}
 
 	function getFilenameForSkin(fileName) {
