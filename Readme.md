@@ -1,6 +1,6 @@
 # Social Likes
 
-[![Bower version](https://badge.fury.io/bo/social-likes.png)](http://badge.fury.io/bo/social-likes)
+[![Bower version](https://badge.fury.io/bo/social-likes.svg)](http://badge.fury.io/bo/social-likes)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 Beautiful share buttons with counters for popular social networks: Facebook, Twitter, Google+, Pinterest, Vkontakte, etc. Uses jQuery.
