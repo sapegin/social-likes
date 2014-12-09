@@ -94,8 +94,7 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			// HTTPS not supported yet: http://apiok.ru/wiki/pages/viewpage.action?pageId=42476656
-			counterUrl: protocol === 'http:' ? 'http://www.odnoklassniki.ru/dk?st.cmd=extLike&ref={url}&uid={index}': undefined,
+			counterUrl: protocol + '//www.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
@@ -111,7 +110,7 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl={url}',
+			popupUrl: 'http://www.ok.ru/dk?st.cmd=addShare&st._surl={url}',
 			popupWidth: 550,
 			popupHeight: 360
 		},
