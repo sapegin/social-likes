@@ -1,3 +1,7 @@
+### 2014-12-11 v3.0.10
+
+* Odnoklassniki counter works via HTTPS (again) (by [@zipp3r](https://github.com/zipp3r)).
+
 ### 2014-11-20 v3.0.9
 
 * Do not request Odnoklassniki counter via HTTPS.
