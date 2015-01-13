@@ -1,3 +1,4 @@
+
 # Social Likes
 
 [![Bower version](https://badge.fury.io/bo/social-likes.svg)](http://badge.fury.io/bo/social-likes)
@@ -31,7 +32,7 @@ Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
 
 All buttons in a row.
 
-```
+```html
 <div class="social-likes">
 	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
@@ -42,7 +43,7 @@ All buttons in a row.
 
 All buttons in a column.
 
-```
+```html
 <div class="social-likes social-likes_vertical">
 	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
@@ -53,7 +54,7 @@ All buttons in a column.
 
 One button with a counter (summ of all the networks). Opens popup with like buttons in vertical layout. Use `data-single-title` attribute to change button title.
 
-```
+```html
 <div class="social-likes social-likes_single" data-single-title="Share me!">
 	<div class="facebook" title="Share link on Facebook">Facebook</div>
 	...
@@ -64,7 +65,7 @@ One button with a counter (summ of all the networks). Opens popup with like butt
 
 If you want to remove button titles add `social-likes_notext` class to make it looks better.
 
-```
+```html
 <div class="social-likes social-likes_notext">
 	<div class="facebook" title="Share link on Facebook"></div>
 	...
