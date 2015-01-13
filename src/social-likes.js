@@ -94,7 +94,7 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//www.ok.ru/dk/?st.cmd=extLike&ref={url}&uid={index}',
+			counterUrl: protocol + '//www.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
@@ -110,7 +110,7 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: 'http://www.ok.ru/dk/?st.cmd=addShare&st._surl={url}',
+			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
 			popupWidth: 550,
 			popupHeight: 360
 		},
