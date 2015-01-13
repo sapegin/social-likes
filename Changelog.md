@@ -1,3 +1,8 @@
+### 2015-01-13 v3.0.11
+
+* Update Odnoklassniki popup URL to prevent redirect.
+* Always use HTTPS for VK counter (HTTP causes redirect).
+
 ### 2014-12-11 v3.0.10
 
 * Odnoklassniki counter works via HTTPS (again) (by [@zipp3r](https://github.com/zipp3r)).
