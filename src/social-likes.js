@@ -71,7 +71,7 @@
 			popupHeight: 360
 		},
 		vkontakte: {
-			counterUrl: protocol + '//vk.com/share.php?act=count&url={url}&index={index}',
+			counterUrl: 'https://vk.com/share.php?act=count&url={url}&index={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.vkontakte;
 				if (!options._) {
