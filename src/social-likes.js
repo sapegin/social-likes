@@ -298,7 +298,7 @@
 			widget.append(button);
 			wrapper.append(widget);
 
-			widget.click(function() {
+			widget.on('click', function() {
 				var activeClass = prefix + '__widget_active';
 				widget.toggleClass(activeClass);
 				if (widget.hasClass(activeClass)) {
@@ -455,7 +455,7 @@
 				this.widget = widget = link;
 			}
 			else {
-				widget.click($.proxy(this.click, this));
+				widget.on('click', $.proxy(this.click, this));
 			}
 
 			widget.removeClass(this.service);
