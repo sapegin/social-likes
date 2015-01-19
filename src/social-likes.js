@@ -27,6 +27,7 @@
 	var classPrefix = prefix + '__';
 	var openClass = prefix + '_opened';
 	var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
+	var isHttps = protocol === 'https:';
 
 
 	/**
@@ -94,7 +95,9 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//www.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			// connect.ok.ru works on mobiles but doesn’t work with HTTPS
+			// www.ok.ru works with HTTPS but redirects to HTML page on mobiles
+			counterUrl: (isHttps ? 'https://www' : 'http://connect') + '.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
@@ -116,7 +119,7 @@
 		},
 		plusone: {
 			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
-			counterUrl: protocol === 'http:' ? 'http://share.yandex.ru/gpp.xml?url={url}' : undefined,
+			counterUrl: isHttps ? undefined : 'http://share.yandex.ru/gpp.xml?url={url}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.plusone;
 				if (options._) {
