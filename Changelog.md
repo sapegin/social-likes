@@ -1,3 +1,9 @@
+### 2015-01-19 v3.0.12
+
+* Remove non-numerical characters from counters before conversion to number. Fixes Google+ counter in rare cases (#105).
+* Try to fix Odnoklassniki counter on mobiles (#94).
+* `$.click` -> `$.on` (do not depend on jQuery’s event/alias module).
+
 ### 2015-01-13 v3.0.11
 
 * Update Odnoklassniki popup URL to prevent redirect.
