@@ -498,6 +498,9 @@
 		},
 
 		updateCounter: function(number) {
+			if (typeof number === 'string') {
+				number = number.replace(/\D/g, '');
+			}
 			number = parseInt(number, 10) || 0;
 
 			var params = {
