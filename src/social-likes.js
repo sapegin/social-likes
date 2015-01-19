@@ -285,7 +285,8 @@
 
 			// Widget
 			var widget = $('<div>', {
-				'class': getElementClassNames('widget', 'single')
+				'class': getElementClassNames('widget', 'single'),
+				'tabindex': 0
 			});
 			var button = $(template(
 				'<div class="{buttonCls}">' +
@@ -301,7 +302,9 @@
 			widget.append(button);
 			wrapper.append(widget);
 
-			widget.on('click', function() {
+			widget.on('click keydown', function(e) {
+				if (!isOpenEvent(e)) return;
+
 				var activeClass = prefix + '__widget_active';
 				widget.toggleClass(activeClass);
 				if (widget.hasClass(activeClass)) {
@@ -458,7 +461,7 @@
 				this.widget = widget = link;
 			}
 			else {
-				widget.on('click', $.proxy(this.click, this));
+				widget.on('click keydown', $.proxy(this.click, this));
 			}
 
 			widget.removeClass(this.service);
@@ -466,6 +469,9 @@
 
 			// Icon
 			button.prepend($('<span>', {'class': this.getElementClassNames('icon')}));
+
+			// Enable keyboard access
+			widget.attr('tabindex', 0);
 
 			widget.empty().append(button);
 			this.button = button;
@@ -521,6 +527,8 @@
 		},
 
 		click: function(e) {
+			if (!isOpenEvent(e)) return;
+
 			var options = this.options;
 			var process = true;
 			if ($.isFunction(options.click)) {
@@ -638,6 +646,10 @@
 				elem.css('top', window.innerHeight - rect.bottom - offset + top);
 		}
 		elem.addClass(openClass);
+	}
+
+	function isOpenEvent(e) {
+		return e.type === 'click' || (e.type === 'keydown' && (e.which === 13 || e.which === 32));
 	}
 
 
