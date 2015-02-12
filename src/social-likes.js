@@ -95,22 +95,22 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			// connect.ok.ru works on mobiles but doesn’t work with HTTPS
-			// www.ok.ru works with HTTPS but redirects to HTML page on mobiles
-			counterUrl: (isHttps ? 'https://www' : 'http://connect') + '.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			counterUrl: 'https://share.yandex.net/counter/odnoklassniki/?url={url}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
-				if (!options._) {
-					options._ = [];
-					if (!window.ODKL) window.ODKL = {};
-					window.ODKL.updateCount = function(idx, number) {
-						options._[idx].resolve(number);
-					};
+				if (options._) {
+					// Reject all counters except the first because this counter doesn’t neither return URL nor accept callback
+					deferred.reject();
+					return;
 				}
 
-				var index = options._.length;
-				options._.push(deferred);
-				$.getScript(makeUrl(jsonUrl, {index: index}))
+				if (!window.ODKL) window.ODKL = {};
+				window.ODKL.updateCount = function(idx, number) {
+					deferred.resolve(number);
+				};
+
+				options._ = deferred;
+				$.getScript(makeUrl(jsonUrl))
 					.fail(deferred.reject);
 			},
 			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
