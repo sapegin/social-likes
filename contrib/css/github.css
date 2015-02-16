@@ -4,7 +4,6 @@
 .social-likes__button_github:visited {
   padding-left: 19px;
   background: #e6e6e6;
-  background: -webkit-linear-gradient(top, #fafafa, #eaeaea);
   background: linear-gradient(top, #fafafa, #eaeaea);
   color: #555;
   border-color: #d4d4d4;
@@ -13,7 +12,6 @@
 }
 .social-likes__button_github:hover {
   background: #efefef;
-  background: -webkit-linear-gradient(top, #fff, #f0f0f0);
   background: linear-gradient(top, #fff, #f0f0f0);
   color: #444;
   border-color: #d4d4d4;

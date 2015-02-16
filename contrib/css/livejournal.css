@@ -1,7 +1,6 @@
 /** Author: Artem Sapegin, http://sapegin.me, 2013 */
 .social-likes__button_livejournal {
   background: #cadcf3;
-  background: -webkit-linear-gradient(top, #fff, #cadcf3);
   background: linear-gradient(top, #fff, #cadcf3);
   color: #5183b4;
   border-color: rgba(182,216,246,0.8);
@@ -9,7 +8,6 @@
 }
 .social-likes__button_livejournal:hover {
   background: #dce2f5;
-  background: -webkit-linear-gradient(top, #ecf1f7, #bad2f0);
   background: linear-gradient(top, #ecf1f7, #bad2f0);
   color: #253759;
   border-color: #b7cfe4;
