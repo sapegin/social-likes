@@ -1,3 +1,8 @@
+### 2015-02-16 v3.0.13
+
+* Add HTTPS support to Google+ using Yandex as proxy (by [@im-denisenko](https://github.com/im-denisenko)).
+* Add HTTPS support to Odnoklassniki using Yandex as proxy (by [@im-denisenko](https://github.com/im-denisenko)).
+
 ### 2015-01-19 v3.0.12
 
 * Remove non-numerical characters from counters before conversion to number. Fixes Google+ counter in rare cases (#105).
