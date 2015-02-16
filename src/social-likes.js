@@ -54,7 +54,7 @@
 			popupHeight: 450,
 			click: function() {
 				// Add colon to improve readability
-				if (!/[\.:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
+				if (!/[\.\?:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
 				return true;
 			}
 		},
