@@ -119,8 +119,11 @@
 		},
 		plusone: {
 			counterUrl: 'https://share.yandex.net/counter/gpp/?url={url}&callback=?',
-			convertNumber: function(data) {
-				return parseInt(data, 10);
+			convertNumber: function(number) {
+				if (typeof number === 'string') {
+					number = number.replace(/\D/g, '');
+				}
+				return parseInt(number, 10);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 700,
@@ -484,9 +487,6 @@
 		},
 
 		updateCounter: function(number) {
-			if (typeof number === 'string') {
-				number = number.replace(/\D/g, '');
-			}
 			number = parseInt(number, 10) || 0;
 
 			var params = {
