@@ -27,6 +27,7 @@
 	var classPrefix = prefix + '__';
 	var openClass = prefix + '_opened';
 	var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
+	var isHttps = protocol === 'https:';
 
 
 	/**
@@ -71,7 +72,7 @@
 			popupHeight: 360
 		},
 		vkontakte: {
-			counterUrl: protocol + '//vk.com/share.php?act=count&url={url}&index={index}',
+			counterUrl: 'https://vk.com/share.php?act=count&url={url}&index={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.vkontakte;
 				if (!options._) {
@@ -94,47 +95,35 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: protocol + '//www.ok.ru/dk/?st.cmd=extLike&ref={url}&uid={index}',
+			counterUrl: 'https://share.yandex.net/counter/odnoklassniki/?url={url}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
-				if (!options._) {
-					options._ = [];
-					if (!window.ODKL) window.ODKL = {};
-					window.ODKL.updateCount = function(idx, number) {
-						options._[idx].resolve(number);
-					};
-				}
-
-				var index = options._.length;
-				options._.push(deferred);
-				$.getScript(makeUrl(jsonUrl, {index: index}))
-					.fail(deferred.reject);
-			},
-			popupUrl: 'http://www.ok.ru/dk/?st.cmd=addShare&st._surl={url}',
-			popupWidth: 550,
-			popupHeight: 360
-		},
-		plusone: {
-			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
-			counterUrl: protocol === 'http:' ? 'http://share.yandex.ru/gpp.xml?url={url}' : undefined,
-			counter: function(jsonUrl, deferred) {
-				var options = services.plusone;
 				if (options._) {
-					// Reject all counters except the first because Yandex Share counter doesn’t return URL
+					// Reject all counters except the first because this counter doesn’t neither return URL nor accept callback
 					deferred.reject();
 					return;
 				}
 
-				if (!window.services) window.services = {};
-				window.services.gplus = {
-					cb: function(number) {
-						options._.resolve(number);
-					}
+				if (!window.ODKL) window.ODKL = {};
+				window.ODKL.updateCount = function(idx, number) {
+					deferred.resolve(number);
 				};
 
 				options._ = deferred;
 				$.getScript(makeUrl(jsonUrl))
 					.fail(deferred.reject);
+			},
+			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
+			popupWidth: 550,
+			popupHeight: 360
+		},
+		plusone: {
+			counterUrl: 'https://share.yandex.net/counter/gpp/?url={url}&callback=?',
+			convertNumber: function(number) {
+				if (typeof number === 'string') {
+					number = number.replace(/\D/g, '');
+				}
+				return parseInt(number, 10);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 700,
@@ -298,7 +287,7 @@
 			widget.append(button);
 			wrapper.append(widget);
 
-			widget.click(function() {
+			widget.on('click', function() {
 				var activeClass = prefix + '__widget_active';
 				widget.toggleClass(activeClass);
 				if (widget.hasClass(activeClass)) {
@@ -455,7 +444,7 @@
 				this.widget = widget = link;
 			}
 			else {
-				widget.click($.proxy(this.click, this));
+				widget.on('click', $.proxy(this.click, this));
 			}
 
 			widget.removeClass(this.service);
