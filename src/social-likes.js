@@ -95,9 +95,8 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			// connect.ok.ru works on mobiles but doesn’t work with HTTPS
-			// www.ok.ru works with HTTPS but redirects to HTML page on mobiles
-			counterUrl: (isHttps ? 'https://www' : 'http://connect') + '.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			// HTTPS not supported
+			counterUrl: isHttps ? undefined : 'http://connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
