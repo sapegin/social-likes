@@ -1,3 +1,10 @@
+### 2015-03-10 v3.0.14
+
+* Revert counters changes from previous release because 
+* Disable Odnoklassniki counter on HTTPS because of redirect to HTTP.
+* Show counters after 10 sec even if they aren’t ready (instead of waiting for browser’s 30 sec timeout).
+* Don’t add a colon to tweet if it ends on a question mark (by [@richardwestenra](https://github.com/richardwestenra)).
+
 ### 2015-02-16 v3.0.13
 
 * Add HTTPS support to Google+ using Yandex as proxy (by [@im-denisenko](https://github.com/im-denisenko)).
