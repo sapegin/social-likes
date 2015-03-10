@@ -212,7 +212,8 @@
 		title: document.title,
 		counters: true,
 		zeroes: false,
-		wait: 500,
+		wait: 500,  // Show buttons only after counters are ready or after this amount of time
+		timeout: 10000,  // Show counters after this amount of time even if they aren’t ready
 		popupCheckInterval: 500,
 		singleTitle: 'Share'
 	};
@@ -249,6 +250,7 @@
 
 			if (this.options.counters) {
 				this.timer = setTimeout($.proxy(this.appear, this), this.options.wait);
+				this.timeout = setTimeout($.proxy(this.ready, this, true), this.options.timeout);
 			}
 			else {
 				this.appear();
@@ -330,12 +332,20 @@
 			this.countersLeft--;
 			if (this.countersLeft === 0) {
 				this.appear();
-				this.container.addClass(prefix + '_ready');
-				this.container.trigger('ready.' + prefix, this.number);
+				this.ready();
 			}
 		},
 		appear: function() {
 			this.container.addClass(prefix + '_visible');
+		},
+		ready: function(silent) {
+			if (this.timeout) {
+				clearTimeout(this.timeout);
+			}
+			this.container.addClass(prefix + '_ready');
+			if (!silent) {
+				this.container.trigger('ready.' + prefix, this.number);
+			}
 		},
 		getCounterElem: function() {
 			var counterElem = this.widget.find('.' + classPrefix + 'counter_single');
