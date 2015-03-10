@@ -54,7 +54,7 @@
 			popupHeight: 450,
 			click: function() {
 				// Add colon to improve readability
-				if (!/[\.:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
+				if (!/[\.\?:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
 				return true;
 			}
 		},
@@ -95,22 +95,21 @@
 			popupHeight: 330
 		},
 		odnoklassniki: {
-			counterUrl: 'https://share.yandex.net/counter/odnoklassniki/?url={url}',
+			// HTTPS not supported
+			counterUrl: isHttps ? undefined : 'http://connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
-				if (options._) {
-					// Reject all counters except the first because this counter doesn’t neither return URL nor accept callback
-					deferred.reject();
-					return;
+				if (!options._) {
+					options._ = [];
+					if (!window.ODKL) window.ODKL = {};
+					window.ODKL.updateCount = function(idx, number) {
+						options._[idx].resolve(number);
+					};
 				}
 
-				if (!window.ODKL) window.ODKL = {};
-				window.ODKL.updateCount = function(idx, number) {
-					deferred.resolve(number);
-				};
-
-				options._ = deferred;
-				$.getScript(makeUrl(jsonUrl))
+				var index = options._.length;
+				options._.push(deferred);
+				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
 			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
@@ -118,12 +117,29 @@
 			popupHeight: 360
 		},
 		plusone: {
-			counterUrl: 'https://share.yandex.net/counter/gpp/?url={url}&callback=?',
-			convertNumber: function(number) {
-				if (typeof number === 'string') {
-					number = number.replace(/\D/g, '');
+			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
+			counterUrl: isHttps ? undefined : 'http://share.yandex.ru/gpp.xml?url={url}',
+			counter: function(jsonUrl, deferred) {
+				var options = services.plusone;
+				if (options._) {
+					// Reject all counters except the first because Yandex Share counter doesn’t return URL
+					deferred.reject();
+					return;
 				}
-				return parseInt(number, 10);
+
+				if (!window.services) window.services = {};
+				window.services.gplus = {
+					cb: function(number) {
+						if (typeof number === 'string') {
+							number = number.replace(/\D/g, '');
+						}
+						options._.resolve(parseInt(number, 10));
+					}
+				};
+
+				options._ = deferred;
+				$.getScript(makeUrl(jsonUrl))
+					.fail(deferred.reject);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 700,
@@ -212,7 +228,8 @@
 		title: document.title,
 		counters: true,
 		zeroes: false,
-		wait: 500,
+		wait: 500,  // Show buttons only after counters are ready or after this amount of time
+		timeout: 10000,  // Show counters after this amount of time even if they aren’t ready
 		popupCheckInterval: 500,
 		singleTitle: 'Share'
 	};
@@ -249,6 +266,7 @@
 
 			if (this.options.counters) {
 				this.timer = setTimeout($.proxy(this.appear, this), this.options.wait);
+				this.timeout = setTimeout($.proxy(this.ready, this, true), this.options.timeout);
 			}
 			else {
 				this.appear();
@@ -330,12 +348,20 @@
 			this.countersLeft--;
 			if (this.countersLeft === 0) {
 				this.appear();
-				this.container.addClass(prefix + '_ready');
-				this.container.trigger('ready.' + prefix, this.number);
+				this.ready();
 			}
 		},
 		appear: function() {
 			this.container.addClass(prefix + '_visible');
+		},
+		ready: function(silent) {
+			if (this.timeout) {
+				clearTimeout(this.timeout);
+			}
+			this.container.addClass(prefix + '_ready');
+			if (!silent) {
+				this.container.trigger('ready.' + prefix, this.number);
+			}
 		},
 		getCounterElem: function() {
 			var counterElem = this.widget.find('.' + classPrefix + 'counter_single');
