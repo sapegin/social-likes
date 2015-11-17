@@ -338,7 +338,9 @@
 			}
 		},
 		updateCounter: function(e, service, number) {
-			if (number) {
+			number = number || 0;
+
+			if (number || this.options.zeroes) {
 				this.number += number;
 				if (this.single) {
 					this.getCounterElem().text(this.number);
