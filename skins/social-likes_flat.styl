@@ -1,0 +1,124 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+// Flat skin
+// Design: Genn Osipenko, http://genn.org/
+
+@import './include/base'
+
+text_color = #fff;
+border_color = #ddd;
+light_gray = #999;
+margin = .45em;
+
+button-colors(button, color) {
+	.social-likes {
+		&__widget_{button} {
+			background:color;
+		}
+		&_light &__widget_{button} {
+			color:color;
+		}
+	}
+}
+
+.social-likes {
+	min-height:36px;
+	margin:(-(margin));
+	line-height:1.45;
+	
+	&__widget {
+		tweak-inverted-text();
+		margin:margin;
+		line-height:inherit;
+		border:0;
+		text-align:left;
+		color:text_color;
+	}
+
+	&__button {
+		padding:.16em .7em .2em 1.8em;
+		vertical-align:middle;
+		font-size:.95em;
+	}
+
+	&__icon {
+		top:.3em;
+		left:.4em;
+	}
+
+	// Vertical mode
+	&_vertical {
+		.social-likes__widget {
+			min-width:13em;
+		}
+	}
+
+	// Light mode
+	&_light .social-likes__widget {
+		reset-antialiasing();
+		min-width:0;
+		background:none;
+	}
+	&_light .social-likes__button {
+		min-width:0;
+		padding-left:1.35em;
+		font-weight:normal;
+		text-decoration:underline;
+	}
+	&_light .social-likes__icon {
+		margin-top:-.1em;
+		margin-left:-.25em;
+	}
+}
+
+// Facebook
+button-colors('facebook', #3d5b95);
+.social-likes__icon_facebook {
+	.social-likes_notext & {
+		margin-left:.15em;
+	}
+}
+
+// Twitter
+button-colors('twitter', #24aadd);
+.social-likes__icon_twitter {
+	.social-likes_light & {
+		left:.1em;
+	}
+}
+
+// Google+
+button-colors('plusone', #d23e30);
+.social-likes__icon_plusone {
+	.social-likes_notext & {
+		margin-left:0;
+	}
+}
+.social-likes__icon_plusone {
+	.social-likes_light & {
+		margin-top:0;
+	}
+}
+
+// Vkontakte
+button-colors('vkontakte', #587e9f);
+.social-likes__icon_vkontakte {
+}
+
+// Odnoklassniki
+button-colors('odnoklassniki', #f59310);
+.social-likes__icon_odnoklassniki {
+	.social-likes_light & {
+		left:.25em;
+	}
+}
+.social-likes_notext.social-likes_light .social-likes__button_odnoklassniki {
+	width:1em;
+}
+
+// Pinterest
+button-colors('pinterest', #cb132d);
+.social-likes__icon_pinterest {
+	.social-likes_light & {
+		left:.1em;
+	}
+}

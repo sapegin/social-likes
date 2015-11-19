@@ -1,39 +1,33 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Social Likes</title>
-	<link id="styles_flat" href="../social-likes_flat.css" rel="stylesheet">
-	<link id="styles_classic" href="../social-likes_classic.css" rel="stylesheet" disabled>
-	<link id="styles_birman" href="../social-likes_birman.css" rel="stylesheet" disabled>
-
+	<link id="styles_flat" href="/social-likes_flat.css" rel="stylesheet">
+	<link id="styles_birman" href="/social-likes_birman.css" rel="stylesheet" disabled>
+ 
 <script>
+function $(selector) {
+	return document.querySelector(selector);
+}
+
 (function() {
-function updateSkin() {
-	function el(id) { return document.getElementById(id); }
-	el('styles_flat').disabled = true;
-	el('styles_classic').disabled = true;
-	el('styles_birman').disabled = true;
-	el('styles_' + location.hash.slice(1)).disabled = false;
-}
-if (location.hash) {
-	updateSkin();
-}
-else {
-	location.hash = '#flat';
-}
-window.onhashchange = updateSkin;
-})();
+	function updateSkin() {
+		$('#styles_flat').disabled = true;
+		$('#styles_birman').disabled = true;
+		$('#styles_' + location.hash.slice(1)).disabled = false;
+	}
+
+	if (location.hash) {
+		updateSkin();
+	}
+	else {
+		location.hash = '#flat';
+	}
+
+	window.onhashchange = updateSkin;
+}());
 </script>
-
-
-	<!--[if lt IE 9]>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<![endif]-->
-	<!--[if gte IE 9]><!-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<!--<![endif]-->
-	<script src="../src/social-likes.js"></script>
 
 <style>
 body {
@@ -76,13 +70,12 @@ section {
 </style>
 
 </head>
-<body class="skin_classic">
+<body class="skin_flat">
 
 	<div class="skin-switcher">
 		Skin:
 		<a id="flat" href="#flat">Flat</a>,
 		<a id="birman" href="#birman">Birman</a>,
-		<a id="classic" href="#classic">Classic</a>.
 		<a id="grid" href="#">Toggle grid</a>
 	</div>
 
@@ -92,7 +85,6 @@ section {
 	<div class="social-likes" data-url="http://mail.ru/">
 		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
 		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
-		<div class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</div>
 		<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
 		<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
 		<div class="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</div>
@@ -104,7 +96,6 @@ section {
 		<div class="social-likes" data-url="http://mail.ru/">
 			<div data-service="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
 			<div data-service="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
-			<div data-service="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</div>
 			<div data-service="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
 			<div data-service="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
 			<div data-service="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</div>
@@ -112,166 +103,88 @@ section {
 		</div>
 	</div>
 
-	<h3>Standard (light)</h3>
-	<ul class="social-likes social-likes_light" data-url="http://mail.ru/">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-		<li class="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</li>
-	</ul>
-
+<!-- 	<h3>Standard (light)</h3>
+	<div class="social-likes social-likes_light" data-url="http://mail.ru/">
+		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
+		<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+		<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+		<div class="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</div>
+		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</div>
+	</div>
+ -->
 
 <table>
 	<tr>
 		<td style="vertical-align:top">
 			<h3>Vertical</h3>
-			<ul class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
-				<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-				<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-				<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-				<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-				<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-				<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-				<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-			</ul>
+			<div class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
+				<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+				<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</div>
+				<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+				<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+				<div class="plusone" title="Плюсануть в Гугле">Google+</div>
+				<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</div>
+			</div>
 		</td>
 		<td style="padding-left:40px">
 			<h3 style="margin-bottom:3px">Vertical (dark background)</h3>
 			<div class="dark-bg">
-				<ul class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
-					<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-					<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-					<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-					<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-					<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-					<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-					<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-				</ul>
+				<div class="social-likes social-likes_vertical" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
+					<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+					<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</div>
+					<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+					<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+					<div class="plusone" title="Плюсануть в Гугле">Google+</div>
+					<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</div>
+				</div>
 			</div>
 		</td>
-		<td style="vertical-align:top; 	padding-left:40px">
+<!-- 		<td style="vertical-align:top; 	padding-left:40px">
 			<h3>Vertical (light)</h3>
-			<ul class="social-likes social-likes_vertical social-likes_light" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
-				<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-				<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-				<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-				<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-				<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-				<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-				<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-			</ul>
+			<div class="social-likes social-likes_vertical social-likes_light" data-url="http://sapegin.github.io/social-likes/" data-title="Свой текст">
+				<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+				<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</div>
+				<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+				<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+				<div class="plusone" title="Плюсануть в Гугле">Google+</div>
+				<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</div>
+			</div>
 		</td>
-	</tr>
+ -->	</tr>
 </table>
 
-	<h3>Vertical (no counters)</h3>
-	<ul class="social-likes social-likes_vertical" data-counters="no">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-	</ul>
-
-	<h3>Vertical (with zeroes)</h3>
-	<ul class="social-likes social-likes_vertical" data-zeroes="yes">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере">Twitter</li>
-	</ul>
-
-	<h3>Single button</h3>
-	<section>
-		<ul class="social-likes social-likes_single" data-url="http://maill.ru/">
-			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-			<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-			<li class="plusone" title="Плюсануть в Гугле">Google+</li>
-			<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</li>
-		</ul>
-	</section>
-	<section style="padding-left:100px">
-		<div class="social-likes social-likes_single social-likes_light" data-url="http://mail.ru/">
-			<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
-			<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
-			<div class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</div>
-			<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
-			<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
-			<div class="plusone" title="Плюсануть в Гугле">Google+</div>
-			<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest">Pinterest</div>
-		</div>
-	</section>
-	<section>
-		<ul class="social-likes social-likes_single social-likes_light social-likes_single-light" data-url="http://mail.ru/" data-single-title="Share me">
-			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-			<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-			<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		</ul>
-	</section>
-
 	<h3>Icons only</h3>
-	<ul class="social-likes social-likes_notext" data-url="http://maps.mail.ru/">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке"></li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире"></li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте"></li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></li>
-		<li class="plusone" title="Плюсануть в Гугле"></li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></li>
-	</ul>
+	<div class="social-likes" data-url="http://maps.mail.ru/">
+		<div class="facebook" title="Опубликовать ссылку на Фейсбуке"></div>
+		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></div>
+		<div class="vkontakte" title="Опубликовать ссылку во Вконтакте"></div>
+		<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></div>
+		<div class="plusone" title="Плюсануть в Гугле"></div>
+		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></div>
+	</div>
 
-	<h3>Icons only (no counters)</h3>
-	<ul class="social-likes social-likes_notext" data-url="http://mail.ru/" data-counters="no">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке"></li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире"></li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте"></li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></li>
-		<li class="plusone" title="Плюсануть в Гугле"></li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></li>
-	</ul>
-
-	<h3>Icons only (light)</h3>
-	<ul class="social-likes social-likes_notext social-likes_light" data-url="http://maps.mail.ru/">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке"></li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире"></li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте"></li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></li>
-		<li class="plusone" title="Плюсануть в Гугле"></li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></li>
-	</ul>
-
-	<h3>Icons only (light, no counters)</h3>
-	<ul class="social-likes social-likes_notext social-likes_light" data-url="http://mail.ru/" data-counters="no">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке"></li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире"></li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте"></li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></li>
-		<li class="plusone" title="Плюсануть в Гугле"></li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></li>
-	</ul>
+	<!-- <h3>Icons only (light)</h3>
+	<div class="social-likes social-likes_light" data-url="http://maps.mail.ru/">
+		<div class="facebook" title="Опубликовать ссылку на Фейсбуке"></div>
+		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" data-url="http://github.com" data-title="Не #mail_ru" title="Опубликовать ссылку в Твиттере"></div>
+		<div class="vkontakte" title="Опубликовать ссылку во Вконтакте"></div>
+		<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках"></div>
+		<div class="plusone" title="Плюсануть в Гугле"></div>
+		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Pinterest"></div>
+	</div> -->
 
 	<h3>Custom font-size</h3>
-	<ul class="social-likes" data-url="http://mail.ru/" style="font-size:30px">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="mailru" title="Опубликовать ссылку в Моём мире">Мой мир</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
-		<li class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</li>
-		<li class="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</li>
-		<li class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</li>
-	</ul>
+	<div class="social-likes" data-url="http://mail.ru/" style="font-size:30px">
+		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
+		<div class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</div>
+		<div class="odnoklassniki" title="Опубликовать ссылку в Одноклассниках">Одноклассники</div>
+		<div class="plusone" title="Опубликовать ссылку в Гугл-плюсе">Google+</div>
+		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</div>
+	</div>
 
-	<h3>Old initialization HTML</h3>
-	<ul class="social-likes">
-		<li class="facebook"><a href="#" title="Опубликовать ссылку на Фейсбуке">Facebook</a></li>
-		<li class="twitter"><a href="#" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</a></li>
-	</ul>
-
-	<h3>Reinitialization</h3>
+<!-- 	<h3>Reinitialization</h3>
 	<div id="social-likes-re">
 		<div class="social-likes" data-url="http://mail.ru/">
 			<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
@@ -279,34 +192,30 @@ section {
 		</div>
 	</div>
 	<p><a href="#" id="social-likes-reinit">Reinit</a></p>
-<script>
-var slre = $('#social-likes-re');
+ --><script>
+/*var slre = $('#social-likes-re');
 var slre_html = slre.html();
 $('#social-likes-reinit').click(function() {
 	slre.html(slre_html);
 	slre.find('.social-likes').socialLikes();
 	return false;
-});
+});*/
 </script>
 
-	<h3>Manual initialization</h3>
+<!-- 	<h3>Manual initialization</h3>
 	<div id="social-likes-manual" data-url="http://mail.ru/">
 		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
 		<div class="twitter" data-via="sapegin" data-related="DessiTeckel:Моя такса" title="Опубликовать ссылку в Твиттере">Twitter</div>
 		<div class="pinterest" data-media="http://s3-ec.buzzfed.com/static/enhanced/webdr02/2013/8/20/11/anigif_enhanced-buzz-31256-1377012172-9.gif" title="Опубликовать ссылку в Пинтересте">Pinterest</div>
 	</div>
-	<p><a href="#" id="social-likes-update">Change URL</a>, <a href="#" id="social-likes-update-force">Force update</a></p>
-<script>
-var sl = $('#social-likes-manual');
-sl.on('counter.social-likes', function(event, service, number) {
-	console.log('Counter', service, number);
-});
+	<p><a href="#" id="social-likes-update">Change URL</a></p>
+ --><script>
+/*var sl = $('#social-likes-manual');
 sl.on('popup_opened.social-likes', function(event, service, win) {
 	console.log('Popup opened', service, win);
 });
 sl.on('popup_closed.social-likes', function(event, service) {
 	console.log('Popup closed', service);
-	$(event.currentTarget).socialLikes({forceUpdate: true});  // Update counters
 });
 sl.socialLikes();
 $('#social-likes-update').click(function() {
@@ -319,27 +228,22 @@ $('#social-likes-update').click(function() {
 	});
 	return false;
 });
-$('#social-likes-update-force').click(function() {
-	sl.socialLikes({forceUpdate: true});
-	return false;
-});
+*/
 </script>
 
-	<h3>Manual initialization with JavaScript options</h3>
-	<ul id="social-likes-manual-options">
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-	</ul>
-	
+<!-- 	<h3>Manual initialization with JavaScript options</h3>
+	<div id="social-likes-manual-options">
+		<div class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</div>
+	</div>
+ -->	
 <script>
-$('#social-likes-manual-options').socialLikes({
+/*$('#social-likes-manual-options').socialLikes({
 	url: 'https://github.com/sapegin/social-likes/',
-	title: 'Beautiful “like” buttons with counters for popular social networks',
-	counters: true,
-	zeroes: false
-});
+	title: 'Beautiful “like” buttons with counters for popular social networks'
+});*/
 </script>
 
-	<h3>User button &amp; custom count</h3>
+	<!-- <h3>User button &amp; custom count</h3>
 <script>
 var socialLikesButtons = {
 	surfingbird: {
@@ -361,20 +265,34 @@ var socialLikesButtons = {
 	}
 </style>
 	<div class="social-likes">
-		<div class="surfingbird" data-counter="666">Surf</li>
+		<div class="surfingbird" data-counter="666">Surf</div>
 	</div>
 
 	</div>
+-->
 
 <script>
-if ('localStorage' in window) {
-	$('body').toggleClass('show-grid', localStorage.getItem('show-grid') === 'true');
-	$('#grid').click(function(e) {
-		$('body').toggleClass('show-grid');
-		localStorage.setItem('show-grid', $('body').hasClass('show-grid'));
-		e.preventDefault();
+(function() {
+	function toggleGrid(isVisible) {
+		var classList = $('body').classList;
+		if (isVisible) {
+			classList.add('show-grid');
+		}
+		else {
+			classList.remove('show-grid');
+		}
+	}
+
+	var isGridVisible = localStorage.getItem('show-grid') === 'true';
+	toggleGrid(isGridVisible);
+	
+	$('#grid').addEventListener('click', function(event) {
+		isGridVisible = !isGridVisible;
+		toggleGrid(isGridVisible);
+		localStorage.setItem('show-grid', isGridVisible);
+		event.preventDefault();
 	});
-}
+}());
 </script>
 </body>
 </html>

@@ -1,0 +1,79 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+// Birman skin
+// Design: Ilya Birman, http://ilyabirman.net/
+
+@import './include/base'
+
+text_color = #333;
+bg_color = #fff;
+border_color = #ccc;
+margin = .3em;
+
+button-colors(button, color) {
+	.social-likes {
+		&__widget_{button} {
+			&:hover,
+			&:active,
+			&:focus {
+				background:color;
+				border-color:color;
+			}
+		}
+		&__icon_{button} {
+			color:color;
+		}
+	}
+}
+
+.social-likes {
+	min-height:36px;
+	margin:(-(margin));
+	line-height:1.35;
+
+	&__widget {
+		margin:margin;
+		color:text_color;
+		background:bg_color;
+		border:1px solid border_color;
+		border-radius:.1875em;
+	}
+	&__widget:hover,
+	&__widget:active,
+	&__widget:focus,
+	&__widget:hover &__icon,
+	&__widget:active &__icon,
+	&__widget:focus &__icon {
+		tweak-inverted-text();
+		color:bg_color;
+	}
+	
+	&__button {
+		padding:.1875em .4em .25em 1.7em;
+		vertical-align:middle;
+		font-size:.875em;
+		font-weight:normal;
+	}
+
+	&__icon {
+		top:.25em;
+		left:.25em;
+	}
+}
+
+// Facebook
+button-colors('facebook', #425497);
+
+// Twitter
+button-colors('twitter', #00b7ec);
+
+// Google+
+button-colors('plusone', #dd4241);
+
+// Vkontakte
+button-colors('vkontakte', #526e8f);
+
+// Odnoklassniki
+button-colors('odnoklassniki', #f6903b);
+
+// Pinterest
+button-colors('pinterest', #cc002b);

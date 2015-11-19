@@ -1,0 +1,118 @@
+// Social Likes by Artem Sapegin. http://sapegin.github.io/social-likes/
+
+use('./include/loadSvgPath.js');
+
+// Tweak inverted text (light on dark) for OS X.
+tweak-inverted-text() {
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+// Set default (subpixel) antialiasing back.
+reset-antialiasing() {
+	-webkit-font-smoothing:subpixel-antialiased;
+	-moz-osx-font-smoothing:auto;
+}
+
+// Reset everything
+.social-likes {
+	&,
+	&__widget,
+	&__button {
+		all: initial;
+		box-sizing:border-box;
+	}
+	&::before,
+	&::after,
+	&__widget::before,
+	&__widget::after,
+	&__button::before,
+	&__button::after {
+		display:none;
+	}
+}
+
+// Hide buttons until they are loaded
+.social-likes {
+	opacity:0;
+	&_visible {
+		opacity:1;
+		transition:opacity .25s ease-in;
+	}
+	> * {
+		display:block;
+		visibility:hidden;
+	}
+	&_visible > * {
+		visibility:inherit;
+	}
+}
+
+.social-likes {
+	display:flex;
+	flex-wrap:wrap;
+	font-size:16px;
+
+	&__widget {
+		display:block;
+		position:relative;
+		white-space:nowrap;
+		cursor:pointer;
+		user-select:none;
+		font-size:inherit;
+		line-height:inherit;
+	}
+
+	&__button {
+		display:block;
+		text-rendering:optimizeLegibility;
+		font-family:'Helvetica Neue', Arial, sans-serif;
+		line-height:inherit;
+		color:inherit;
+		cursor:pointer;
+	}
+	
+	&__invisible-button {
+		display:block;
+		width:100%;
+		height:100%;
+	}
+
+	&__icon {
+		position:absolute;
+		fill:currentColor;
+		width:1em;
+		height:1em;
+	}
+	&__widget_notext &__icon {
+		position:static;
+		display:block;
+		margin:.3125em;
+	}
+	
+	// Vertical mode
+	&_vertical {
+		flex-direction:column;
+	}
+}
+ 
+// Icons
+.social-likes__widget {
+	&_facebook {
+		content: loadSvgPath('../icons/facebook.svg');
+	}
+	&_odnoklassniki {
+		content: loadSvgPath('../icons/odnoklassniki.svg');
+	}
+	&_pinterest {
+		content: loadSvgPath('../icons/pinterest.svg');
+	}
+	&_plusone {
+		content: loadSvgPath('../icons/plusone.svg');
+	}
+	&_twitter {
+		content: loadSvgPath('../icons/twitter.svg');
+	}
+	&_vkontakte {
+		content: loadSvgPath('../icons/vkontakte.svg');
+	}
+}
