@@ -172,7 +172,7 @@ You can dynamically replace URL, title and Pinterest image without reinitializat
 
 ```javascript
 $('#share2').socialLikes({
-	url: 'http://github.com/',
+	url: 'https://github.com/',
 	title: 'GitHub',
 	data: {
 		media: 'http://birdwatcher.ru/i/userpic.jpg'  // Image for Pinterest button
@@ -302,7 +302,7 @@ This plugin allows your users to “share” the content of your website. (Un)fo
 
 You can use [Open Graph](http://ogp.me/). It works for [Facebook](http://davidwalsh.name/facebook-meta-tags), Twitter, [Google+](https://developers.google.com/+/web/snippet/), [Pinterest](http://developers.pinterest.com/rich_pins/) and [Vkontakte](http://vk.com/dev/widget_like)). 
 
-You can add additional Twitter data using [Twitter Card](https://dev.twitter.com/docs/cards). You have to [approve](https://dev.twitter.com/docs/cards/validation/validator) every type of Twitter Card.
+You can add additional Twitter data using [Twitter Card](https://dev.twitter.com/cards/overview). You have to [approve](https://dev.twitter.com/docs/cards/validation/validator) every type of Twitter Card.
 
 ```html
 <meta property="og:type" content="article">
@@ -336,7 +336,7 @@ $(document).on('popup_opened.social-likes', function(event, service) {
 
 ### The buttons don’t work, displayed without design or don’t displayed at all
 
-First look at your [browser’s console](http://wickedlysmart.com/hfjsconsole/). If you see an error “Uncaught ReferenceError: jQuery is not defined”:
+First look at your [browser’s console](http://www.wickedlysmart.com/hfjsconsole/). If you see an error “Uncaught ReferenceError: jQuery is not defined”:
 
 ![](http://wow.sapegin.me/image/1f1h1d0z2d1j/Image%202014-11-19%20at%205.45.14%20PM.png)
 
@@ -376,7 +376,7 @@ Double check that you use canonical URLs (without extra parameters such as `utm_
 
 If you have more than one Social Likes blocks on a page with different URLs, Google+ counter will work only for the first block. Google+ counter also won’t work when you refresh counters with `forceUpdate` option or change URL dynamically.
 
-If your site have internationalized domain name (e.g. `президент.рф`) make sure you convert it to [Punycode](http://en.wikipedia.org/wiki/Punycode) (e.g. `xn--d1abbgf6aiiy.xn--p1ai`).
+If your site have internationalized domain name (e.g. `президент.рф`) make sure you convert it to [Punycode](https://en.wikipedia.org/wiki/Punycode) (e.g. `xn--d1abbgf6aiiy.xn--p1ai`).
 
 If you’re sure that it’s a bug please file an issue **and provide a link** to a page with non-working counter.
 
