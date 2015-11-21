@@ -1,6 +1,6 @@
 {
   "name": "social-likes",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "license": "MIT",
   "main": [
     "./src/social-likes.js",
