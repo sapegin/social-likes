@@ -1,3 +1,8 @@
+# 3.0.15 - 2015-11-21
+
+* Disable discontinued Twitter button (#147).
+* Trigger counter update if number equals zero and zeroes option specified (#151, by @ColCh).
+
 ### 2015-03-10 v3.0.14
 
 * Revert counters changes from previous release because 
