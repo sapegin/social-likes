@@ -45,10 +45,6 @@
 			popupHeight: 500
 		},
 		twitter: {
-			counterUrl: 'https://cdn.api.twitter.com/1/urls/count.json?url={url}&callback=?',
-			convertNumber: function(data) {
-				return data.count;
-			},
 			popupUrl: 'https://twitter.com/intent/tweet?url={url}&text={title}',
 			popupWidth: 600,
 			popupHeight: 450,
@@ -338,7 +334,9 @@
 			}
 		},
 		updateCounter: function(e, service, number) {
-			if (number) {
+			number = number || 0;
+
+			if (number || this.options.zeroes) {
 				this.number += number;
 				if (this.single) {
 					this.getCounterElem().text(this.number);
