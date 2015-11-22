@@ -383,7 +383,7 @@ If you’re sure that it’s a bug please file an issue **and provide a link** t
 
 ## Release History
 
-The changelog can be found in the [Changelog.md](Changelog.md) file.
+The changelog can be found on the [Releases page](https://github.com/sapegin/social-likes/releases).
 
 ## Contributing
 
