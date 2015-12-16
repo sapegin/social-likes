@@ -343,11 +343,11 @@
 				}
 			}
 
-			this.countersLeft--;
 			if (this.countersLeft === 0) {
 				this.appear();
 				this.ready();
 			}
+			this.countersLeft--;
 		},
 		appear: function() {
 			this.container.addClass(prefix + '_visible');
