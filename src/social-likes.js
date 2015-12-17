@@ -123,16 +123,6 @@
 					return;
 				}
 
-				if (!window.services) window.services = {};
-				window.services.gplus = {
-					cb: function(number) {
-						if (typeof number === 'string') {
-							number = number.replace(/\D/g, '');
-						}
-						options._.resolve(parseInt(number, 10));
-					}
-				};
-
 				options._ = deferred;
                 $.ajax({
                     url: makeUrl(jsonUrl),
