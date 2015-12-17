@@ -134,8 +134,17 @@
 				};
 
 				options._ = deferred;
-				$.getScript(makeUrl(jsonUrl))
-					.fail(deferred.reject);
+                $.ajax({
+                    url: makeUrl(jsonUrl),
+                    dataType: 'jsonp',
+                    success: function(number){
+                        if (typeof number === 'string') {
+                            number = number.replace(/\D/g, '');
+                        }
+                        options._.resolve(parseInt(number, 10));
+                    }
+                })
+                .fail(deferred.reject);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 700,
