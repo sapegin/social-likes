@@ -113,28 +113,9 @@
 			popupHeight: 360
 		},
 		plusone: {
-			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
-			counterUrl: isHttps ? undefined : 'http://share.yandex.ru/gpp.xml?url={url}',
-			counter: function(jsonUrl, deferred) {
-				var options = services.plusone;
-				if (options._) {
-					// Reject all counters except the first because Yandex Share counter doesn’t return URL
-					deferred.reject();
-					return;
-				}
-
-				options._ = deferred;
-                $.ajax({
-                    url: makeUrl(jsonUrl),
-                    dataType: 'jsonp',
-                    success: function(number){
-                        if (typeof number === 'string') {
-                            number = number.replace(/\D/g, '');
-                        }
-                        options._.resolve(parseInt(number, 10));
-                    }
-                })
-                .fail(deferred.reject);
+			counterUrl: protocol + 'share.yandex.ru/gpp.xml?url={url}&callback=?',
+			convertNumber: function(number) {
+				return parseInt(number.replace(/\D/g, ''), 10);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 700,
