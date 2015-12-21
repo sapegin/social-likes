@@ -34,6 +34,16 @@
 	 * Buttons
 	 */
 	var services = {
+		telegram: {
+			// telegram new sharer
+			counterUrl: undefined,
+			convertNumber: function(data) {
+				return data.data[0].total_count;
+			},
+			popupUrl: 'https://telegram.me/share/url?url={url}&text={title}',
+			popupWidth: 600,
+			popupHeight: 500
+		},
 		facebook: {
 			// https://developers.facebook.com/docs/reference/fql/link_stat/
 			counterUrl: 'https://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
