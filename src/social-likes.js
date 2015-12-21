@@ -42,12 +42,12 @@
 			},
 			popupUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
 			popupWidth: 600,
-			popupHeight: 500
+			popupHeight: 359
 		},
 		twitter: {
 			popupUrl: 'https://twitter.com/intent/tweet?url={url}&text={title}',
 			popupWidth: 600,
-			popupHeight: 450,
+			popupHeight: 250,
 			click: function() {
 				// Add colon to improve readability
 				if (!/[\.\?:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
@@ -63,9 +63,9 @@
 					}
 				}
 			},
-			popupWidth: 550,
-			popupHeight: 360
 			popupUrl: 'https://connect.mail.ru/share?share_url={url}&title={title}',
+			popupWidth: 492,
+			popupHeight: 500
 		},
 		vkontakte: {
 			counterUrl: 'https://vk.com/share.php?act=count&url={url}&index={index}',
@@ -86,9 +86,9 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupWidth: 550,
-			popupHeight: 330
 			popupUrl: 'https://vk.com/share.php?url={url}&title={title}',
+			popupWidth: 655,
+			popupHeight: 450
 		},
 		odnoklassniki: {
 			counterUrl: protocol + 'connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
@@ -107,9 +107,9 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupWidth: 550,
-			popupHeight: 360
 			popupUrl: 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
+			popupWidth: 580,
+			popupHeight: 336
 		},
 		plusone: {
 			counterUrl: protocol + 'share.yandex.ru/gpp.xml?url={url}&callback=?',
@@ -117,17 +117,17 @@
 				return parseInt(number.replace(/\D/g, ''), 10);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
-			popupWidth: 700,
-			popupHeight: 500
+			popupWidth: 500,
+			popupHeight: 550
 		},
 		pinterest: {
 			counterUrl: protocol + '//api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 			convertNumber: function(data) {
 				return data.count;
 			},
-			popupWidth: 630,
-			popupHeight: 270
 			popupUrl: 'https://pinterest.com/pin/create/button/?url={url}&description={title}',
+			popupWidth: 740,
+			popupHeight: 550
 		}
 	};
 
