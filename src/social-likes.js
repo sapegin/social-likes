@@ -63,9 +63,9 @@
 					}
 				}
 			},
-			popupUrl: protocol + '//connect.mail.ru/share?share_url={url}&title={title}',
 			popupWidth: 550,
 			popupHeight: 360
+			popupUrl: 'https://connect.mail.ru/share?share_url={url}&title={title}',
 		},
 		vkontakte: {
 			counterUrl: 'https://vk.com/share.php?act=count&url={url}&index={index}',
@@ -86,9 +86,9 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}',
 			popupWidth: 550,
 			popupHeight: 330
+			popupUrl: 'https://vk.com/share.php?url={url}&title={title}',
 		},
 		odnoklassniki: {
 			// HTTPS not supported
@@ -108,9 +108,9 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
 			popupWidth: 550,
 			popupHeight: 360
+			popupUrl: 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
 		},
 		plusone: {
 			counterUrl: protocol + 'share.yandex.ru/gpp.xml?url={url}&callback=?',
@@ -126,9 +126,9 @@
 			convertNumber: function(data) {
 				return data.count;
 			},
-			popupUrl: protocol + '//pinterest.com/pin/create/button/?url={url}&description={title}',
 			popupWidth: 630,
 			popupHeight: 270
+			popupUrl: 'https://pinterest.com/pin/create/button/?url={url}&description={title}',
 		}
 	};
 
