@@ -114,7 +114,7 @@
 		},
 		plusone: {
 			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
-			counterUrl: isHttps ? undefined : 'http://share.yandex.ru/gpp.xml?url={url}',
+			counterUrl: '//share.yandex.ru/gpp.xml?url={url}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.plusone;
 				if (options._) {
