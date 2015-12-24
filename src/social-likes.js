@@ -91,7 +91,7 @@
 			popupHeight: 450
 		},
 		odnoklassniki: {
-			counterUrl: protocol + 'connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			counterUrl: protocol + '//connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
@@ -112,7 +112,7 @@
 			popupHeight: 336
 		},
 		plusone: {
-			counterUrl: protocol + 'share.yandex.ru/gpp.xml?url={url}&callback=?',
+			counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}&callback=?',
 			convertNumber: function(number) {
 				return parseInt(number.replace(/\D/g, ''), 10);
 			},
