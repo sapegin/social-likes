@@ -1,3 +1,11 @@
+# 3.0.16 - 2016-01-07
+
+* Fix Google+ counter.
+* Enable HTTPS for Odnoklassniki.
+* `ready.social-likes` now triggered after all counters (#166, by @scream4ik).
+* Open all popups with HTTPS.
+* Update popup sizes.
+
 # 3.0.15 - 2015-11-21
 
 * Disable discontinued Twitter button (#147).
