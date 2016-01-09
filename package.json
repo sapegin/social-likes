@@ -1,0 +1,50 @@
+{
+  "name": "social-likes",
+  "version": "3.0.15",
+  "description": "Beautiful social “like” buttons with counters for jQuery",
+  "homepage": "https://github.com/sapegin/social-likes",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sapegin/social-likes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapegin/social-likes/issues"
+  },
+  "license": "MIT",
+  "main": "src/social-likes.js",
+  "files": [
+    "src",
+    "dist",
+    "contrib"
+  ],
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "dependencies": {
+    "jquery": ">=1.8"
+  },
+  "devDependencies": {
+    "autoprefixer-stylus": "0.3.0",
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-imagemin": "~0.8.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-stylus": "~0.20.0",
+    "grunt-contrib-uglify": "~0.6.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-csso": "~0.6.3",
+    "grunt-jscs-checker": "~0.7.1",
+    "grunt-webfont": "~0.4.8",
+    "load-grunt-tasks": "~0.6.0"
+  },
+  "scripts": {
+    "build": "grunt",
+    "test": "grunt",
+    "replace-version": "grunt replace:version",
+    "build-gh-pages": "scripts/update-gh-pages.sh"
+  }
+}

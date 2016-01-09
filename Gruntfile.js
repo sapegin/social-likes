@@ -7,18 +7,18 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
-		cmpnt: grunt.file.readJSON('../bower.json'),
-		banner: '/*! Social Likes v<%= cmpnt.version %> by Artem Sapegin - ' +
+		pkg: require('./package.json'),
+		banner: '/*! Social Likes v<%= pkg.version %> by Artem Sapegin - ' +
 				'http://sapegin.github.com/social-likes - Licensed MIT */\n',
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc'
+				jshintrc: 'src/.jshintrc'
 			},
-			files: ['social-likes.js']
+			files: ['src/social-likes.js']
 		},
 		jscs: {
 			options: {
-				config: ".jscs.json"
+				config: "src/.jscs.json"
 			},
 			files: ['<%= jshint.files %>']
 		},
@@ -27,8 +27,8 @@ module.exports = function(grunt) {
 				banner: '<%= banner %>'
 			},
 			dist: {
-				src: 'social-likes.js',
-				dest: '../social-likes.min.js'
+				src: 'src/social-likes.js',
+				dest: 'dist/social-likes.min.js'
 			}
 		},
 		stylus: {
@@ -40,9 +40,9 @@ module.exports = function(grunt) {
 			},
 			compile: {
 				files: {
-					'../social-likes_flat.css': 'styles/flat/index.styl',
-					'../social-likes_classic.css': 'styles/classic/index.styl',
-					'../social-likes_birman.css': 'styles/birman/index.styl'
+					'dist/social-likes_flat.css': 'src/styles/flat/index.styl',
+					'dist/social-likes_classic.css': 'src/styles/classic/index.styl',
+					'dist/social-likes_birman.css': 'src/styles/birman/index.styl'
 				}
 			},
 			contrib: {
@@ -50,8 +50,8 @@ module.exports = function(grunt) {
 					compress: false
 				},
 				files: {
-					'../contrib/css/github.css': '../contrib/styles/github.styl',
-					'../contrib/css/livejournal.css': '../contrib/styles/livejournal.styl'
+					'contrib/css/github.css': 'contrib/styles/github.styl',
+					'contrib/css/livejournal.css': 'contrib/styles/livejournal.styl'
 				}
 			}
 		},
@@ -62,19 +62,19 @@ module.exports = function(grunt) {
 			dist: {
 				expand: true,
 				flatten: true,
-				src: '../*.css',
-				dest: '../'
+				src: 'dist/*.css',
+				dest: 'dist'
 			}
 		},
 		webfont: {
 			flat: {
-				src: 'styles/flat/icons/*.svg',
-				dest: 'styles/flat/font',
+				src: 'src/styles/flat/icons/*.svg',
+				dest: 'src/styles/flat/font',
 				options: {
 					font: 'social-likes',
 					types: 'woff',
 					embed: 'woff',
-					template: 'styles/flat/webfont.styl',
+					template: 'src/styles/flat/webfont.styl',
 					stylesheet: 'styl',
 					hashes: false,
 					htmlDemo: false,
@@ -90,9 +90,9 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: 'styles/classic/icons_src/',
+						cwd: 'src/styles/classic/icons_src/',
 						src: '*.png',
-						dest: 'styles/classic/icons/'
+						dest: 'src/styles/classic/icons/'
 					}
 				]
 			},
@@ -100,9 +100,9 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: 'styles/birman/icons_src/',
+						cwd: 'src/styles/birman/icons_src/',
 						src: '*.png',
-						dest: 'styles/birman/icons/'
+						dest: 'src/styles/birman/icons/'
 					}
 				]
 			}
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
 				options: {
 					atBegin: true
 				},
-				files: 'styles/**',
+				files: 'src/styles/**',
 				tasks: ['stylus:compile']
 			}
 		}
