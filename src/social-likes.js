@@ -42,12 +42,12 @@
 			},
 			popupUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
 			popupWidth: 600,
-			popupHeight: 500
+			popupHeight: 359
 		},
 		twitter: {
 			popupUrl: 'https://twitter.com/intent/tweet?url={url}&text={title}',
 			popupWidth: 600,
-			popupHeight: 450,
+			popupHeight: 250,
 			click: function() {
 				// Add colon to improve readability
 				if (!/[\.\?:\-–—]\s*$/.test(this.options.title)) this.options.title += ':';
@@ -63,9 +63,9 @@
 					}
 				}
 			},
-			popupUrl: protocol + '//connect.mail.ru/share?share_url={url}&title={title}',
-			popupWidth: 550,
-			popupHeight: 360
+			popupUrl: 'https://connect.mail.ru/share?share_url={url}&title={title}',
+			popupWidth: 492,
+			popupHeight: 500
 		},
 		vkontakte: {
 			counterUrl: 'https://vk.com/share.php?act=count&url={url}&index={index}',
@@ -86,13 +86,12 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: protocol + '//vk.com/share.php?url={url}&title={title}',
-			popupWidth: 550,
-			popupHeight: 330
+			popupUrl: 'https://vk.com/share.php?url={url}&title={title}',
+			popupWidth: 655,
+			popupHeight: 450
 		},
 		odnoklassniki: {
-			// HTTPS not supported
-			counterUrl: isHttps ? undefined : 'http://connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
+			counterUrl: protocol + '//connect.ok.ru/dk?st.cmd=extLike&ref={url}&uid={index}',
 			counter: function(jsonUrl, deferred) {
 				var options = services.odnoklassniki;
 				if (!options._) {
@@ -108,47 +107,27 @@
 				$.getScript(makeUrl(jsonUrl, {index: index}))
 					.fail(deferred.reject);
 			},
-			popupUrl: 'http://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
-			popupWidth: 550,
-			popupHeight: 360
+			popupUrl: 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
+			popupWidth: 580,
+			popupHeight: 336
 		},
 		plusone: {
-			// HTTPS not supported yet: http://clubs.ya.ru/share/1499
-			counterUrl: isHttps ? undefined : 'http://share.yandex.ru/gpp.xml?url={url}',
-			counter: function(jsonUrl, deferred) {
-				var options = services.plusone;
-				if (options._) {
-					// Reject all counters except the first because Yandex Share counter doesn’t return URL
-					deferred.reject();
-					return;
-				}
-
-				if (!window.services) window.services = {};
-				window.services.gplus = {
-					cb: function(number) {
-						if (typeof number === 'string') {
-							number = number.replace(/\D/g, '');
-						}
-						options._.resolve(parseInt(number, 10));
-					}
-				};
-
-				options._ = deferred;
-				$.getScript(makeUrl(jsonUrl))
-					.fail(deferred.reject);
+			counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}&callback=?',
+			convertNumber: function(number) {
+				return parseInt(number.replace(/\D/g, ''), 10);
 			},
 			popupUrl: 'https://plus.google.com/share?url={url}',
-			popupWidth: 700,
-			popupHeight: 500
+			popupWidth: 500,
+			popupHeight: 550
 		},
 		pinterest: {
 			counterUrl: protocol + '//api.pinterest.com/v1/urls/count.json?url={url}&callback=?',
 			convertNumber: function(data) {
 				return data.count;
 			},
-			popupUrl: protocol + '//pinterest.com/pin/create/button/?url={url}&description={title}',
-			popupWidth: 630,
-			popupHeight: 270
+			popupUrl: 'https://pinterest.com/pin/create/button/?url={url}&description={title}',
+			popupWidth: 740,
+			popupHeight: 550
 		}
 	};
 
@@ -343,11 +322,11 @@
 				}
 			}
 
-			this.countersLeft--;
 			if (this.countersLeft === 0) {
 				this.appear();
 				this.ready();
 			}
+			this.countersLeft--;
 		},
 		appear: function() {
 			this.container.addClass(prefix + '_visible');

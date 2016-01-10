@@ -1,8 +1,0 @@
-{
-  "name": "social-likes_gh-pages",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "modernizr": "~2.7.1"
-  }
-}
