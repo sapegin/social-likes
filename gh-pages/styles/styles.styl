@@ -1,0 +1,144 @@
+// Author: Artem Sapegin, http://sapegin.me, 2013
+
+.language-switcher {
+	position:absolute;
+	top:15px;
+	right:2*spacer;
+}
+
+.description {
+	space(2);
+}
+
+// Forms
+.builder {
+	space(3);
+	
+	&__row {
+		clearfix();
+		margin-top:.5em;
+	}
+
+	&__label {
+		float:left;
+		width:15%;
+		line-height:28px;
+	}
+
+	&__widget {
+		float:right;
+		width:85%;
+	}
+
+	&__checkbox {
+		float:left;
+		width:20%;
+	}
+
+	.l-half &__label {
+		width:30.67%;
+	}
+	.l-half &__widget {
+		width:69.33%;
+	}	
+}
+
+.checkbox__input:checked + .checkbox__label .checkbox__button,
+.radio__input:checked + .radio__label .radio__button,
+.checkbox__input:not(:checked) + .checkbox__label .checkbox__button,
+.radio__input:not(:checked) + .radio__label .radio__button {
+	margin-top:0;
+}
+
+.preview {
+	space(2);
+	min-height:150px;
+	padding:6*spacer 0 0;
+	text-align:center;
+
+	&_vertical {
+		padding-top:0;
+		overflow:auto;
+	}
+}
+
+.code {
+	space(4);
+	padding:spacer;	
+	background:#f5f2f0;
+	border-radius:3px
+	border:1px solid #ccc
+	border-color:black(.2)
+}
+
+
+// Syntax highlighting
+.hl-gray {
+	color:#999;
+}
+.hl-tag {
+	color:#905;
+}
+.hl-attr {
+	color:#690;
+}
+.hl-str {
+	color:#07a;
+}
+
+
+// Download row
+.download-row {
+	margin-bottom:2*spacer;
+	
+	&__links {
+		margin-bottom:1.5*spacer;
+		.big-button {
+			margin-right:.2em;
+		}
+	}
+	&__button {
+		display:inline-block;
+		font-size:36px;
+		// position:relative;
+	}
+	&__descr {
+		font-size:14px;
+	}
+}
+
+.docs {
+	margin-bottom:spacer;
+}
+
+// Download button
+.big-button,
+.big-button:link,
+.big-button:visited {
+	tweak-inverted-text();
+	display:inline-block;
+	padding:10px 20px;
+	background:#ff6d00;
+	background:linear-gradient(to bottom, #ffb300, #ff6d00);
+	border-radius:5px;
+	color:#fff;
+	font-size:36px;
+	text-decoration:none;
+	text-shadow:0 -1px 0 black(.15);
+	outline:0;
+}
+.big-button:hover,
+.big-button:focus {
+	background:#ff7c1a;
+	background:linear-gradient(to bottom, #fbbd00, #ff750d);
+}
+.big-button:active {
+	position:relative;
+	top:1px;
+	margin-top:-1px;
+	margin-bottom:1px;
+	padding:11px 20px 9px;
+	background:#faa643;
+	background:linear-gradient(to bottom, #ff7c1a, #faa643);
+	box-shadow:inset 0 2px 2px black(.2);
+}

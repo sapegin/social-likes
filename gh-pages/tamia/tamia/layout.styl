@@ -1,0 +1,295 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Grids and layouts
+
+//
+// Configuration
+//
+
+// Grid gutter size, in pixels (default: 2×spacer).
+grid_gutter ?= 2*spacer
+
+// Number of columns in grid (default: 12).
+grid_columns ?= 12
+
+
+//
+// Grid
+//
+
+/// Inspired by http://zengrids.com
+
+// Columns wrapper.
+grid-row()
+	clearfix()
+	grid-wrapper()
+
+// Column (grid).
+//
+// position - Start column number (default: 1).
+// span - Width, in culumns (default: 1).
+// context - Width of parent column (default: null).
+//
+// Example:
+//
+//   .row>.col1+.col2
+//
+//   .row
+//     grid-row()
+//   .col1
+//     grid-col(1,2)
+//   .col2
+//     grid-col(3,10)
+grid-col(position=1, span=1, context=null)
+	_grid-column(position, span, context)
+	_grid-float()
+	grid-padding()
+
+// Single column.
+//
+// position - Start column number (default: 1).
+// span - Width, in culumns (default: 1).
+// context - Width of parent column (default: null).
+grid-one(position=1, span=1, context=null)
+	_grid-column(position, span, context)
+	grid-padding()
+
+// Single column (without padding, wrapper for child columns).
+//
+// position - Start column number (default: 1).
+// span - Width, in culumns (default: 1).
+// context - Width of parent column (default: null).
+grid-one-container(position=1, span=1, context=null)
+	clearfix()
+	_grid-column(position, span, context)
+
+// Gutter size negative margin to make column with different background.
+// You should adjust padding depending on content.
+grid-explode()
+	margin: (-(grid_gutter))
+
+// Width of column, in percent.
+//
+// position - Start column number (default: 1).
+// span - Width, in culumns (default: 1).
+//
+// Returns percent.
+grid-width(span=1, context=null)
+	context = grid_columns if not context
+	unit-width = 100% / context
+	span * unit-width
+
+// Column left/right padding.
+//
+// full - Padding on all sides if true, left/right otherwise (default: false).
+grid-padding(full=false)
+	side-gutter = grid_gutter / 2;
+	if full
+		padding: side-gutter
+	else
+		padding-left: side-gutter
+		padding-right: side-gutter
+
+// Column wrapper left/right negative margin.
+grid-wrapper()
+	side-gutter = (-(grid_gutter / 2))
+	margin-left: side-gutter
+	margin-right: side-gutter
+
+_grid-column(position=1, span=1, context=null)
+	context = grid_columns if not context
+	unit-width = 100% / context
+	width: span * unit-width
+	margin-left: (position - 1) * unit-width
+
+_grid-float()
+	float: left
+	margin-right: -100%
+
+
+//
+// Layouts
+//
+
+// Layout wrapper.
+layout-row()
+	grid-wrapper()
+	display: flex
+	flex-flow: row wrap
+	// flex-direction: row
+	/// IE8-9
+	.no-flexbox &
+		letter-spacing: -0.31em
+
+// Column (simple layout).
+//
+// part - 1/Nth part of wrapper.
+//
+// Example:
+//
+//   .row>.col+.col
+//
+//   .row
+//     layout-row()
+//   .col
+//     layout-nth(2)  // Half
+layout-nth(part)
+	_layout-col()
+	_layout-part(part)
+
+// Change number of columns.
+//
+// Use it to change number of columns (defined via layout-nth()) inside media queries.
+//
+// part - 1/Nth part of wrapper.
+layout-change(part)
+	_layout-part(part)
+
+// Disable columns.
+//
+// Alias for layout-change(1).
+layout-stop()
+	_layout-part(1)
+
+
+// Center element with specified width and hegith.
+center(width, height=null)
+	size(width, height)
+	left: 50%
+	top: 50%
+	margin-left: (-(@width / 2))
+	margin-top: (-(@height / 2))
+
+_layout-col()
+	grid-padding()
+	// IE8-9
+	.no-flexbox &
+		display: inline-block
+		vertical-align: top
+		letter-spacing: normal
+
+_layout-part(part)
+	width: (100% / part)
+
+
+//
+// Classes
+//
+
+// Column wrapper.
+.l-row
+	layout-row()
+
+.l-sixth,
+.l-quarter,
+.l-third,
+.l-half,
+.l-three-quarters,
+.l-two-thirds
+	_layout-col()
+
+// Sixth (to use inside .l-row).
+.l-sixth
+	_layout-part(6)
+
+// Quarter (to use inside .l-row).
+.l-quarter
+	_layout-part(4)
+
+// Three quarters (to use inside .l-row).
+.l-three-quarters
+	_layout-part(4/3)
+
+// Third (to use inside .l-row).
+.l-third
+	_layout-part(3)
+
+// Two thirds (to use inside .l-row).
+.l-two-thirds
+	_layout-part(3/2)
+
+// Half (to use inside .l-row).
+.l-half
+	_layout-part(2)
+
+// Flexible columns with left (.l-left) and right (.l-right) text alignment (to use inside .l-row).
+.l-left,
+.l-right
+	flex: 1
+.l-right
+	text-align: right
+.no-flexbox
+	.l-left
+		float: left
+	.l-right
+		float: right
+
+// Centered content (vertically and horizontally).
+//
+// Example:
+//
+//   .l-center>.l-center-i>span
+.l-center
+	display: table
+	width: 100%
+	height: 100%
+	&-i
+		display: table-cell
+		text-align: center
+		vertical-align: middle
+
+
+//
+// Spacing
+//
+
+// Space after block.
+//
+// rows - Number of “rows” (one row = default spacer).
+space(rows=1)
+	margin-bottom: rows*spacer
+
+// Standard bottom margin.
+.l-space
+	space()
+
+// Double bottom margin.
+.l-double-space
+	space(2)
+
+// Triple bottom margin.
+.l-triple-space
+	space(3)
+
+// Quadruple bottom margin.
+.l-quad-space
+	space(4)
+
+
+///
+/// Debug stuff
+///
+
+if DEBUG
+	.g-debug-col
+		grid-padding()
+		float: left
+		width: grid-width()
+
+	.g-debug-helper
+		position: absolute
+		left: 0
+		right: 0
+		height: 100%
+		min-height: 3000px
+		z-index: 10000
+		overflow: hidden
+		pointer-events: none
+		*
+			height: 100%
+		[data-component="grid"]
+			grid-wrapper()
+		.g-debug-col:before
+			content: ""
+			display: block
+			height: inherit
+			background: hsla(220,40%,50%,.25)

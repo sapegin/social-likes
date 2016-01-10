@@ -1,0 +1,41 @@
+{
+	"sites": [
+		{
+			"id": "facebook",
+			"name": "Facebook",
+			"checked": true
+		},
+		{
+			"id": "twitter",
+			"name": "Twitter",
+			"checked": true
+		},
+		{
+			"id": "plusone",
+			"name": "Google+",
+			"checked": true
+		},
+		{
+			"id": "mailru",
+			"name": "Мой мир",
+			"checked": true,
+			"langs": ["ru"]
+		},
+		{
+			"id": "vkontakte",
+			"name": "Вконтакте",
+			"checked": true,
+			"langs": ["ru"]
+		},
+		{
+			"id": "odnoklassniki",
+			"checked": true,
+			"name": "Одноклассники",
+			"langs": ["ru"]
+		},
+		{
+			"id": "pinterest",
+			"name": "Pinterest"
+		}
+	]
+}

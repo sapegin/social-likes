@@ -1,0 +1,166 @@
+/* Author: Artem Sapegin, http://sapegin.me, 2012 */
+
+link-color = #cf6c0a;
+visited-color = #7c579e;
+hover-color = #ff6900;
+noise = url('../img/noise.png');
+
+body {
+	background:#fff;
+	color:#111;
+	font-size:18px;
+	line-height:1.4;
+	min-width:1024px;
+}
+
+.wrapper {
+	position:relative;
+	max-width:1100px;
+	margin:0 auto;
+	padding:2*spacer;
+}
+
+// Fonts
+
+* { font-family:"Helvetica Neue", Tahoma, sans-serif; }
+pre, code, pre span { font-family:Consolas, "Lucida Console", Monaco, "Courier New", Courier, monospace; }
+
+
+// Links
+
+a {
+	text-decoration:underline;
+	transition:border .1s ease-in-out, color .2s ease-in-out, background .2s ease-in-out;
+}
+a.fake {
+	text-decoration:none;
+	border-bottom:1px dotted;
+}
+a:link, nav a:visited, a.fake:visited {
+	color:link-color;
+}
+a:visited {
+	color:visited-color;
+}
+a:hover, a:active, a:focus, nav a:hover, nav a:active, nav a:focus, a.fake:hover, a.fake:active, a.fake:focus {
+	color:hover-color;
+}
+
+
+// Text selection
+text-selection(#000, #faedb1);
+
+// iOS tap highlighting: j.mp/webkit-tap-highlight-color
+a:link {
+	-webkit-tap-highlight-color:#ff5e99;
+}
+
+
+// Page elements
+
+h1 {
+	font-size:64px;
+	margin:0 0 16px;
+	line-height:1;
+	font-weight:normal;
+	letter-spacing:-.2px;
+}
+h2, h3 {
+	line-height:40px;
+	margin:16px 0 0;
+	font-weight:normal;
+	letter-spacing:-.2px;
+}
+h2 {
+	font-size:24px;
+}
+h3 {
+	font-size:22px;
+	font-style:italic;
+	text-align:center;
+}
+
+
+// Code
+
+.code {
+	display: block
+	white-space: pre-wrap
+	-moz-tab-size: 4
+	  -o-tab-size: 4
+	     tab-size: 4
+
+	code {
+		display: block
+		font-size: 15px
+		line-height: 1.3
+	}
+
+	.indent {
+		display: inline-block
+		width: 2.2em
+	}
+}
+
+
+pre code::-webkit-scrollbar {
+	width:9px;
+	height:9px;
+}
+pre code::-webkit-scrollbar-track-piece {
+	background:white(.2);
+}
+pre code::-webkit-scrollbar-thumb {
+	background:white(.6);
+	border-radius:8px;
+}
+
+// GitHub page elements
+
+.forkme {
+	position:fixed;
+	top:0;
+	right:0;
+	width:149px;
+	height:149px;
+	z-index:999;
+	
+	&-i {
+		+link-all-states() {
+			color:#fff;
+		}
+
+		position:relative;
+		right:-37px;
+		top:-22px;
+		display:block;
+		width:190px;
+		padding:5px 15px;
+		text-align:center;
+		font-size:14px;
+		background:#f9970d;
+		text-decoration:none;
+		text-shadow:0 -1px 0 black(.15);
+		transform-origin:0 0;	
+		transform:rotate(45deg);
+	}
+}
+@media (max-width:1150px) {
+	.forkme {
+		display:none;
+	}
+}
+.download {
+	float:right;
+}
+.subtitle {
+	font-size:19px;
+	margin:5px 0 1em 0;
+	font-style:italic;
+	display:none;
+}
+.footer {
+	padding:spacer;
+	text-align:center;
+	font-size:14px;
+}

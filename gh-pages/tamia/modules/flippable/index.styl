@@ -1,0 +1,36 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Flippable pane
+
+.flippable
+	no-select()
+	position: relative
+	perspective: 600px
+	cursor: default
+
+	&__front,
+	&__back
+		position: absolute
+		top: 0
+		left: 0
+		width: inherit
+		height: inherit
+		transform-style: preserve-3d
+		backface-visibility: hidden
+		transition: all .4s ease-out-back
+	&__front
+		z-index: 900
+		transform: rotateY(0deg) rotateX(0deg)
+	&__back
+		z-index:800;
+		transform: rotateY(-180deg)
+	&_vertical &__back
+		transform: rotateX(-180deg)
+
+	&.is-flipped &__front
+		transform: rotateY(180deg)
+	&_vertical.is-flipped &__front
+		transform: rotateX(180deg)
+
+	.is-flipped &__back
+		transform: rotateY(0deg) rotateX(0deg)
+

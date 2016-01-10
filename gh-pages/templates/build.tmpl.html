@@ -1,0 +1,17 @@
+<div class="social-likes{{? $.type === 'vertical' }} social-likes_vertical{{?}}{{? $.type === 'single' }} social-likes_single{{?}}{{? $.light }} social-likes_light{{?}}"{{? !$.counters }} data-counters="no"{{?}}{{? $.url }} data-url="{{=$.url}}"{{?}}{{? $.title }} data-title="{{=$.title}}"{{?}}{{? $.type === 'single' }} data-single-title="{{=$.singleTitle}}"{{?}}>
+
+	{{? $.site_facebook }}<div class="facebook" title="{{=$.titleFacebook}}">Facebook</div>{{?}}
+
+	{{? $.site_twitter }}<div class="twitter" {{? $.twitter_via }} data-via="{{=$.twitter_via}}"{{?}} {{? $.twitter_related }} data-related="{{=$.twitter_related}}"{{?}} title="{{=$.titleTwitter}}">Twitter</div>{{?}}
+
+	{{? $.site_mailru }}<div class="mailru" title="Поделиться ссылкой в Моём мире">Мой мир</div>{{?}}
+
+	{{? $.site_vkontakte }}<div class="vkontakte" title="Поделиться ссылкой во Вконтакте">Вконтакте</div>{{?}}
+
+	{{? $.site_odnoklassniki }}<div class="odnoklassniki" title="Поделиться ссылкой в Одноклассниках">Одноклассники</div>{{?}}
+
+	{{? $.site_plusone }}<div class="plusone" title="{{=$.titlePlusone}}">Google+</div>{{?}}
+
+	{{? $.site_pinterest }}<div class="pinterest" title="{{=$.titlePinterest}}" data-media="{{=$.pinterest_media}}">Pinterest</div>{{?}}
+
+</div>

@@ -1,0 +1,249 @@
+<f:template xmlns:f="http://fest.mail.ru" context_name="$">
+	<f:doctype>html</f:doctype>
+	<f:script src="./functions.js"/>
+	<html lang="{$.lang}">
+		<head>
+			<meta charset="utf-8"/>
+			<title>
+				<f:value>$.pageTitle</f:value>
+			</title>
+
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+			<meta name="viewport" content="width=1024px"/>
+			<meta name="format-detection" content="telephone=no"/>
+			<meta name="description" content="{$.descriptionHead||$.description}"/>
+
+			<script src="{$.files.modernizr}"></script>
+			<link rel="stylesheet" href="{$.files.css}"/>
+			<link id="styles_classic" rel="stylesheet" href="{$.files.slcss_classic}"/>
+			<link id="styles_flat" rel="stylesheet" href="{$.files.slcss_flat}" disabled="disabled"/>
+			<link id="styles_birman" rel="stylesheet" href="{$.files.slcss_birman}" disabled="disabled"/>
+
+			<link rel="image_src" href="http://sapegin.github.com/social-likes/img/social-likes.png"/>
+			<meta property="og:image" content="http://sapegin.github.com/social-likes/img/social-likes.png"/> 
+		</head>
+		<body>
+			<div class="forkme">
+				<a href="https://github.com/sapegin/social-likes" class="forkme-i">Fork me on GitHub</a>
+			</div>
+
+			<div class="wrapper">
+
+				<div class="language-switcher">
+					<a href="{$.translationLink}">
+						<f:value>$.translationTitle</f:value>
+					</a>
+				</div>
+
+				<h1>
+					<f:value>$.name</f:value>
+				</h1>
+
+				<div class="description">
+					<p>
+						<f:value output="text">$.description</f:value>
+					</p>
+				</div>
+
+				<div class="preview preview_horizontal js-preview"></div>
+
+				<form class="builder form form_full" data-component="builder">
+					<input type="hidden" name="lang" value="{$.lang}"/>
+					<input type="hidden" name="titleFacebook" value="{$.titleFacebook}"/>
+					<input type="hidden" name="titleTwitter" value="{$.titleTwitter}"/>
+					<input type="hidden" name="titlePlusone" value="{$.titlePlusone}"/>
+					<input type="hidden" name="titleLivejournal" value="{$.titleLivejournal}"/>
+					<input type="hidden" name="titlePinterest" value="{$.titlePinterest}"/>
+					<input type="hidden" name="singleTitle" value="{$.singleTitle}"/>
+
+					<!-- Skin -->
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderSkin</f:value>
+						</div>
+						<div class="builder__widget">
+							<div class="switcher">
+								<input class="switcher__input" id="skin_classic" type="radio" name="skin" value="classic" checked="checked"/>
+								<label class="switcher__label" for="skin_classic"><f:value>$.builderSkinClassic</f:value></label>
+								<input class="switcher__input" id="skin_flat" type="radio" name="skin" value="flat"/>
+								<label class="switcher__label" for="skin_flat"><f:value>$.builderSkinFlat</f:value></label>
+								<input class="switcher__input" id="skin_birman" type="radio" name="skin" value="birman"/>
+								<label class="switcher__label" for="skin_birman"><f:value>$.builderSkinBirman</f:value></label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Type (look) -->
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderType</f:value>
+						</div>
+						<div class="builder__widget">
+							<div class="switcher">
+								<input class="switcher__input" id="type_horizontal" type="radio" name="type" value="horizontal" checked="checked"/>
+								<label class="switcher__label" for="type_horizontal"><f:value>$.builderTypeHorizontal</f:value></label>
+								<input class="switcher__input" id="type_vertical" type="radio" name="type" value="vertical"/>
+								<label class="switcher__label" for="type_vertical"><f:value>$.builderTypeVertical</f:value></label>
+								<input class="switcher__input" id="type_single" type="radio" name="type" value="single"/>
+								<label class="switcher__label" for="type_single"><f:value>$.builderTypeSingle</f:value></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="builder__row">
+						<div class="builder__widget">
+							<div class="builder__checkbox checkbox">
+								<input class="checkbox__input" id="counters" type="checkbox" name="counters" value="1" checked="checked"/>
+								<label class="checkbox__label" for="counters">
+									<span class="checkbox__button"></span>
+									<f:space/>
+									<span class="checkbox__text"><f:value>$.builderCounters</f:value></span>
+								</label>
+							</div>
+							<div class="builder__checkbox checkbox js-light is-hidden">
+								<input class="checkbox__input" id="light" type="checkbox" name="light" value="1"/>
+								<label class="checkbox__label" for="light">
+									<span class="checkbox__button"></span>
+									<f:space/>
+									<span class="checkbox__text"><f:value>$.builderLight</f:value></span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="builder__row">
+						<div class="builder__label">
+							<f:value>$.builderSites</f:value>
+						</div>
+						<div class="builder__widget builder__sites group">
+							<f:for iterate="$.common.sites" index="i" value="site">
+								<f:if test="!site.langs || site.langs.indexOf($.lang) !== -1">
+									<div class="builder__checkbox checkbox">
+										<input class="checkbox__input" id="site_{site.id}" type="checkbox" name="site_{site.id}" value="1">
+											<f:attributes>
+												<f:if test="site.checked">
+													<f:attribute name="checked" value="checked"/>
+												</f:if>
+											</f:attributes>
+										</input>
+										<label class="checkbox__label" for="site_{site.id}">
+											<span class="checkbox__button"></span>
+											<f:space/>
+											<span class="checkbox__text">
+												<f:choose>
+													<f:when test="typeof site.name === 'string'">
+														<f:value>site.name</f:value>
+													</f:when>
+													<f:otherwise>
+														<f:value>site.name[$.lang]</f:value>
+													</f:otherwise>
+												</f:choose>
+											</span>
+										</label>
+									</div>
+								</f:if>
+							</f:for>
+						</div>
+					</div>
+					<div class="builder__row">
+						<label for="url" class="builder__label">
+							<f:value>$.builderUrl</f:value>
+						</label>
+						<div class="builder__widget">
+							<input type="text" name="url" value="" placeholder="{$.builderUrlHelp}" class="field"/>
+						</div>
+					</div>
+					<div class="builder__row">
+						<label for="title" class="builder__label">
+							<f:value>$.builderTitle</f:value>
+						</label>
+						<div class="builder__widget">
+							<input type="text" name="title" value="" placeholder="{$.builderTitleHelp}" class="field"/>
+						</div>
+					</div>
+					<div class="builder__row js-twitter-extra is-hidden">
+						<div class="l-row">
+							<div class="l-half">
+								<label for="twitter_via" class="builder__label">
+									<f:value>$.builderTwitterVia</f:value>
+								</label>
+								<div class="builder__widget">
+									<input type="text" name="twitter_via" value="" placeholder="{$.builderTwitterViaHelp}" class="field"/>
+								</div>
+							</div>
+							<div class="l-half">
+								<label for="twitter_related" class="builder__label">
+									<f:value>$.builderTwitterRelated</f:value>
+								</label>
+								<div class="builder__widget">
+									<input type="text" name="twitter_related" value="" placeholder="{$.builderTwitterRelatedHelp}" class="field"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="builder__row js-pinterest-extra is-hidden">
+						<label for="pinterest_media" class="builder__label">
+							<f:value>$.builderPinterestMedia</f:value>
+						</label>
+						<div class="builder__widget">
+							<input type="text" name="pinterest_media" value="" placeholder="{$.builderPinterestMediaHelp}" class="field"/>
+						</div>
+					</div>
+
+				</form>
+
+				<div class="code">
+					<pre class="code-i"><code class="language-markup js-code"></code></pre>
+				</div>
+
+				<div class="download-row">
+					<div class="download-row__links">
+						<div class="download-row__button">
+							<a href="https://github.com/sapegin/social-likes/zipball/master" class="big-button js-download" download="social-likes.zip"><f:value>$.downloadArchive</f:value></a>
+						</div>
+						<f:space/>
+						<nobr>
+							<f:value>$.or</f:value>
+							<f:space/>
+							<a href="https://github.com/sapegin/social-likes"><f:value>$.browseCode</f:value></a>
+							<f:space/>
+							<f:value>$.onGitHub</f:value>
+						</nobr>
+					</div>
+					<div class="download-row__descr"><f:value output="text">$.archiveContains</f:value></div>
+				</div>
+				<form id="download-proxy" action="http://api.sapegin.me/social-likes-proxy/proxy.php" method="post">
+					<input type="hidden" name="content" value=""/>
+				</form>
+
+				<div class="docs">
+					<f:value output="text">$.docs</f:value>
+				</div>
+
+			</div>
+
+			<div class="footer">
+				<f:value output="text">$.footer</f:value>
+			</div>
+
+			<script type="text/plain" id="build_tmpl"><f:insert src="build.tmpl.html"/></script>
+			<script type="text/plain" id="prepend_tmpl"><f:insert src="prepend.tmpl.html"/></script>
+			<script type="text/plain" id="index_tmpl"><f:insert src="index.tmpl.html"/></script>
+			<script type="text/plain" id="index_footer_tmpl"><f:value output="text">$.archiveFooter</f:value></script>
+
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="{$.files.js}"></script>
+			<f:choose>
+				<f:when test="$.debug">
+					<script src="src/social-likes.js"></script>
+				</f:when>
+				<f:otherwise>
+					<script src="{$.files.sljs}"></script>
+				</f:otherwise>
+			</f:choose>	
+
+			<!-- Yandex.Metrika counter --><script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6395488 = new Ya.Metrika({id:6395488, clickmap:true, trackLinks:true, webvisor:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/6395488" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+
+		</body>
+	</html>
+</f:template>

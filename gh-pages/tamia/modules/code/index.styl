@@ -1,0 +1,44 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Code blocks
+
+modules_default_skin ?= true
+code_default_skin ?= false
+
+.code,
+.text code,
+.text kbd,
+.text pre,
+.text pre *
+	font-family: Consolas, "Lucida Console", Monaco, "DejaVu Sans Mono", monospace
+
+.code
+	display: block
+	white-space: pre-wrap
+	-moz-tab-size: 4
+	  -o-tab-size: 4
+	     tab-size: 4
+
+	code
+		display: block
+		font-size: 14px
+		line-height: 1.3
+
+	.indent
+		display: inline-block
+		width: 2.2em
+
+	if modules_default_skin or code_default_skin
+
+		@import 'tomorrow'
+
+		code
+			padding: spacer
+			background: #fff
+			background: white(.7)
+			border-radius: 3px
+			border: 1px solid #ccc
+			border-color: black(.2)
+
+// Enable code in .text blocks
+.text pre
+	@extend .code

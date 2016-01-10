@@ -28,9 +28,13 @@
     "jquery": ">=1.8"
   },
   "devDependencies": {
-    "autoprefixer-stylus": "0.3.0",
+    "autoprefixer-stylus": "~0.3.0",
+    "csso-stylus": "0.0.3",
+    "gh-pages": "~0.8.0",
     "grunt": "~0.4.5",
     "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-connect": "~0.11.2",
     "grunt-contrib-imagemin": "~0.8.1",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-stylus": "~0.20.0",
@@ -38,13 +42,19 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-csso": "~0.6.3",
     "grunt-jscs-checker": "~0.7.1",
+    "grunt-modernizr": "~1.0.1",
+    "grunt-replace": "~0.11.0",
+    "grunt-sweet": "~0.2.2",
     "grunt-webfont": "~0.4.8",
     "load-grunt-tasks": "~0.6.0"
   },
   "scripts": {
     "build": "grunt",
     "test": "grunt",
-    "replace-version": "grunt replace:version",
-    "build-gh-pages": "scripts/update-gh-pages.sh"
+    "publish": "npm run update-gh-pages && npm run build-gh-pages && npm run publish-gh-pages",
+    "update-gh-pages": "mkdir -p gh-pages/public/src && cp dist/* gh-pages/public/src/ && cp src/social-likes.js gh-pages/public/src/",
+    "build-gh-pages": "cd gh-pages && grunt && cd ..",
+    "publish-gh-pages": "gh-pages -d gh-pages/public",
+    "make-debug-symlinks": "ln -s . gh-pages/public/social-likes"
   }
 }

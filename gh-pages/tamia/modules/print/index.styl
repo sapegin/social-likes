@@ -1,0 +1,103 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Print stylesheet
+
+// Site domain (for example, `example.com`) that will be printed.
+site_domain ?= false
+
+@media print
+
+	@page
+		margin: .5cm
+
+	nav,
+	.social-likes,
+	.no-print
+		display: none
+
+	.print
+		display: block
+
+	*
+		font-family: Cambria, Georgia, serif
+		color: #000 !important
+		background: transparent !important
+		float: none !important
+		width: auto !important
+		margin-left: 0 !important
+		margin-right: 0 !important
+		padding-left: 0 !important
+		padding-right: 0 !important
+		text-shadow: none !important
+
+	body
+		padding-bottom: 0
+
+	a
+		border: none !important
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+		font-family: Corbel, 'Helvetica Neue', Arial, sans-serif
+		page-break-inside: avoid
+		page-break-after: avoid
+
+	a:link:after,
+	a:visited:after
+		content: " (" attr(href) ")"
+		font-size: .9em
+
+	if site_domain
+		a[href^="/"]:link:after,
+		a[href^="/"]:visited:after
+			content: (" (http://" + site_domain) attr(href) ")"
+			font-size: .9em
+
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after,
+	.footer a:after
+		content: ""
+
+	.header
+		margin-bottom: 2*spacer
+		border-bottom: 1pt solid #000
+		height: auto
+
+	.footer
+		position: static
+		margin-top: 2*spacer
+		border-top: 1pt solid #000
+		height: auto
+		a
+			text-decoration: none
+
+	if site_domain
+		.logo:before
+			content: url(/favicon.ico)
+			padding-right: 2px
+			vertical-align: middle
+
+		.logo a:link:after,
+		.logo a:visited:after
+			content: " — " + site_domain
+
+	p,
+	blockquote,
+	ul,
+	ol,
+	dl,
+	tr,
+	img
+		page-break-inside: avoid
+
+	p,
+	h2,
+	h3
+		orphans: 3
+		widows: 3
+
+	ul
+		margin-left: 1.2em !important

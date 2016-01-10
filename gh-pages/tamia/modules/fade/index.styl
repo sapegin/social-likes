@@ -1,0 +1,11 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Fading text
+// Based on http://mir.aculo.us/2012/09/16/masking-html-elements-with-gradient-based-fadeouts/ + thanks to @kizu
+
+.fade
+	display: block
+	overflow: hidden
+	white-space: nowrap
+	-webkit-mask-image: -webkit-linear-gradient(right, transparent 0, #000 3em)  // Webkit
+	mask: embedurl("mask.svg#fade-mask")  // Firefox
+	-ms-text-overflow: ellipsis  // IE

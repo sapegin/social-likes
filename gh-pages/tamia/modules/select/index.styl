@@ -1,0 +1,86 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Select with custom design
+// Dependencies: form
+
+// Bones
+
+.select
+	no-select()
+	position: relative
+	display: block
+	overflow: hidden
+	font-size: 1em
+
+	&_inline
+		display: inline-block
+
+	&__select
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		opacity: 0
+		z-index: 2
+		cursor: default
+		transform: scaleY(2)  // Select height could be smaller than box height
+		transform-origin: 0 100%  // Fixes dropdown position on Windows
+
+	&__box
+		display: block
+		vertical-align: middle
+		line-height: 1
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+
+	&:after
+		content: ""
+		position: absolute
+		top: 0
+		bottom: 0
+		right: 0
+		z-index: 1
+
+	&.is-disabled
+		opacity: .4
+
+
+// Default skin
+
+modules_default_skin ?= true
+select_default_skin ?= false
+
+if modules_default_skin or select_default_skin
+	.select
+		border: 1px solid #bbb
+		border-bottom-color: #aaa
+		border-radius: form_border_radius
+		transition: border-color .1s ease-in-out, box-shadow .1s ease-in-out
+
+		&__box
+			height: 2em
+			padding: .5em 1.5em .5em .5em
+			background: #f4f4f4
+			background: linear-gradient(to bottom, #fefefe, #f4f4f4)
+			line-height: 1
+			color: #555
+
+		&:after
+			top: 50%
+			right: .3em
+			width: .8em
+			height: .7em
+			margin-top: -.3em
+			background: embedurl("arrow.svg") no-repeat
+			background-size: 100% 100%
+		.no-svg &:after
+			content: "▼"
+			padding-right: .2em
+			text-align: center
+			vertical-align: middle
+			font-size: 1em
+			line-height: 2em
+
+		&.is-focused
+			border-color: form_focus_color
+			box-shadow: 0 0 .4em rgba(form_focus_color, .75)

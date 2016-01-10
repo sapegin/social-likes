@@ -1,0 +1,68 @@
+// Tâmia © 2013 Artem Sapegin http://sapegin.me
+// Basic text styles
+
+.text
+	hyphens: auto
+
+	p,
+	ul,
+	ol,
+	li,
+	pre
+		margin-bottom: 2*spacer
+
+.alpha,
+.text h1,
+.beta,
+.text h2,
+.gamma,
+.text h3,
+.delta,
+.text h4,
+.epsilon,
+.text h5
+	margin-top: 3*spacer
+	margin-bottom: spacer
+	line-height: 1.2
+	font-weight: normal
+
+.alpha,
+.text h1
+	font-size: 44px
+
+.beta,
+.text h2
+	font-size: 34px
+
+.gamma,
+.text h3
+	font-size: 28px
+
+.delta,
+.text h4
+	font-size: 20px
+
+.epsilon,
+.text h5
+	font-size: 1em
+	font-weight: bold
+
+// Collapse margin between headings and before first heading.
+.text h1 + h2,
+.text h2 + h3,
+.text h3 + h4,
+.text h4 + h5,
+.alpha + .beta,
+.beta + .gamma,
+.gamma + .delta,
+.delta + .epsilon,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+.alpha:first-child,
+.beta:first-child,
+.gamma:first-child,
+.delta:first-child
+	margin-top: 0
