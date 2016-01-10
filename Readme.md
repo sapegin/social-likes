@@ -1,9 +1,6 @@
 
 # Social Likes
 
-[![Bower version](https://badge.fury.io/bo/social-likes.svg)](http://badge.fury.io/bo/social-likes)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-
 Beautiful share buttons with counters for popular social networks: Facebook, Twitter, Google+, Pinterest, Vkontakte, etc. Uses jQuery.
 
 [![](http://wow.sapegin.me/image/1f1U2S130d3R/social-likes.png)](http://sapegin.github.io/social-likes/)
@@ -21,7 +18,7 @@ Beautiful share buttons with counters for popular social networks: Facebook, Twi
 
 Use [interactive builder](http://sapegin.github.io/social-likes/) to generate the code.
 
-Or install via [Bower](http://bower.io/): `$ bower install social-likes`.
+Or install via npm: `npm install --save social-likes`.
 
 
 ## Advanced configuration
@@ -52,7 +49,7 @@ All buttons in a column.
 
 #### Single button
 
-One button with a counter (summ of all the networks). Opens popup with like buttons in vertical layout. Use `data-single-title` attribute to change button title.
+One button with a counter (sum of all the networks). Opens popup with like buttons in vertical layout. Use `data-single-title` attribute to change button title.
 
 ```html
 <div class="social-likes social-likes_single" data-single-title="Share me!">
