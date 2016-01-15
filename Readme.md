@@ -365,6 +365,8 @@ So you need your page to look like this:
 
 ### Counters don’t work
 
+**Twitter counter was disabled in [3.0.15](https://github.com/sapegin/social-likes/releases/tag/3.0.15).**
+
 In most cases if you don’t see counters it’s because social networks APIs return zeros. You could check API requests results in Network tab in your browser’s developer tools:
 
 ![](http://cl.ly/image/013x2M01021N/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
@@ -376,7 +378,6 @@ If you have more than one Social Likes blocks on a page with different URLs, Goo
 If your site have internationalized domain name (e.g. `президент.рф`) make sure you convert it to [Punycode](https://en.wikipedia.org/wiki/Punycode) (e.g. `xn--d1abbgf6aiiy.xn--p1ai`).
 
 If you’re sure that it’s a bug please file an issue **and provide a link** to a page with non-working counter.
-
 
 ## Release History
 
