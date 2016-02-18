@@ -314,6 +314,26 @@ You can add additional Twitter data using [Twitter Card](https://dev.twitter.com
 
 If you’re experiencing any problems with meta data try [Open Graph Debugger](https://developers.facebook.com/tools/debug/) and [Twitter Card Validator](https://dev.twitter.com/docs/cards/validation/validator).
 
+### How to fix Twitter counter
+
+Twitter counter API [was disabled by Twitter](https://github.com/sapegin/social-likes/releases/tag/3.0.15) but you can replace it with [OpenShareCount](http://opensharecount.com/). It’s free but you have to register your site there.
+
+1. [Create account](http://opensharecount.com/) at OpenShareCount.
+
+2. Add this script before you include `social-likes.js`:
+
+```html
+<script>
+var socialLikesButtons = {
+  twitter: {
+    counterUrl: 'https://opensharecount.com/count.json?url={url}&callback=?',
+    convertNumber: function(data) {
+      return data.count;
+    }
+  }
+};
+</script>
+```
 
 ### How to use Social Likes with Wordpress, etc.
 
