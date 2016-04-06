@@ -1,5 +1,7 @@
 # Social Likes
 
+[![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
+
 **[Try the all new Social Likes Next](http://social-likes-next.js.org/): no jQuery, no counters, Retina, IE11+, improved skins.
 
 Beautiful share buttons with counters for popular social networks: Facebook, Twitter, Google+, Pinterest, Vkontakte, etc. Uses jQuery.
