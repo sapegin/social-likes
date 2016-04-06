@@ -1,4 +1,4 @@
-Thank you for your interest in the $PROJECT_NAME$!
+Thank you for your interest in the Social Likes!
 
 This project is powered by you, the user, which means I, the author, can’t answer support questions, fix non-critical bugs and implement feature requests.
 
