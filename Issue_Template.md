@@ -8,6 +8,8 @@ But I can:
 - publish a new release,
 - give you push access if you want to maintain the project.
 
+Consider using the Social Likes Next instead: http://social-likes-next.js.org/
+
 Learn more about the “powered by you” status: http://sapegin.github.io/powered-by-you/
 
 Learn how to submit your first pull request: http://makeapullrequest.com/
