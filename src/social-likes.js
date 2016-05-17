@@ -432,7 +432,7 @@
 			// Button
 			var button = $('<span>', {
 				'class': this.getElementClassNames('button'),
-				'text': widget.text()
+				'html': widget.html()
 			});
 			if (options.clickUrl) {
 				var url = makeUrl(options.clickUrl, {
