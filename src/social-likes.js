@@ -45,6 +45,7 @@
 			popupHeight: 359
 		},
 		twitter: {
+			counters: false,
 			popupUrl: 'https://twitter.com/intent/tweet?url={url}&text={title}',
 			popupWidth: 600,
 			popupHeight: 250,
@@ -322,11 +323,12 @@
 				}
 			}
 
+			this.countersLeft--;
+
 			if (this.countersLeft === 0) {
 				this.appear();
 				this.ready();
 			}
-			this.countersLeft--;
 		},
 		appear: function() {
 			this.container.addClass(prefix + '_visible');
