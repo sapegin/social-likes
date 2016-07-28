@@ -35,10 +35,9 @@
 	 */
 	var services = {
 		facebook: {
-			// https://developers.facebook.com/docs/reference/fql/link_stat/
-			counterUrl: 'https://graph.facebook.com/fql?q=SELECT+total_count+FROM+link_stat+WHERE+url%3D%22{url}%22&callback=?',
+			counterUrl: 'https://api.facebook.com/restserver.php?format=json&method=links.getStats&urls={url}',
 			convertNumber: function(data) {
-				return data.data[0].total_count;
+				return data[0].total_count;
 			},
 			popupUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
 			popupWidth: 600,
