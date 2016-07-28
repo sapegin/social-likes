@@ -1,5 +1,5 @@
 // gruntjs.com
- 
+
 /*jshint node:true*/
 module.exports = function(grunt) {
 	'use strict';
@@ -12,7 +12,8 @@ module.exports = function(grunt) {
 				'http://sapegin.github.com/social-likes - Licensed MIT */\n',
 		jshint: {
 			options: {
-				jshintrc: 'src/.jshintrc'
+				jshintrc: 'src/.jshintrc',
+				reporterOutput: ''
 			},
 			files: ['src/social-likes.js']
 		},
