@@ -1,3 +1,9 @@
+# 3.1.1 - 2016-08-19
+
+* **Fixed**: Facebook counter API (#184 by @gldmtr, #186 by @xdimedrolx).
+* **Fixed**: ready state check after Twitter counter removal (#182 by @shvetsgroup).
+* Allow HTML in button captions (#109 by @thenexus00).
+
 # 3.1.0 - 2016-01-10
 
 * Fix Google+ counter.
