@@ -19,7 +19,7 @@
 			html: '',
 			skin: skin
 		},
-		prefix = location.hostname === '127.0.0.1' ? '' : '/social-likes/',
+		prefix = location.hostname === '127.0.0.1' ? '' : '/',
 		sourceFiles = {
 			'social-likes.min.js': {url: prefix + 'src/social-likes.min.js'},
 			'social-likes_{skin}.css': {url: prefix + 'src/social-likes_{skin}.css'}

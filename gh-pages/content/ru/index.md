@@ -1,7 +1,7 @@
 name: Social Likes
 title: Social Likes — красивые кнопки «лайков» социальных сетей с использованием jQuery
 description: Красивые кнопки «лайков» со счётчиками в едином стиле для социальных сетей: Facebook, Twitter, Вконтакте, Одноклассники, Мой мир, Google+ и Pinterest. Кнопки уже используют <a href="http://www.snob.ru/">Сноб</a>, <a href="http://sberbank.ru/">Сбербанк</a>, <a href="http://blogengine.ru/blogs/">блоги на Эгее</a> и&nbsp;многие другие.
-translationLink: /social-likes/
+translationLink: /
 translationTitle: In English
 builderSkin: Скин
 builderSkinClassic: Классический

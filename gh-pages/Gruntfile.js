@@ -4,7 +4,6 @@ module.exports = function(grunt) {
 	grunt.file.expand('../node_modules/grunt-*/tasks').forEach(grunt.loadTasks);
 
 	var debug = !!grunt.option('debug');
-	var prefix = debug ? '' : '/social-likes/';
 
 	grunt.initConfig({
 			pkg: grunt.file.readJSON('../package.json'),
@@ -84,41 +83,41 @@ module.exports = function(grunt) {
 				langs: ['ru', 'en'],
 				root_lang: 'en',
 				url_prefixes: {
-					ru: prefix + 'ru/',
-					en: prefix
+					ru: '/ru/',
+					en: '/'
 				},
 				uri_prefixes: {
-					ru: prefix + 'ru/',
-					en: prefix
+					ru: '/ru/',
+					en: '/'
 				},
 				files: {
 					modernizr: {
 						path: '../docs/build/modernizr.js',
-						href: prefix + 'build/modernizr.js?{version}'
+						href:  '/build/modernizr.js?{version}'
 					},
 					css: {
 						path: '../docs/build/styles.css',
-						href: prefix + 'build/styles.css?{version}'
+						href: '/build/styles.css?{version}'
 					},
 					js: {
 						path: '<%= concat.main.dest %>',
-						href: prefix + 'build/scripts.js?{version}'
+						href: '/build/scripts.js?{version}'
 					},
 					sljs: {
 						path: '../docs/src/social-likes.min.js',
-						href: prefix + 'src/social-likes.min.js?{version}'
+						href: '/src/social-likes.min.js?{version}'
 					},
 					slcss_classic: {
 						path: '../docs/src/social-likes_classic.css',
-						href: prefix + 'src/social-likes_classic.css?{version}'
+						href: '/src/social-likes_classic.css?{version}'
 					},
 					slcss_flat: {
 						path: '../docs/src/social-likes_flat.css',
-						href: prefix + 'src/social-likes_flat.css?{version}'
+						href: '/src/social-likes_flat.css?{version}'
 					},
 					slcss_birman: {
 						path: '../docs/src/social-likes_birman.css',
-						href: prefix + 'src/social-likes_birman.css?{version}'
+						href: '/src/social-likes_birman.css?{version}'
 					}
 				}
 			},
