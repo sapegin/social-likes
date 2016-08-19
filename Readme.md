@@ -1,6 +1,7 @@
 # Social Likes
 
 [![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
+[![Build Status](https://travis-ci.org/sapegin/social-likes.svg)](https://travis-ci.org/sapegin/social-likes)
 
 **[Try the all new Social Likes Next](http://social-likes-next.js.org/): no jQuery, no counters, Retina, IE11+, improved skins.**
 
