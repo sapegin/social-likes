@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 					paths: ['tamia'],
 					use: [
 						function() {
-							return (require('autoprefixer-stylus'))({browsers: ['last 2 versions', 'ie 8', 'ie 9']});
+							return (require('autoprefixer-stylus'))({browsers: ['last 2 versions', 'ie 9']});
 						}, debug || (require('csso-stylus'))
 					]
 				},
