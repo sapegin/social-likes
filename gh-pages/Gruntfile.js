@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 					options: {
 						patterns: [
 							{
-								match: /(<!\-\-VERSION\-\->).*?(<!\-\-\/VERSION\-\->)/,
+								match: /(<!\-\-VERSION\-\->).*?(<!\-\-\/VERSION\-\->)/g,
 								replacement: '$1<%= pkg.version %>$2'
 							}
 						]
