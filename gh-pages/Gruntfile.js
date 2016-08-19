@@ -12,13 +12,13 @@ module.exports = function(grunt) {
 			modernizr: {
 				main: {
 					devFile: 'vendor/modernizr.js',
-					outputFile: 'public/build/modernizr.js',
-					dest: 'public/build/modernizr.js',
+					outputFile: '../docs/build/modernizr.js',
+					dest: '../docs/build/modernizr.js',
 					extra: {
 						load: false
 					},
 					files: {
-						src: ['public/build/scripts.js', 'public/build/styles.css']
+						src: ['../docs/build/scripts.js', '../docs/build/styles.css']
 					}
 				}
 			},
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 						'tamia/tamia/tamia.js',
 						'js/main.js'
 					],
-					dest: 'public/build/scripts.js'
+					dest: '../docs/build/scripts.js'
 				}
 			},
 			uglify: {
@@ -72,13 +72,13 @@ module.exports = function(grunt) {
 				},
 				compile: {
 					files: {
-						'public/build/styles.css': 'styles/index.styl'
+						'../docs/build/styles.css': 'styles/index.styl'
 					}
 				}
 			},
 			sweet: {
 				content_dir: 'content',
-				publish_dir: 'public',
+				publish_dir: '../docs',
 				templates_dir: 'templates',
 				default_template_id: 'template',
 				langs: ['ru', 'en'],
@@ -93,11 +93,11 @@ module.exports = function(grunt) {
 				},
 				files: {
 					modernizr: {
-						path: 'public/build/modernizr.js',
+						path: '../docs/build/modernizr.js',
 						href: prefix + 'build/modernizr.js?{version}'
 					},
 					css: {
-						path: 'public/build/styles.css',
+						path: '../docs/build/styles.css',
 						href: prefix + 'build/styles.css?{version}'
 					},
 					js: {
@@ -105,19 +105,19 @@ module.exports = function(grunt) {
 						href: prefix + 'build/scripts.js?{version}'
 					},
 					sljs: {
-						path: 'public/src/social-likes.min.js',
+						path: '../docs/src/social-likes.min.js',
 						href: prefix + 'src/social-likes.min.js?{version}'
 					},
 					slcss_classic: {
-						path: 'public/src/social-likes_classic.css',
+						path: '../docs/src/social-likes_classic.css',
 						href: prefix + 'src/social-likes_classic.css?{version}'
 					},
 					slcss_flat: {
-						path: 'public/src/social-likes_flat.css',
+						path: '../docs/src/social-likes_flat.css',
 						href: prefix + 'src/social-likes_flat.css?{version}'
 					},
 					slcss_birman: {
-						path: 'public/src/social-likes_birman.css',
+						path: '../docs/src/social-likes_birman.css',
 						href: prefix + 'src/social-likes_birman.css?{version}'
 					}
 				}
@@ -125,8 +125,8 @@ module.exports = function(grunt) {
 			replace: {
 				version: {
 					files: {
-						'public/index.html': 'public/index.html',
-						'public/ru/index.html': 'public/ru/index.html'
+						'../docs/index.html': '../docs/index.html',
+						'../docs/ru/index.html': '../docs/ru/index.html'
 					},
 					options: {
 						patterns: [
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
 					options: {
 						livereload: true
 					},
-					files: ['<%= concat.main.dest %>', 'public/build/styles.css']
+					files: ['<%= concat.main.dest %>', '../docs/build/styles.css']
 				},
 				concat: {
 					options: {

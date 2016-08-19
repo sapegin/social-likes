@@ -51,10 +51,9 @@
   "scripts": {
     "build": "grunt",
     "test": "grunt",
-    "publish": "npm run update-gh-pages && npm run build-gh-pages && npm run publish-gh-pages",
-    "update-gh-pages": "mkdir -p gh-pages/public/src && cp dist/* gh-pages/public/src/ && cp src/social-likes.js gh-pages/public/src/",
+    "publish": "npm run update-gh-pages && npm run build-gh-pages",
+    "update-gh-pages": "mkdir -p docs/src && cp dist/* docs/src/ && cp src/social-likes.js docs/src/",
     "build-gh-pages": "cd gh-pages && grunt && cd ..",
-    "publish-gh-pages": "gh-pages -d gh-pages/public",
-    "make-debug-symlinks": "ln -s . gh-pages/public/social-likes"
+    "make-debug-symlinks": "ln -s . docs/social-likes"
   }
 }
