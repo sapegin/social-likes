@@ -35,9 +35,9 @@
 	 */
 	var services = {
 		facebook: {
-			counterUrl: 'https://api.facebook.com/restserver.php?format=json&method=links.getStats&urls={url}',
+			counterUrl: 'https://graph.facebook.com/?id={url}',
 			convertNumber: function(data) {
-				return data[0].total_count;
+				return data.share.share_count;
 			},
 			popupUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
 			popupWidth: 600,
