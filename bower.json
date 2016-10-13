@@ -1,7 +1,7 @@
 {
   "name": "social-likes",
   "description": "Beautiful social “like” buttons with counters for jQuery",
-  "main": "dist/social-likes.js",
+  "main": "dist/social-likes.min.js",
   "authors": [
     "Artem Sapegin <artem@sapegin.ru>"
   ],
