@@ -538,9 +538,9 @@
 			var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
 			var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
 			var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ?
-			    document.documentElement.clientWidth : screen.width;
+				document.documentElement.clientWidth : screen.width;
 			var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ?
-			    document.documentElement.clientHeight : screen.height;
+				document.documentElement.clientHeight : screen.height;
 
 			var left = Math.round(width/2 - params.width/2) + dualScreenLeft;
 			var top = 0;
@@ -549,7 +549,7 @@
 			}
 
 			var win = window.open(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
-			   'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
+				'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
 			if (win) {
 				win.focus();
 				this.widget.trigger('popup_opened.' + prefix, [this.service, win]);
