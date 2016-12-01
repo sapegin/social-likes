@@ -537,8 +537,10 @@
 		openPopup: function(url, params) {
 			var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
 			var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
-			var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-			var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+			var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ?
+			    document.documentElement.clientWidth : screen.width;
+			var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ?
+			    document.documentElement.clientHeight : screen.height;
 
 			var left = Math.round(width/2 - params.width/2) + dualScreenLeft;
 			var top = 0;
