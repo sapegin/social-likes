@@ -21,9 +21,6 @@ module.exports = function(grunt) {
 					}
 				}
 			},
-			jshint: {
-				all: ['js/main.js']
-			},
 			concat: {
 				main: {
 					src: [
@@ -177,5 +174,5 @@ module.exports = function(grunt) {
 		}
 	);
 
-	return grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'stylus', 'modernizr', 'sweet', 'replace']);
+	return grunt.registerTask('default', ['concat', 'uglify', 'stylus', 'modernizr', 'sweet', 'replace']);
 };
