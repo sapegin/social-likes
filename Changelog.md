@@ -1,3 +1,7 @@
+# 3.1.2 - 2016-12-02
+
+* **Fixed**: popup position on dual-screen setups (#190 by @mshevtsov).
+
 # 3.1.1 - 2016-08-19
 
 * **Fixed**: Facebook counter API (#184 by @gldmtr, #186 by @xdimedrolx).
