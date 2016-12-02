@@ -10,18 +10,6 @@ module.exports = function(grunt) {
 		pkg: require('./package.json'),
 		banner: '/*! Social Likes v<%= pkg.version %> by Artem Sapegin - ' +
 				'http://sapegin.github.com/social-likes - Licensed MIT */\n',
-		jshint: {
-			options: {
-				jshintrc: 'src/.jshintrc'
-			},
-			files: ['src/social-likes.js']
-		},
-		jscs: {
-			options: {
-				config: "src/.jscs.json"
-			},
-			files: ['<%= jshint.files %>']
-		},
 		uglify: {
 			options: {
 				banner: '<%= banner %>'
@@ -74,7 +62,7 @@ module.exports = function(grunt) {
 					font: 'social-likes',
 					types: 'woff',
 					embed: 'woff',
-					template: 'src/styles/flat/webfont.styl',
+					template: 'src/styles/flat/webfont.css',
 					stylesheet: 'styl',
 					hashes: false,
 					htmlDemo: false,
@@ -121,7 +109,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'jscs', 'uglify', 'imagemin', 'webfont', 'stylus', 'csso']);
+	grunt.registerTask('default', ['uglify', 'imagemin', 'webfont', 'stylus', 'csso']);
 	grunt.registerTask('build', ['uglify', 'imagemin', 'webfont', 'stylus', 'csso']);
 
 };
