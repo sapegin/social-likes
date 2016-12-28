@@ -1,15 +1,11 @@
-Thank you for your interest in the Social Likes!
+**ISSUES IN ANY LANGUAGE EXCEPT ENGLISH WILL BE CLOSED**
 
-This project is powered by you, the user, which means I, the author, can’t answer support questions, fix non-critical bugs and implement feature requests.
+**PROJECT IS NOT ACTIVELY MAINTAINED**
 
-But I can:
+Which means no support, no new features and no bug fixes. I will not receive a notification about this issue.
 
-- review your pull request,
-- publish a new release,
-- give you push access if you want to maintain the project.
+If you want something, send a pull request and mention @sapegin. If you want to maintain the project, please contact me: http://sapegin.me/
 
 Consider using the Social Likes Next instead: http://social-likes-next.js.org/
-
-Learn more about the “powered by you” status: http://sapegin.github.io/powered-by-you/
 
 Learn how to submit your first pull request: http://makeapullrequest.com/
