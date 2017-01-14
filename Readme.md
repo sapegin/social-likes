@@ -393,7 +393,7 @@ So you need your page to look like this:
 
 In most cases if you don’t see counters it’s because social networks APIs return zeros. You could check API requests results in Network tab in your browser’s developer tools:
 
-![](http://cl.ly/image/013x2M01021N/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/2F3F0u0Q0D1D3u142X0d/Image%202014-03-06%20at%205.33.14%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BB%D1%83%D0%B4%D0%BD%D1%8F.png)
 
 Double check that you use canonical URLs (without extra parameters such as `utm_source`). You can change URL via [`data-url` option](#options).
 
