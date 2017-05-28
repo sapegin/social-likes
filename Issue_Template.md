@@ -1,5 +1,7 @@
 **ISSUES IN ANY LANGUAGE EXCEPT ENGLISH WILL BE CLOSED**
 
+**SUPPORT QUESTIONS WILL BE CLOSED**
+
 **PROJECT IS NOT ACTIVELY MAINTAINED**
 
 Which means no support, no new features and no bug fixes. I will not receive a notification about this issue.
