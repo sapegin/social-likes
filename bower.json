@@ -1,0 +1,25 @@
+{
+  "name": "social-likes",
+  "description": "Beautiful social “like” buttons with counters for jQuery",
+  "main": "dist/social-likes.min.js",
+  "authors": [
+    "Artem Sapegin <artem@sapegin.ru>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "social",
+    "share",
+    "facebook",
+    "twitter",
+    "pinterest",
+    "google+"
+  ],
+  "homepage": "https://github.com/sapegin/social-likes",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
