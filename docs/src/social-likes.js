@@ -115,7 +115,7 @@
 			popupHeight: 336,
 		},
 		plusone: {
-			counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}&callback=?',
+			counterUrl: protocol + '//plus.google.com/share?url={url}',
 			convertNumber: function(number) {
 				return parseInt(number.replace(/\D/g, ''), 10);
 			},
