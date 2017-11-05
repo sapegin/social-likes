@@ -514,7 +514,7 @@
 			if (!counterElem.length) {
 				counterElem = $('<span>', params);
 				this.widget.append(counterElem);
-		    	}
+			}
 
 			this.widget.trigger('counter.' + prefix, [this.service, number]);
 		},
