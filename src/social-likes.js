@@ -509,8 +509,12 @@
 				params.class += ' ' + prefix + '__counter_empty';
 				params.text = '';
 			}
-			var counterElem = $('<span>', params);
-			this.widget.append(counterElem);
+
+			var counterElem = this.widget.find('.' + classPrefix + 'counter_' + this.service);
+			if (!counterElem.length) {
+				counterElem = $('<span>', params);
+				this.widget.append(counterElem);
+		    	}
 
 			this.widget.trigger('counter.' + prefix, [this.service, number]);
 		},
