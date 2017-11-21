@@ -12,14 +12,14 @@
 
 /* global define:false, socialLikesButtons:false */
 
-(function(factory) {  // Try to register as an anonymous AMD module
+(function(factory) {
+	// Try to register as an anonymous AMD module
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
-	}
-	else {
+	} else {
 		factory(jQuery);
 	}
-}(function($, undefined) {
+})(function($, undefined) {
 	'use strict';
 
 	var prefix = 'social-likes';
@@ -84,8 +84,7 @@
 
 				var index = options._.length;
 				options._.push(deferred);
-				$.getScript(makeUrl(jsonUrl, { index: index }))
-					.fail(deferred.reject);
+				$.getScript(makeUrl(jsonUrl, { index: index })).fail(deferred.reject);
 			},
 			popupUrl: 'https://vk.com/share.php?url={url}&title={title}',
 			popupWidth: 655,
@@ -107,18 +106,15 @@
 
 				var index = options._.length;
 				options._.push(deferred);
-				$.getScript(makeUrl(jsonUrl, { index: index }))
-					.fail(deferred.reject);
+				$.getScript(makeUrl(jsonUrl, { index: index })).fail(deferred.reject);
 			},
-			popupUrl: 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
+			popupUrl:
+				'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={url}',
 			popupWidth: 580,
 			popupHeight: 336,
 		},
 		plusone: {
-			counterUrl: protocol + '//share.yandex.ru/gpp.xml?url={url}&callback=?',
-			convertNumber: function(number) {
-				return parseInt(number.replace(/\D/g, ''), 10);
-			},
+			counters: false,
 			popupUrl: 'https://plus.google.com/share?url={url}',
 			popupWidth: 500,
 			popupHeight: 550,
@@ -133,7 +129,6 @@
 			popupHeight: 550,
 		},
 	};
-
 
 	/**
 	 * Counters manager
@@ -156,8 +151,7 @@
 
 			if (jsonUrl && $.isFunction(options.counter)) {
 				options.counter(jsonUrl, deferred);
-			}
-			else if (options.counterUrl) {
+			} else if (options.counterUrl) {
 				$.getJSON(jsonUrl)
 					.done(function(data) {
 						try {
@@ -166,14 +160,12 @@
 								number = options.convertNumber(data);
 							}
 							deferred.resolve(number);
-						}
-						catch (e) {
+						} catch (e) {
 							deferred.reject();
 						}
 					})
 					.fail(deferred.reject);
-			}
-			else {
+			} else {
 				deferred.reject();
 			}
 
@@ -181,7 +173,6 @@
 			return servicePromises[url];
 		},
 	};
-
 
 	// jQuery plugin
 	$.fn.socialLikes = function(options) {
@@ -192,9 +183,11 @@
 				if ($.isPlainObject(options)) {
 					instance.update(options);
 				}
-			}
-			else {
-				instance = new SocialLikes(elem, $.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem)));
+			} else {
+				instance = new SocialLikes(
+					elem,
+					$.extend({}, $.fn.socialLikes.defaults, options, dataToOptions(elem))
+				);
 				elem.data(prefix, instance);
 			}
 		});
@@ -205,8 +198,8 @@
 		title: document.title,
 		counters: true,
 		zeroes: false,
-		wait: 500,  // Show buttons only after counters are ready or after this amount of time
-		timeout: 10000,  // Show counters after this amount of time even if they aren’t ready
+		wait: 500, // Show buttons only after counters are ready or after this amount of time
+		timeout: 10000, // Show counters after this amount of time even if they aren’t ready
 		popupCheckInterval: 500,
 		singleTitle: 'Share',
 	};
@@ -235,19 +228,20 @@
 			this.makeSingleButton();
 
 			this.buttons = [];
-			buttons.each($.proxy(function(idx, elem) {
-				var button = new Button($(elem), this.options);
-				this.buttons.push(button);
-				if (button.options.counterUrl) {
-					this.countersLeft++;
-				}
-			}, this));
+			buttons.each(
+				$.proxy(function(idx, elem) {
+					var button = new Button($(elem), this.options);
+					this.buttons.push(button);
+					if (button.options.counterUrl) {
+						this.countersLeft++;
+					}
+				}, this)
+			);
 
 			if (this.options.counters) {
 				this.timer = setTimeout($.proxy(this.appear, this), this.options.wait);
 				this.timeout = setTimeout($.proxy(this.ready, this, true), this.options.timeout);
-			}
-			else {
+			} else {
 				this.appear();
 			}
 		},
@@ -272,17 +266,16 @@
 			var widget = $('<div>', {
 				class: getElementClassNames('widget', 'single'),
 			});
-			var button = $(template(
-				'<div class="{buttonCls}">' +
-					'<span class="{iconCls}"></span>' +
-					'{title}' +
-				'</div>',
-				{
-					buttonCls: getElementClassNames('button', 'single'),
-					iconCls: getElementClassNames('icon', 'single'),
-					title: this.options.singleTitle,
-				}
-			));
+			var button = $(
+				template(
+					'<div class="{buttonCls}">' + '<span class="{iconCls}"></span>' + '{title}' + '</div>',
+					{
+						buttonCls: getElementClassNames('button', 'single'),
+						iconCls: getElementClassNames('icon', 'single'),
+						title: this.options.singleTitle,
+					}
+				)
+			);
 			widget.append(button);
 			wrapper.append(widget);
 
@@ -290,13 +283,15 @@
 				var activeClass = prefix + '__widget_active';
 				widget.toggleClass(activeClass);
 				if (widget.hasClass(activeClass)) {
-					container.css({ left: -(container.width() - widget.width()) / 2, top: -container.height() });
+					container.css({
+						left: -(container.width() - widget.width()) / 2,
+						top: -container.height(),
+					});
 					showInViewport(container);
 					closeOnClick(container, function() {
 						widget.removeClass(activeClass);
 					});
-				}
-				else {
+				} else {
 					container.removeClass(openClass);
 				}
 				return false;
@@ -363,7 +358,6 @@
 		},
 	};
 
-
 	function Button(widget, options) {
 		this.widget = widget;
 		this.options = $.extend({}, options);
@@ -382,7 +376,7 @@
 
 		update: function(options) {
 			$.extend(this.options, { forceUpdate: false }, options);
-			this.widget.find('.' + prefix + '__counter').remove();  // Remove old counter
+			this.widget.find('.' + prefix + '__counter').remove(); // Remove old counter
 			this.initCounter();
 		},
 
@@ -415,8 +409,7 @@
 				var number = parseInt(data.counter, 10);
 				if (isNaN(number)) {
 					this.options.counterUrl = data.counter;
-				}
-				else {
+				} else {
 					this.options.counterNumber = number;
 				}
 			}
@@ -457,9 +450,9 @@
 				});
 				this.cloneDataAttrs(widget, link);
 				widget.replaceWith(link);
-				this.widget = widget = link;
-			}
-			else {
+				this.widget = link;
+				widget = link;
+			} else {
 				widget.on('click', $.proxy(this.click, this));
 			}
 
@@ -477,13 +470,13 @@
 			if (this.options.counters) {
 				if (this.options.counterNumber) {
 					this.updateCounter(this.options.counterNumber);
-				}
-				else {
+				} else {
 					var extraOptions = {
 						counterUrl: this.options.counterUrl,
 						forceUpdate: this.options.forceUpdate,
 					};
-					counters.fetch(this.service, this.options.url, extraOptions)
+					counters
+						.fetch(this.service, this.options.url, extraOptions)
 						.always($.proxy(this.updateCounter, this));
 				}
 			}
@@ -513,8 +506,12 @@
 				params.class += ' ' + prefix + '__counter_empty';
 				params.text = '';
 			}
-			var counterElem = $('<span>', params);
-			this.widget.append(counterElem);
+
+			var counterElem = this.widget.find('.' + classPrefix + 'counter_' + this.service);
+			if (!counterElem.length) {
+				counterElem = $('<span>', params);
+				this.widget.append(counterElem);
+			}
 
 			this.widget.trigger('counter.' + prefix, [this.service, number]);
 		},
@@ -555,14 +552,12 @@
 				? window.innerWidth
 				: document.documentElement.clientWidth
 					? document.documentElement.clientWidth
-					: screen.width
-			;
+					: screen.width;
 			var height = window.innerHeight
 				? window.innerHeight
 				: document.documentElement.clientHeight
 					? document.documentElement.clientHeight
-					: screen.height
-			;
+					: screen.height;
 
 			var left = Math.round(width / 2 - params.width / 2) + dualScreenLeft;
 			var top = 0;
@@ -570,25 +565,38 @@
 				top = Math.round(height / 3 - params.height / 2) + dualScreenTop;
 			}
 
-			var win = window.open(url, 'sl_' + this.service, 'left=' + left + ',top=' + top + ',' +
-				'width=' + params.width + ',height=' + params.height + ',personalbar=0,toolbar=0,scrollbars=1,resizable=1');
+			var win = window.open(
+				url,
+				'sl_' + this.service,
+				'left=' +
+					left +
+					',top=' +
+					top +
+					',' +
+					'width=' +
+					params.width +
+					',height=' +
+					params.height +
+					',personalbar=0,toolbar=0,scrollbars=1,resizable=1'
+			);
 			if (win) {
 				win.focus();
 				this.widget.trigger('popup_opened.' + prefix, [this.service, win]);
-				var timer = setInterval($.proxy(function() {
-					if (!win.closed) {
-						return;
-					}
-					clearInterval(timer);
-					this.widget.trigger('popup_closed.' + prefix, this.service);
-				}, this), this.options.popupCheckInterval);
-			}
-			else {
+				var timer = setInterval(
+					$.proxy(function() {
+						if (!win.closed) {
+							return;
+						}
+						clearInterval(timer);
+						this.widget.trigger('popup_closed.' + prefix, this.service);
+					}, this),
+					this.options.popupCheckInterval
+				);
+			} else {
 				location.href = url;
 			}
 		},
 	};
-
 
 	/**
 	 * Helpers
@@ -605,8 +613,7 @@
 			var value = data[key];
 			if (value === 'yes') {
 				value = true;
-			}
-			else if (value === 'no') {
+			} else if (value === 'no') {
 				value = false;
 			}
 			options[key.replace(/-(\w)/g, upper)] = value;
@@ -655,21 +662,18 @@
 			var rect = elem[0].getBoundingClientRect();
 			if (rect.left < offset) {
 				elem.css('left', offset - rect.left + left);
-			}
-			else if (rect.right > window.innerWidth - offset) {
+			} else if (rect.right > window.innerWidth - offset) {
 				elem.css('left', window.innerWidth - rect.right - offset + left);
 			}
 
 			if (rect.top < offset) {
 				elem.css('top', offset - rect.top + top);
-			}
-			else if (rect.bottom > window.innerHeight - offset) {
+			} else if (rect.bottom > window.innerHeight - offset) {
 				elem.css('top', window.innerHeight - rect.bottom - offset + top);
 			}
 		}
 		elem.addClass(openClass);
 	}
-
 
 	/**
 	 * Auto initialization
@@ -677,4 +681,4 @@
 	$(function() {
 		$('.' + prefix).socialLikes();
 	});
-}));
+});
