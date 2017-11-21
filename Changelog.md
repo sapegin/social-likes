@@ -1,3 +1,8 @@
+# 3.1.3 - 2017-11-21
+
+* **Fixed**: Disable non-working Google+ counter (#210 by @apotheosis91).
+* **Fixed**: `updateCounter`: append counter only once (#209 by @RunnX).
+
 # 3.1.2 - 2016-12-02
 
 * **Fixed**: popup position on dual-screen setups (#190 by @mshevtsov).
