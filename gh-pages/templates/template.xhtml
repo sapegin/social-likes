@@ -198,23 +198,12 @@
 
 				<div class="download-row">
 					<div class="download-row__links">
-						<div class="download-row__button">
-							<a href="https://github.com/sapegin/social-likes/zipball/master" class="big-button js-download" download="social-likes.zip"><f:value>$.downloadArchive</f:value></a>
-						</div>
+						<f:value>$.or</f:value>
 						<f:space/>
-						<nobr>
-							<f:value>$.or</f:value>
-							<f:space/>
-							<a href="https://github.com/sapegin/social-likes"><f:value>$.browseCode</f:value></a>
-							<f:space/>
-							<f:value>$.onGitHub</f:value>
-						</nobr>
+						<a href="https://github.com/sapegin/social-likes"><f:value>$.browseCode</f:value></a>
 					</div>
 					<div class="download-row__descr"><f:value output="text">$.archiveContains</f:value></div>
 				</div>
-				<form id="download-proxy" action="http://api.sapegin.me/social-likes-proxy/proxy.php" method="post">
-					<input type="hidden" name="content" value=""/>
-				</form>
 
 				<div class="docs">
 					<f:value output="text">$.docs</f:value>
@@ -228,7 +217,6 @@
 
 			<script type="text/plain" id="build_tmpl"><f:insert src="build.tmpl.html"/></script>
 			<script type="text/plain" id="prepend_tmpl"><f:insert src="prepend.tmpl.html"/></script>
-			<script type="text/plain" id="index_tmpl"><f:insert src="index.tmpl.html"/></script>
 			<script type="text/plain" id="index_footer_tmpl"><f:value output="text">$.archiveFooter</f:value></script>
 
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

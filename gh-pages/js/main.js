@@ -1,33 +1,18 @@
 /* Author: Artem Sapegin, http://sapegin.me, 2012 */
 
-/*global tamia:false, doT:true, htmlhl:false, JSZip:false, store:false */
-;(function ($) {
+/*global tamia:false, doT:true, htmlhl:false, store:false */
+(function($) {
 	'use strict';
 
 	$.extend(doT.templateSettings, {
 		strip: false,
-		varname: '$'
+		varname: '$',
 	});
 
-	var lang = $('html').attr('lang'),
-		skins = ['flat', 'classic', 'birman'],
-		skin = 'classic',
-		downloadData = {
-			lang: lang,
-			jquery_ver: jQuery.fn.jquery,
-			footer: $('#index_footer_tmpl').html(),
-			html: '',
-			skin: skin
-		},
-		prefix = location.hostname === '127.0.0.1' ? '' : '/',
-		sourceFiles = {
-			'social-likes.min.js': {url: prefix + 'src/social-likes.min.js'},
-			'social-likes_{skin}.css': {url: prefix + 'src/social-likes_{skin}.css'}
-		},
-		templateIndex = doT.template($('#index_tmpl').html().replace(/\\\//g, '/')),
-		experimental = location.hash === '#ponies',
-		// simple = !('download' in document.createElement('a'));
-		simple = true;  // Because of bug in Chrome 35: https://code.google.com/p/chromium/issues/detail?id=377860
+	var lang = $('html').attr('lang');
+	var skins = ['flat', 'classic', 'birman'];
+	var skin = 'classic';
+	var experimental = location.hash === '#ponies';
 
 	// stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
 	$.fn.serializeObject = function() {
@@ -46,9 +31,8 @@
 		return o;
 	};
 
-
 	// jasonwyatt.tumblr.com/post/10481498815/how-to-correctly-debounce-a-javascript-function
-	function debounce(fn, debounceDuration){
+	function debounce(fn, debounceDuration) {
 		// summary:
 		//      Returns a debounced function that will make sure the given
 		//      function is not triggered too much.
@@ -60,7 +44,7 @@
 
 		debounceDuration = debounceDuration || 100;
 
-		return function(){
+		return function() {
 			if (!fn.debouncing) {
 				fn.debouncing = true;
 			}
@@ -80,8 +64,7 @@
 			.replace(/&/g, '&amp;')
 			.replace(/</g, '&lt;')
 			.replace(/>/g, '&gt;')
-			.replace(/"/g, '&quot;')
-		;
+			.replace(/"/g, '&quot;');
 	}
 
 	function escapeFormData(data) {
@@ -95,8 +78,8 @@
 
 	function fillForm(form, data) {
 		jQuery.each(data, function(name, value) {
-			var field = form.find('[name="' + name + '"]'),
-				type = field.attr('type');
+			var field = form.find('[name="' + name + '"]');
+			var type = field.attr('type');
 			switch (type) {
 				case 'checkbox':
 					field.prop('checked', !!value);
@@ -113,79 +96,30 @@
 
 	function cleanHtml(code) {
 		return code
-			.replace(/\n[\n\t]*\n/g, '\n')  // Remove empty lines
-			.replace(/ {2,}/g, ' ')  // Remove extra spaces
-		;
+			.replace(/\n[\n\t]*\n/g, '\n') // Remove empty lines
+			.replace(/ {2,}/g, ' '); // Remove extra spaces
 	}
 
 	function highlight(code) {
 		return htmlhl(code.replace(/\\\//g, '/'));
 	}
 
-	function download(e) {
-		var files = getFiles();
-
-		var zip = new JSZip();
-		zip.file('index.html', templateIndex(downloadData));
-
-		for (var fileName in files) {
-			zip.file(fileName, files[fileName]);
-		}
-
-		var content = zip.generate();
-
-		if (simple) {
-			var form = $('#download-proxy'),
-				field = form.find('[name="content"]');
-			field.val(content);
-			form.submit();
-			return false;
-		}
-		else {
-			$(e.target).attr('href', 'data:application/zip;base64,' + content);
-		}
-	}
-
-	function getFiles() {
-		var files = {};
-		for (var fileName in sourceFiles) {
-			files[getFilenameForSkin(fileName)] = getFile(fileName);
-		}
-		return files;
-	}
-
-	function getFile(fileName) {
-		var file = sourceFiles[fileName];
-		var url = getFilenameForSkin(file.url);
-		if (!file.files) file.files = {};
-		if (!file.files[url]) {
-			$.ajax(url, { async: false, dataType: 'html' }).then(function(data) {
-				file.files[url] = data;
-			});
-		}
-		return file.files[url];
-	}
-
-	function getFilenameForSkin(fileName) {
-		return fileName.replace('{skin}', skin);
-	}
-
 	tamia.initComponents({
 		builder: function(elem) {
-			var form = $(elem),
-				preview = $('.js-preview'),
-				code = $('.js-code'),
-				twitterExtra = form.find('.js-twitter-extra'),
-				pinterestExtra = form.find('.js-pinterest-extra'),
-				lightStyle = form.find('.js-light'),
-				prepend = doT.template($('#prepend_tmpl').html()),
-				template = doT.template($('#build_tmpl').html()),
-				previous;
+			var form = $(elem);
+			var preview = $('.js-preview');
+			var code = $('.js-code');
+			var twitterExtra = form.find('.js-twitter-extra');
+			var pinterestExtra = form.find('.js-pinterest-extra');
+			var lightStyle = form.find('.js-light');
+			var prepend = doT.template($('#prepend_tmpl').html());
+			var template = doT.template($('#build_tmpl').html());
+			var previous;
 
 			var delayedUpdate = debounce(function(html, data) {
 				// Switch skin
 				skin = data.skin;
-				
+
 				$.each(skins, function(i, s) {
 					$('#styles_' + s).prop('disabled', s !== skin);
 				});
@@ -213,13 +147,15 @@
 					site_vkontakte: !!data.site_vkontakte,
 					twitter_related: data.twitter_related,
 					twitter_via: data.twitter_via,
-					pinterest_media: data.pinterest_media
+					pinterest_media: data.pinterest_media,
 				});
 			});
 
 			var loadOptions = function() {
 				var data = store.get(lang);
-				if (data) fillForm(form, data);
+				if (data) {
+					fillForm(form, data);
+				}
 			};
 
 			function update() {
@@ -235,8 +171,6 @@
 					var html = cleanHtml(template(data));
 					code.html(highlight(prepend(data) + html));
 					delayedUpdate(html, data);
-					downloadData.html = html;
-					downloadData.skin = data.skin;
 
 					previous = dataString;
 				}
@@ -250,9 +184,6 @@
 			form.submit(function() {
 				return false;
 			});
-
-			$('.js-download').click(download);
-		}
+		},
 	});
-
-}(jQuery));
+})(jQuery);

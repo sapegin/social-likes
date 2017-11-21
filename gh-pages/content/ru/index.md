@@ -29,11 +29,9 @@ titleTwitter: Поделиться ссылкой в Твиттере
 titlePlusone: Поделиться ссылкой в Гугл-плюсе
 titlePinterest: Поделиться картинкой на Пинтересте
 singleTitle: Поделиться
-downloadArchive: Скачать кнопки
-or: или
-browseCode: посмотреть код
-onGitHub: на Гитхабе
-archiveContains: Версия <a href="https://github.com/sapegin/social-likes/releases/"><!--VERSION--><!--/VERSION--></a>. В архиве есть всё необходимое для подключения кнопок с выбранными параметрами.
+or: Или
+browseCode: установите вручную
+archiveContains: Версия <a href="https://github.com/sapegin/social-likes/releases/"><!--VERSION--><!--/VERSION--></a>.
 archiveFooter: <a href="http://sapegin.github.com/social-likes/">Social Likes</a> — <a href="https://github.com/sapegin/social-likes/Readme.md">документация</a>
-docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Документация</a>, примеры настройки и расширения.<br>Об ошибках пишите <a href="https://github.com/sapegin/social-likes/issues">на Гитхаб</a>.
+docs: <a href="https://github.com/sapegin/social-likes/blob/master/Readme.md">Документация</a>, примеры настройки и расширения.
 footer: © 2014 <a href="https://github.com/sapegin">Артём Сапегин</a> и другие. Плоский скин: <a href="http://genn.org/">Гена Осипенко</a>, скин Бирмана: <a href="http://ilyabirman.ru/">Илья Бирман</a>
